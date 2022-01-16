@@ -1,0 +1,4 @@
+title	Ein Super\nSpiel
+play	Spielen
+opts	Einstellungen
+info	Info
