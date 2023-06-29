@@ -6,15 +6,12 @@ using UnityEngine;
 public class Soldier : MonoBehaviour
 {
     public GameObject parentRoute;
-
     public Transform[] path;
-
-    public Animator anim;
-
+    private Animator anim;
+    [SerializeField]
+    private soldierType _soldierType;
     public int currentTarget = 0;
-
     public float speed;
-
     private bool isRunning = false;
     public bool isWaiting;
     Vector3 targetDirection;
@@ -22,6 +19,7 @@ public class Soldier : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        anim=GetComponent<Animator>();
         // Creating Route
         path = new Transform[parentRoute.transform.childCount];
         for (int i = 0; i < parentRoute.transform.childCount; i++)
@@ -79,5 +77,9 @@ public class Soldier : MonoBehaviour
         currentTarget = ++currentTarget % parentRoute.transform.childCount;
 
         Run();
+    }
+
+    public enum soldierType {
+        ARMY,MARINE,AIRFORCE
     }
 }
