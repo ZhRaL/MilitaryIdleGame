@@ -9,7 +9,7 @@ public class KitchenController : MonoBehaviour, IController
     public const string SUFFIX_AMOUNT_EFFECTIVNESS = " $";
     public const string SUFFIX_AMOUNT_CAPACITY = "";
 
-    public GameObject Table1,Table2,Table3,Table4;
+    public GameObject Table1,Table2,Table3;
 
     private int _effLevel, _capLevel;
     public Text tx_Cap, tx_Eff;
@@ -32,12 +32,8 @@ public class KitchenController : MonoBehaviour, IController
             }
 
             if (value >= 3)
-            {Table3.SetActive(true);
-            }
-
-            if (value >= 4)
             {
-                Table4.SetActive(true);
+                Table3.SetActive(true);
             }
             tx_Cap.text = value + SUFFIX_AMOUNT_CAPACITY;
         }
@@ -47,7 +43,6 @@ public class KitchenController : MonoBehaviour, IController
     {
         Table2.gameObject.SetActive(false);
         Table3.gameObject.SetActive(false);
-        Table4.gameObject.SetActive(false);
     }
 
     public int[] getState()
