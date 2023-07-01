@@ -102,7 +102,7 @@ public class GameManager : MonoBehaviour
         MarineContr.loadState(JsonHelper.FromJson<int>(PlayerPrefs.GetString(MARINESAFESTRING, " {\"Items\":[1,1,0,0,0,0]}")));
         AirforceContr.loadState(JsonHelper.FromJson<int>(PlayerPrefs.GetString(AIRFORCEAFESTRING, " {\"Items\":[1,1,0,0,0,0]}")));
         ArmyContr.loadState(JsonHelper.FromJson<int>(PlayerPrefs.GetString(ARMYAFESTRING," {\"Items\":[1,1,0,0,0,0]}")));
-        KitchenController.loadState(JsonHelper.FromJson<int>(PlayerPrefs.GetString(KITCHENSAFESTRING," {\"Items\":[1,1]}")));
+        KitchenController.loadState(JsonHelper.FromJson<int>(PlayerPrefs.GetString(KITCHENSAFESTRING," {\"Items\":[1,1,1,1,1,1]}")));
         BathController.loadState(JsonHelper.FromJson<int>(PlayerPrefs.GetString(BATHSAFESTRING," {\"Items\":[1,1]}")));
         SleepingController.loadState(JsonHelper.FromJson<int>(PlayerPrefs.GetString(SLEEPINGSAFESTRING," {\"Items\":[1,1]}")));
         isInitialized = true;

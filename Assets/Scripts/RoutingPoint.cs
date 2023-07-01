@@ -8,7 +8,8 @@ using UnityStandardAssets.Utility;
 
 public class RoutingPoint : MonoBehaviour
 {
-    public UnityEvent act;
+
+    public UnityEvent<Soldier> act;
 
     public bool waitAfterAction;
 
@@ -17,13 +18,8 @@ public class RoutingPoint : MonoBehaviour
     public GameObject radialBar_Prefab;
     public void DoAction(Soldier outcome)
     {
-        // Nothing to do here
-        if (act.GetPersistentEventCount() < 1)
-        {
-            outcome.StartNextRun();
-            return;
-        }
-
+        // TODO - check for: Nothing to do here
+        
         // Theres is still a queue
         if (waitingSoldiers.Count > 0)
         {
@@ -32,12 +28,12 @@ public class RoutingPoint : MonoBehaviour
         }
         
         waitingSoldiers.Add(outcome);
-        ExecuteAction();
+        ExecuteAction(outcome);
     }
     
-    private void ExecuteAction()
+    private void ExecuteAction(Soldier soldier)
     {
-        act?.Invoke();
+        act?.Invoke(soldier);
         if (waitAfterAction) return;
         waitingSoldiers.First().ActionDone();
         waitingSoldiers.RemoveAt(0);
@@ -50,14 +46,14 @@ public class RoutingPoint : MonoBehaviour
 
         if (waitingSoldiers.Count > 0)
         {
-            ExecuteAction();
+            ExecuteAction(waitingSoldiers.First());
         }        
     }
 
     public void startRadialBar()
     {
         var rb = Instantiate(radialBar_Prefab, waitingSoldiers.First().transform);
-        rb.GetComponent<RadialBar>().initialize(3,end);
+        rb.GetComponent<RadialBar>().Initialize(3,end);
     }
 
     public void end()

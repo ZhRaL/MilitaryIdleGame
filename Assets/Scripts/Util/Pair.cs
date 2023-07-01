@@ -1,25 +1,17 @@
 namespace Util
 {
 
-    public class Pair<X, Y>
+    public class Pair<TX, TY>
     {
-        private X key;
-        private Y value;
+        public TX Key { get; set; }
 
-        public Pair(X key, Y value)
-        {
-            this.key = key;
-            this.value = value;
-        }
+        public TY Value { get; set; }
 
-        public X GetKey()
-        {
-            return key;
-        }
 
-        public Y GetValue()
+        public Pair(TX key, TY value)
         {
-            return value;
+            Key = key;
+            Value = value;
         }
     }
 }
