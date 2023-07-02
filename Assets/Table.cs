@@ -10,14 +10,14 @@ public class Table : MonoBehaviour
     public Chair GetNextFreeChair()
     {
         Debug.Log("y");
-        return chairs.FirstOrDefault(chair => chair.Unlocked && chair.Occupied);
+        return chairs.FirstOrDefault(chair => chair.Unlocked && !chair.Occupied);
     }
 
     public void Init(int amount, int level)
     {
         if (amount >= chairs.Length)
         {
-            Debug.Log("Amount greater than array Length");
+            Debug.LogError("Amount greater than array Length");
             return;
         }
         
@@ -28,5 +28,10 @@ public class Table : MonoBehaviour
 
         unlockedChairs = amount;
         speed = level;
+    }
+
+    public float getWaitingAmount()
+    {
+        return 4f;
     }
 }

@@ -29,15 +29,20 @@ namespace DefaultNamespace
 
         public void Update()
         {
-            Soldier.transform.position += _targetDirection * (Soldier.Speed * Time.deltaTime);
+            _targetDirection = (Target.position - Soldier.transform.position).normalized;
             Vector3 forward = Target.position - Soldier.transform.position;
             Quaternion neededRotation = Quaternion.LookRotation(forward);
             Soldier.transform.rotation = Quaternion.RotateTowards(Soldier.transform.rotation, neededRotation, Time.deltaTime * 200f);
-
-            if ((Soldier.transform.position - Target.position).magnitude < .2f)
+            
+            Soldier.transform.position += _targetDirection * Soldier.Speed * Time.deltaTime;
+            
+            double distance = (Soldier.transform.position - Target.position).magnitude;
+            if ( distance < .2f)
             {
+                Soldier.transform.position = Target.position; 
                 ReachedTarget();
             }
+            // schießen übers Ziel hinaus
         }
     }
 }

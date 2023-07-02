@@ -35,7 +35,7 @@ public class RadialBar : MonoBehaviour
         }
         else
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
             action.Invoke();
         }
     }

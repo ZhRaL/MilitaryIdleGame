@@ -1,22 +1,26 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using DefaultNamespace;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class KitchenController : MonoBehaviour, IController
 {
-    [SerializeField]
-    private Table _tableArmy, _tableAirForce, _tableMarine;
+    [SerializeField] private Table _tableArmy, _tableAirForce, _tableMarine;
     private List<SoldierWalkUtil> _walkingSoldiers = new List<SoldierWalkUtil>();
-    
     /**
      * State: (ArmyCount,ArmyLevel,AirFCount,AirFLevel,MarCount,MarLevel)
      */
     public int[] getState()
     {
-        return new[] { _tableArmy.unlockedChairs, _tableArmy.speed,_tableAirForce.unlockedChairs, _tableAirForce.speed,_tableMarine.unlockedChairs, _tableMarine.speed};
+        return new[]
+        {
+            _tableArmy.unlockedChairs, _tableArmy.speed, _tableAirForce.unlockedChairs, _tableAirForce.speed,
+            _tableMarine.unlockedChairs, _tableMarine.speed
+        };
     }
 
     public void loadState(int[] state)
@@ -35,16 +39,22 @@ public class KitchenController : MonoBehaviour, IController
 
     public void PlaceSoldier(Soldier soldier)
     {
-        Debug.Log("type is:"+soldier.SoldierType);
-
+        Debug.Log("type is:" + soldier.SoldierType);
         Chair targetChair = getTable(soldier.SoldierType).GetNextFreeChair();
-        targetChair.ToggleOccupation(); // Here Problem!
-        moveSoldierTo(soldier,targetChair.transform,() => Debug.Log("waiting Done"));
+        targetChair.Occupied = true;
+        moveSoldierTo(soldier, targetChair.transform, () => targetChair.SoldierSitDown(soldier));
     }
+    
+    private void GetUp(Soldier soldier)
+    {
+        
+    }
+
 
     private void Update()
     {
-        _walkingSoldiers.ForEach(soldierWalkUtil => soldierWalkUtil.Update());
+        var copyOfWalkingSoldiers = new List<SoldierWalkUtil>(_walkingSoldiers);
+        copyOfWalkingSoldiers.ForEach(soldierWalkUtil => soldierWalkUtil.Update());
     }
 
     private Table getTable(Soldier.SoldierTypeEnum type)
@@ -58,7 +68,7 @@ public class KitchenController : MonoBehaviour, IController
 
     private void moveSoldierTo(Soldier soldier, Transform target, Action executeWhenReached)
     {
-        _walkingSoldiers.Add(new SoldierWalkUtil(soldier,target,executeWhenReached,removeWalkingSoldier));
+        _walkingSoldiers.Add(new SoldierWalkUtil(soldier, target, executeWhenReached, removeWalkingSoldier));
     }
 
     public void removeWalkingSoldier(SoldierWalkUtil walk)

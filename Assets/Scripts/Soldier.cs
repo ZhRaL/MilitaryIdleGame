@@ -8,9 +8,8 @@ public class Soldier : MonoBehaviour
 {
     public GameObject parentRoute;
     public Transform[] path;
-    private Animator anim;
+    public Animator anim;
     [SerializeField] private SoldierTypeEnum soldierTypeEnum;
-    
 
     public int currentTarget = 0;
     [SerializeField]
@@ -19,6 +18,7 @@ public class Soldier : MonoBehaviour
     public bool isWaiting;
     Vector3 targetDirection;
     public float distanceToTarget;
+    public GameObject RadialBarPrefab;
     
     public float Speed
     {
@@ -80,7 +80,7 @@ public class Soldier : MonoBehaviour
     {
         if ((transform.position - path[currentTarget].position).magnitude < distanceToTarget)
         {
-            anim.SetBool("isRunning", false);
+            // anim.SetBool("isRunning", false);
             isRunning = false;
             isWaiting = true;
             Debug.Log("Goal");

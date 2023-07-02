@@ -15,7 +15,6 @@ public class RoutingPoint : MonoBehaviour
 
     public List<Soldier> waitingSoldiers;
 
-    public GameObject radialBar_Prefab;
     public void DoAction(Soldier outcome)
     {
         // TODO - check for: Nothing to do here
@@ -48,16 +47,5 @@ public class RoutingPoint : MonoBehaviour
         {
             ExecuteAction(waitingSoldiers.First());
         }        
-    }
-
-    public void startRadialBar()
-    {
-        var rb = Instantiate(radialBar_Prefab, waitingSoldiers.First().transform);
-        rb.GetComponent<RadialBar>().Initialize(3,end);
-    }
-
-    public void end()
-    {
-        Debug.Log("finished");
     }
 }
