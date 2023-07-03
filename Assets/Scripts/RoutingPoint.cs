@@ -48,4 +48,15 @@ public class RoutingPoint : MonoBehaviour
             ExecuteAction(waitingSoldiers.First());
         }        
     }
+
+    public void LetSoldierMove(Soldier soldier)
+    {
+        soldier.StartNextRun();
+        waitingSoldiers.Remove(soldier);
+        
+        if (waitingSoldiers.Count > 0)
+        {
+            ExecuteAction(waitingSoldiers.First());
+        } 
+    }
 }

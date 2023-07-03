@@ -21,9 +21,11 @@ public class Table : MonoBehaviour
             return;
         }
         
-        for (int i = 0; i < amount; i++)
+        for (int i = 0; i < chairs.Length; i++)
         {
+            if(i<=amount)
             chairs[i].Unlocked = true;
+            else chairs[i].gameObject.SetActive(false);
         }
 
         unlockedChairs = amount;

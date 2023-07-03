@@ -45,12 +45,6 @@ public class KitchenController : MonoBehaviour, IController
         moveSoldierTo(soldier, targetChair.transform, () => targetChair.SoldierSitDown(soldier));
     }
     
-    private void GetUp(Soldier soldier)
-    {
-        
-    }
-
-
     private void Update()
     {
         var copyOfWalkingSoldiers = new List<SoldierWalkUtil>(_walkingSoldiers);

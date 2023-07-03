@@ -1,79 +1,80 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class BathController : MonoBehaviour, IController
 {
-    public const string SUFFIX_AMOUNT_EFFECTIVNESS = " $";
-    public const string SUFFIX_AMOUNT_CAPACITY = "";
-
-    public GameObject Rest1, Rest2, Rest3, Rest4;
-
-    private int _effLevel, _capLevel;
-    public Text tx_Cap, tx_Eff;
-
-    public int EffLevel
-    {
-        get => _effLevel;
-        set => _effLevel = value;
-    }
-
-    public int CapLevel
-    {
-        get => _capLevel;
-        set
-        {
-            _capLevel = value;
-
-            if (value >= 2)
-            {
-                Rest2.SetActive(true);
-            }
-
-            if (value >= 3)
-            {
-                Rest3.SetActive(true);
-            }
-
-            if (value >= 4)
-            {
-                Rest4.SetActive(true);
-            }
-
-            tx_Cap.text = value + SUFFIX_AMOUNT_CAPACITY;
-        }
-    }
-
-    private void Start()
-    {
-        Rest2.gameObject.SetActive(false);
-        Rest3.gameObject.SetActive(false);
-        Rest4.gameObject.SetActive(false);
-    }
+    public Rest Rest1, Rest2, Rest3, Rest4;
+    private List<SoldierWalkUtil> _walkingSoldiers = new List<SoldierWalkUtil>();
 
     public int[] getState()
     {
-        int[] x = {CapLevel, EffLevel};
-        Debug.Log("getState: " + x.ArrayToPrint());
-        return x;
+        return new[]
+        {
+            Rest1.unlockedToilets, Rest1.Level, Rest2.unlockedToilets, Rest2.Level,
+            Rest3.unlockedToilets, Rest3.Level, Rest4.unlockedToilets, Rest4.Level
+        };
     }
 
     public void loadState(int[] state)
     {
-        Debug.Log("loadState: " + state.ArrayToPrint());
-        CapLevel = state[0];
-        EffLevel = state[1];
+        if (state.Length != 8) throw new ArgumentException("Wrong Length of Array");
+
+        Rest1.Init(state[0], state[1]);
+        Rest2.Init(state[2], state[3]);
+        Rest3.Init(state[4], state[5]);
+        Rest4.Init(state[6], state[7]);
+
     }
 
     public bool isObjectUnlocked(int i)
     {
-        return i + 1 <= CapLevel;
+        throw new System.NotImplementedException();
     }
 
-    public void BuyRest()
+    private void Update()
     {
-        CapLevel++;
+        var copyOfWalkingSoldiers = new List<SoldierWalkUtil>(_walkingSoldiers);
+        copyOfWalkingSoldiers.ForEach(soldierWalkUtil => soldierWalkUtil.Update());
+    }
+
+    public void PlaceSoldier(Soldier soldier)
+    {
+        Toilet targetToilet = null;
+
+        foreach (var rest in getOrderedRests())
+        {
+            Toilet tempToilet = rest.getFreeToilet();
+            if (tempToilet != null) targetToilet = tempToilet;
+        }
+        // TODO - not enough toilets for all soldiers
+
+        targetToilet!.Occupied = true;
+        moveSoldierTo(soldier, targetToilet.transform, () => targetToilet.SoldierSitDown(soldier));
+    }
+
+    private List<Rest> getOrderedRests()
+    {
+        return new List<Rest>
+        {
+            Rest1,
+            Rest2,
+            Rest3,
+            Rest4
+        }.OrderByDescending(rest => rest.Level).ToList();
+    }
+
+    private void moveSoldierTo(Soldier soldier, Transform target, Action executeWhenReached)
+    {
+        _walkingSoldiers.Add(new SoldierWalkUtil(soldier, target, executeWhenReached, removeWalkingSoldier));
+    }
+
+    public void removeWalkingSoldier(SoldierWalkUtil walk)
+    {
+        _walkingSoldiers.Remove(walk);
     }
 }

@@ -50,9 +50,9 @@ namespace DefaultNamespace
             Vector3 newPos = _soldier.transform.position;
             newPos.y += distanceSoldierGoDown;
             _soldier.transform.position = newPos;
-            
+
+            RoutingPoint.LetSoldierMove(_soldier);
             _soldier = null;
-            RoutingPoint.LetSoldierMove();
         }
     }
 }
