@@ -47,9 +47,10 @@ namespace DefaultNamespace
         private void SoldierGetUp()
         {
             Occupied = false;
-            Vector3 newPos = _soldier.transform.position;
+            var transform1 = _soldier.transform;
+            Vector3 newPos = transform1.position;
             newPos.y += distanceSoldierGoDown;
-            _soldier.transform.position = newPos;
+            transform1.position = newPos;
 
             RoutingPoint.LetSoldierMove(_soldier);
             _soldier = null;

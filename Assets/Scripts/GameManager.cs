@@ -104,7 +104,7 @@ public class GameManager : MonoBehaviour
         ArmyContr.loadState(JsonHelper.FromJson<int>(PlayerPrefs.GetString(ARMYAFESTRING," {\"Items\":[1,1,0,0,0,0]}")));
         KitchenController.loadState(JsonHelper.FromJson<int>(PlayerPrefs.GetString(KITCHENSAFESTRING," {\"Items\":[1,1,1,1,1,1]}")));
         BathController.loadState(JsonHelper.FromJson<int>(PlayerPrefs.GetString(BATHSAFESTRING," {\"Items\":[1,1,0,0,0,0,0,0]}")));
-        SleepingController.loadState(JsonHelper.FromJson<int>(PlayerPrefs.GetString(SLEEPINGSAFESTRING," {\"Items\":[1,1]}")));
+        SleepingController.loadState(JsonHelper.FromJson<int>(PlayerPrefs.GetString(SLEEPINGSAFESTRING," {\"Items\":[1,0,0,0,1,0,0,0,1,0,0,0]}")));
         isInitialized = true;
     }
 
