@@ -37,7 +37,7 @@ public class Rest : MonoBehaviour
         
         for (int i = 0; i < toilets.Length; i++)
         {
-            if(i<=amount)
+            if(i<amount)
                 toilets[i].unlocked = true;
             else toilets[i].gameObject.SetActive(false);
         }

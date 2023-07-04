@@ -10,6 +10,7 @@ namespace DefaultNamespace
         public Action Action { get; set; }
         public Action<SoldierWalkUtil> FinishedListener{ get; set; }
         Vector3 _targetDirection;
+        private float distanceToTarget;
 
 
         public SoldierWalkUtil(Soldier soldier, Transform target, Action action, Action<SoldierWalkUtil> finishedListener)
@@ -19,6 +20,16 @@ namespace DefaultNamespace
             _targetDirection = (Target.position - soldier.transform.position).normalized;
             Action = action;
             FinishedListener = finishedListener;
+            distanceToTarget = .2f;
+        }
+        public SoldierWalkUtil(Soldier soldier, Transform target, Action action, Action<SoldierWalkUtil> finishedListener, float distanceToTarget)
+        {
+            Soldier = soldier;
+            Target = target;
+            _targetDirection = (Target.position - soldier.transform.position).normalized;
+            Action = action;
+            FinishedListener = finishedListener;
+            this.distanceToTarget = distanceToTarget;
         }
 
         private void ReachedTarget()

@@ -23,7 +23,7 @@ public class Table : MonoBehaviour
         
         for (int i = 0; i < chairs.Length; i++)
         {
-            if(i<=amount)
+            if(i<amount)
             chairs[i].Unlocked = true;
             else chairs[i].gameObject.SetActive(false);
         }

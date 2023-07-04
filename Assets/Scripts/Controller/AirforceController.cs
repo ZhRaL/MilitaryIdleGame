@@ -1,83 +1,86 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using DefaultNamespace;
 using UnityEngine;
+using UnityEngine.UIElements;
 
-public class AirforceController : MonoBehaviour,IController
+public class AirforceController : MonoBehaviour, IController
 {
-    public GameObject[] JetPrefabs;
+    public List<Jet> jets;
+    private List<SoldierWalkUtil> _walkingSoldiers = new List<SoldierWalkUtil>();
 
-    public Jet Jet1, Jet2, Jet3;
-
-    public GameObject Baustelle_1, Baustelle_2;
-
+    public GameObject Baustelle_1_Prefab;
+    private Vector3 positionOffset = new Vector3(-4.4f,-1.284768f,0);
     private void Start()
     {
-        Jet2.gameObject.SetActive(false);
-        Jet3.gameObject.SetActive(false);
+        //  Jet2.gameObject.SetActive(false);
+        //  Jet3.gameObject.SetActive(false);
+    }
+    
+    private void Update()
+    {
+        var copyOfWalkingSoldiers = new List<SoldierWalkUtil>(_walkingSoldiers);
+        copyOfWalkingSoldiers.ForEach(soldierWalkUtil => soldierWalkUtil.Update());
     }
 
     public int[] getState()
     {
-        int[] x = {Jet1.Cap_Level, Jet1.Eff_Level, Jet2.Cap_Level, Jet2.Eff_Level, Jet3.Cap_Level, Jet3.Eff_Level};
-        Debug.Log("getState: "+x.ArrayToPrint());
-        return x;
+        return jets.Select(jet => new[] { jet.rewardLevel, jet.durationLevel }).SelectMany(arr => arr).ToArray();
 
     }
+
     public void loadState(int[] state)
     {
-        Debug.Log("loadState: "+state.ArrayToPrint());
-        Jet1.Cap_Level = state[0];
-        Jet1.Eff_Level = state[1];
+        if (state.Length != 6) throw new ArgumentException("illegal amount");
 
-        if (state[2] != 0)
+        int index = 0;
+        
+        foreach (var jet in jets)
         {
-            Jet2.gameObject.SetActive(true);
-            Jet2.Cap_Level = state[2];
-            Jet2.Eff_Level = state[3];
-        }
-        // Spawn "Under Contruction"
-        else
-        {
-            Baustelle_1.SetActive(true);
-        }
-
-        if (state[4] != 0)
-        {
-            Jet3.gameObject.SetActive(true);
-            Jet3.Cap_Level = state[4];
-            Jet3.Eff_Level = state[5];
-        }
-        // Spawn "Under Contruction"
-        else
-        {
-            Baustelle_2.SetActive(true);
+            if (!jet.Init(state[index++], state[index++]))
+            {
+                Instantiate(Baustelle_1_Prefab,jet.transform.position+positionOffset,Quaternion.Euler(0,90,0));
+                jet.gameObject.SetActive(false);
+            }
         }
     }
 
     public bool isObjectUnlocked(int i)
     {
-        if (i == 1)
-            return (Jet2.Eff_Level > 0);
-        if (i == 2)
-            return Jet3.Eff_Level > 0;
-        return false;
-
+        throw new NotImplementedException();
     }
 
     public void BuySecondRunway()
     {
-        Baustelle_1.SetActive(false);
-        Jet2.gameObject.SetActive(true);
-        Jet2.Cap_Level = 1;
-        Jet2.Eff_Level = 1;
-        GameManager.INSTANCE.SaveGame();
+        //  Baustelle_1.SetActive(false);
+        //  Jet2.gameObject.SetActive(true);
+        //  Jet2.Cap_Level = 1;
+        //  Jet2.Eff_Level = 1;
+        //  GameManager.INSTANCE.SaveGame();
     }
-    public void BuyThirdRunway()
+
+
+
+    public void PlaceSoldier(Soldier soldier)
     {
-        Baustelle_2.SetActive(false);
-        Jet3.gameObject.SetActive(true);
-        Jet3.Cap_Level = 1;
-        Jet3.Eff_Level = 1;
+        Jet jet = getFreeJet();
+        moveSoldierTo(soldier, jet.transform, () => jet.soldierEntry(soldier));
+    }
+
+    private Jet getFreeJet()
+    {
+        return jets.FirstOrDefault(jet => jet.unlocked && !jet.occupied);
+    }
+
+    private void moveSoldierTo(Soldier soldier, Transform target, Action executeWhenReached)
+    {
+        _walkingSoldiers.Add(new SoldierWalkUtil(soldier, target, executeWhenReached, removeWalkingSoldier,.7f));
+    }
+
+    public void removeWalkingSoldier(SoldierWalkUtil walk)
+    {
+        _walkingSoldiers.Remove(walk);
     }
 }
