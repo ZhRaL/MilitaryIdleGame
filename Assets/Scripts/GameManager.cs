@@ -21,13 +21,13 @@ public class GameManager : MonoBehaviour
 
     public GameObject BaustellenPrefab;
 
-    public const string MARINESAFESTRING = "Marine_Levels";
-    public const string ARMYAFESTRING = "Army_Levels";
-    public const string AIRFORCEAFESTRING = "Airforce_Levels";
-    public const string KITCHENSAFESTRING = "Barracks_Levels";
-    public const string BATHSAFESTRING = "Barracks_Levels";
-    public const string SLEEPINGSAFESTRING = "Barracks_Levels";
-    public const string RECRUITMENTSAFESTRING = "Barracks_Levels";
+    private const string MARINESAFESTRING = "Marine_Levels";
+    private const string ARMYAFESTRING = "Army_Levels";
+    private const string AIRFORCEAFESTRING = "Airforce_Levels";
+    private const string KITCHENSAFESTRING = "Kitchen_Levels";
+    private const string BATHSAFESTRING = "Bath_Levels";
+    private const string SLEEPINGSAFESTRING = "Sleeping_Levels";
+    public const string RECRUITMENTSAFESTRING = "Recruitment_Levels";
 
     #region currencies
 
@@ -106,6 +106,7 @@ public class GameManager : MonoBehaviour
         BathController.loadState(JsonHelper.FromJson<int>(PlayerPrefs.GetString(BATHSAFESTRING," {\"Items\":[1,1,0,0,0,0,0,0]}")));
         SleepingController.loadState(JsonHelper.FromJson<int>(PlayerPrefs.GetString(SLEEPINGSAFESTRING," {\"Items\":[1,0,0,0,1,0,0,0,1,0,0,0]}")));
         isInitialized = true;
+        SaveGame();
     }
 
     public void ResetPlayerprefs()
