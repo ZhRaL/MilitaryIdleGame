@@ -13,12 +13,7 @@ public class AirforceController : MonoBehaviour, IController
 
     public GameObject Baustelle_1_Prefab;
     private Vector3 positionOffset = new Vector3(-4.4f,-1.284768f,0);
-    private void Start()
-    {
-        //  Jet2.gameObject.SetActive(false);
-        //  Jet3.gameObject.SetActive(false);
-    }
-    
+
     private void Update()
     {
         var copyOfWalkingSoldiers = new List<SoldierWalkUtil>(_walkingSoldiers);
@@ -76,7 +71,7 @@ public class AirforceController : MonoBehaviour, IController
 
     private void moveSoldierTo(Soldier soldier, Transform target, Action executeWhenReached)
     {
-        _walkingSoldiers.Add(new SoldierWalkUtil(soldier, target, executeWhenReached, removeWalkingSoldier,.7f));
+        _walkingSoldiers.Add(new SoldierWalkUtil(soldier, target, executeWhenReached, removeWalkingSoldier,2f));
     }
 
     public void removeWalkingSoldier(SoldierWalkUtil walk)

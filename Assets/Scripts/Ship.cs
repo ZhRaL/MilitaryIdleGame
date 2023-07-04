@@ -1,66 +1,23 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Ship : MonoBehaviour
 {
-    public const string SUFFIX_AMOUNT_EFFECTIVNESS = " $";
-    public const string SUFFIX_AMOUNT_CAPACITY = " s";
-
-
-    [SerializeField] private float k_Effect;
-    [SerializeField] private float k_Capacity;
-
-    public int Level_Reward;
-    public int Level_Duration;
-
-    public Text tx_RewardAmount, tx_Duration;
-    public Text tx_UpgradeCostReward,tx_UpgradeCostDuration;
-    public Text tx_Level_Reward, tx_Level_Duration;
 
     public RoutingPoint routingPoint;
+    public bool unlocked;
+    public bool occupied;
+    private Soldier _soldier;
 
-    [Header("IdleGameMath")] 
-    public float costRate, growthRate, costBase, growthBase;
-    
-    public float RewardAmount
-    {
-        get => k_Effect;
-        set
-        {
-            k_Effect = value;
-            tx_RewardAmount.text = k_Effect.ConvIntToString() + SUFFIX_AMOUNT_EFFECTIVNESS;
-        }
-    }
-
-    public float Duration
-    {
-        get => k_Capacity;
-        set
-        {
-            k_Capacity = value;
-            tx_Duration.text = k_Capacity.ConvIntToString() + SUFFIX_AMOUNT_CAPACITY;
-        }
-    }
-
-    public void LevelUp_Reward()
-    {
-        Level_Reward++;
-        tx_Level_Reward.text = "" + Level_Reward;
-        CalcAndUpdateReward();
-    }
-
-    private void CalcAndUpdateReward()
-    {
-        RewardAmount = growthBase * Mathf.Pow(growthRate, Level_Reward);
-    }
-
-    public void LevelUp_Duration()
-    {
-        Duration -= .5f;
-        Level_Duration++;
-    }
+    public int rewardLevel;
+    public int durationLevel;
+    public Transform[] waypoints;
+    private SoldierWalkUtil wayBack;
 
     public void MissionStart()
     {
@@ -75,8 +32,7 @@ public class Ship : MonoBehaviour
 
     public float calculateDuration()
     {
-        // Duration - AnimationDuration
-        return Duration - 11;
+        return 6f;
     }
 
     IEnumerator ExecuteAfterTime(float time)
@@ -94,11 +50,48 @@ public class Ship : MonoBehaviour
     public void Reward()
     {
         // TODO - Add Crit Value maybe
-        GameManager.INSTANCE.gold += RewardAmount;
+        GameManager.INSTANCE.gold += 11;
     }
 
     public void LetSoldierMove()
     {
-        routingPoint.LetSoldierMove();
+        occupied = false;
+        _soldier.gameObject.SetActive(true);
+        _soldier.anim.SetBool("isRunning",true);
+        wayBack = new SoldierWalkUtil(_soldier, null, () => routingPoint.LetSoldierMove(_soldier), RemoveWayBack, .2f,
+            waypoints.Reverse().ToArray());
+    }
+
+    private void RemoveWayBack(SoldierWalkUtil util)
+    {
+        wayBack = null;
+    }
+
+    private void Update()
+    {
+        wayBack?.Update();
+    }
+
+    public void soldierEntry(Soldier soldier)
+    {
+        _soldier = soldier;
+        MissionStart();
+        soldier.gameObject.SetActive(false);
+    }
+
+    private void soldierExit()
+    {
+        occupied = false;
+        _soldier.gameObject.SetActive(true);
+    }
+    
+    public bool Init(int reward, int duration)
+    {
+        if (reward <= 0 || duration <= 0) return false;
+        
+        rewardLevel = reward;
+        durationLevel = duration;
+        unlocked = true;
+        return true;
     }
 }

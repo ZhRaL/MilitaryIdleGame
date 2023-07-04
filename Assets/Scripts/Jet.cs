@@ -51,6 +51,7 @@ public class Jet : MonoBehaviour
 
     public void LetSoldierMove()
     {
+        occupied = false;
         _soldier.gameObject.SetActive(true);
         routingPoint.LetSoldierMove(_soldier);
     }
@@ -61,12 +62,7 @@ public class Jet : MonoBehaviour
         MissionStart();
         soldier.gameObject.SetActive(false);
     }
-
-    private void soldierExit()
-    {
-        occupied = false;
-        _soldier.gameObject.SetActive(true);
-    }
+    
 
     private float getMissionDuration()
     {

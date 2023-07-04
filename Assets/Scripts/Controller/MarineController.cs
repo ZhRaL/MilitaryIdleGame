@@ -1,86 +1,76 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using DefaultNamespace;
 using UnityEngine;
 
 public class MarineController : MonoBehaviour, IController
 {
-    public GameObject[] ShipPrefabs;
+    public List<Ship> ships;
+    private List<SoldierWalkUtil> _walkingSoldiers = new List<SoldierWalkUtil>();
 
-    public Ship Ship1, Ship2, Ship3;
+    public GameObject Baustelle_1_Prefab;
+    private Vector3 positionOffset = new Vector3(4.33f, 2.08f, 15.73f);
+    private Vector3 thirdShipOffSetToSECOND = new(-9.20f, 0.00f, 0.73f);
 
-    public GameObject Baustelle_1, Baustelle_2;
-
-    private void Start()
+    private void Update()
     {
-        Ship2.gameObject.SetActive(false);
-        Ship3.gameObject.SetActive(false);
+        var copyOfWalkingSoldiers = new List<SoldierWalkUtil>(_walkingSoldiers);
+        copyOfWalkingSoldiers.ForEach(soldierWalkUtil => soldierWalkUtil.Update());
     }
 
     public int[] getState()
     {
-        int[] x = {Ship1.Level_Duration, Ship1.Level_Reward, Ship2.Level_Duration, Ship2.Level_Reward, Ship3.Level_Duration, Ship3.Level_Reward};
-        Debug.Log("getState: "+x.ArrayToPrint());
-        return x;
-
+        return ships.Select(ship => new[] { ship.rewardLevel, ship.durationLevel }).SelectMany(arr => arr).ToArray();
     }
+
     public void loadState(int[] state)
     {
-        Debug.Log("loadState: "+state.ArrayToPrint());
-        Ship1.Level_Duration = state[0];
-        Ship1.Level_Reward = state[1];
+        if (state.Length != 6) throw new ArgumentException("illegal amount of" + state.Length);
 
-        if (state[2] != 0)
+        int index = 0;
+        GameObject baustelle = null;
+        foreach (var ship in ships)
         {
-            Ship2.gameObject.SetActive(true);
-            Ship2.Level_Duration = state[2];
-            Ship2.Level_Reward = state[3];
-        }
-        // Spawn "Under Contruction"
-        else
-        {
-            Baustelle_1.SetActive(true);
-        }
+            if (!ship.Init(state[index++], state[index++]))
+            {
+                if (baustelle == null)
+                {
+                    Vector3 position = (index<5)?ship.transform.position + positionOffset:ship.transform.position + positionOffset+thirdShipOffSetToSECOND;
+                    baustelle = Instantiate(Baustelle_1_Prefab, position,
+                        Quaternion.Euler(0, 146.95f, 0));
+                }
 
-        if (state[4] != 0)
-        {
-            Ship3.gameObject.SetActive(true);
-            Ship3.Level_Duration = state[4];
-            Ship3.Level_Reward = state[5];
-        }
-        // Spawn "Under Contruction"
-        else
-        {
-            Baustelle_2.SetActive(true);
+                ship.gameObject.SetActive(false);
+            }
         }
     }
 
     public bool isObjectUnlocked(int i)
     {
-        if (i == 1)
-            return (Ship2.Level_Reward > 0);
-        if (i == 2)
-            return Ship3.Level_Reward > 0;
-        return false;
-
+        throw new NotImplementedException();
     }
 
-    public void BuySecondPier()
+    public void PlaceSoldier(Soldier soldier)
     {
-        Baustelle_1.SetActive(false);
-        Ship2.gameObject.SetActive(true);
-        Ship2.Level_Duration = 1;
-        Ship2.Level_Reward = 1;
-        GameManager.INSTANCE.SaveGame();
+        Ship ship = getFreeShip();
+        moveSoldierTo(soldier, ship.waypoints, () => ship.soldierEntry(soldier));
     }
-    public void BuyThirdPier()
+
+    private Ship getFreeShip()
     {
-        Baustelle_2.SetActive(false);
-        Ship3.gameObject.SetActive(true);
-        Ship3.Level_Duration = 1;
-        Ship3.Level_Reward = 1;
+        return ships.FirstOrDefault(ship => ship.unlocked && !ship.occupied);
     }
-    
-    
+
+    private void moveSoldierTo(Soldier soldier, Transform[] waypoints, Action executeWhenReached)
+    {
+        _walkingSoldiers.Add(new SoldierWalkUtil(soldier, null, executeWhenReached, removeWalkingSoldier, .7f,
+            waypoints));
+    }
+
+    public void removeWalkingSoldier(SoldierWalkUtil walk)
+    {
+        _walkingSoldiers.Remove(walk);
+    }
 }

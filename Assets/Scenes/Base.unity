@@ -378,6 +378,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 714861457}
     - target: {fileID: -3284079894634519278, guid: 7ca978a109d30f447a2dbff9ddb60d8e, type: 3}
+      propertyPath: currentTarget
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: -3284079894634519278, guid: 7ca978a109d30f447a2dbff9ddb60d8e, type: 3}
       propertyPath: RadialBarPrefab
       value: 
       objectReference: {fileID: 3676267043980325523, guid: eab7257766690f14ca5aeee1ce07f2cc, type: 3}
@@ -391,7 +395,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8182673908157108497, guid: 7ca978a109d30f447a2dbff9ddb60d8e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8846585053988228011, guid: 7ca978a109d30f447a2dbff9ddb60d8e, type: 3}
       propertyPath: m_RootOrder
@@ -8179,7 +8183,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3262521801263974060, guid: f628ab6cc011ec047a70ca575c695311, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6231669508256239698, guid: f628ab6cc011ec047a70ca575c695311, type: 3}
       propertyPath: speed
@@ -14311,6 +14315,37 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &597684230
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 597684231}
+  m_Layer: 0
+  m_Name: waypoint (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &597684231
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597684230}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -13.4, y: 11.31, z: -86.36}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1564577011}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &598974744 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 55410223ef8e54e4ab0d55c41a57d7d4, type: 3}
@@ -16646,7 +16681,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &700257632
 Transform:
   m_ObjectHideFlags: 0
@@ -26201,12 +26236,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 592e8fbfbeea83e4bafa076c417e7425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShipPrefabs: []
-  Ship1: {fileID: 1564577009}
-  Ship2: {fileID: 1268938469}
-  Ship3: {fileID: 1573668874}
-  Baustelle_1: {fileID: 1628703927}
-  Baustelle_2: {fileID: 1266125395}
+  ships:
+  - {fileID: 1564577009}
+  - {fileID: 1268938469}
+  - {fileID: 1573668874}
+  Baustelle_1_Prefab: {fileID: 5407434873886917093, guid: 89cd4b66e656c364da82d9f115f3523e, type: 3}
 --- !u!4 &1054987119 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f81696a9182dbec439396d3b4fbd0cec, type: 3}
@@ -27705,6 +27739,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8d67243356c8d524ebb6e363312f83f7, type: 3}
   m_PrefabInstance: {fileID: 1119455120}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1120492949
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1120492950}
+  m_Layer: 0
+  m_Name: waypoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1120492950
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1120492949}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -52.9, y: 11.31, z: -86.36}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1564577011}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1122464399
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31353,11 +31418,6 @@ Transform:
   m_Father: {fileID: 2106799656}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1266125395 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: cd425f70130823c488b4bd92ca2a3c81, type: 3}
-  m_PrefabInstance: {fileID: 1580836937}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1266125396 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: cd425f70130823c488b4bd92ca2a3c81, type: 3}
@@ -31474,21 +31534,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47f0e430e49b13b4e9f233af3830f636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  k_Effect: 0
-  k_Capacity: 0
-  Level_Reward: 0
-  Level_Duration: 0
-  tx_RewardAmount: {fileID: 0}
-  tx_Duration: {fileID: 0}
-  tx_UpgradeCostReward: {fileID: 0}
-  tx_UpgradeCostDuration: {fileID: 0}
-  tx_Level_Reward: {fileID: 0}
-  tx_Level_Duration: {fileID: 0}
-  routingPoint: {fileID: 0}
-  costRate: 0
-  growthRate: 0
-  costBase: 0
-  growthBase: 0
+  routingPoint: {fileID: 1962766801}
+  unlocked: 0
+  occupied: 0
+  rewardLevel: 0
+  durationLevel: 0
+  waypoints: []
 --- !u!1 &1274452701
 GameObject:
   m_ObjectHideFlags: 0
@@ -38280,21 +38331,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47f0e430e49b13b4e9f233af3830f636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  k_Effect: 15
-  k_Capacity: 14
-  Level_Reward: 1
-  Level_Duration: 1
-  tx_RewardAmount: {fileID: 1739512914}
-  tx_Duration: {fileID: 0}
-  tx_UpgradeCostReward: {fileID: 0}
-  tx_UpgradeCostDuration: {fileID: 0}
-  tx_Level_Reward: {fileID: 333511471}
-  tx_Level_Duration: {fileID: 0}
-  routingPoint: {fileID: 0}
-  costRate: 1.07
-  growthRate: 1.17
-  costBase: 10
-  growthBase: 100
+  routingPoint: {fileID: 1962766801}
+  unlocked: 0
+  occupied: 0
+  rewardLevel: 0
+  durationLevel: 0
+  waypoints:
+  - {fileID: 1120492950}
+  - {fileID: 597684231}
+  - {fileID: 1937915780}
 --- !u!4 &1564577011 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4618546184181590, guid: 74d0740f4abc7e54fab50d33af2582da, type: 3}
@@ -38574,21 +38619,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47f0e430e49b13b4e9f233af3830f636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  k_Effect: 0
-  k_Capacity: 0
-  Level_Reward: 0
-  Level_Duration: 0
-  tx_RewardAmount: {fileID: 0}
-  tx_Duration: {fileID: 0}
-  tx_UpgradeCostReward: {fileID: 0}
-  tx_UpgradeCostDuration: {fileID: 0}
-  tx_Level_Reward: {fileID: 0}
-  tx_Level_Duration: {fileID: 0}
-  routingPoint: {fileID: 0}
-  costRate: 0
-  growthRate: 0
-  costBase: 0
-  growthBase: 0
+  routingPoint: {fileID: 1962766801}
+  unlocked: 0
+  occupied: 0
+  rewardLevel: 0
+  durationLevel: 0
+  waypoints: []
 --- !u!1 &1575989056
 GameObject:
   m_ObjectHideFlags: 0
@@ -39704,11 +39740,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1625198094}
   m_CullTransparentMesh: 0
---- !u!1 &1628703927 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: cd425f70130823c488b4bd92ca2a3c81, type: 3}
-  m_PrefabInstance: {fileID: 1221719671}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1628703928 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: cd425f70130823c488b4bd92ca2a3c81, type: 3}
@@ -46976,6 +47007,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1937814827}
   m_CullTransparentMesh: 0
+--- !u!1 &1937915779
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1937915780}
+  m_Layer: 0
+  m_Name: waypoint (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1937915780
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1937915779}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -13.4, y: 11.31, z: -44.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1564577011}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1938117131
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47703,8 +47765,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   act:
     m_PersistentCalls:
-      m_Calls: []
-  waitAfterAction: 0
+      m_Calls:
+      - m_Target: {fileID: 1054090067}
+        m_TargetAssemblyTypeName: MarineController, Assembly-CSharp
+        m_MethodName: PlaceSoldier
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  waitAfterAction: 1
   waitingSoldiers: []
 --- !u!1 &1966048690
 GameObject:
