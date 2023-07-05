@@ -9,7 +9,16 @@ using UnityEngine.UI;
 public class BathController : MonoBehaviour, IController
 {
     public Rest Rest1, Rest2, Rest3, Rest4;
-    private List<SoldierWalkUtil> _walkingSoldiers = new List<SoldierWalkUtil>();
+    private List<SoldierWalkUtil> _walkingSoldiers = new();
+    
+    public WaitingService WaitingService;
+    public Transform waitingPosParent;
+
+
+    private void Start()
+    {
+        WaitingService = new WaitingService(waitingPosParent);
+    }
 
     public int[] getState()
     {
@@ -40,6 +49,7 @@ public class BathController : MonoBehaviour, IController
     {
         var copyOfWalkingSoldiers = new List<SoldierWalkUtil>(_walkingSoldiers);
         copyOfWalkingSoldiers.ForEach(soldierWalkUtil => soldierWalkUtil.Update());
+        WaitingService.Update();
     }
 
     public void PlaceSoldier(Soldier soldier)
@@ -51,7 +61,12 @@ public class BathController : MonoBehaviour, IController
             Toilet tempToilet = rest.getFreeToilet();
             if (tempToilet != null) targetToilet = tempToilet;
         }
-        // TODO - not enough toilets for all soldiers
+
+        // No free Target Toilet
+        if (targetToilet == null)
+        {
+            WaitingService.addSoldier(soldier);
+        }
 
         targetToilet!.Occupied = true;
         moveSoldierTo(soldier, targetToilet.transform, () => targetToilet.SoldierSitDown(soldier));
@@ -76,5 +91,11 @@ public class BathController : MonoBehaviour, IController
     public void removeWalkingSoldier(SoldierWalkUtil walk)
     {
         _walkingSoldiers.Remove(walk);
+    }
+
+    public void ToiletFree()
+    {
+        Soldier freeS = WaitingService.Shift();
+        if(freeS!=null) PlaceSoldier(freeS);
     }
 }

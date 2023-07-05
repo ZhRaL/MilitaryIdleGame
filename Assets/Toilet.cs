@@ -11,6 +11,7 @@ public class Toilet : MonoBehaviour
     private float distanceSoldierGoDown = .3f;
     public RoutingPoint RoutingPoint_AirF,RoutingPoint_Marine,RoutingPoint_Army;
     public bool unlocked;
+    public BathController Controller;
     
     
     public void SoldierSitDown(Soldier soldier)
@@ -42,6 +43,7 @@ public class Toilet : MonoBehaviour
                 break;
 
         }
+        Controller.ToiletFree();
         _soldier = null;
     }
 }
