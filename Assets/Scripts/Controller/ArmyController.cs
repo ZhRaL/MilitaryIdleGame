@@ -1,83 +1,69 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using DefaultNamespace;
 using UnityEngine;
 
 public class ArmyController : MonoBehaviour, IController
 {
-    public GameObject[] TankPrefabs;
+    public List<Tank> tanks;
+    private List<SoldierWalkUtil> _walkingSoldiers = new List<SoldierWalkUtil>();
 
-    public Tank Tank1, Tank2, Tank3;
-
-    public GameObject Baustelle_1, Baustelle_2;
-
-    private void Start()
+    public GameObject Baustelle_1_Prefab;
+    private Vector3 positionOffset = new (-0.05f, -0.78f, -0.12f);
+   
+    private void Update()
     {
-        Tank2.gameObject.SetActive(false);
-        Tank3.gameObject.SetActive(false);
+        var copyOfWalkingSoldiers = new List<SoldierWalkUtil>(_walkingSoldiers);
+        copyOfWalkingSoldiers.ForEach(soldierWalkUtil => soldierWalkUtil.Update());
     }
 
     public int[] getState()
     {
-        int[] x = {Tank1.Cap_Level, Tank1.Eff_Level, Tank2.Cap_Level, Tank2.Eff_Level, Tank3.Cap_Level, Tank3.Eff_Level};
-        Debug.Log("getState: "+x.ArrayToPrint());
-        return x;
-
+        return tanks.Select(tank => new[] { tank.rewardLevel, tank.durationLevel }).SelectMany(arr => arr).ToArray();
     }
+
     public void loadState(int[] state)
     {
-        Debug.Log("loadState: "+state.ArrayToPrint());
-        Tank1.Cap_Level = state[0];
-        Tank1.Eff_Level = state[1];
+        if (state.Length != 6) throw new ArgumentException("illegal amount");
 
-        if (state[2] != 0)
-        {
-            Tank2.gameObject.SetActive(true);
-            Tank2.Cap_Level = state[2];
-            Tank2.Eff_Level = state[3];
-        }
-        // Spawn "Under Contruction"
-        else
-        {
-            Baustelle_1.SetActive(true);
-        }
+        int index = 0;
 
-        if (state[4] != 0)
+        foreach (var tank in tanks)
         {
-            Tank3.gameObject.SetActive(true);
-            Tank3.Cap_Level = state[4];
-            Tank3.Eff_Level = state[5];
-        }
-        // Spawn "Under Contruction"
-        else
-        {
-            Baustelle_2.SetActive(true);
+            if (!tank.Init(state[index++], state[index++]))
+            {
+                Instantiate(Baustelle_1_Prefab, tank.transform.position + positionOffset, Quaternion.Euler(0, 140, 0));
+                tank.gameObject.SetActive(false);
+            }
         }
     }
 
     public bool isObjectUnlocked(int i)
     {
-        if (i == 1)
-            return (Tank2.Eff_Level > 0);
-        if (i == 2)
-            return Tank3.Eff_Level > 0;
-        return false;
-
+        throw new NotImplementedException();
     }
 
-    public void BuySecondWay()
+    public void PlaceSoldier(Soldier soldier)
     {
-        Baustelle_1.SetActive(false);
-        Tank2.gameObject.SetActive(true);
-        Tank2.Cap_Level = 1;
-        Tank2.Eff_Level = 1;
-        GameManager.INSTANCE.SaveGame();
+        Tank tank = getFreeTank();
+        moveSoldierTo(soldier, tank.waypoints, () => tank.soldierEntry(soldier));
     }
-    public void BuyThirdWay()
+
+    private Tank getFreeTank()
     {
-        Baustelle_2.SetActive(false);
-        Tank3.gameObject.SetActive(true);
-        Tank3.Cap_Level = 1;
-        Tank3.Eff_Level = 1;
+        return tanks.FirstOrDefault(tank => tank.unlocked && !tank.occupied);
+    }
+
+    private void moveSoldierTo(Soldier soldier, Transform[] wayPoints, Action executeWhenReached)
+    {
+        _walkingSoldiers.Add(
+            new SoldierWalkUtil(soldier, null, executeWhenReached, removeWalkingSoldier, .2f, wayPoints));
+    }
+
+    public void removeWalkingSoldier(SoldierWalkUtil walk)
+    {
+        _walkingSoldiers.Remove(walk);
     }
 }

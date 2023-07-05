@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -13,6 +15,9 @@ public class Jet : MonoBehaviour
 
     public int rewardLevel;
     public int durationLevel;
+    
+    public Transform[] waypoints;
+    private SoldierWalkUtil wayBack;
     
     public void MissionStart()
     {
@@ -53,7 +58,13 @@ public class Jet : MonoBehaviour
     {
         occupied = false;
         _soldier.gameObject.SetActive(true);
-        routingPoint.LetSoldierMove(_soldier);
+        _soldier.anim.SetBool("isRunning",true);
+        wayBack = new SoldierWalkUtil(_soldier, null, () => routingPoint.LetSoldierMove(_soldier), RemoveWayBack, .2f,
+            waypoints.Reverse().ToArray());
+    }
+    private void RemoveWayBack(SoldierWalkUtil util)
+    {
+        wayBack = null;
     }
 
     public void soldierEntry(Soldier soldier)
@@ -62,13 +73,11 @@ public class Jet : MonoBehaviour
         MissionStart();
         soldier.gameObject.SetActive(false);
     }
-    
-
-    private float getMissionDuration()
+    private void Update()
     {
-        return 6f;
+        wayBack?.Update();
     }
-
+    
     public bool Init(int reward, int duration)
     {
         if (reward <= 0 || duration <= 0) return false;

@@ -12,7 +12,7 @@ public class AirforceController : MonoBehaviour, IController
     private List<SoldierWalkUtil> _walkingSoldiers = new List<SoldierWalkUtil>();
 
     public GameObject Baustelle_1_Prefab;
-    private Vector3 positionOffset = new Vector3(-4.4f,-1.284768f,0);
+    private Vector3 positionOffset = new Vector3(-4.4f, -1.284768f, 0);
 
     private void Update()
     {
@@ -23,7 +23,6 @@ public class AirforceController : MonoBehaviour, IController
     public int[] getState()
     {
         return jets.Select(jet => new[] { jet.rewardLevel, jet.durationLevel }).SelectMany(arr => arr).ToArray();
-
     }
 
     public void loadState(int[] state)
@@ -31,12 +30,12 @@ public class AirforceController : MonoBehaviour, IController
         if (state.Length != 6) throw new ArgumentException("illegal amount");
 
         int index = 0;
-        
+
         foreach (var jet in jets)
         {
             if (!jet.Init(state[index++], state[index++]))
             {
-                Instantiate(Baustelle_1_Prefab,jet.transform.position+positionOffset,Quaternion.Euler(0,90,0));
+                Instantiate(Baustelle_1_Prefab, jet.transform.position + positionOffset, Quaternion.Euler(0, 90, 0));
                 jet.gameObject.SetActive(false);
             }
         }
@@ -57,11 +56,10 @@ public class AirforceController : MonoBehaviour, IController
     }
 
 
-
     public void PlaceSoldier(Soldier soldier)
     {
         Jet jet = getFreeJet();
-        moveSoldierTo(soldier, jet.transform, () => jet.soldierEntry(soldier));
+        moveSoldierTo(soldier, jet.waypoints, () => jet.soldierEntry(soldier));
     }
 
     private Jet getFreeJet()
@@ -69,9 +67,10 @@ public class AirforceController : MonoBehaviour, IController
         return jets.FirstOrDefault(jet => jet.unlocked && !jet.occupied);
     }
 
-    private void moveSoldierTo(Soldier soldier, Transform target, Action executeWhenReached)
+    private void moveSoldierTo(Soldier soldier, Transform[] wayPoints, Action executeWhenReached)
     {
-        _walkingSoldiers.Add(new SoldierWalkUtil(soldier, target, executeWhenReached, removeWalkingSoldier,2f));
+        _walkingSoldiers.Add(
+            new SoldierWalkUtil(soldier, null, executeWhenReached, removeWalkingSoldier, .2f, wayPoints));
     }
 
     public void removeWalkingSoldier(SoldierWalkUtil walk)

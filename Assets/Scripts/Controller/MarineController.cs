@@ -65,7 +65,7 @@ public class MarineController : MonoBehaviour, IController
 
     private void moveSoldierTo(Soldier soldier, Transform[] waypoints, Action executeWhenReached)
     {
-        _walkingSoldiers.Add(new SoldierWalkUtil(soldier, null, executeWhenReached, removeWalkingSoldier, .7f,
+        _walkingSoldiers.Add(new SoldierWalkUtil(soldier, null, executeWhenReached, removeWalkingSoldier, .1f,
             waypoints));
     }
 
