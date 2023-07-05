@@ -88,11 +88,6 @@ public class Soldier : MonoBehaviour
         }
     }
 
-    public void ActionDone()
-    {
-        StartNextRun();
-    }
-
     public void StartNextRun()
     {
         currentTarget = ++currentTarget % parentRoute.transform.childCount;

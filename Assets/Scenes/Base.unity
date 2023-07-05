@@ -395,7 +395,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8182673908157108497, guid: 7ca978a109d30f447a2dbff9ddb60d8e, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8846585053988228011, guid: 7ca978a109d30f447a2dbff9ddb60d8e, type: 3}
       propertyPath: m_RootOrder
@@ -1872,6 +1872,45 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 54117438}
   m_CullTransparentMesh: 0
+--- !u!4 &54444879 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2741881723326225430, guid: f628ab6cc011ec047a70ca575c695311, type: 3}
+  m_PrefabInstance: {fileID: 906638987}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &62246017
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 62246018}
+  m_Layer: 0
+  m_Name: waitingPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &62246018
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 62246017}
+  m_LocalRotation: {x: -0.00000001545431, y: 0.7071068, z: -0.00000001545431, w: 0.7071068}
+  m_LocalPosition: {x: -0.49, y: -0, z: -0.29}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1604503563}
+  - {fileID: 381297174}
+  - {fileID: 675013379}
+  m_Father: {fileID: 1161618547}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &64318700
 GameObject:
   m_ObjectHideFlags: 0
@@ -2023,7 +2062,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1 &65925289
 GameObject:
   m_ObjectHideFlags: 0
@@ -2758,7 +2796,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1 &86746078
 GameObject:
   m_ObjectHideFlags: 0
@@ -4125,7 +4162,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   waitAfterAction: 1
-  waitingSoldiers: []
 --- !u!1001 &118286961
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5284,7 +5320,95 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
+--- !u!1001 &149709485
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1022939575}
+    m_Modifications:
+    - target: {fileID: 2741881723326225430, guid: f628ab6cc011ec047a70ca575c695311, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2741881723326225430, guid: f628ab6cc011ec047a70ca575c695311, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.4113357
+      objectReference: {fileID: 0}
+    - target: {fileID: 2741881723326225430, guid: f628ab6cc011ec047a70ca575c695311, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.4113357
+      objectReference: {fileID: 0}
+    - target: {fileID: 2741881723326225430, guid: f628ab6cc011ec047a70ca575c695311, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.4113357
+      objectReference: {fileID: 0}
+    - target: {fileID: 2741881723326225430, guid: f628ab6cc011ec047a70ca575c695311, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 2741881723326225430, guid: f628ab6cc011ec047a70ca575c695311, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 51.61399
+      objectReference: {fileID: 0}
+    - target: {fileID: 2741881723326225430, guid: f628ab6cc011ec047a70ca575c695311, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 54.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 2741881723326225430, guid: f628ab6cc011ec047a70ca575c695311, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2741881723326225430, guid: f628ab6cc011ec047a70ca575c695311, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2741881723326225430, guid: f628ab6cc011ec047a70ca575c695311, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2741881723326225430, guid: f628ab6cc011ec047a70ca575c695311, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2741881723326225430, guid: f628ab6cc011ec047a70ca575c695311, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2741881723326225430, guid: f628ab6cc011ec047a70ca575c695311, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2741881723326225430, guid: f628ab6cc011ec047a70ca575c695311, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3262521801263974060, guid: f628ab6cc011ec047a70ca575c695311, type: 3}
+      propertyPath: m_Name
+      value: ArmySoldier (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3262521801263974060, guid: f628ab6cc011ec047a70ca575c695311, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6231669508256239698, guid: f628ab6cc011ec047a70ca575c695311, type: 3}
+      propertyPath: speed
+      value: 2.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6231669508256239698, guid: f628ab6cc011ec047a70ca575c695311, type: 3}
+      propertyPath: parentRoute
+      value: 
+      objectReference: {fileID: 1707621752}
+    - target: {fileID: 6231669508256239698, guid: f628ab6cc011ec047a70ca575c695311, type: 3}
+      propertyPath: currentTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6231669508256239698, guid: f628ab6cc011ec047a70ca575c695311, type: 3}
+      propertyPath: RadialBarPrefab
+      value: 
+      objectReference: {fileID: 3676267043980325523, guid: eab7257766690f14ca5aeee1ce07f2cc, type: 3}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f628ab6cc011ec047a70ca575c695311, type: 3}
 --- !u!1001 &149976142
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6878,6 +7002,40 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 59d9090ecf1935f4c9222574ec6c256e, type: 3}
   m_PrefabInstance: {fileID: 200535215}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &204082219
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 204082220}
+  m_Layer: 0
+  m_Name: waitingPos (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &204082220
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 204082219}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -0, y: 0, z: -0.184}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1012838898}
+  - {fileID: 1067463676}
+  - {fileID: 1940579320}
+  m_Father: {fileID: 341060352}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &205120416
 GameObject:
   m_ObjectHideFlags: 0
@@ -6926,7 +7084,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1001 &207450132
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7049,7 +7206,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1 &210329132
 GameObject:
   m_ObjectHideFlags: 0
@@ -7110,7 +7266,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   waitAfterAction: 1
-  waitingSoldiers: []
 --- !u!1 &212953720
 GameObject:
   m_ObjectHideFlags: 0
@@ -7850,7 +8005,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 241536740}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -3.31, y: 10.458233, z: -8.976043}
+  m_LocalPosition: {x: -3.31, y: 10.458233, z: -8.75}
   m_LocalScale: {x: 0.75757, y: 0.75757, z: 0.75757}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7860,6 +8015,7 @@ Transform:
   - {fileID: 4726966091412325}
   - {fileID: 1349256287}
   - {fileID: 1583108904}
+  - {fileID: 1465599224}
   m_Father: {fileID: 1977752688}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
@@ -7882,6 +8038,7 @@ MonoBehaviour:
   - {fileID: 65903295545434246}
   speed: 0
   unlockedChairs: 0
+  waitingPosParent: {fileID: 1465599224}
 --- !u!1 &244858745
 GameObject:
   m_ObjectHideFlags: 0
@@ -8014,7 +8171,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1 &254461453
 GameObject:
   m_ObjectHideFlags: 0
@@ -8259,7 +8415,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1 &261663815
 GameObject:
   m_ObjectHideFlags: 0
@@ -8668,7 +8823,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1 &284219132
 GameObject:
   m_ObjectHideFlags: 0
@@ -9141,7 +9295,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1 &320076802
 GameObject:
   m_ObjectHideFlags: 0
@@ -10673,7 +10826,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 341060351}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -5.91, y: 10.458233, z: -8.976043}
+  m_LocalPosition: {x: -5.68, y: 10.458233, z: -8.68}
   m_LocalScale: {x: 0.75757, y: 0.75757, z: 0.75757}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10683,6 +10836,7 @@ Transform:
   - {fileID: 4726966448089350}
   - {fileID: 944682472}
   - {fileID: 1932800823}
+  - {fileID: 204082220}
   m_Father: {fileID: 1977752688}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
@@ -10705,6 +10859,7 @@ MonoBehaviour:
   - {fileID: 65903295187658447}
   speed: 0
   unlockedChairs: 0
+  waitingPosParent: {fileID: 204082220}
 --- !u!1 &342386163
 GameObject:
   m_ObjectHideFlags: 0
@@ -10817,7 +10972,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   waitAfterAction: 1
-  waitingSoldiers: []
 --- !u!1001 &350957210
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11237,7 +11391,37 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
+--- !u!1 &381297173
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 381297174}
+  m_Layer: 0
+  m_Name: wait (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &381297174
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381297173}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.4100001, y: -0.08, z: -1.4700075}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 62246018}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &382165511
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12269,7 +12453,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1001 &432773113
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12609,7 +12792,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1 &458117493
 GameObject:
   m_ObjectHideFlags: 0
@@ -12658,7 +12840,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1 &458366743
 GameObject:
   m_ObjectHideFlags: 0
@@ -12804,7 +12985,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1 &459457719
 GameObject:
   m_ObjectHideFlags: 0
@@ -12987,7 +13167,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1 &474081054
 GameObject:
   m_ObjectHideFlags: 0
@@ -14114,7 +14293,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1 &547995819 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: b218198d99ee7a744858e424bf97fe74, type: 3}
@@ -14322,7 +14500,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1 &559521437 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: b218198d99ee7a744858e424bf97fe74, type: 3}
@@ -14395,7 +14572,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1001 &584487906
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15142,7 +15318,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1001 &622181085
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16556,6 +16731,37 @@ Transform:
   m_Father: {fileID: 609277452}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &675013378
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 675013379}
+  m_Layer: 0
+  m_Name: wait (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &675013379
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 675013378}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.4100002, y: -0.08, z: -2.460015}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 62246018}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &676529891
 GameObject:
   m_ObjectHideFlags: 0
@@ -16604,7 +16810,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1 &679130650
 GameObject:
   m_ObjectHideFlags: 0
@@ -16902,7 +17107,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1001 &694972948
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17096,7 +17300,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1 &700257631
 GameObject:
   m_ObjectHideFlags: 0
@@ -17773,7 +17976,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1 &725527384
 GameObject:
   m_ObjectHideFlags: 0
@@ -18216,7 +18418,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1 &736196391
 GameObject:
   m_ObjectHideFlags: 0
@@ -18489,7 +18690,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   waitAfterAction: 1
-  waitingSoldiers: []
 --- !u!1 &744322934
 GameObject:
   m_ObjectHideFlags: 0
@@ -18792,7 +18992,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1 &747287472
 GameObject:
   m_ObjectHideFlags: 0
@@ -19636,7 +19835,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1 &771335273
 GameObject:
   m_ObjectHideFlags: 0
@@ -19992,7 +20190,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   waitAfterAction: 1
-  waitingSoldiers: []
 --- !u!1001 &792455617
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20362,7 +20559,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1 &806639225
 GameObject:
   m_ObjectHideFlags: 0
@@ -21012,7 +21208,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1 &829516476
 GameObject:
   m_ObjectHideFlags: 0
@@ -21620,7 +21815,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1001 &859463253
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21778,7 +21972,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   waitAfterAction: 1
-  waitingSoldiers: []
 --- !u!1 &863973475
 GameObject:
   m_ObjectHideFlags: 0
@@ -21979,6 +22172,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 49c45d9f4f469c342bd821cfe478a2c2, type: 3}
   m_PrefabInstance: {fileID: 864821360}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &864825861
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 864825862}
+  m_Layer: 0
+  m_Name: wait (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &864825862
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 864825861}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.7200001, y: -0.08, z: -0.55000764}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1465599224}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &874164752
 GameObject:
   m_ObjectHideFlags: 0
@@ -22804,7 +23028,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1001 &901027998
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23019,7 +23242,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   waitAfterAction: 1
-  waitingSoldiers: []
 --- !u!1 &904324027
 GameObject:
   m_ObjectHideFlags: 0
@@ -23186,6 +23408,95 @@ Transform:
   m_Father: {fileID: 254461454}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &906638987
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1022939575}
+    m_Modifications:
+    - target: {fileID: 2741881723326225430, guid: f628ab6cc011ec047a70ca575c695311, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2741881723326225430, guid: f628ab6cc011ec047a70ca575c695311, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.4113357
+      objectReference: {fileID: 0}
+    - target: {fileID: 2741881723326225430, guid: f628ab6cc011ec047a70ca575c695311, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.4113357
+      objectReference: {fileID: 0}
+    - target: {fileID: 2741881723326225430, guid: f628ab6cc011ec047a70ca575c695311, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.4113357
+      objectReference: {fileID: 0}
+    - target: {fileID: 2741881723326225430, guid: f628ab6cc011ec047a70ca575c695311, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -11.89
+      objectReference: {fileID: 0}
+    - target: {fileID: 2741881723326225430, guid: f628ab6cc011ec047a70ca575c695311, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 51.61399
+      objectReference: {fileID: 0}
+    - target: {fileID: 2741881723326225430, guid: f628ab6cc011ec047a70ca575c695311, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 54.67
+      objectReference: {fileID: 0}
+    - target: {fileID: 2741881723326225430, guid: f628ab6cc011ec047a70ca575c695311, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2741881723326225430, guid: f628ab6cc011ec047a70ca575c695311, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2741881723326225430, guid: f628ab6cc011ec047a70ca575c695311, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2741881723326225430, guid: f628ab6cc011ec047a70ca575c695311, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2741881723326225430, guid: f628ab6cc011ec047a70ca575c695311, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2741881723326225430, guid: f628ab6cc011ec047a70ca575c695311, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2741881723326225430, guid: f628ab6cc011ec047a70ca575c695311, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3262521801263974060, guid: f628ab6cc011ec047a70ca575c695311, type: 3}
+      propertyPath: m_Name
+      value: ArmySoldier (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3262521801263974060, guid: f628ab6cc011ec047a70ca575c695311, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6231669508256239698, guid: f628ab6cc011ec047a70ca575c695311, type: 3}
+      propertyPath: speed
+      value: 2.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6231669508256239698, guid: f628ab6cc011ec047a70ca575c695311, type: 3}
+      propertyPath: parentRoute
+      value: 
+      objectReference: {fileID: 1707621752}
+    - target: {fileID: 6231669508256239698, guid: f628ab6cc011ec047a70ca575c695311, type: 3}
+      propertyPath: currentTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6231669508256239698, guid: f628ab6cc011ec047a70ca575c695311, type: 3}
+      propertyPath: RadialBarPrefab
+      value: 
+      objectReference: {fileID: 3676267043980325523, guid: eab7257766690f14ca5aeee1ce07f2cc, type: 3}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f628ab6cc011ec047a70ca575c695311, type: 3}
 --- !u!1 &909031434
 GameObject:
   m_ObjectHideFlags: 0
@@ -23265,7 +23576,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1 &918035313
 GameObject:
   m_ObjectHideFlags: 0
@@ -23504,7 +23814,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1 &932705475 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: b218198d99ee7a744858e424bf97fe74, type: 3}
@@ -23577,7 +23886,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1 &933635239
 GameObject:
   m_ObjectHideFlags: 0
@@ -24799,7 +25107,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1 &972152258
 GameObject:
   m_ObjectHideFlags: 0
@@ -24936,7 +25243,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7177980281159728555, guid: ff1ac0109a6631049aa4228b32be56e6, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7554400953394849553, guid: ff1ac0109a6631049aa4228b32be56e6, type: 3}
       propertyPath: m_RootOrder
@@ -25064,7 +25371,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1001 &984676509
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25721,7 +26027,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1 &997409540
 GameObject:
   m_ObjectHideFlags: 0
@@ -26021,7 +26326,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1001 &1006535868
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26088,6 +26392,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 49c45d9f4f469c342bd821cfe478a2c2, type: 3}
   m_PrefabInstance: {fileID: 1006535868}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1012838897
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1012838898}
+  m_Layer: 0
+  m_Name: wait
+  m_TagString: Untagged
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1012838898
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1012838897}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.37, y: -0.08, z: 1.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 204082220}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1014500665 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 55410223ef8e54e4ab0d55c41a57d7d4, type: 3}
@@ -26338,6 +26673,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 844548124}
+  - {fileID: 1340530392}
+  - {fileID: 54444879}
   m_Father: {fileID: 1975178797}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -26956,7 +27293,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!4 &1062104540 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f81696a9182dbec439396d3b4fbd0cec, type: 3}
@@ -27010,7 +27346,37 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
+--- !u!1 &1067463675
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1067463676}
+  m_Layer: 0
+  m_Name: wait (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1067463676
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1067463675}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.37, y: -0.08, z: 0.20999229}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 204082220}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1072167902 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 71f55958573a5ce42bef801a1c646b6d, type: 3}
@@ -27394,7 +27760,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1001 &1087071424
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27680,7 +28045,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1 &1099234526
 GameObject:
   m_ObjectHideFlags: 0
@@ -27826,7 +28190,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1 &1106553737
 GameObject:
   m_ObjectHideFlags: 0
@@ -27887,7 +28250,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1001 &1107106663
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29176,7 +29538,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1 &1146190347
 GameObject:
   m_ObjectHideFlags: 0
@@ -29655,6 +30016,7 @@ Transform:
   - {fileID: 4726965922137333}
   - {fileID: 2061341234}
   - {fileID: 47716961}
+  - {fileID: 62246018}
   m_Father: {fileID: 1977752688}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -29677,6 +30039,7 @@ MonoBehaviour:
   - {fileID: 65903294657547070}
   speed: 0
   unlockedChairs: 0
+  waitingPosParent: {fileID: 62246018}
 --- !u!1001 &1167637118
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29865,7 +30228,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1 &1178111732
 GameObject:
   m_ObjectHideFlags: 0
@@ -31791,7 +32153,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1 &1252812817
 GameObject:
   m_ObjectHideFlags: 0
@@ -32316,7 +32677,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1001 &1275232283
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33583,7 +33943,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1 &1324692226
 GameObject:
   m_ObjectHideFlags: 0
@@ -33632,7 +33991,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1 &1325231538
 GameObject:
   m_ObjectHideFlags: 0
@@ -33681,7 +34039,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1 &1332873258
 GameObject:
   m_ObjectHideFlags: 0
@@ -34067,6 +34424,11 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: aeaac46bc7bac784783954a9982c3cee, type: 3}
   m_PrefabInstance: {fileID: 264085842}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1340530392 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2741881723326225430, guid: f628ab6cc011ec047a70ca575c695311, type: 3}
+  m_PrefabInstance: {fileID: 149709485}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1340650363
 GameObject:
@@ -35297,7 +35659,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1 &1375758232
 GameObject:
   m_ObjectHideFlags: 0
@@ -35654,7 +36015,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1 &1386142291
 GameObject:
   m_ObjectHideFlags: 0
@@ -35940,7 +36300,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1 &1407493885
 GameObject:
   m_ObjectHideFlags: 0
@@ -36437,7 +36796,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1001 &1436501510
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36572,7 +36930,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   waitAfterAction: 1
-  waitingSoldiers: []
 --- !u!1 &1455811038
 GameObject:
   m_ObjectHideFlags: 0
@@ -36728,6 +37085,40 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49c45d9f4f469c342bd821cfe478a2c2, type: 3}
+--- !u!1 &1465599223
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1465599224}
+  m_Layer: 0
+  m_Name: waitingPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1465599224
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1465599223}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.23, y: 0, z: 0.4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2057785063}
+  - {fileID: 864825862}
+  - {fileID: 1960905735}
+  m_Father: {fileID: 241536741}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1465943423
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36850,7 +37241,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1 &1472736775
 GameObject:
   m_ObjectHideFlags: 0
@@ -37389,7 +37779,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1 &1492392489
 GameObject:
   m_ObjectHideFlags: 0
@@ -37438,7 +37827,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1001 &1492599938
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38064,7 +38452,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1001 &1520276607
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38771,7 +39158,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1 &1549753694
 GameObject:
   m_ObjectHideFlags: 0
@@ -38966,7 +39352,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1 &1552597770
 GameObject:
   m_ObjectHideFlags: 0
@@ -39107,7 +39492,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   waitAfterAction: 1
-  waitingSoldiers: []
 --- !u!1 &1556164957
 GameObject:
   m_ObjectHideFlags: 0
@@ -39248,7 +39632,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1 &1562197103 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: b218198d99ee7a744858e424bf97fe74, type: 3}
@@ -39725,7 +40108,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1001 &1580836937
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40173,6 +40555,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: cbeb8e211ef6ba04a81837b7465e4520, type: 3}
   m_PrefabInstance: {fileID: 1600859610}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1604503562
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1604503563}
+  m_Layer: 0
+  m_Name: wait (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1604503563
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604503562}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.41, y: -0.08, z: -0.48}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 62246018}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1607945404
 GameObject:
   m_ObjectHideFlags: 0
@@ -40566,7 +40979,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!4 &1613329576 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 49c45d9f4f469c342bd821cfe478a2c2, type: 3}
@@ -40845,7 +41257,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1 &1630261443
 GameObject:
   m_ObjectHideFlags: 0
@@ -42408,7 +42819,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1001 &1701115188
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42523,7 +42933,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1 &1707621752
 GameObject:
   m_ObjectHideFlags: 0
@@ -44059,7 +44468,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1001 &1751218575
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44277,7 +44685,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   waitAfterAction: 1
-  waitingSoldiers: []
 --- !u!1 &1761668827
 GameObject:
   m_ObjectHideFlags: 0
@@ -44338,7 +44745,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   waitAfterAction: 1
-  waitingSoldiers: []
 --- !u!1001 &1762606069
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44672,7 +45078,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1001 &1776193772
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45453,7 +45858,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1 &1821413854
 GameObject:
   m_ObjectHideFlags: 0
@@ -45502,7 +45906,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1 &1824766961
 GameObject:
   m_ObjectHideFlags: 0
@@ -46486,7 +46889,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1 &1879694786
 GameObject:
   m_ObjectHideFlags: 0
@@ -47276,7 +47678,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1 &1918593069
 GameObject:
   m_ObjectHideFlags: 0
@@ -47471,7 +47872,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1001 &1920153045
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47903,7 +48303,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1001 &1932138982
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -48404,7 +48803,37 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
+--- !u!1 &1940579319
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1940579320}
+  m_Layer: 0
+  m_Name: wait (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1940579320
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1940579319}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.37, y: -0.08, z: -0.78001547}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 204082220}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1941982974
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -49026,6 +49455,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1959159676}
   m_CullTransparentMesh: 0
+--- !u!1 &1960905734
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1960905735}
+  m_Layer: 0
+  m_Name: wait (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1960905735
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1960905734}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.7200003, y: -0.08, z: -1.5400152}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1465599224}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1962766799
 GameObject:
   m_ObjectHideFlags: 0
@@ -49086,7 +49546,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   waitAfterAction: 1
-  waitingSoldiers: []
 --- !u!1 &1966048690
 GameObject:
   m_ObjectHideFlags: 0
@@ -49986,7 +50445,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1001 &1995960623
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -50680,7 +51138,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1001 &2014842214
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -51090,7 +51547,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1001 &2032126487
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -51503,7 +51959,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1001 &2043029043
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -51957,6 +52412,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2056836744}
   m_CullTransparentMesh: 0
+--- !u!1 &2057785062
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2057785063}
+  m_Layer: 0
+  m_Name: wait
+  m_TagString: Untagged
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2057785063
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2057785062}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.72, y: -0.08, z: 0.44}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1465599224}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2057891209
 GameObject:
   m_ObjectHideFlags: 0
@@ -52005,7 +52491,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1 &2059059150
 GameObject:
   m_ObjectHideFlags: 0
@@ -52054,7 +52539,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1 &2059663727
 GameObject:
   m_ObjectHideFlags: 0
@@ -52886,7 +53370,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1 &2086443658
 GameObject:
   m_ObjectHideFlags: 0
@@ -52935,7 +53418,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1 &2087976442
 GameObject:
   m_ObjectHideFlags: 0
@@ -53256,7 +53738,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1 &2096013430
 GameObject:
   m_ObjectHideFlags: 0
@@ -53929,7 +54410,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitAfterAction: 0
-  waitingSoldiers: []
 --- !u!1 &2123188528
 GameObject:
   m_ObjectHideFlags: 0

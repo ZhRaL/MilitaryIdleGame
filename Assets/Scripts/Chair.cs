@@ -52,6 +52,7 @@ namespace DefaultNamespace
             newPos.y += distanceSoldierGoDown;
             transform1.position = newPos;
 
+            Table.ChairFree();
             RoutingPoint.LetSoldierMove(_soldier);
             _soldier = null;
         }

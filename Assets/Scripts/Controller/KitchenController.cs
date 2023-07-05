@@ -10,7 +10,7 @@ using UnityEngine.UI;
 public class KitchenController : MonoBehaviour, IController
 {
     [SerializeField] private Table _tableArmy, _tableAirForce, _tableMarine;
-    private List<SoldierWalkUtil> _walkingSoldiers = new List<SoldierWalkUtil>();
+    
     /**
      * State: (ArmyCount,ArmyLevel,AirFCount,AirFLevel,MarCount,MarLevel)
      */
@@ -39,18 +39,9 @@ public class KitchenController : MonoBehaviour, IController
 
     public void PlaceSoldier(Soldier soldier)
     {
-        Debug.Log("type is:" + soldier.SoldierType);
-        Chair targetChair = getTable(soldier.SoldierType).GetNextFreeChair();
-        targetChair.Occupied = true;
-        moveSoldierTo(soldier, targetChair.transform, () => targetChair.SoldierSitDown(soldier));
+        getTable(soldier.SoldierType).PlaceSoldier(soldier);
     }
     
-    private void Update()
-    {
-        var copyOfWalkingSoldiers = new List<SoldierWalkUtil>(_walkingSoldiers);
-        copyOfWalkingSoldiers.ForEach(soldierWalkUtil => soldierWalkUtil.Update());
-    }
-
     private Table getTable(Soldier.SoldierTypeEnum type)
     {
         if (type == Soldier.SoldierTypeEnum.ARMY) return _tableArmy;
@@ -58,15 +49,5 @@ public class KitchenController : MonoBehaviour, IController
         if (type == Soldier.SoldierTypeEnum.MARINE) return _tableMarine;
 
         throw new ArgumentException("not a valid type");
-    }
-
-    private void moveSoldierTo(Soldier soldier, Transform target, Action executeWhenReached)
-    {
-        _walkingSoldiers.Add(new SoldierWalkUtil(soldier, target, executeWhenReached, removeWalkingSoldier));
-    }
-
-    public void removeWalkingSoldier(SoldierWalkUtil walk)
-    {
-        _walkingSoldiers.Remove(walk);
     }
 }

@@ -66,6 +66,7 @@ public class BathController : MonoBehaviour, IController
         if (targetToilet == null)
         {
             WaitingService.addSoldier(soldier);
+            return;
         }
 
         targetToilet!.Occupied = true;
@@ -85,6 +86,7 @@ public class BathController : MonoBehaviour, IController
 
     private void moveSoldierTo(Soldier soldier, Transform target, Action executeWhenReached)
     {
+        soldier.anim.SetBool("isRunning",true);
         _walkingSoldiers.Add(new SoldierWalkUtil(soldier, target, executeWhenReached, removeWalkingSoldier));
     }
 
