@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.UI;
+using Util;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         if (!INSTANCE) INSTANCE = this;
+        new Calculator();
     }
 
     private bool isInitialized = false;

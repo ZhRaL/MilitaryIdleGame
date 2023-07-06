@@ -5,6 +5,7 @@ using System.Linq;
 using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Util;
 
 public class AirforceController : MonoBehaviour, IController
 {
@@ -67,6 +68,7 @@ public class AirforceController : MonoBehaviour, IController
 
     public void PlaceSoldier(Soldier soldier)
     {
+
         Jet jet = getFreeJet();
         if (jet != null)
         {

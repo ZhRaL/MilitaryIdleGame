@@ -5,6 +5,7 @@ using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using Util;
 
 public class Jet : MonoBehaviour
 {
@@ -51,8 +52,7 @@ public class Jet : MonoBehaviour
 
     public void Reward()
     {
-        // TODO - Add Crit Value maybe
-        GameManager.INSTANCE.gold += 10;
+        GameManager.INSTANCE.gold += Calculator.INSTANCE.CalculateReward("JR",rewardLevel);
     }
 
     public void LetSoldierMove()
