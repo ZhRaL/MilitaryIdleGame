@@ -29,6 +29,12 @@ namespace DefaultNamespace
             else
             {
                 Target = this.waypoints[currentTargetIndex];
+                double distance = (Soldier.transform.position - Target.position).magnitude;
+                if (distance < distanceToTarget)
+                {
+                    Target = waypoints[++currentTargetIndex];
+                }
+
                 _targetDirection = (this.waypoints[currentTargetIndex].position - soldier.transform.position).normalized;
             }
         }
@@ -55,10 +61,13 @@ namespace DefaultNamespace
             Soldier.transform.rotation =
                 Quaternion.RotateTowards(Soldier.transform.rotation, neededRotation, Time.deltaTime * 200f);
 
-            Soldier.transform.position += _targetDirection * (Soldier.Speed * Time.deltaTime);
-
-            double distance = (Soldier.transform.position - Target.position).magnitude;
-            if (distance < distanceToTarget)
+            float distance = Vector3.Distance(Soldier.transform.position, Target.position);
+            float step = Soldier.Speed / distance * Time.deltaTime;
+            
+            Soldier.transform.position = Vector3.Lerp(Soldier.transform.position, Target.position, step);
+            
+            double distance2 = (Soldier.transform.position - Target.position).magnitude;
+            if (distance2 < distanceToTarget)
             {
                 Soldier.transform.position = Target.position;
                 ReachedTarget();

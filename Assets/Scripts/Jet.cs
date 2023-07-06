@@ -18,6 +18,7 @@ public class Jet : MonoBehaviour
     
     public Transform[] waypoints;
     private SoldierWalkUtil wayBack;
+    public AirforceController _controller;
     
     public void MissionStart()
     {
@@ -32,7 +33,7 @@ public class Jet : MonoBehaviour
 
     public float calculateDuration()
     {
-        return 6f;
+        return 1f;
     }
 
     
@@ -61,6 +62,8 @@ public class Jet : MonoBehaviour
         _soldier.anim.SetBool("isRunning",true);
         wayBack = new SoldierWalkUtil(_soldier, null, () => routingPoint.LetSoldierMove(_soldier), RemoveWayBack, .2f,
             waypoints.Reverse().ToArray());
+        
+        _controller.JetFree();
     }
     private void RemoveWayBack(SoldierWalkUtil util)
     {

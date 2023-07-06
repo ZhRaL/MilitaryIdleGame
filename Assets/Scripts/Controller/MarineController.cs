@@ -14,10 +14,19 @@ public class MarineController : MonoBehaviour, IController
     private Vector3 positionOffset = new Vector3(4.33f, 2.08f, 15.73f);
     private Vector3 thirdShipOffSetToSECOND = new(-9.20f, 0.00f, 0.73f);
 
+    public WaitingService WaitingService;
+    public Transform waitingPosParent;
+   
+    private void Start()
+    {
+        WaitingService = new WaitingService(waitingPosParent);
+    }
+    
     private void Update()
     {
         var copyOfWalkingSoldiers = new List<SoldierWalkUtil>(_walkingSoldiers);
         copyOfWalkingSoldiers.ForEach(soldierWalkUtil => soldierWalkUtil.Update());
+        WaitingService.Update();
     }
 
     public int[] getState()
@@ -55,7 +64,15 @@ public class MarineController : MonoBehaviour, IController
     public void PlaceSoldier(Soldier soldier)
     {
         Ship ship = getFreeShip();
-        moveSoldierTo(soldier, ship.waypoints, () => ship.soldierEntry(soldier));
+        if (ship != null)
+        {
+            ship.occupied = true;
+            moveSoldierTo(soldier, ship.waypoints, () => ship.soldierEntry(soldier));
+        }
+        else
+        {
+            WaitingService.addSoldier(soldier);
+        }
     }
 
     private Ship getFreeShip()
@@ -65,12 +82,18 @@ public class MarineController : MonoBehaviour, IController
 
     private void moveSoldierTo(Soldier soldier, Transform[] waypoints, Action executeWhenReached)
     {
-        _walkingSoldiers.Add(new SoldierWalkUtil(soldier, null, executeWhenReached, removeWalkingSoldier, .1f,
+        _walkingSoldiers.Add(new SoldierWalkUtil(soldier, null, executeWhenReached, removeWalkingSoldier, .2f,
             waypoints));
     }
 
     public void removeWalkingSoldier(SoldierWalkUtil walk)
     {
         _walkingSoldiers.Remove(walk);
+    }
+
+    public void ShipFree()
+    {
+        Soldier freeS = WaitingService.Shift();
+        if(freeS!=null) PlaceSoldier(freeS);
     }
 }

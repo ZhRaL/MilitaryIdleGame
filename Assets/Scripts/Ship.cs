@@ -18,6 +18,7 @@ public class Ship : MonoBehaviour
     public int durationLevel;
     public Transform[] waypoints;
     private SoldierWalkUtil wayBack;
+    public MarineController _Controller;
 
     public void MissionStart()
     {
@@ -32,7 +33,7 @@ public class Ship : MonoBehaviour
 
     public float calculateDuration()
     {
-        return 6f;
+        return 1f;
     }
 
     IEnumerator ExecuteAfterTime(float time)
@@ -58,8 +59,10 @@ public class Ship : MonoBehaviour
         occupied = false;
         _soldier.gameObject.SetActive(true);
         _soldier.anim.SetBool("isRunning",true);
-        wayBack = new SoldierWalkUtil(_soldier, null, () => routingPoint.LetSoldierMove(_soldier), RemoveWayBack, .2f,
+        wayBack = new SoldierWalkUtil(_soldier, null, () => routingPoint.LetSoldierMove(_soldier), RemoveWayBack, .3f,
             waypoints.Reverse().ToArray());
+        
+        _Controller.ShipFree();
     }
 
     private void RemoveWayBack(SoldierWalkUtil util)
@@ -77,12 +80,6 @@ public class Ship : MonoBehaviour
         _soldier = soldier;
         MissionStart();
         soldier.gameObject.SetActive(false);
-    }
-
-    private void soldierExit()
-    {
-        occupied = false;
-        _soldier.gameObject.SetActive(true);
     }
     
     public bool Init(int reward, int duration)

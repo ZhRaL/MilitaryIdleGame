@@ -14,10 +14,19 @@ public class AirforceController : MonoBehaviour, IController
     public GameObject Baustelle_1_Prefab;
     private Vector3 positionOffset = new Vector3(-4.4f, -1.284768f, 0);
 
+    public WaitingService WaitingService;
+    public Transform waitingPosParent;
+   
+    private void Start()
+    {
+        WaitingService = new WaitingService(waitingPosParent);
+    }
+    
     private void Update()
     {
         var copyOfWalkingSoldiers = new List<SoldierWalkUtil>(_walkingSoldiers);
         copyOfWalkingSoldiers.ForEach(soldierWalkUtil => soldierWalkUtil.Update());
+        WaitingService.Update();
     }
 
     public int[] getState()
@@ -59,7 +68,15 @@ public class AirforceController : MonoBehaviour, IController
     public void PlaceSoldier(Soldier soldier)
     {
         Jet jet = getFreeJet();
-        moveSoldierTo(soldier, jet.waypoints, () => jet.soldierEntry(soldier));
+        if (jet != null)
+        {
+            jet.occupied = true;
+            moveSoldierTo(soldier, jet.waypoints, () => jet.soldierEntry(soldier));
+        }
+        else
+        {
+            WaitingService.addSoldier(soldier);
+        }
     }
 
     private Jet getFreeJet()
@@ -76,5 +93,10 @@ public class AirforceController : MonoBehaviour, IController
     public void removeWalkingSoldier(SoldierWalkUtil walk)
     {
         _walkingSoldiers.Remove(walk);
+    }
+    public void JetFree()
+    {
+        Soldier freeS = WaitingService.Shift();
+        if(freeS!=null) PlaceSoldier(freeS);
     }
 }

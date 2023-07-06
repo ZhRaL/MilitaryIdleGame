@@ -53,6 +53,7 @@ public class WaitingService
         // add "new"
         tempSoldiers.ForEach(soldier => addSoldier(soldier));
 
+        firstSoldier.anim.SetBool("isRunning",true);
         return firstSoldier;
     }
     public void removeWalkingSoldier(SoldierWalkUtil walk)

@@ -12,11 +12,19 @@ public class ArmyController : MonoBehaviour, IController
 
     public GameObject Baustelle_1_Prefab;
     private Vector3 positionOffset = new (-0.05f, -0.78f, -0.12f);
+    
+    public WaitingService WaitingService;
+    public Transform waitingPosParent;
    
+    private void Start()
+    {
+        WaitingService = new WaitingService(waitingPosParent);
+    }
     private void Update()
     {
         var copyOfWalkingSoldiers = new List<SoldierWalkUtil>(_walkingSoldiers);
         copyOfWalkingSoldiers.ForEach(soldierWalkUtil => soldierWalkUtil.Update());
+        WaitingService.Update();
     }
 
     public int[] getState()
@@ -48,7 +56,15 @@ public class ArmyController : MonoBehaviour, IController
     public void PlaceSoldier(Soldier soldier)
     {
         Tank tank = getFreeTank();
-        moveSoldierTo(soldier, tank.waypoints, () => tank.soldierEntry(soldier));
+        if (tank != null)
+        {
+            tank.occupied = true;
+            moveSoldierTo(soldier, tank.waypoints, () => tank.soldierEntry(soldier));
+        }
+        else
+        {
+            WaitingService.addSoldier(soldier);
+        }
     }
 
     private Tank getFreeTank()
@@ -65,5 +81,11 @@ public class ArmyController : MonoBehaviour, IController
     public void removeWalkingSoldier(SoldierWalkUtil walk)
     {
         _walkingSoldiers.Remove(walk);
+    }
+
+    public void TankFree()
+    {
+        Soldier freeS = WaitingService.Shift();
+        if(freeS!=null) PlaceSoldier(freeS);
     }
 }
