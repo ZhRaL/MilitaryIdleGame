@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using DefaultNamespace;
 using UnityEngine;
 
 public class Bed : MonoBehaviour
@@ -9,6 +11,9 @@ public class Bed : MonoBehaviour
     public RoutingPoint RoutingPoint;
     public int level = 0;
     private Soldier _soldier;
+    public List<Transform> routList;
+    private SoldierWalkUtil wayBack;
+    public Room room;
 
     public int Level
     {
@@ -18,6 +23,17 @@ public class Bed : MonoBehaviour
             if (value > 0) unlocked = true;
             level = value;
         }
+    }
+
+    public List<Transform> RoutList
+    {
+        get
+        {
+            if(!routList.Contains(transform))
+                routList.Add(transform);
+            return routList;
+        }
+        set => routList = value;
     }
 
     public void SoldierLayDown(Soldier soldier)
@@ -33,12 +49,24 @@ public class Bed : MonoBehaviour
     private void SoldierGetUp()
     {
         occupied = false;
-        RoutingPoint.LetSoldierMove(_soldier);
-        _soldier = null;
+        room.BedFree();
+        _soldier.anim.SetBool("isRunning", true);
+        wayBack = new SoldierWalkUtil(_soldier, null, () => RoutingPoint.LetSoldierMove(_soldier), RemoveWayBack, .2f,
+            RoutList.ToArray().Reverse().ToArray());
     }
 
     public float getWaitingAmount()
     {
         return 5f;
+    }
+    
+    private void RemoveWayBack(SoldierWalkUtil util)
+    {
+        wayBack = null;
+    }
+    
+    private void Update()
+    {
+        wayBack?.Update();
     }
 }

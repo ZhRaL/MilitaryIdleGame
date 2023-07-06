@@ -10,7 +10,14 @@ public class Room : MonoBehaviour
     [SerializeField]
     private List<Bed> beds;
     private List<SoldierWalkUtil> _walkingSoldiers = new List<SoldierWalkUtil>();
+    
+    public WaitingService WaitingService;
+    public Transform waitingPosParent;
 
+    private void Start()
+    {
+        WaitingService = new WaitingService(waitingPosParent);
+    }
 
     public void Init(int[] levels)
     {
@@ -33,15 +40,24 @@ public class Room : MonoBehaviour
     public void PlaceSoldier(Soldier soldier)
     {
         Bed bed = GetNextFreeBed();
-        bed.occupied = true;
-        moveSoldierTo(soldier, bed.transform, () => bed.SoldierLayDown(soldier));
+        if (bed != null)
+        {
+            bed.occupied = true;
+            soldier.anim.SetBool("isRunning",true);
+            _walkingSoldiers.Add(new SoldierWalkUtil(soldier, null, () => bed.SoldierLayDown(soldier), removeWalkingSoldier,.2f,bed.RoutList.ToArray()));
+        }
+        else
+        {
+            WaitingService.addSoldier(soldier);
+        }
     }
 
-    private void moveSoldierTo(Soldier soldier, Transform target, Action executeWhenReached)
+    public void BedFree()
     {
-        _walkingSoldiers.Add(new SoldierWalkUtil(soldier, target, executeWhenReached, removeWalkingSoldier));
+        Soldier freeS = WaitingService.Shift();
+        if(freeS!=null) PlaceSoldier(freeS);
     }
-
+    
     private void removeWalkingSoldier(SoldierWalkUtil walk)
     {
         _walkingSoldiers.Remove(walk);
@@ -51,26 +67,11 @@ public class Room : MonoBehaviour
     {
         var copyOfWalkingSoldiers = new List<SoldierWalkUtil>(_walkingSoldiers);
         copyOfWalkingSoldiers.ForEach(soldierWalkUtil => soldierWalkUtil.Update());
+        WaitingService.Update();
     }
 
     public int[] getState()
     {
         return beds.Select(bed => bed.Level).ToArray();
-    }
-
-    public void loadState(int[] state)
-    {
-        if (state.Length != 4) throw new ArgumentException("invalid amount");
-        for (int i = 0; i < beds.Count; i++)
-        {
-            if (i > 0) beds[i].Level = i;
-            else beds[i].gameObject.SetActive(false);
-        }
-        
-    }
-
-    public bool isObjectUnlocked(int i)
-    {
-        throw new NotImplementedException();
     }
 }

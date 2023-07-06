@@ -15,7 +15,8 @@ public class SleepingController : MonoBehaviour, IController
     {
         return roomArmy.getState()
             .Concat(roomAirF.getState())
-            .Concat(roomMar.getState()).ToArray();
+            .Concat(roomMar.getState())
+            .ToArray();
     }
 
     public void loadState(int[] state)
