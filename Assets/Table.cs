@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DefaultNamespace;
 using UnityEngine;
+using Util;
 
 public class Table : MonoBehaviour
 {
@@ -85,5 +86,24 @@ public class Table : MonoBehaviour
     public void removeWalkingSoldier(SoldierWalkUtil walk)
     {
         _walkingSoldiers.Remove(walk);
+    }
+    
+    public void BuyTable()
+    {
+        if (GameManager.INSTANCE.gold > Calculator.INSTANCE.CalculateReward("KAC", unlockedChairs))
+        {
+            Chair chair = chairs[unlockedChairs++];
+            chair.Occupied = false;
+            chair.Unlocked = true;
+            chair.gameObject.SetActive(true);
+        }
+    }
+
+    public void LevelUpTable()
+    {
+        if (GameManager.INSTANCE.gold > Calculator.INSTANCE.CalculateReward("KSC", unlockedChairs))
+        {
+            speed++;
+        }
     }
 }

@@ -7,10 +7,7 @@ using UnityEngine.EventSystems;
 public class CanvasOpener : MonoBehaviour
 {
     public GameObject overlay;
-    public GameObject overlay_NotReady;
-    public int referringNumber;
     private float temp;
-    public GameObject Controller;
 
     private void OnMouseDown()
     {
@@ -23,18 +20,6 @@ public class CanvasOpener : MonoBehaviour
         {
             return;
         }
-
-        if (Controller == null)
-        {
-            overlay.SetActive(true);
-            return;
-        }
-
-        if (Controller.GetComponent<IController>().isObjectUnlocked(referringNumber))
-            overlay.SetActive(true);
-        else
-        {
-            overlay_NotReady.SetActive(true);
-        }
+        overlay.SetActive(true);
     }
 }

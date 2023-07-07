@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using DefaultNamespace;
 using UnityEngine;
+using Util;
 
 public class Room : MonoBehaviour
 {
     [SerializeField]
     private List<Bed> beds;
     private List<SoldierWalkUtil> _walkingSoldiers = new List<SoldierWalkUtil>();
+    private int unlockedBeds;
     
     public WaitingService WaitingService;
     public Transform waitingPosParent;
@@ -27,9 +29,15 @@ public class Room : MonoBehaviour
         {
             int level = levels[i];
             Bed currentBed = beds[i];
-            if (level > 0) currentBed.Level = level;
+            if (level > 0)
+            {
+                currentBed.Level = level;
+                unlockedBeds++;
+            }
             else currentBed.gameObject.SetActive(false);
         }
+
+
     }
 
     private Bed GetNextFreeBed()
@@ -73,5 +81,25 @@ public class Room : MonoBehaviour
     public int[] getState()
     {
         return beds.Select(bed => bed.Level).ToArray();
+    }
+
+    public void BuyBed()
+    {
+        if (GameManager.INSTANCE.gold > Calculator.INSTANCE.CalculateReward("SLAC", unlockedBeds))
+        {
+            Bed bed = beds[unlockedBeds++];
+            bed.occupied = false;
+            bed.unlocked = true;
+            bed.gameObject.SetActive(true);
+        }
+    }
+
+    public void LevelUpBeds()
+    {
+        if (GameManager.INSTANCE.gold > Calculator.INSTANCE.CalculateReward("SLSC", unlockedBeds))
+        {
+            beds.ForEach(bed => bed.Level++);
+        }
+        
     }
 }

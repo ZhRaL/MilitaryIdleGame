@@ -91,4 +91,20 @@ public class Tank : MonoBehaviour
         unlocked = true;
         return true;
     }
+    
+    public void LevelUpReward()
+    {
+        if (GameManager.INSTANCE.gold > Calculator.INSTANCE.CalculateReward("JRC", rewardLevel))
+        {
+            rewardLevel++;
+        }
+    }
+
+    public void LevelUpDuration()
+    {
+        if (GameManager.INSTANCE.gold > Calculator.INSTANCE.CalculateReward("JDC", durationLevel))
+        {
+            durationLevel++;
+        }
+    }
 }

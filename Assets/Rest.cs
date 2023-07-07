@@ -2,8 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Util;
 
 public class Rest : MonoBehaviour
 {
@@ -44,5 +46,25 @@ public class Rest : MonoBehaviour
 
         unlockedToilets = amount;
         Level = level;
+    }
+
+    public void BuyToilet()
+    {
+        
+        if (GameManager.INSTANCE.gold > Calculator.INSTANCE.CalculateReward("BAC", unlockedToilets))
+        {
+            Toilet toilet = toilets[unlockedToilets++];
+            toilet.Occupied = false;
+            toilet.unlocked = true;
+            toilet.gameObject.SetActive(true);
+        }
+    }
+
+    public void LevelUpSpeed()
+    {
+        if (GameManager.INSTANCE.gold > Calculator.INSTANCE.CalculateReward("BSC", unlockedToilets))
+        {
+            level++;
+        }
     }
 }
