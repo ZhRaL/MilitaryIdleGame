@@ -9,7 +9,7 @@ namespace Util
     {
         private float rewardMultiplier = 1.2f;
 
-        private Dictionary<string, int> startValues = new Dictionary<string, int>()
+        private Dictionary<string, int> startValues = new()
         {
             { "JR", 10 },
             { "AR", 10 },

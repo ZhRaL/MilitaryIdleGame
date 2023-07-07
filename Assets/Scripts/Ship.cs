@@ -5,6 +5,7 @@ using System.Linq;
 using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.UI;
+using Util;
 
 public class Ship : MonoBehaviour
 {
@@ -50,8 +51,8 @@ public class Ship : MonoBehaviour
 
     public void Reward()
     {
-        // TODO - Add Crit Value maybe
-        GameManager.INSTANCE.gold += 11;
+        GameManager.INSTANCE.gold += Calculator.INSTANCE.CalculateReward("SR",rewardLevel);
+
     }
 
     public void LetSoldierMove()

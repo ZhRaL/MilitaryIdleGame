@@ -4,6 +4,7 @@ using System.Linq;
 using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.UI;
+using Util;
 
 public class Tank : MonoBehaviour
 {
@@ -51,8 +52,8 @@ public class Tank : MonoBehaviour
 
     public void Reward()
     {
-        // TODO - Add Crit Value maybe
-        GameManager.INSTANCE.gold += 12;
+        GameManager.INSTANCE.gold += Calculator.INSTANCE.CalculateReward("TR",rewardLevel);
+
     }
 
     public void LetSoldierMove()
