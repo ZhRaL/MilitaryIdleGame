@@ -11,22 +11,27 @@ namespace Util
 
         private Dictionary<string, int> startValues = new()
         {
+            /*
+             * T Tank
+             * S Ship
+             * J Jet
+             */
             // Rewards
             { "JR", 10 },
-            { "AR", 10 },
+            { "TR", 10 },
             { "SR", 10 },
             // Costs
             { "JRC", 10 },
-            { "ARC", 10 },
+            { "TRC", 10 },
             { "SRC", 10 },
 
             // Duration
             { "JD", 10 },
-            { "AD", 10 },
+            { "TD", 10 },
             { "SD", 10 },
             // Costs
             { "JDC", 10 },
-            { "ADC", 10 },
+            { "TDC", 10 },
             { "SDC", 10 },
 
             

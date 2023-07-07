@@ -94,7 +94,7 @@ public class Tank : MonoBehaviour
     
     public void LevelUpReward()
     {
-        if (GameManager.INSTANCE.gold > Calculator.INSTANCE.CalculateReward("JRC", rewardLevel))
+        if (GameManager.INSTANCE.gold > Calculator.INSTANCE.CalculateReward("TRC", rewardLevel))
         {
             rewardLevel++;
         }
@@ -102,7 +102,7 @@ public class Tank : MonoBehaviour
 
     public void LevelUpDuration()
     {
-        if (GameManager.INSTANCE.gold > Calculator.INSTANCE.CalculateReward("JDC", durationLevel))
+        if (GameManager.INSTANCE.gold > Calculator.INSTANCE.CalculateReward("TDC", durationLevel))
         {
             durationLevel++;
         }
