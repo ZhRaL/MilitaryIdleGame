@@ -16,6 +16,7 @@ public class CanvasOpener : MonoBehaviour
 
     private void OnMouseUpAsButton()
     {
+        Debug.Log("WOrks!!");
         if (EventSystem.current.IsPointerOverGameObject() || Time.time - temp > 0.2)
         {
             return;
