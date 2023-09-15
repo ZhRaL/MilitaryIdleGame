@@ -50,9 +50,7 @@ namespace Util
             { "SLSC", 10 },
             
             
-            
-
-
+            {"Chair1",10}
         };
 
         public static Calculator INSTANCE;
@@ -75,6 +73,12 @@ namespace Util
             }
 
             throw new ArgumentException("Key not found! Was: " + type);
+        }
+
+        public string calculateRewardString(string type, int level)
+        {
+            int value = CalculateReward(type, level);
+            return NumberConverter.ConvIntToString(value);
         }
     }
 }

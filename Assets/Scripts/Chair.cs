@@ -1,9 +1,10 @@
 ﻿using System;
+using Interfaces;
 using UnityEngine;
 
 namespace DefaultNamespace
 {
-    public class Chair : MonoBehaviour
+    public class Chair : MonoBehaviour,IGatherable
     {
         private float distanceSoldierGoDown = .3f;
         private bool _unlocked;
@@ -22,7 +23,15 @@ namespace DefaultNamespace
         public Table Table;
         private float _timeLeft;
         private Soldier _soldier;
-        
+        [SerializeField]
+        private int _level;
+
+        public int Level
+        {
+            get => _level;
+            set => _level = value;
+        }
+
         private void Update()
         {
             if(!_soldier) return;
@@ -55,6 +64,11 @@ namespace DefaultNamespace
             Table.ChairFree();
             RoutingPoint.LetSoldierMove(_soldier);
             _soldier = null;
+        }
+
+        public int GetData()
+        {
+            return Level;
         }
     }
 }

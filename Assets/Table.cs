@@ -106,4 +106,16 @@ public class Table : MonoBehaviour
             speed++;
         }
     }
+
+    public void UpgradeChair(int index)
+    {
+        Debug.Log("SomeThing To Do here");
+    }
+
+    public int GetLevelForTable(int index)
+    {
+        if (index < chairs.Length) 
+            return chairs[index].Level;
+        return -1;
+    }
 }

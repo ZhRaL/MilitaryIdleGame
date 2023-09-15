@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using DefaultNamespace;
 using UnityEngine;
@@ -48,6 +49,8 @@ public class GameManager : MonoBehaviour
             if (isInitialized) SaveGame();
         }
     }
+
+    public event Action OnMoneyChanged;
 
     public float badges
     {
