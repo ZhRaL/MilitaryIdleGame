@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class CameraController : MonoBehaviour
 {
@@ -48,6 +49,10 @@ public class CameraController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+            if (CanvasOpener.MouseOverElement())
+            {
+                return;
+            }
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -61,7 +66,10 @@ public class CameraController : MonoBehaviour
         // This part is for camera pan only & for 2 fingers stationary gesture
         if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Moved)
         {
-
+            if (CanvasOpener.MouseOverElement())
+            {
+                return;
+            }
             zoomFaktorRecalculate = mainCamera.orthographicSize / 15;
             Vector2 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
             Debug.Log("Here"+zoomFaktorRecalculate);

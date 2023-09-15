@@ -34,7 +34,7 @@ public class CanvasOpener : MonoBehaviour
         overlay.SetActive(true);
     }
 
-    private bool MouseOverElement()
+    public static bool MouseOverElement()
     {
         PointerEventData pointerEventData = new PointerEventData(EventSystem.current);
         pointerEventData.position = Input.mousePosition;
