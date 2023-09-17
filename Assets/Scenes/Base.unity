@@ -3574,6 +3574,7 @@ MonoBehaviour:
   - {fileID: 732203323}
   - {fileID: 968703312}
   unlockedToilets: 0
+  DefenseType: 0
 --- !u!1001 &112981838
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6849,6 +6850,7 @@ MonoBehaviour:
   speed: 0
   unlockedChairs: 0
   waitingPosParent: {fileID: 1465599224}
+  DefenseType: 1
 --- !u!1 &244858745
 GameObject:
   m_ObjectHideFlags: 0
@@ -10001,6 +10003,7 @@ MonoBehaviour:
   speed: 0
   unlockedChairs: 0
   waitingPosParent: {fileID: 204082220}
+  DefenseType: 2
 --- !u!1 &342386163
 GameObject:
   m_ObjectHideFlags: 0
@@ -10053,6 +10056,7 @@ MonoBehaviour:
   - {fileID: 1141115083}
   - {fileID: 559521441}
   unlockedToilets: 0
+  DefenseType: 0
 --- !u!1 &344466226
 GameObject:
   m_ObjectHideFlags: 0
@@ -27366,6 +27370,7 @@ MonoBehaviour:
   - {fileID: 588151472}
   - {fileID: 1253193701}
   waitingPosParent: {fileID: 74940640}
+  DefenseType: 0
 --- !u!1 &991895942
 GameObject:
   m_ObjectHideFlags: 0
@@ -31455,6 +31460,7 @@ MonoBehaviour:
   speed: 0
   unlockedChairs: 0
   waitingPosParent: {fileID: 62246018}
+  DefenseType: 0
 --- !u!1001 &1167637118
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34162,6 +34168,7 @@ MonoBehaviour:
   - {fileID: 1135189285}
   - {fileID: 1562197107}
   unlockedToilets: 0
+  DefenseType: 0
 --- !u!1001 &1300147310
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35350,6 +35357,7 @@ MonoBehaviour:
   - {fileID: 688654413}
   - {fileID: 1225534256}
   waitingPosParent: {fileID: 811255387}
+  DefenseType: 0
 --- !u!1001 &1348747496
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -41071,6 +41079,7 @@ MonoBehaviour:
   - {fileID: 1541373498}
   - {fileID: 932705479}
   unlockedToilets: 0
+  DefenseType: 0
 --- !u!1 &1561600132
 GameObject:
   m_ObjectHideFlags: 0
@@ -44594,6 +44603,7 @@ MonoBehaviour:
   - {fileID: 1686626958}
   - {fileID: 1771159513}
   waitingPosParent: {fileID: 999966059}
+  DefenseType: 0
 --- !u!4 &1679566320 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 49c45d9f4f469c342bd821cfe478a2c2, type: 3}
