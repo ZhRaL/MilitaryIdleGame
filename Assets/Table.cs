@@ -15,6 +15,7 @@ public class Table : MonoBehaviour
     public Transform waitingPosParent;
 
     private List<SoldierWalkUtil> _walkingSoldiers = new();
+    public DefenseType DefenseType;
 
     private void Start()
     {
@@ -90,7 +91,7 @@ public class Table : MonoBehaviour
     
     public void BuyTable()
     {
-        if (GameManager.INSTANCE.gold > Calculator.INSTANCE.CalculateReward("KAC", unlockedChairs))
+        if (GameManager.INSTANCE.gold > Calculator.INSTANCE.getReward(new ObjDefEntity(){DefenseType = this.DefenseType, ObjectType = ObjectType.CHAIR}, unlockedChairs))
         {
             Chair chair = chairs[unlockedChairs++];
             chair.Occupied = false;
@@ -101,7 +102,7 @@ public class Table : MonoBehaviour
 
     public void LevelUpTable()
     {
-        if (GameManager.INSTANCE.gold > Calculator.INSTANCE.CalculateReward("KSC", unlockedChairs))
+        if (GameManager.INSTANCE.gold > Calculator.INSTANCE.getReward(new ObjDefEntity(){DefenseType = this.DefenseType, ObjectType = ObjectType.CHAIR}, unlockedChairs))
         {
             speed++;
         }

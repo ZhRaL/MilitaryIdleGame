@@ -1,0 +1,9 @@
+Vorher deutlich detaillierter Gedanken über Klassen etc. machen
+Events o.Ä. für absehbare Dinge wie GoldAmountChanged oder so machen, sodass man leicht darauf zugreifen kann ohne zu viele Referenzen zu haben
+
+
+
+Für neue Projekte:
+Als erstes Root Canvas erstellen und alles dorthinein packen
+Sprachpakete installieren und Umgebung schaffen, dass man Texte direkt dort eingibt und alles sprachabhängige direkt hierüber beziehen
+

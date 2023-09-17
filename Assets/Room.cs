@@ -15,6 +15,7 @@ public class Room : MonoBehaviour
     
     public WaitingService WaitingService;
     public Transform waitingPosParent;
+    public DefenseType DefenseType;
 
     private void Start()
     {
@@ -85,7 +86,7 @@ public class Room : MonoBehaviour
 
     public void BuyBed()
     {
-        if (GameManager.INSTANCE.gold > Calculator.INSTANCE.CalculateReward("SLAC", unlockedBeds))
+        if (GameManager.INSTANCE.gold > Calculator.INSTANCE.getReward(new ObjDefEntity(){DefenseType = this.DefenseType, ObjectType = ObjectType.BED}, unlockedBeds))
         {
             Bed bed = beds[unlockedBeds++];
             bed.occupied = false;
@@ -96,7 +97,7 @@ public class Room : MonoBehaviour
 
     public void LevelUpBeds()
     {
-        if (GameManager.INSTANCE.gold > Calculator.INSTANCE.CalculateReward("SLSC", unlockedBeds))
+        if (GameManager.INSTANCE.gold > Calculator.INSTANCE.getReward(new ObjDefEntity(){DefenseType = this.DefenseType, ObjectType = ObjectType.BED}, unlockedBeds))
         {
             beds.ForEach(bed => bed.Level++);
         }

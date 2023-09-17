@@ -11137,7 +11137,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.887}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 2.947, y: 39.312866}
+  m_AnchoredPosition: {x: 2.947, y: 39.31299}
   m_SizeDelta: {x: 496.3088, y: -149.3137}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &394893681
@@ -11204,24 +11204,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!1 &395518706 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5662627752667910490, guid: f7d96abca1b46f8b6af9c893f8ae3da9, type: 3}
-  m_PrefabInstance: {fileID: 8480554197374968908}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &395518710
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 395518706}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e27bd789afbd97289c0d256514b6b83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 0
 --- !u!1001 &400593640
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16350,6 +16332,9 @@ MonoBehaviour:
   armyTable: {fileID: 1161618548}
   airforceTable: {fileID: 241536742}
   marineTable: {fileID: 341060353}
+  armyRest: {fileID: 0}
+  airforceRest: {fileID: 0}
+  marineRest: {fileID: 0}
 --- !u!1 &650668302
 GameObject:
   m_ObjectHideFlags: 0
@@ -59833,10 +59818,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8923825427530841792, guid: f7d96abca1b46f8b6af9c893f8ae3da9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1667643617}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5662627752667910490, guid: f7d96abca1b46f8b6af9c893f8ae3da9, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 395518710}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7d96abca1b46f8b6af9c893f8ae3da9, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

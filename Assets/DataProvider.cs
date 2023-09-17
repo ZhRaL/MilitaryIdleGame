@@ -8,6 +8,8 @@ using Util;
 public class DataProvider : MonoBehaviour
 {
     public Table armyTable, airforceTable, marineTable;
+    public Rest armyRest, airforceRest, marineRest;
+
 
     public static DataProvider INSTANCE;
 
@@ -22,21 +24,20 @@ public class DataProvider : MonoBehaviour
         {
             ObjectType.CHAIR => defType switch
             {   
-                DefenseType.ARMY => armyTable.GetLevelForTable(index)
-            }
+                DefenseType.ARMY => armyTable.GetLevelForTable(index),
+                DefenseType.AIRFORCE => airforceTable.GetLevelForTable(index),
+                DefenseType.MARINE => marineTable.GetLevelForTable(index)
+            },
+            ObjectType.TOILET => defType switch
+            {   
+                DefenseType.ARMY => armyTable.GetLevelForTable(index),
+                DefenseType.AIRFORCE => airforceTable.GetLevelForTable(index),
+                DefenseType.MARINE => marineTable.GetLevelForTable(index)
+            },
         };
 
     }
-
-    public int getCost(DefenseType defType, ObjectType objType, int index)
-    {
-        return 20;
-    }
     
-    public int getReward(DefenseType defType, ObjectType objType, int index)
-    {
-        return 20;
-    }
     
     public UnityAction getUpgradeMethod(DefenseType defType, ObjectType objType, int index)
     {

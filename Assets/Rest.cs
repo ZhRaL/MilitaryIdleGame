@@ -13,6 +13,8 @@ public class Rest : MonoBehaviour
     private int level;
     public int unlockedToilets;
 
+    public DefenseType DefenseType;
+
     public int Level
     {
         get => level;
@@ -51,7 +53,7 @@ public class Rest : MonoBehaviour
     public void BuyToilet()
     {
         
-        if (GameManager.INSTANCE.gold > Calculator.INSTANCE.CalculateReward("BAC", unlockedToilets))
+        if (GameManager.INSTANCE.gold > Calculator.INSTANCE.getReward(new ObjDefEntity(){DefenseType = this.DefenseType, ObjectType = ObjectType.TOILET}, unlockedToilets))
         {
             Toilet toilet = toilets[unlockedToilets++];
             toilet.Occupied = false;
@@ -62,7 +64,7 @@ public class Rest : MonoBehaviour
 
     public void LevelUpSpeed()
     {
-        if (GameManager.INSTANCE.gold > Calculator.INSTANCE.CalculateReward("BSC", unlockedToilets))
+        if (GameManager.INSTANCE.gold > Calculator.INSTANCE.getReward(new ObjDefEntity(){DefenseType = this.DefenseType, ObjectType = ObjectType.TOILET}, unlockedToilets))
         {
             level++;
         }

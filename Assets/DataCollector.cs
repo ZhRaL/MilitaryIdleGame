@@ -16,7 +16,7 @@ public class DataCollector : MonoBehaviour
     
     public UpgradeScript UpgradeScript;
     public DefenseType defType;
-    public ObjectType ObjectType;
+    [FormerlySerializedAs("ObjectType")] public ObjectType objectType;
     private int index;  // starts with 0
     
     [SerializeField]
@@ -27,7 +27,7 @@ public class DataCollector : MonoBehaviour
     private void Start()
     {
         index = transform.GetSiblingIndex();
-        currentLevel = DataProvider.INSTANCE.getLevel(defType, ObjectType, index);
+        currentLevel = DataProvider.INSTANCE.getLevel(defType, objectType, index);
         _txLevel.text = ""+currentLevel;
         GameManager.INSTANCE.OnMoneyChanged += checkBalance;
         checkBalance();
@@ -41,14 +41,17 @@ public class DataCollector : MonoBehaviour
             Icon = IconChildImage.sprite,
             level = currentLevel,
             description = TextProvider.getDescription("chair"),
-            upgradeAction = DataProvider.INSTANCE.getUpgradeMethod(defType,ObjectType,index)
+            upgradeAction = DataProvider.INSTANCE.getUpgradeMethod(defType,objectType,index)
         };
+        
         UpgradeScript.selectionChanged(dto);
     }
 
     public void checkBalance()
     {
-        if (GameManager.INSTANCE.gold > 1000)
+        var entity = new ObjDefEntity() { DefenseType = defType, ObjectType = objectType };
+        // TODO - get Level of this index, first chair, second chair etc..
+        if (GameManager.INSTANCE.gold > Calculator.INSTANCE.getCost(entity, currentLevel))
             upgradeArrowImg.SetActive(true);
         else upgradeArrowImg.SetActive(false);
     }
