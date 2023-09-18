@@ -69,4 +69,11 @@ public class Rest : MonoBehaviour
             level++;
         }
     }
+    
+    public int GetLevelForTable(int index)
+    {
+        if (index < toilets.Length)
+            return toilets[index].Level;
+        return -1;
+    }
 }

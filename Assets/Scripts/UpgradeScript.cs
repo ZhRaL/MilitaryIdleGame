@@ -11,7 +11,7 @@ public class UpgradeScript : MonoBehaviour
     private UpgradeDto current;
     
     public Image IconBackground, Icon;
-    public TextMeshProUGUI title, description;
+    public TextMeshProUGUI title, description, upgradeCost, currentReward, diffReward;
     public Slider slider;
     public Button upgradeBtn;
 
@@ -35,8 +35,20 @@ public class UpgradeScript : MonoBehaviour
         title.text = upgrade.title;
         description.text = upgrade.description;
         slider.value = upgrade.level;
-        
-        upgradeBtn.onClick.RemoveAllListeners();
-        upgradeBtn.onClick.AddListener(upgrade.upgradeAction);
+        upgradeCost.text = ""+upgrade.upgradeCost;
+        currentReward.text = "" + upgrade.currentReward;
+        diffReward.text = "+ " + upgrade.diffReward;
+
+        if (GameManager.INSTANCE.gold < upgrade.upgradeCost)
+        {
+            upgradeBtn.interactable = false;
+            upgradeBtn.onClick.RemoveAllListeners();
+        }
+        else
+        {
+            upgradeBtn.interactable = true;
+            upgradeBtn.onClick.RemoveAllListeners();
+            upgradeBtn.onClick.AddListener(upgrade.upgradeAction);
+        }
     }
 }

@@ -70,5 +70,11 @@ namespace DefaultNamespace
         {
             return Level;
         }
+
+        public void Upgrade()
+        {
+            Level++;
+            Debug.Log("Chair was upgraded to Level "+_level);
+        }
     }
 }

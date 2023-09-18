@@ -11,5 +11,7 @@ namespace DefaultNamespace
         public string title, description;
         public int level;
         public UnityAction upgradeAction;
+        public int upgradeCost, currentReward; 
+        public float diffReward;
     }
 }

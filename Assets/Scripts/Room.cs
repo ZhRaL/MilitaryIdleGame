@@ -8,11 +8,10 @@ using Util;
 
 public class Room : MonoBehaviour
 {
-    [SerializeField]
-    private List<Bed> beds;
+    [SerializeField] private List<Bed> beds;
     private List<SoldierWalkUtil> _walkingSoldiers = new List<SoldierWalkUtil>();
     private int unlockedBeds;
-    
+
     public WaitingService WaitingService;
     public Transform waitingPosParent;
     public DefenseType DefenseType;
@@ -25,7 +24,7 @@ public class Room : MonoBehaviour
     public void Init(int[] levels)
     {
         if (levels.Length > beds.Count) throw new ArgumentException("invalid Amount!");
-        
+
         for (int i = 0; i < beds.Count; i++)
         {
             int level = levels[i];
@@ -37,8 +36,6 @@ public class Room : MonoBehaviour
             }
             else currentBed.gameObject.SetActive(false);
         }
-
-
     }
 
     private Bed GetNextFreeBed()
@@ -52,8 +49,9 @@ public class Room : MonoBehaviour
         if (bed != null)
         {
             bed.occupied = true;
-            soldier.anim.SetBool("isRunning",true);
-            _walkingSoldiers.Add(new SoldierWalkUtil(soldier, null, () => bed.SoldierLayDown(soldier), removeWalkingSoldier,.2f,bed.RoutList.ToArray()));
+            soldier.anim.SetBool("isRunning", true);
+            _walkingSoldiers.Add(new SoldierWalkUtil(soldier, null, () => bed.SoldierLayDown(soldier),
+                removeWalkingSoldier, .2f, bed.RoutList.ToArray()));
         }
         else
         {
@@ -64,14 +62,14 @@ public class Room : MonoBehaviour
     public void BedFree()
     {
         Soldier freeS = WaitingService.Shift();
-        if(freeS!=null) PlaceSoldier(freeS);
+        if (freeS != null) PlaceSoldier(freeS);
     }
-    
+
     private void removeWalkingSoldier(SoldierWalkUtil walk)
     {
         _walkingSoldiers.Remove(walk);
     }
-    
+
     private void Update()
     {
         var copyOfWalkingSoldiers = new List<SoldierWalkUtil>(_walkingSoldiers);
@@ -86,7 +84,8 @@ public class Room : MonoBehaviour
 
     public void BuyBed()
     {
-        if (GameManager.INSTANCE.gold > Calculator.INSTANCE.getReward(new ObjDefEntity(){DefenseType = this.DefenseType, ObjectType = ObjectType.BED}, unlockedBeds))
+        if (GameManager.INSTANCE.gold > Calculator.INSTANCE.getReward(
+                new ObjDefEntity() { DefenseType = this.DefenseType, ObjectType = ObjectType.BED }, unlockedBeds))
         {
             Bed bed = beds[unlockedBeds++];
             bed.occupied = false;
@@ -97,10 +96,17 @@ public class Room : MonoBehaviour
 
     public void LevelUpBeds()
     {
-        if (GameManager.INSTANCE.gold > Calculator.INSTANCE.getReward(new ObjDefEntity(){DefenseType = this.DefenseType, ObjectType = ObjectType.BED}, unlockedBeds))
+        if (GameManager.INSTANCE.gold > Calculator.INSTANCE.getReward(
+                new ObjDefEntity() { DefenseType = this.DefenseType, ObjectType = ObjectType.BED }, unlockedBeds))
         {
             beds.ForEach(bed => bed.Level++);
         }
-        
+    }
+
+    public int GetLevelForTable(int index)
+    {
+        if (index < beds.Count)
+            return beds[index].Level;
+        return -1;
     }
 }

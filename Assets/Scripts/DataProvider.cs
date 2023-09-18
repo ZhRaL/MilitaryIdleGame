@@ -8,7 +8,9 @@ using Util;
 public class DataProvider : MonoBehaviour
 {
     public Table armyTable, airforceTable, marineTable;
-    public Rest armyRest, airforceRest, marineRest;
+    public Rest[] rests;
+    public Room armyRoom, airforceRoom, marineRoom;
+
 
 
     public static DataProvider INSTANCE;
@@ -18,7 +20,7 @@ public class DataProvider : MonoBehaviour
         if (INSTANCE == null) INSTANCE = this;
     }
 
-    public int getLevel(DefenseType defType, ObjectType objType, int index)
+    public int GetLevel(DefenseType defType, ObjectType objType, int index)
     {
         return objType switch
         {
@@ -30,9 +32,13 @@ public class DataProvider : MonoBehaviour
             },
             ObjectType.TOILET => defType switch
             {   
-                DefenseType.ARMY => armyTable.GetLevelForTable(index),
-                DefenseType.AIRFORCE => airforceTable.GetLevelForTable(index),
-                DefenseType.MARINE => marineTable.GetLevelForTable(index)
+                // TODO
+            },
+            ObjectType.BED => defType switch
+            {   
+                DefenseType.ARMY => armyRoom.GetLevelForTable(index),
+                DefenseType.AIRFORCE => airforceRoom.GetLevelForTable(index),
+                DefenseType.MARINE => marineRoom.GetLevelForTable(index)
             },
         };
 
@@ -45,7 +51,9 @@ public class DataProvider : MonoBehaviour
         {
             ObjectType.CHAIR => defType switch
             {   
-                DefenseType.ARMY => () => armyTable.UpgradeChair(index)
+                DefenseType.ARMY => () => armyTable.UpgradeChair(index),
+                DefenseType.AIRFORCE => () => airforceTable.UpgradeChair(index),
+                DefenseType.MARINE => () => marineTable.UpgradeChair(index),
             }
         };
     }

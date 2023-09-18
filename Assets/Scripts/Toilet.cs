@@ -12,7 +12,13 @@ public class Toilet : MonoBehaviour
     public RoutingPoint RoutingPoint_AirF,RoutingPoint_Marine,RoutingPoint_Army;
     public bool unlocked;
     public BathController Controller;
-    
+    private int _level;
+
+    public int Level
+    {
+        get => _level;
+        set => _level = value;
+    }
     
     public void SoldierSitDown(Soldier soldier)
     {

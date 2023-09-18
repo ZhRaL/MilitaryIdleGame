@@ -13,37 +13,52 @@ using Util;
 public class DataCollector : MonoBehaviour
 {
     private int currentLevel;
-    
+
     public UpgradeScript UpgradeScript;
     public DefenseType defType;
     [FormerlySerializedAs("ObjectType")] public ObjectType objectType;
-    private int index;  // starts with 0
-    
-    [SerializeField]
-    private TextMeshProUGUI _txLevel;
+    private int index; // starts with 0
+
+    [SerializeField] private TextMeshProUGUI _txLevel;
     [FormerlySerializedAs("upgradeImg")] public GameObject upgradeArrowImg;
 
     public Image IconChildImage;
+
     private void Start()
     {
         index = transform.GetSiblingIndex();
-        currentLevel = DataProvider.INSTANCE.getLevel(defType, objectType, index);
-        _txLevel.text = ""+currentLevel;
+        currentLevel = DataProvider.INSTANCE.GetLevel(defType, objectType, index);
+        _txLevel.text = "" + currentLevel;
         GameManager.INSTANCE.OnMoneyChanged += checkBalance;
         checkBalance();
     }
-    
+
     public void OnClick()
     {
+        var currentReward =
+            Calculator.INSTANCE.getReward(new ObjDefEntity() { DefenseType = defType, ObjectType = objectType },
+                currentLevel);
+        var nextLevelReward =
+            Calculator.INSTANCE.getReward(new ObjDefEntity() { DefenseType = defType, ObjectType = objectType },
+                currentLevel + 1);
+        var upgradeCost = Calculator.INSTANCE.getCost(
+            new ObjDefEntity() { DefenseType = defType, ObjectType = objectType },
+            currentLevel + 1);
+
         UpgradeDto dto = new UpgradeDto()
         {
             title = gameObject.name,
             Icon = IconChildImage.sprite,
             level = currentLevel,
             description = TextProvider.getDescription("chair"),
-            upgradeAction = DataProvider.INSTANCE.getUpgradeMethod(defType,objectType,index)
+            upgradeAction = DataProvider.INSTANCE.getUpgradeMethod(defType, objectType, index),
+            upgradeCost = (int)upgradeCost,
+            currentReward = (int)currentReward,
+            diffReward = nextLevelReward - currentReward
         };
-        
+        dto.upgradeAction += () => _txLevel.text = "" + ++currentLevel;
+        dto.upgradeAction += () => GameManager.INSTANCE.gold -= upgradeCost;
+        dto.upgradeAction += () => OnClick();
         UpgradeScript.selectionChanged(dto);
     }
 
@@ -51,9 +66,8 @@ public class DataCollector : MonoBehaviour
     {
         var entity = new ObjDefEntity() { DefenseType = defType, ObjectType = objectType };
         // TODO - get Level of this index, first chair, second chair etc..
-        if (GameManager.INSTANCE.gold > Calculator.INSTANCE.getCost(entity, currentLevel))
+        if (GameManager.INSTANCE.gold > Calculator.INSTANCE.getCost(entity, currentLevel + 1))
             upgradeArrowImg.SetActive(true);
         else upgradeArrowImg.SetActive(false);
     }
-    
 }

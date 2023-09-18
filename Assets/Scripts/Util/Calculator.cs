@@ -10,7 +10,7 @@ namespace Util
         private float rewardMultiplier = 1.2f;
         private float costMultiplier = 1.3f;
 
-        private List<ObjDefEntity> startingValues;
+        private List<ObjDefEntity> startingValues = new();
         
         public static Calculator INSTANCE;
 
@@ -22,23 +22,24 @@ namespace Util
 
         private void InitalizeData()
         {
-            foreach (DefenseType defenseType in Enum.GetValues(typeof(DefenseType)))
+            startingValues.Add(new ObjDefEntity
             {
-                foreach (ObjectType objectType in Enum.GetValues(typeof(ObjectType)))
-                {
-
-                    if (objectType != ObjectType.JET && objectType != ObjectType.TANK && objectType != ObjectType.SHIP)
-                    {
-                        startingValues.Add(new ObjDefEntity
-                        {
-                            DefenseType = defenseType,
-                            ObjectType = objectType,
-                            startingCost = 10,
-                            startingReward = 2
-                        });
-                    }
-                }
-            }
+                ObjectType = ObjectType.CHAIR,
+                startingCost = 10,
+                startingReward = 2
+            });
+            startingValues.Add(new ObjDefEntity
+            {
+                ObjectType = ObjectType.TOILET,
+                startingCost = 10,
+                startingReward = 2
+            });
+            startingValues.Add(new ObjDefEntity
+            {
+                ObjectType = ObjectType.BED,
+                startingCost = 10,
+                startingReward = 2
+            });
             startingValues.Add(new ObjDefEntity
             {
                 ObjectType = ObjectType.JET,
@@ -62,7 +63,7 @@ namespace Util
 
         private ObjDefEntity getEntity(ObjDefEntity entity)
         {
-            return startingValues.Find(deff => deff.Equals(entity));
+            return startingValues.Find(deff => deff.ObjectType.Equals(entity.ObjectType));
         }
 
         public float getReward(ObjDefEntity entity, int level)

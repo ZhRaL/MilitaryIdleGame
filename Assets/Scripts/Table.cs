@@ -10,12 +10,12 @@ public class Table : MonoBehaviour
     public Chair[] chairs;
     public int speed;
     public int unlockedChairs;
-    
-    public WaitingService WaitingService;
     public Transform waitingPosParent;
+    public DefenseType DefenseType;
 
     private List<SoldierWalkUtil> _walkingSoldiers = new();
-    public DefenseType DefenseType;
+
+    public WaitingService WaitingService;
 
     private void Start()
     {
@@ -41,11 +41,11 @@ public class Table : MonoBehaviour
             Debug.LogError("Amount greater than array Length");
             return;
         }
-        
+
         for (int i = 0; i < chairs.Length; i++)
         {
-            if(i<amount)
-            chairs[i].Unlocked = true;
+            if (i < amount)
+                chairs[i].Unlocked = true;
             else chairs[i].gameObject.SetActive(false);
         }
 
@@ -71,27 +71,28 @@ public class Table : MonoBehaviour
             WaitingService.addSoldier(soldier);
         }
     }
-    
+
     private void moveSoldierTo(Soldier soldier, Transform target, Action executeWhenReached)
     {
-        soldier.anim.SetBool("isRunning",true);
+        soldier.anim.SetBool("isRunning", true);
         _walkingSoldiers.Add(new SoldierWalkUtil(soldier, target, executeWhenReached, removeWalkingSoldier));
     }
 
     public void ChairFree()
     {
         Soldier freeS = WaitingService.Shift();
-        if(freeS!=null) PlaceSoldier(freeS);
+        if (freeS != null) PlaceSoldier(freeS);
     }
 
     public void removeWalkingSoldier(SoldierWalkUtil walk)
     {
         _walkingSoldiers.Remove(walk);
     }
-    
+
     public void BuyTable()
     {
-        if (GameManager.INSTANCE.gold > Calculator.INSTANCE.getReward(new ObjDefEntity(){DefenseType = this.DefenseType, ObjectType = ObjectType.CHAIR}, unlockedChairs))
+        if (GameManager.INSTANCE.gold > Calculator.INSTANCE.getReward(
+                new ObjDefEntity() { DefenseType = this.DefenseType, ObjectType = ObjectType.CHAIR }, unlockedChairs))
         {
             Chair chair = chairs[unlockedChairs++];
             chair.Occupied = false;
@@ -102,7 +103,8 @@ public class Table : MonoBehaviour
 
     public void LevelUpTable()
     {
-        if (GameManager.INSTANCE.gold > Calculator.INSTANCE.getReward(new ObjDefEntity(){DefenseType = this.DefenseType, ObjectType = ObjectType.CHAIR}, unlockedChairs))
+        if (GameManager.INSTANCE.gold > Calculator.INSTANCE.getReward(
+                new ObjDefEntity() { DefenseType = this.DefenseType, ObjectType = ObjectType.CHAIR }, unlockedChairs))
         {
             speed++;
         }
@@ -110,12 +112,14 @@ public class Table : MonoBehaviour
 
     public void UpgradeChair(int index)
     {
-        Debug.Log("SomeThing To Do here");
+        Debug.Log("Try to Upgrade Chair Nr: "+index);
+        if(index < chairs.Length)
+            chairs[index].Upgrade();
     }
 
     public int GetLevelForTable(int index)
     {
-        if (index < chairs.Length) 
+        if (index < chairs.Length)
             return chairs[index].Level;
         return -1;
     }

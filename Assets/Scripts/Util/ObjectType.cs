@@ -2,9 +2,15 @@ namespace Util
 {
     public enum ObjectType
     {
-        CHAIR,BED,TOILET,JET,SHIP,TANK
+        CHAIR,
+        BED,
+        TOILET,
+
+        JET,
+        SHIP,
+        TANK
     }
-    
+
     public static class ObjectTypeExtensions
     {
         public static char GetLetter(this ObjectType defenseType)
