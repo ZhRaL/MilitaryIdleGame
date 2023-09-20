@@ -70,6 +70,26 @@ public class RecruitmentController : MonoBehaviour, IController
         return i + 1 <= CapLevel;
     }
 
+    public int getLevelLevel(int index)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public int getTimeLevel(int index)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void upgrade_Level(int index)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void upgrade_Time(int index)
+    {
+        throw new System.NotImplementedException();
+    }
+
     public void BuyRest()
     {
         CapLevel++;

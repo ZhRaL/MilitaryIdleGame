@@ -45,6 +45,26 @@ public class BathController : MonoBehaviour, IController
         throw new System.NotImplementedException();
     }
 
+    public int getLevelLevel(int index)
+    {
+        throw new NotImplementedException();
+    }
+
+    public int getTimeLevel(int index)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void upgrade_Level(int index)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void upgrade_Time(int index)
+    {
+        throw new NotImplementedException();
+    }
+
     private void Update()
     {
         var copyOfWalkingSoldiers = new List<SoldierWalkUtil>(_walkingSoldiers);

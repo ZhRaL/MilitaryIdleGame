@@ -12,7 +12,6 @@ public class DataProvider : MonoBehaviour
     public Room armyRoom, airforceRoom, marineRoom;
 
 
-
     public static DataProvider INSTANCE;
 
     private void Awake()

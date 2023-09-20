@@ -61,6 +61,36 @@ public class MarineController : MonoBehaviour, IController
         throw new NotImplementedException();
     }
 
+    public int getLevelLevel(int index)
+    {
+        if (index < ships.Count)
+            return ships[index].rewardLevel;
+        throw new ArgumentException("invalid index " + index);
+    }
+    
+    public int getTimeLevel(int index)
+    {
+        if (index < ships.Count)
+            return ships[index].durationLevel;
+        throw new ArgumentException("invalid index " + index);
+    }
+
+    public void upgrade_Level(int index)
+    {
+        if (index >= ships.Count)
+            throw new ArgumentException("invalid index " + index);
+        Ship ship = ships[index];
+        ship.LevelUpReward();
+    }
+
+    public void upgrade_Time(int index)
+    {
+        if (index >= ships.Count)
+            throw new ArgumentException("invalid index " + index);
+        Ship ship = ships[index];
+        ship.LevelUpDuration();
+    }
+
     public void PlaceSoldier(Soldier soldier)
     {
         Ship ship = getFreeShip();
