@@ -6,7 +6,6 @@ using UnityEngine.UIElements;
 
 public class CameraController : MonoBehaviour
 {
-
     // variables for camera pan
     public float speedPan;
 
@@ -35,6 +34,9 @@ public class CameraController : MonoBehaviour
     public Vector3 offset;
     public float smoothSpeed;
 
+    private Vector3 lastMousePos;
+    private bool mousMoving;
+    public float mouseScaleFactor;
 
     private void Start()
     {
@@ -43,16 +45,17 @@ public class CameraController : MonoBehaviour
         Top_Origin = Top;
         Bottom_Origin = Bottom;
     }
+
     void Update()
 
     {
-
         if (Input.GetMouseButtonDown(0))
         {
             if (CanvasOpener.MouseOverElement())
             {
                 return;
             }
+
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -64,17 +67,21 @@ public class CameraController : MonoBehaviour
 
 
         // This part is for camera pan only & for 2 fingers stationary gesture
-        if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Moved)
+        if ((Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Moved) ||
+            (Input.GetMouseButton(0) ))
         {
             if (CanvasOpener.MouseOverElement())
             {
                 return;
             }
+
             zoomFaktorRecalculate = mainCamera.orthographicSize / 15;
-            Vector2 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
-            Debug.Log("Here"+zoomFaktorRecalculate);
-            Vector3 temp = Quaternion.Euler(0, 150, 0) * new Vector3(-touchDeltaPosition.x * zoomFaktorRecalculate, 0, -touchDeltaPosition.y * zoomFaktorRecalculate) * speedPan;
-            camTarget.position += temp;
+            Vector2 inputPosition = Input.touchCount == 1
+                ? Input.GetTouch(0).deltaPosition
+                : new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"))*mouseScaleFactor;
+
+            Debug.Log("input: "+inputPosition);
+            moveCamTarget(inputPosition);
         }
 
         //this part is for zoom in and out 
@@ -104,25 +111,31 @@ public class CameraController : MonoBehaviour
                 mainCamera.fieldOfView = Mathf.Clamp(mainCamera.fieldOfView, .1f, 179.9f);
             }
         }
+
         moveCamera();
+    }
+
+    private void moveCamTarget(Vector2 touchDeltaPosition)
+    {
+        Vector3 temp = Quaternion.Euler(0, 150, 0) * new Vector3(-touchDeltaPosition.x * zoomFaktorRecalculate, 0,
+            -touchDeltaPosition.y * zoomFaktorRecalculate) * speedPan;
+        camTarget.position += temp;
     }
 
     private void adjustBorders()
     {
-        
-       
-        float temp = (1 - zoomFaktorRecalculate)*8;
+        float temp = (1 - zoomFaktorRecalculate) * 8;
         Left = Left_Origin + temp;
         Right = Right_Origin - temp;
         Top = Top_Origin - temp;
         Bottom = Bottom_Origin + temp;
-
     }
 
     private void moveCamera()
     {
         adjustBorders();
-        camTarget.position = new Vector3(Mathf.Min(Mathf.Max(camTarget.position.x, Right), Left), camTarget.position.y, Mathf.Min(Mathf.Max(camTarget.position.z, Top), Bottom));
+        camTarget.position = new Vector3(Mathf.Min(Mathf.Max(camTarget.position.x, Right), Left), camTarget.position.y,
+            Mathf.Min(Mathf.Max(camTarget.position.z, Top), Bottom));
 
         Vector3 desiredPosition = camTarget.position + offset;
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.deltaTime);

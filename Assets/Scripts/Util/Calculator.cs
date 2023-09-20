@@ -40,21 +40,42 @@ namespace Util
                 startingCost = 10,
                 startingReward = 2
             });
+            
             startingValues.Add(new ObjDefEntity
             {
-                ObjectType = ObjectType.JET,
+                ObjectType = ObjectType.JET_AMOUNT,
                 startingCost = 10,
                 startingReward = 2
             });
             startingValues.Add(new ObjDefEntity
             {
-                ObjectType = ObjectType.SHIP,
+                ObjectType = ObjectType.JET_TIME,
+                startingCost = 10,
+                startingReward = 2
+            });
+            
+            startingValues.Add(new ObjDefEntity
+            {
+                ObjectType = ObjectType.SHIP_AMOUNT,
                 startingCost = 10,
                 startingReward = 2
             });
             startingValues.Add(new ObjDefEntity
             {
-                ObjectType = ObjectType.TANK,
+                ObjectType = ObjectType.SHIP_TIME,
+                startingCost = 10,
+                startingReward = 2
+            });
+            
+            startingValues.Add(new ObjDefEntity
+            {
+                ObjectType = ObjectType.TANK_AMOUNT,
+                startingCost = 10,
+                startingReward = 2
+            });
+            startingValues.Add(new ObjDefEntity
+            {
+                ObjectType = ObjectType.TANK_TIME,
                 startingCost = 10,
                 startingReward = 2
             });

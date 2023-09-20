@@ -52,7 +52,7 @@ public class Tank : MonoBehaviour
 
     public void Reward()
     {
-        GameManager.INSTANCE.gold += Calculator.INSTANCE.getReward(new ObjDefEntity(){ObjectType = ObjectType.JET},rewardLevel);
+        GameManager.INSTANCE.gold += Calculator.INSTANCE.getReward(new ObjDefEntity(){ObjectType = ObjectType.JET_AMOUNT},rewardLevel);
 
     }
 
@@ -94,7 +94,7 @@ public class Tank : MonoBehaviour
     
     public void LevelUpReward()
     {
-        if (GameManager.INSTANCE.gold > Calculator.INSTANCE.getReward(new ObjDefEntity(){ObjectType = ObjectType.JET}, rewardLevel))
+        if (GameManager.INSTANCE.gold > Calculator.INSTANCE.getReward(new ObjDefEntity(){ObjectType = ObjectType.JET_AMOUNT}, rewardLevel))
         {
             rewardLevel++;
         }
@@ -102,7 +102,7 @@ public class Tank : MonoBehaviour
 
     public void LevelUpDuration()
     {
-        if (GameManager.INSTANCE.gold > Calculator.INSTANCE.getReward(new ObjDefEntity(){ObjectType = ObjectType.JET}, durationLevel))
+        if (GameManager.INSTANCE.gold > Calculator.INSTANCE.getReward(new ObjDefEntity(){ObjectType = ObjectType.JET_AMOUNT}, durationLevel))
         {
             durationLevel++;
         }
