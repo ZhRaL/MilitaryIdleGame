@@ -82,16 +82,11 @@ public class Room : MonoBehaviour
         return beds.Select(bed => bed.Level).ToArray();
     }
 
-    public void BuyBed()
+    public void UpgradeBed(int index)
     {
-        if (GameManager.INSTANCE.gold > Calculator.INSTANCE.getReward(
-                new ObjDefEntity() { DefenseType = this.DefenseType, ObjectType = ObjectType.BED }, unlockedBeds))
-        {
-            Bed bed = beds[unlockedBeds++];
-            bed.occupied = false;
-            bed.unlocked = true;
-            bed.gameObject.SetActive(true);
-        }
+        Debug.Log("Try to Upgrade Bed Nr: "+index);
+        if(index < beds.Count)
+            beds[index].Upgrade();
     }
 
     public void LevelUpBeds()
@@ -103,10 +98,11 @@ public class Room : MonoBehaviour
         }
     }
 
-    public int GetLevelForTable(int index)
+    public int GetLevelForBed(int index)
     {
         if (index < beds.Count)
             return beds[index].Level;
         return -1;
     }
+    
 }

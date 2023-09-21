@@ -80,7 +80,7 @@ public class CameraController : MonoBehaviour
                 ? Input.GetTouch(0).deltaPosition
                 : new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"))*mouseScaleFactor;
 
-            Debug.Log("input: "+inputPosition);
+            Debug.Log("inputii: "+inputPosition);
             moveCamTarget(inputPosition);
         }
 

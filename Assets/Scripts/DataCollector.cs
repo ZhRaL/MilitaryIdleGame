@@ -17,7 +17,7 @@ public class DataCollector : MonoBehaviour
     public UpgradeScript UpgradeScript;
     public DefenseType defType;
     [FormerlySerializedAs("ObjectType")] public ObjectType objectType;
-    private int index; // starts with 0
+    [SerializeField] private int index = -1; // starts with 0
 
     [SerializeField] private TextMeshProUGUI _txLevel;
     [FormerlySerializedAs("upgradeImg")] public GameObject upgradeArrowImg;
@@ -26,7 +26,8 @@ public class DataCollector : MonoBehaviour
 
     private void Start()
     {
-        index = transform.GetSiblingIndex();
+        if (index == -1)
+            index = transform.GetSiblingIndex();
         currentLevel = DataProvider.INSTANCE.GetLevel(defType, objectType, index);
         _txLevel.text = "" + currentLevel;
         GameManager.INSTANCE.OnMoneyChanged += checkBalance;

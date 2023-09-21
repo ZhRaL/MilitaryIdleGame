@@ -11,7 +11,7 @@ public class UpgradeScript : MonoBehaviour
     private UpgradeDto current;
     
     public Image IconBackground, Icon;
-    public TextMeshProUGUI title, description, upgradeCost, currentReward, diffReward;
+    public TextMeshProUGUI title, description, upgradeCost, currentReward, diffReward, sliderTx;
     public Slider slider;
     public Button upgradeBtn;
 
@@ -38,6 +38,7 @@ public class UpgradeScript : MonoBehaviour
         upgradeCost.text = ""+upgrade.upgradeCost;
         currentReward.text = "" + upgrade.currentReward;
         diffReward.text = "+ " + upgrade.diffReward;
+        sliderTx.text = "Level " + upgrade.level;
 
         if (GameManager.INSTANCE.gold < upgrade.upgradeCost)
         {

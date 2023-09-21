@@ -1,3 +1,5 @@
+MEHR PREFABS!!!!!! Für alles, was mehr als einmal vorkommt
+
 Vorher deutlich detaillierter Gedanken über Klassen etc. machen
 Events o.Ä. für absehbare Dinge wie GoldAmountChanged oder so machen, sodass man leicht darauf zugreifen kann ohne zu viele Referenzen zu haben
 
@@ -6,4 +8,6 @@ Events o.Ä. für absehbare Dinge wie GoldAmountChanged oder so machen, sodass m
 Für neue Projekte:
 Als erstes Root Canvas erstellen und alles dorthinein packen
 Sprachpakete installieren und Umgebung schaffen, dass man Texte direkt dort eingibt und alles sprachabhängige direkt hierüber beziehen
-
+Für Alle Icons, die mehr als einmal vorkommen direkt Prefab erstellen, dann ist später das Bild leicht überall ausgetauscht
+Mehr Struktur, sowohl bei der SkriptOrdnung, also auch GameObjectOrdnung
+Mit Color-Swatches arbeiten -> einheitliche Farben

@@ -8,7 +8,7 @@ using UnityEngine;
 public class MarineController : MonoBehaviour, IController
 {
     public List<Ship> ships;
-    private List<SoldierWalkUtil> _walkingSoldiers = new List<SoldierWalkUtil>();
+    private List<SoldierWalkUtil> _walkingSoldiers = new ();
 
     public GameObject Baustelle_1_Prefab;
     private Vector3 positionOffset = new Vector3(4.33f, 2.08f, 15.73f);

@@ -69,4 +69,9 @@ public class Bed : MonoBehaviour
     {
         wayBack?.Update();
     }
+    public void Upgrade()
+    {
+        Level++;
+        Debug.Log("Bed was upgraded to Level "+Level);
+    }
 }
