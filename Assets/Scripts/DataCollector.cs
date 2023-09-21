@@ -61,6 +61,8 @@ public class DataCollector : MonoBehaviour
         dto.upgradeAction += () => GameManager.INSTANCE.gold -= upgradeCost;
         dto.upgradeAction += () => OnClick();
         UpgradeScript.selectionChanged(dto);
+        Image image = GetComponent<Image>();
+        HighLightManager.highlight(image);
     }
 
     public void checkBalance()
