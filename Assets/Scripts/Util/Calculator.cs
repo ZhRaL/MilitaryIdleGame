@@ -91,6 +91,11 @@ namespace Util
         {
             return Mathf.RoundToInt(getEntity(entity).startingReward*Mathf.Pow(rewardMultiplier, level - 1));
         }
+
+        public float getTimeReductionReward(int level)
+        {
+            return Mathf.Log(1f + (0.1f + 0.1f * (level / 50f)) * level);
+        }
         
         public float getCost(ObjDefEntity entity, int level)
         {

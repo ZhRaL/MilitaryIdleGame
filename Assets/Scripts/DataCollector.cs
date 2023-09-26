@@ -53,8 +53,8 @@ public class DataCollector : MonoBehaviour
             level = currentLevel,
             description = TextProvider.getDescription("chair"),
             upgradeAction = DataProvider.INSTANCE.getUpgradeMethod(defType, objectType, index),
-            upgradeCost = (int)upgradeCost,
-            currentReward = (int)currentReward,
+            upgradeCost = (int) upgradeCost,
+            currentReward = (int) currentReward,
             diffReward = nextLevelReward - currentReward
         };
         dto.upgradeAction += () => _txLevel.text = "" + ++currentLevel;

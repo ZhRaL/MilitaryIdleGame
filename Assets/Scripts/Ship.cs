@@ -34,7 +34,7 @@ public class Ship : MonoBehaviour
 
     public float calculateDuration()
     {
-        return 1f;
+        return 10 - Calculator.INSTANCE.getTimeReductionReward(durationLevel);
     }
 
     IEnumerator ExecuteAfterTime(float time)

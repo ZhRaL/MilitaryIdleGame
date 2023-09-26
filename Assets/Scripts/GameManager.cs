@@ -99,7 +99,7 @@ public class GameManager : MonoBehaviour
 
     private void LoadGame()
     {
-        gold = PlayerPrefs.GetFloat("Gold", 150);
+        gold = PlayerPrefs.GetFloat("Gold", 550);
         badges = PlayerPrefs.GetFloat("Badges", 0);
         
         MarineContr.loadState(JsonHelper.FromJson<int>(PlayerPrefs.GetString(MARINESAFESTRING, " {\"Items\":[1,1,0,0,0,0]}")));
