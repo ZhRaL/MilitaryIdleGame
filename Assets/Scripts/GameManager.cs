@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using DefaultNamespace;
 using UnityEngine;
@@ -20,9 +21,6 @@ public class GameManager : MonoBehaviour
     private bool isInitialized = false;
 
     #endregion
-
-    public GameObject BaustellenPrefab;
-
     private const string MARINESAFESTRING = "Marine_Levels";
     private const string ARMYAFESTRING = "Army_Levels";
     private const string AIRFORCEAFESTRING = "Airforce_Levels";
@@ -46,8 +44,11 @@ public class GameManager : MonoBehaviour
             _gold = value;
             tx_Gold.text = "" + _gold;
             if (isInitialized) SaveGame();
+            OnMoneyChanged?.Invoke();
         }
     }
+
+    public event Action OnMoneyChanged;
 
     public float badges
     {
@@ -98,7 +99,7 @@ public class GameManager : MonoBehaviour
 
     private void LoadGame()
     {
-        gold = PlayerPrefs.GetFloat("Gold", 0);
+        gold = PlayerPrefs.GetFloat("Gold", 550);
         badges = PlayerPrefs.GetFloat("Badges", 0);
         
         MarineContr.loadState(JsonHelper.FromJson<int>(PlayerPrefs.GetString(MARINESAFESTRING, " {\"Items\":[1,1,0,0,0,0]}")));

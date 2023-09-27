@@ -34,7 +34,7 @@ public class Ship : MonoBehaviour
 
     public float calculateDuration()
     {
-        return 1f;
+        return 10 - Calculator.INSTANCE.getTimeReductionReward(durationLevel);
     }
 
     IEnumerator ExecuteAfterTime(float time)
@@ -51,7 +51,7 @@ public class Ship : MonoBehaviour
 
     public void Reward()
     {
-        GameManager.INSTANCE.gold += Calculator.INSTANCE.CalculateReward("SR",rewardLevel);
+        GameManager.INSTANCE.gold += Calculator.INSTANCE.getReward(new ObjDefEntity(){ObjectType = ObjectType.JET_AMOUNT},rewardLevel);
 
     }
 
@@ -95,7 +95,7 @@ public class Ship : MonoBehaviour
     
     public void LevelUpReward()
     {
-        if (GameManager.INSTANCE.gold > Calculator.INSTANCE.CalculateReward("JRC", rewardLevel))
+        if (GameManager.INSTANCE.gold > Calculator.INSTANCE.getReward(new ObjDefEntity(){ObjectType = ObjectType.JET_AMOUNT}, rewardLevel))
         {
             rewardLevel++;
         }
@@ -103,7 +103,7 @@ public class Ship : MonoBehaviour
 
     public void LevelUpDuration()
     {
-        if (GameManager.INSTANCE.gold > Calculator.INSTANCE.CalculateReward("JDC", durationLevel))
+        if (GameManager.INSTANCE.gold > Calculator.INSTANCE.getReward(new ObjDefEntity(){ObjectType = ObjectType.JET_AMOUNT}, durationLevel))
         {
             durationLevel++;
         }

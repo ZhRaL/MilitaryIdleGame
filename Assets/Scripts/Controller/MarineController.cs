@@ -8,7 +8,7 @@ using UnityEngine;
 public class MarineController : MonoBehaviour, IController
 {
     public List<Ship> ships;
-    private List<SoldierWalkUtil> _walkingSoldiers = new List<SoldierWalkUtil>();
+    private List<SoldierWalkUtil> _walkingSoldiers = new ();
 
     public GameObject Baustelle_1_Prefab;
     private Vector3 positionOffset = new Vector3(4.33f, 2.08f, 15.73f);
@@ -59,6 +59,36 @@ public class MarineController : MonoBehaviour, IController
     public bool isObjectUnlocked(int i)
     {
         throw new NotImplementedException();
+    }
+
+    public int getLevelLevel(int index)
+    {
+        if (index < ships.Count)
+            return ships[index].rewardLevel;
+        throw new ArgumentException("invalid index " + index);
+    }
+    
+    public int getTimeLevel(int index)
+    {
+        if (index < ships.Count)
+            return ships[index].durationLevel;
+        throw new ArgumentException("invalid index " + index);
+    }
+
+    public void upgrade_Level(int index)
+    {
+        if (index >= ships.Count)
+            throw new ArgumentException("invalid index " + index);
+        Ship ship = ships[index];
+        ship.LevelUpReward();
+    }
+
+    public void upgrade_Time(int index)
+    {
+        if (index >= ships.Count)
+            throw new ArgumentException("invalid index " + index);
+        Ship ship = ships[index];
+        ship.LevelUpDuration();
     }
 
     public void PlaceSoldier(Soldier soldier)

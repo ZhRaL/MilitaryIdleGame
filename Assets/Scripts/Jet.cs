@@ -52,7 +52,7 @@ public class Jet : MonoBehaviour
 
     public void Reward()
     {
-        GameManager.INSTANCE.gold += Calculator.INSTANCE.CalculateReward("JR",rewardLevel);
+        GameManager.INSTANCE.gold += Calculator.INSTANCE.getReward(new ObjDefEntity(){ObjectType = ObjectType.JET_AMOUNT},rewardLevel);
     }
 
     public void LetSoldierMove()
@@ -93,7 +93,7 @@ public class Jet : MonoBehaviour
 
     public void LevelUpReward()
     {
-        if (GameManager.INSTANCE.gold > Calculator.INSTANCE.CalculateReward("JRC", rewardLevel))
+        if (GameManager.INSTANCE.gold > Calculator.INSTANCE.getReward(new ObjDefEntity(){ObjectType = ObjectType.JET_AMOUNT}, rewardLevel))
         {
             rewardLevel++;
         }
@@ -101,7 +101,7 @@ public class Jet : MonoBehaviour
 
     public void LevelUpDuration()
     {
-        if (GameManager.INSTANCE.gold > Calculator.INSTANCE.CalculateReward("JDC", durationLevel))
+        if (GameManager.INSTANCE.gold > Calculator.INSTANCE.getReward(new ObjDefEntity(){ObjectType = ObjectType.JET_AMOUNT}, durationLevel))
         {
             durationLevel++;
         }

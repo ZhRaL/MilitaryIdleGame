@@ -56,6 +56,26 @@ public class AirforceController : MonoBehaviour, IController
         throw new NotImplementedException();
     }
 
+    public int getLevelLevel(int index)
+    {
+        throw new NotImplementedException();
+    }
+
+    public int getTimeLevel(int index)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void upgrade_Level(int index)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void upgrade_Time(int index)
+    {
+        throw new NotImplementedException();
+    }
+
     public void BuySecondRunway()
     {
         //  Baustelle_1.SetActive(false);

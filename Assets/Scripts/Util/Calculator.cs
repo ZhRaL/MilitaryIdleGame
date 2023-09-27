@@ -8,73 +8,100 @@ namespace Util
     public class Calculator
     {
         private float rewardMultiplier = 1.2f;
+        private float costMultiplier = 1.3f;
 
-        private Dictionary<string, int> startValues = new()
-        {
-            /*
-             * T Tank
-             * S Ship
-             * J Jet
-             */
-            // Rewards
-            { "JR", 10 },
-            { "TR", 10 },
-            { "SR", 10 },
-            // Costs
-            { "JRC", 10 },
-            { "TRC", 10 },
-            { "SRC", 10 },
-
-            // Duration
-            { "JD", 10 },
-            { "TD", 10 },
-            { "SD", 10 },
-            // Costs
-            { "JDC", 10 },
-            { "TDC", 10 },
-            { "SDC", 10 },
-
-            
-            { "KD", 10 },
-            { "BD", 10 },
-            { "SLD", 10 },
-            
-            // Costs
-            { "KAC", 10 },
-            { "KSC", 10 },
-            
-            { "BAC", 10 },
-            { "BSC", 10 },
-
-            { "SLAC", 10 },
-            { "SLSC", 10 },
-            
-            
-            
-
-
-        };
-
+        private List<ObjDefEntity> startingValues = new();
+        
         public static Calculator INSTANCE;
 
         public Calculator()
         {
             INSTANCE ??= this;
+            InitalizeData();
         }
 
-        private int CalculateReward(float start, int level)
+        private void InitalizeData()
         {
-            return Mathf.RoundToInt(start * Mathf.Pow(rewardMultiplier, level - 1));
-        }
-
-        public int CalculateReward(string type, int level)
-        {
-            if (startValues.TryGetValue(type, out _))
+            startingValues.Add(new ObjDefEntity
             {
-                return CalculateReward(startValues[type], level);
-            }
-
-            throw new ArgumentException("Key not found! Was: " + type);
+                ObjectType = ObjectType.CHAIR,
+                startingCost = 10,
+                startingReward = 2
+            });
+            startingValues.Add(new ObjDefEntity
+            {
+                ObjectType = ObjectType.TOILET,
+                startingCost = 10,
+                startingReward = 2
+            });
+            startingValues.Add(new ObjDefEntity
+            {
+                ObjectType = ObjectType.BED,
+                startingCost = 10,
+                startingReward = 2
+            });
+            
+            startingValues.Add(new ObjDefEntity
+            {
+                ObjectType = ObjectType.JET_AMOUNT,
+                startingCost = 10,
+                startingReward = 2
+            });
+            startingValues.Add(new ObjDefEntity
+            {
+                ObjectType = ObjectType.JET_TIME,
+                startingCost = 10,
+                startingReward = 2
+            });
+            
+            startingValues.Add(new ObjDefEntity
+            {
+                ObjectType = ObjectType.SHIP_AMOUNT,
+                startingCost = 10,
+                startingReward = 2
+            });
+            startingValues.Add(new ObjDefEntity
+            {
+                ObjectType = ObjectType.SHIP_TIME,
+                startingCost = 10,
+                startingReward = 2
+            });
+            
+            startingValues.Add(new ObjDefEntity
+            {
+                ObjectType = ObjectType.TANK_AMOUNT,
+                startingCost = 10,
+                startingReward = 2
+            });
+            startingValues.Add(new ObjDefEntity
+            {
+                ObjectType = ObjectType.TANK_TIME,
+                startingCost = 10,
+                startingReward = 2
+            });
         }
+
+
+        private ObjDefEntity getEntity(ObjDefEntity entity)
+        {
+            return startingValues.Find(deff => deff.ObjectType.Equals(entity.ObjectType));
+        }
+
+        public float getReward(ObjDefEntity entity, int level)
+        {
+            return Mathf.RoundToInt(getEntity(entity).startingReward*Mathf.Pow(rewardMultiplier, level - 1));
+        }
+
+        public float getTimeReductionReward(int level)
+        {
+            return Mathf.Log(1f + (0.1f + 0.1f * (level / 50f)) * level);
+        }
+        
+        public float getCost(ObjDefEntity entity, int level)
+        {
+            return Mathf.RoundToInt(getEntity(entity).startingCost*Mathf.Pow(costMultiplier, level - 1));
+        }
+
+        
     }
 }
