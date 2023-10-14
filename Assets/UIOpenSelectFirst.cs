@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class UIOpenSelectFirst : MonoBehaviour
 {
+    
     private void OnEnable()
     {
         var x = GetComponentInChildren<DataCollector>();
