@@ -29,6 +29,7 @@ public class DataCollector : MonoBehaviour
         if (index == -1)
             index = transform.GetSiblingIndex();
         currentLevel = DataProvider.INSTANCE.GetLevel(defType, objectType, index);
+        if(_txLevel!=null)
         _txLevel.text = "" + currentLevel;
         GameManager.INSTANCE.OnMoneyChanged += checkBalance;
         checkBalance();
@@ -57,6 +58,7 @@ public class DataCollector : MonoBehaviour
             currentReward = (int) currentReward,
             diffReward = nextLevelReward - currentReward
         };
+        if(_txLevel!=null)
         dto.upgradeAction += () => _txLevel.text = "" + ++currentLevel;
         dto.upgradeAction += () => GameManager.INSTANCE.gold -= upgradeCost;
         dto.upgradeAction += () => OnClick();
