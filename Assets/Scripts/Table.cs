@@ -112,7 +112,7 @@ public class Table : MonoBehaviour
 
     public void UpgradeChair(int index)
     {
-        Debug.Log("Try to Upgrade Chair Nr: "+index);
+         logger.log("Try to Upgrade Chair Nr: "+index);
         if(index < chairs.Length)
             chairs[index].Upgrade();
     }

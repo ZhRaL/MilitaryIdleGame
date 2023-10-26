@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DefaultNamespace;
 using UnityEngine;
+using Util;
 
 public class Bed : MonoBehaviour
 {
@@ -72,6 +73,6 @@ public class Bed : MonoBehaviour
     public void Upgrade()
     {
         Level++;
-        Debug.Log("Bed was upgraded to Level "+Level);
+         logger.log("Bed was upgraded to Level "+Level);
     }
 }

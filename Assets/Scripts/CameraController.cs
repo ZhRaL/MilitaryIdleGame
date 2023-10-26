@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Util;
 
 public class CameraController : MonoBehaviour
 {
@@ -61,7 +62,7 @@ public class CameraController : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                Debug.Log(hit.transform.name);
+                 logger.log(hit.transform.name);
             }
         }
 
@@ -80,7 +81,7 @@ public class CameraController : MonoBehaviour
                 ? Input.GetTouch(0).deltaPosition
                 : new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"))*mouseScaleFactor;
 
-            Debug.Log("inputii: "+inputPosition);
+             logger.log("inputii: "+inputPosition);
             moveCamTarget(inputPosition);
         }
 

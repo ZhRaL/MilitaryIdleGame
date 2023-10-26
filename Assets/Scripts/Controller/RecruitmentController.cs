@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.UI;
+using Util;
 
 public class RecruitmentController : MonoBehaviour, IController
 {
@@ -54,13 +55,13 @@ public class RecruitmentController : MonoBehaviour, IController
     public int[] getState()
     {
         int[] x = {CapLevel, EffLevel};
-        Debug.Log("getState: " + x.ArrayToPrint());
+         logger.log("getState: " + x.ArrayToPrint());
         return x;
     }
 
     public void loadState(int[] state)
     {
-        Debug.Log("loadState: " + state.ArrayToPrint());
+         logger.log("loadState: " + state.ArrayToPrint());
         CapLevel = state[0];
         EffLevel = state[1];
     }

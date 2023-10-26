@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Util;
 
 public class CanvasOpener : MonoBehaviour
 {
@@ -16,21 +17,21 @@ public class CanvasOpener : MonoBehaviour
 
     private void OnMouseUpAsButton()
     {
-        Debug.Log("WOrks!!");
+         logger.log("WOrks!!");
 
         PointerEventData pointerEventData = new PointerEventData(EventSystem.current);
         pointerEventData.position = Input.mousePosition;
 
         List<RaycastResult> results = new List<RaycastResult>();
         EventSystem.current.RaycastAll(pointerEventData,results);
-        Debug.Log("list is: "+results);
+         logger.log("list is: "+results);
         
         if (MouseOverElement() || Time.time - temp > 0.2)
         {
             return;
         }
 
-        Debug.Log("Great sogar");
+         logger.log("Great sogar");
         overlay.SetActive(true);
     }
 

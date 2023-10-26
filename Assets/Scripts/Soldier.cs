@@ -83,7 +83,6 @@ public class Soldier : MonoBehaviour
             // anim.SetBool("isRunning", false);
             isRunning = false;
             isWaiting = true;
-            Debug.Log("Goal");
             path[currentTarget].GetComponent<RoutingPoint>().DoAction(this);
         }
     }

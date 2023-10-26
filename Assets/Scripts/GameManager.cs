@@ -122,7 +122,7 @@ public class GameManager : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        Debug.Log("Closing...");
+         logger.log("Closing...");
         SaveGame();
     }
 }

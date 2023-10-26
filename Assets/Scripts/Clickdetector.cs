@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Util;
 
 public class Clickdetector : MonoBehaviour
 {
 
     private void OnMouseDown()
     {
-        Debug.Log("Clicked on: " + gameObject.name);
+         logger.log("Clicked on: " + gameObject.name);
     }
 }

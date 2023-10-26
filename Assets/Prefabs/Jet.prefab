@@ -2077,6 +2077,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UnlockedPrefab: {fileID: 0}
   LockedPrefab: {fileID: 0}
+  type: 0
+  upgradeScript: {fileID: 0}
 --- !u!1 &8031396450892592405
 GameObject:
   m_ObjectHideFlags: 0

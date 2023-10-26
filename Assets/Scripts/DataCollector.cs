@@ -24,6 +24,7 @@ public class DataCollector : MonoBehaviour
 
     public Image IconChildImage;
     public Unlocker unlocker;
+    private bool initalized;
 
     private void Start()
     {
@@ -38,6 +39,11 @@ public class DataCollector : MonoBehaviour
 
     public void OnClick()
     {
+        if (!initalized)
+        {
+            Start();
+        }
+        
         var currentReward =
             Calculator.INSTANCE.getReward(new ObjDefEntity() { DefenseType = defType, ObjectType = objectType },
                 currentLevel);

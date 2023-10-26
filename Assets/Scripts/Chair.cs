@@ -1,6 +1,7 @@
 ﻿using System;
 using Interfaces;
 using UnityEngine;
+using Util;
 
 namespace DefaultNamespace
 {
@@ -74,7 +75,7 @@ namespace DefaultNamespace
         public void Upgrade()
         {
             Level++;
-            Debug.Log("Chair was upgraded to Level "+_level);
+             logger.log("Chair was upgraded to Level "+_level);
         }
     }
 }

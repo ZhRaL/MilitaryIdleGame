@@ -84,7 +84,7 @@ public class Room : MonoBehaviour
 
     public void UpgradeBed(int index)
     {
-        Debug.Log("Try to Upgrade Bed Nr: "+index);
+         logger.log("Try to Upgrade Bed Nr: "+index);
         if(index < beds.Count)
             beds[index].Upgrade();
     }
