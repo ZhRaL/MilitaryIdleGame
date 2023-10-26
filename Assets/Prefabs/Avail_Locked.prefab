@@ -87,8 +87,10 @@ GameObject:
   - component: {fileID: 3411581955463468200}
   - component: {fileID: 9153568292399545423}
   - component: {fileID: 7738009341985094716}
+  - component: {fileID: 8795726448492423752}
+  - component: {fileID: 2036847579617359091}
   m_Layer: 5
-  m_Name: Available
+  m_Name: Avail_Locked
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -178,6 +180,39 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &8795726448492423752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3052637314140207999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 435853ff33418074f8848b28a0237df8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toUnlock: {fileID: 0}
+--- !u!114 &2036847579617359091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3052637314140207999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ae82bc0be3d45a6ba922c08a613acd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UpgradeScript: {fileID: 0}
+  defType: 0
+  objectType: 0
+  index: -1
+  _txLevel: {fileID: 0}
+  upgradeArrowImg: {fileID: 1757654834113664200}
+  IconChildImage: {fileID: 7798296888519096931}
+  unlocker: {fileID: 8795726448492423752}
 --- !u!1 &5897490024221469165
 GameObject:
   m_ObjectHideFlags: 0
@@ -264,7 +299,6 @@ GameObject:
   - component: {fileID: 7506765211993279564}
   - component: {fileID: 8900840651612784805}
   - component: {fileID: 4425965601825524339}
-  - component: {fileID: 3728386109144870629}
   - component: {fileID: 4458883373672236188}
   m_Layer: 5
   m_Name: Icon (1)
@@ -332,25 +366,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3728386109144870629
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9181246497883447465}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ae82bc0be3d45a6ba922c08a613acd6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UpgradeScript: {fileID: 0}
-  defType: 0
-  objectType: 0
-  index: -1
-  _txLevel: {fileID: 0}
-  upgradeArrowImg: {fileID: 1757654834113664200}
-  IconChildImage: {fileID: 7798296888519096931}
 --- !u!114 &4458883373672236188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -395,7 +410,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3728386109144870629}
+      - m_Target: {fileID: 2036847579617359091}
         m_TargetAssemblyTypeName: DataCollector, Assembly-CSharp
         m_MethodName: OnClick
         m_Mode: 1

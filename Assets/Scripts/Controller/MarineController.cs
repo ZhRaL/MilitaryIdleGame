@@ -31,7 +31,8 @@ public class MarineController : MonoBehaviour, IController
 
     public int[] getState()
     {
-        return ships.Select(ship => new[] { ship.rewardLevel, ship.durationLevel }).SelectMany(arr => arr).ToArray();
+        int[] toReturn = ships.Select(ship => new[] { ship.rewardLevel, ship.durationLevel }).SelectMany(arr => arr).ToArray();
+        return toReturn;
     }
 
     public void loadState(int[] state)

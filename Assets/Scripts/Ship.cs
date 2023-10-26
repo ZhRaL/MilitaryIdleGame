@@ -85,7 +85,7 @@ public class Ship : MonoBehaviour
     
     public bool Init(int reward, int duration)
     {
-        if (reward <= 0 || duration <= 0) return false;
+        if (reward <= 0 && duration <= 0) return false;
         
         rewardLevel = reward;
         durationLevel = duration;
@@ -95,10 +95,8 @@ public class Ship : MonoBehaviour
     
     public void LevelUpReward()
     {
-        if (GameManager.INSTANCE.gold > Calculator.INSTANCE.getReward(new ObjDefEntity(){ObjectType = ObjectType.JET_AMOUNT}, rewardLevel))
-        {
+        if(rewardLevel==0) gameObject.SetActive(true);
             rewardLevel++;
-        }
     }
 
     public void LevelUpDuration()

@@ -43,7 +43,8 @@ public class GameManager : MonoBehaviour
         {
             _gold = value;
             tx_Gold.text = "" + _gold;
-            if (isInitialized) SaveGame();
+            if (isInitialized) 
+                SaveGame();
             OnMoneyChanged?.Invoke();
         }
     }
@@ -88,13 +89,15 @@ public class GameManager : MonoBehaviour
     {
         PlayerPrefs.SetFloat("Gold", gold);
         PlayerPrefs.SetFloat("Badges", badges);
-        
+
+
         PlayerPrefs.SetString(MARINESAFESTRING, JsonHelper.ToJson(MarineContr.getState()));
         PlayerPrefs.SetString(AIRFORCEAFESTRING, JsonHelper.ToJson(AirforceContr.getState()));
         PlayerPrefs.SetString(ARMYAFESTRING,JsonHelper.ToJson(ArmyContr.getState()));
         PlayerPrefs.SetString(KITCHENSAFESTRING,JsonHelper.ToJson(KitchenController.getState()));
         PlayerPrefs.SetString(BATHSAFESTRING,JsonHelper.ToJson(BathController.getState()));
         PlayerPrefs.SetString(SLEEPINGSAFESTRING,JsonHelper.ToJson(SleepingController.getState()));
+        PlayerPrefs.Save();
     }
 
     private void LoadGame()
@@ -115,5 +118,11 @@ public class GameManager : MonoBehaviour
     public void ResetPlayerprefs()
     {
         PlayerPrefs.DeleteAll();
+    }
+
+    private void OnApplicationQuit()
+    {
+        Debug.Log("Closing...");
+        SaveGame();
     }
 }

@@ -58,7 +58,7 @@ public class AirforceController : MonoBehaviour, IController
 
     public int getLevelLevel(int index)
     {
-        throw new NotImplementedException();
+        return 0;
     }
 
     public int getTimeLevel(int index)

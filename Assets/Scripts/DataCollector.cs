@@ -17,12 +17,13 @@ public class DataCollector : MonoBehaviour
     public UpgradeScript UpgradeScript;
     public DefenseType defType;
     [FormerlySerializedAs("ObjectType")] public ObjectType objectType;
-    [SerializeField] private int index = -1; // starts with 0
+    public int index = -1; // starts with 0
 
     [SerializeField] private TextMeshProUGUI _txLevel;
     [FormerlySerializedAs("upgradeImg")] public GameObject upgradeArrowImg;
 
     public Image IconChildImage;
+    public Unlocker unlocker;
 
     private void Start()
     {
@@ -59,9 +60,17 @@ public class DataCollector : MonoBehaviour
             diffReward = nextLevelReward - currentReward
         };
         if(_txLevel!=null)
-        dto.upgradeAction += () => _txLevel.text = "" + ++currentLevel;
+            dto.upgradeAction += () => _txLevel.text = "" + ++currentLevel;
+        if (unlocker != null)
+        {
+            dto.upgradeAction += () => unlocker.unlock();
+        }
+        else
+        {
+            dto.upgradeAction += () => OnClick();
+        }
         dto.upgradeAction += () => GameManager.INSTANCE.gold -= upgradeCost;
-        dto.upgradeAction += () => OnClick();
+        
         UpgradeScript.selectionChanged(dto);
         Image image = GetComponent<Image>();
         HighLightManager.highlight(image);

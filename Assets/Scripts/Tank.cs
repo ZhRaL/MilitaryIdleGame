@@ -84,7 +84,7 @@ public class Tank : MonoBehaviour
     
     public bool Init(int reward, int duration)
     {
-        if (reward <= 0 || duration <= 0) return false;
+        if (reward <= 0 && duration <= 0) return false;
         
         rewardLevel = reward;
         durationLevel = duration;
