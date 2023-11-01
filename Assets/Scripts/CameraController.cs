@@ -62,14 +62,14 @@ public class CameraController : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                 logger.log(hit.transform.name);
+                logger.log(hit.transform.name);
             }
         }
 
 
         // This part is for camera pan only & for 2 fingers stationary gesture
         if ((Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Moved) ||
-            (Input.GetMouseButton(0) ))
+            (Input.GetMouseButton(0)))
         {
             if (CanvasOpener.MouseOverElement())
             {
@@ -79,9 +79,8 @@ public class CameraController : MonoBehaviour
             zoomFaktorRecalculate = mainCamera.orthographicSize / 15;
             Vector2 inputPosition = Input.touchCount == 1
                 ? Input.GetTouch(0).deltaPosition
-                : new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"))*mouseScaleFactor;
+                : new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y")) * mouseScaleFactor;
 
-             logger.log("inputii: "+inputPosition);
             moveCamTarget(inputPosition);
         }
 

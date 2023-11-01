@@ -78,6 +78,13 @@ public class DataProvider : MonoBehaviour
             ObjectType.SHIP_AMOUNT => () => marineController.upgrade_Level(index),
             ObjectType.SHIP_TIME => () => marineController.upgrade_Time(index),
 
+            ObjectType.TANK_AMOUNT => () => armyController.upgrade_Level(index),
+            ObjectType.TANK_TIME => () => armyController.upgrade_Time(index),
+
+            ObjectType.JET_AMOUNT => () => airForceController.upgrade_Level(index),
+            ObjectType.JET_TIME => () => airForceController.upgrade_Time(index),
+
+            
         };
     }
 

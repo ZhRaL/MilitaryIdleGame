@@ -55,22 +55,32 @@ public class ArmyController : MonoBehaviour, IController
 
     public int getLevelLevel(int index)
     {
-        throw new NotImplementedException();
+        if (index < tanks.Count)
+            return tanks[index].rewardLevel;
+        throw new ArgumentException("invalid index " + index);
     }
-
+    
     public int getTimeLevel(int index)
     {
-        throw new NotImplementedException();
+        if (index < tanks.Count)
+            return tanks[index].durationLevel;
+        throw new ArgumentException("invalid index " + index);
     }
 
     public void upgrade_Level(int index)
     {
-        throw new NotImplementedException();
+        if (index >= tanks.Count)
+            throw new ArgumentException("invalid index " + index);
+        Tank ship = tanks[index];
+        ship.LevelUpReward();
     }
 
     public void upgrade_Time(int index)
     {
-        throw new NotImplementedException();
+        if (index >= tanks.Count)
+            throw new ArgumentException("invalid index " + index);
+        Tank ship = tanks[index];
+        ship.LevelUpDuration();
     }
 
     public void PlaceSoldier(Soldier soldier)

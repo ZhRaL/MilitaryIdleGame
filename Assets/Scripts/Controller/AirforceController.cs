@@ -58,22 +58,32 @@ public class AirforceController : MonoBehaviour, IController
 
     public int getLevelLevel(int index)
     {
-        return 0;
+        if (index < jets.Count)
+            return jets[index].rewardLevel;
+        throw new ArgumentException("invalid index " + index);
     }
-
+    
     public int getTimeLevel(int index)
     {
-        throw new NotImplementedException();
+        if (index < jets.Count)
+            return jets[index].durationLevel;
+        throw new ArgumentException("invalid index " + index);
     }
 
     public void upgrade_Level(int index)
     {
-        throw new NotImplementedException();
+        if (index >= jets.Count)
+            throw new ArgumentException("invalid index " + index);
+        Jet ship = jets[index];
+        ship.LevelUpReward();
     }
 
     public void upgrade_Time(int index)
     {
-        throw new NotImplementedException();
+        if (index >= jets.Count)
+            throw new ArgumentException("invalid index " + index);
+        Jet ship = jets[index];
+        ship.LevelUpDuration();
     }
 
     public void BuySecondRunway()
