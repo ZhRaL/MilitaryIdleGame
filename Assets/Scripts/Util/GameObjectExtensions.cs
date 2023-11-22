@@ -29,11 +29,11 @@ namespace Util
                 case ObjectType.TOILET:
                     break;
                 case ObjectType.JET_AMOUNT:
-                    break;
+                    return "Jet";
                 case ObjectType.JET_TIME:
                     break;
                 case ObjectType.SHIP_AMOUNT:
-                    break;
+                    return "Ship";
                 case ObjectType.SHIP_TIME:
                     break;
                 case ObjectType.TANK_AMOUNT:

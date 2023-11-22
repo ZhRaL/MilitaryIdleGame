@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5954024212184656067}
   - component: {fileID: 321225575099073562}
   - component: {fileID: 4427912870281243990}
+  - component: {fileID: 6996049452327789228}
   m_Layer: 5
   m_Name: ArmyPanel
   m_TagString: Untagged
@@ -106,6 +107,22 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &6996049452327789228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 321354087864826351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd2e3efb4b08eec4995fea53a9772c1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lowest: {fileID: 0}
+  highest: {fileID: 0}
+  lowestColor: {r: 0.6132076, g: 0.14173195, b: 0.14173195, a: 1}
+  highestColor: {r: 0.107600555, g: 0.735849, b: 0.18745363, a: 1}
 --- !u!1 &2122277098665244722
 GameObject:
   m_ObjectHideFlags: 0
@@ -391,8 +408,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7775760636877922505}
   - {fileID: 2081507695130448557}
+  - {fileID: 7775760636877922505}
   - {fileID: 672732320535233265}
   m_Father: {fileID: 6021044682457016988}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -611,6 +628,7 @@ GameObject:
   - component: {fileID: 2398846228897189256}
   - component: {fileID: 4138638921226371389}
   - component: {fileID: 1421670639482902936}
+  - component: {fileID: 861850783304924668}
   m_Layer: 5
   m_Name: ArmyPanel (2)
   m_TagString: Untagged
@@ -705,6 +723,22 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &861850783304924668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5042564605698496678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd2e3efb4b08eec4995fea53a9772c1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lowest: {fileID: 0}
+  highest: {fileID: 0}
+  lowestColor: {r: 0.6132076, g: 0.14173195, b: 0.14173195, a: 1}
+  highestColor: {r: 0.107600555, g: 0.735849, b: 0.18745363, a: 1}
 --- !u!1 &5809381746414493857
 GameObject:
   m_ObjectHideFlags: 0
@@ -717,6 +751,7 @@ GameObject:
   - component: {fileID: 4991754890527461121}
   - component: {fileID: 2005067269925104802}
   - component: {fileID: 8188064813337370082}
+  - component: {fileID: 5041249191753490973}
   m_Layer: 5
   m_Name: ArmyPanel (1)
   m_TagString: Untagged
@@ -811,6 +846,22 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &5041249191753490973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5809381746414493857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd2e3efb4b08eec4995fea53a9772c1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lowest: {fileID: 0}
+  highest: {fileID: 0}
+  lowestColor: {r: 0.6132076, g: 0.14173195, b: 0.14173195, a: 1}
+  highestColor: {r: 0.107600555, g: 0.735849, b: 0.18745363, a: 1}
 --- !u!1 &8260492731834264182
 GameObject:
   m_ObjectHideFlags: 0
