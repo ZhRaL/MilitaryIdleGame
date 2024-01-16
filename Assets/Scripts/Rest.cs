@@ -60,7 +60,7 @@ public class Rest : MonoBehaviour
 
     }
     
-    public int GetLevelForTable(int index)
+    public int GetLevelForToilet(int index)
     {
         if (index < toilets.Length)
             return toilets[index].Level;

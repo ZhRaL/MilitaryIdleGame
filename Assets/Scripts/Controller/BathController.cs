@@ -47,7 +47,13 @@ public class BathController : MonoBehaviour, IController
 
     public int getLevelLevel(int index)
     {
-        throw new NotImplementedException();
+        if (index < 20) return Rest1.GetLevelForToilet(index - 10);
+        if (index < 30) return Rest2.GetLevelForToilet(index - 20);
+        if (index < 40) return Rest3.GetLevelForToilet(index - 30);
+        if (index < 50) return Rest4.GetLevelForToilet(index - 40);
+
+        else throw new ArgumentException("Wrong index?!");
+
     }
 
     public int getTimeLevel(int index)

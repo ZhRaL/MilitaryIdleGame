@@ -9,12 +9,13 @@ using Util;
 public class DataProvider : MonoBehaviour
 {
     public Table armyTable, airforceTable, marineTable;
-    public Rest[] rests;
+    public Rest rest1,rest2,rest3,rest4;
     public Room armyRoom, airforceRoom, marineRoom;
 
     public ArmyController armyController;
     public AirforceController airForceController;
     public MarineController marineController;
+    public BathController BathController;
 
 
     public static DataProvider INSTANCE;
@@ -34,10 +35,6 @@ public class DataProvider : MonoBehaviour
                 DefenseType.AIRFORCE => airforceTable.GetLevelForTable(index),
                 DefenseType.MARINE => marineTable.GetLevelForTable(index)
             },
-            ObjectType.TOILET => defType switch
-            {   
-                // TODO
-            },
             ObjectType.BED => defType switch
             {   
                 DefenseType.ARMY => armyRoom.GetLevelForBed(index),
@@ -53,6 +50,8 @@ public class DataProvider : MonoBehaviour
             
             ObjectType.TANK_AMOUNT => armyController.getLevelLevel(index),
             ObjectType.TANK_TIME => armyController.getTimeLevel(index),
+            
+            ObjectType.TOILET => BathController.getLevelLevel(index)
         };
 
     }
