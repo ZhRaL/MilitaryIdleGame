@@ -22,6 +22,7 @@ public class DataProvider : MonoBehaviour
 
     private void Awake()
     {
+        
         if (INSTANCE == null) INSTANCE = this;
     }
 

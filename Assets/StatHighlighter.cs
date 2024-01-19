@@ -13,7 +13,6 @@ public class StatHighlighter : MonoBehaviour
 
     private void OnEnable()
     {
-        logger.log("Highltighter+Enable");
         highlight();
     }
 

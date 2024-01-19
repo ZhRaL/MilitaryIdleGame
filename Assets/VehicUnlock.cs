@@ -10,12 +10,11 @@ public class VehicUnlock : MonoBehaviour
     public ObjectType type;
     public UpgradeScript upgradeScript;
     public bool isBath;
-    public BathController BathController;
     
     // Start is called before the first frame update
     void Start()
     {
-        BathController = (BathController) GameManager.INSTANCE.BathController;
+       BathController BathController = (BathController) GameManager.INSTANCE.BathController;
         if (isBath)
         {
             GameObject Bchild1 = transform.GetChild(0).gameObject;
@@ -27,17 +26,28 @@ public class VehicUnlock : MonoBehaviour
             GameObject avail3 = transform.GetChild(6).gameObject;
 
 
-            if(BathController.Rest2.unlockedToilets>0) Bchild2.SetActive(true);
+            if (BathController.Rest2.unlockedToilets > 0)
+            {
+                Bchild2.SetActive(true);
+            }
             else
             {
                 avail1.SetActive(true);
             }
-            if(BathController.Rest3.unlockedToilets>0) Bchild3.SetActive(true);
+
+            if (BathController.Rest3.unlockedToilets > 0)
+            {
+                Bchild3.SetActive(true);
+            }
             else
             {
                 avail2.SetActive(true);
             }
-            if(BathController.Rest4.unlockedToilets>0) Bchild4.SetActive(true);
+
+            if (BathController.Rest4.unlockedToilets > 0)
+            {
+                Bchild4.SetActive(true);
+            }
             else
             {
                 avail3.SetActive(true);
