@@ -17,7 +17,7 @@ public class VehicUnlock : MonoBehaviour
        BathController BathController = (BathController) GameManager.INSTANCE.BathController;
         if (isBath)
         {
-            GameObject Bchild1 = transform.GetChild(0).gameObject;
+           /* GameObject Bchild1 = transform.GetChild(0).gameObject;
             GameObject Bchild2 = transform.GetChild(1).gameObject;
             GameObject Bchild3 = transform.GetChild(2).gameObject;
             GameObject Bchild4 = transform.GetChild(3).gameObject;
@@ -52,6 +52,7 @@ public class VehicUnlock : MonoBehaviour
             {
                 avail3.SetActive(true);
             }
+            */
 
 
             return;

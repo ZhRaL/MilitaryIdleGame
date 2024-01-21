@@ -8,35 +8,25 @@ using UnityEngine.UI;
 
 public class BathController : MonoBehaviour, IController
 {
-    public Rest Rest1, Rest2, Rest3, Rest4;
-    private List<SoldierWalkUtil> _walkingSoldiers = new();
-    
-    public WaitingService WaitingService;
-    public Transform waitingPosParent;
-
-
-    private void Start()
-    {
-        WaitingService = new WaitingService(waitingPosParent);
-    }
+    [SerializeField] private Rest armyRest, airForceRest, marineRest;
 
     public int[] getState()
     {
         return new[]
         {
-            Rest1.unlockedToilets, Rest1.Level, Rest2.unlockedToilets, Rest2.Level,
-            Rest3.unlockedToilets, Rest3.Level, Rest4.unlockedToilets, Rest4.Level
+            armyRest.unlockedToilets, armyRest.speed, airForceRest.unlockedToilets, airForceRest.speed,
+            marineRest.unlockedToilets, marineRest.speed
         };
     }
 
     public void loadState(int[] state)
     {
-        if (state.Length != 8) throw new ArgumentException("Wrong Length of Array");
+        if (state.Length != 6) throw new ArgumentException("Wrong Length of Array");
 
-        Rest1.Init(state[0], state[1]);
-        Rest2.Init(state[2], state[3]);
-        Rest3.Init(state[4], state[5]);
-        Rest4.Init(state[6], state[7]);
+        armyRest.Init(state[0], state[1]);
+        airForceRest.Init(state[2], state[3]);
+        marineRest.Init(state[4], state[5]);
+   
 
     }
 
@@ -47,13 +37,7 @@ public class BathController : MonoBehaviour, IController
 
     public int getLevelLevel(int index)
     {
-        if (index < 20) return Rest1.GetLevelForToilet(index - 10);
-        if (index < 30) return Rest2.GetLevelForToilet(index - 20);
-        if (index < 40) return Rest3.GetLevelForToilet(index - 30);
-        if (index < 50) return Rest4.GetLevelForToilet(index - 40);
-
-        else throw new ArgumentException("Wrong index?!");
-
+        throw new NotImplementedException();
     }
 
     public int getTimeLevel(int index)
@@ -71,59 +55,19 @@ public class BathController : MonoBehaviour, IController
         throw new NotImplementedException();
     }
 
-    private void Update()
-    {
-        var copyOfWalkingSoldiers = new List<SoldierWalkUtil>(_walkingSoldiers);
-        copyOfWalkingSoldiers.ForEach(soldierWalkUtil => soldierWalkUtil.Update());
-        WaitingService.Update();
-    }
-
     public void PlaceSoldier(Soldier soldier)
     {
-        Toilet targetToilet = null;
-
-        foreach (var rest in getOrderedRests())
-        {
-            Toilet tempToilet = rest.getFreeToilet();
-            if (tempToilet != null) targetToilet = tempToilet;
-        }
-
-        // No free Target Toilet
-        if (targetToilet == null)
-        {
-            WaitingService.addSoldier(soldier);
-            return;
-        }
-
-        targetToilet!.Occupied = true;
-        moveSoldierTo(soldier, targetToilet.transform, () => targetToilet.SoldierSitDown(soldier));
+        getRest(soldier.SoldierType).PlaceSoldier(soldier);
     }
-
-    private List<Rest> getOrderedRests()
+    
+    private Rest getRest(Soldier.SoldierTypeEnum type)
     {
-        return new List<Rest>
-        {
-            Rest1,
-            Rest2,
-            Rest3,
-            Rest4
-        }.OrderByDescending(rest => rest.Level).ToList();
+        if (type == Soldier.SoldierTypeEnum.ARMY) return armyRest;
+        if (type == Soldier.SoldierTypeEnum.AIRFORCE) return airForceRest;
+        if (type == Soldier.SoldierTypeEnum.MARINE) return marineRest;
+
+        throw new ArgumentException("not a valid type");
     }
 
-    private void moveSoldierTo(Soldier soldier, Transform target, Action executeWhenReached)
-    {
-        soldier.anim.SetBool("isRunning",true);
-        _walkingSoldiers.Add(new SoldierWalkUtil(soldier, target, executeWhenReached, removeWalkingSoldier));
-    }
-
-    public void removeWalkingSoldier(SoldierWalkUtil walk)
-    {
-        _walkingSoldiers.Remove(walk);
-    }
-
-    public void ToiletFree()
-    {
-        Soldier freeS = WaitingService.Shift();
-        if(freeS!=null) PlaceSoldier(freeS);
-    }
+    
 }

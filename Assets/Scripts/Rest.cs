@@ -10,20 +10,33 @@ using Util;
 public class Rest : MonoBehaviour
 {
     public Toilet[] toilets;
-    private int level;
+    public int speed;
     public int unlockedToilets;
 
     public int index;
 
-    public int Level
+    public Transform waitingPosParent;
+    public DefenseType DefenseType;
+
+    private List<SoldierWalkUtil> _walkingSoldiers = new();
+
+    public WaitingService WaitingService;
+
+    private void Start()
     {
-        get => level;
-        set => level = value;
+        WaitingService = new WaitingService(waitingPosParent);
+    }
+
+    private void Update()
+    {
+        var copyOfWalkingSoldiers = new List<SoldierWalkUtil>(_walkingSoldiers);
+        copyOfWalkingSoldiers.ForEach(soldierWalkUtil => soldierWalkUtil.Update());
+        WaitingService.Update();
     }
 
     public Toilet getFreeToilet()
     {
-        return toilets.FirstOrDefault(chair => chair.unlocked && !chair.Occupied);
+        return toilets.FirstOrDefault(toilet => toilet.unlocked && !toilet.Occupied);
     }
 
     public float getWaitingAmount()
@@ -47,18 +60,10 @@ public class Rest : MonoBehaviour
         }
 
         unlockedToilets = amount;
-        Level = level;
+        speed = level;
     }
 
-    public void BuyToilet()
-    {
-        
-    }
 
-    public void LevelUpSpeed()
-    {
-
-    }
     
     public int GetLevelForToilet(int index)
     {
@@ -66,4 +71,64 @@ public class Rest : MonoBehaviour
             return toilets[index].Level;
         return -1;
     }
+
+    public void PlaceSoldier(Soldier soldier)
+    {
+        Toilet targetToilet = getFreeToilet();
+        if (targetToilet != null)
+        {
+            targetToilet.Occupied = true;
+            moveSoldierTo(soldier, targetToilet.transform, () => targetToilet.SoldierSitDown(soldier));
+        }
+        else
+        {
+            WaitingService.addSoldier(soldier);
+        }
+    }
+    
+    public void ToiletFree()
+    {
+        Soldier freeS = WaitingService.Shift();
+        if (freeS != null) PlaceSoldier(freeS);
+    }
+    
+    private void moveSoldierTo(Soldier soldier, Transform target, Action executeWhenReached)
+    {
+        soldier.anim.SetBool("isRunning", true);
+        _walkingSoldiers.Add(new SoldierWalkUtil(soldier, target, executeWhenReached, removeWalkingSoldier));
+    }
+    
+    public void removeWalkingSoldier(SoldierWalkUtil walk)
+    {
+        _walkingSoldiers.Remove(walk);
+    }
+    
+    public void BuyTable()
+    {
+        if (GameManager.INSTANCE.gold > Calculator.INSTANCE.getReward(
+                new ObjDefEntity() { DefenseType = this.DefenseType, ObjectType = ObjectType.CHAIR }, unlockedToilets))
+        {
+            Toilet chair = toilets[unlockedToilets++];
+            chair.Occupied = false;
+            chair.unlocked = true;
+            chair.gameObject.SetActive(true);
+        }
+    }
+
+    public void LevelUpTable()
+    {
+        if (GameManager.INSTANCE.gold > Calculator.INSTANCE.getReward(
+                new ObjDefEntity() { DefenseType = this.DefenseType, ObjectType = ObjectType.CHAIR }, unlockedToilets))
+        {
+            speed++;
+        }
+    }
+
+    public void UpgradeChair(int index)
+    {
+        logger.log("Try to Upgrade Chair Nr: "+index);
+        if(index < toilets.Length)
+            toilets[index].Upgrade();
+    }
+    
 }
