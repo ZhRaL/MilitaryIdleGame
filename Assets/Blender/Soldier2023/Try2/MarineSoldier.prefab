@@ -820,6 +820,7 @@ GameObject:
   - component: {fileID: 8846585053988228011}
   - component: {fileID: 3181035473489514961}
   - component: {fileID: -3284079894634519278}
+  - component: {fileID: 93697765299351927}
   m_Layer: 0
   m_Name: MarineSoldier
   m_TagString: Untagged
@@ -886,6 +887,21 @@ MonoBehaviour:
   isWaiting: 0
   distanceToTarget: 0
   RadialBarPrefab: {fileID: 0}
+--- !u!114 &93697765299351927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8182673908157108497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc0691284e869464c985e8c4b8875762, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  namePlatePrefab: {fileID: 6493483073272055653, guid: 089d53c74b0f59c4db75179d57ef1d6a, type: 3}
+  hightAbove: 1.5
+  displayText: John Doe
 --- !u!1 &8235636613064831562
 GameObject:
   m_ObjectHideFlags: 0

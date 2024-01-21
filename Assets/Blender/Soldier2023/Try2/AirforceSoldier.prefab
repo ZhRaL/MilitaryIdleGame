@@ -790,6 +790,7 @@ GameObject:
   - component: {fileID: 7554400953394849553}
   - component: {fileID: 4482967776478444907}
   - component: {fileID: 8070656635677405717}
+  - component: {fileID: 5017724729906484530}
   m_Layer: 0
   m_Name: AirforceSoldier
   m_TagString: Untagged
@@ -856,6 +857,21 @@ MonoBehaviour:
   isWaiting: 0
   distanceToTarget: 0
   RadialBarPrefab: {fileID: 0}
+--- !u!114 &5017724729906484530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7177980281159728555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc0691284e869464c985e8c4b8875762, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  namePlatePrefab: {fileID: 6493483073272055653, guid: 089d53c74b0f59c4db75179d57ef1d6a, type: 3}
+  hightAbove: 1.5
+  displayText: John Doe
 --- !u!1 &7873141670556779196
 GameObject:
   m_ObjectHideFlags: 0

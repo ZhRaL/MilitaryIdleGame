@@ -439,6 +439,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc0691284e869464c985e8c4b8875762, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  namePlatePrefab: {fileID: 6493483073272055653, guid: 089d53c74b0f59c4db75179d57ef1d6a, type: 3}
+  hightAbove: 1.5
+  displayText: John Doe
 --- !u!1 &3351424724179576311
 GameObject:
   m_ObjectHideFlags: 0
