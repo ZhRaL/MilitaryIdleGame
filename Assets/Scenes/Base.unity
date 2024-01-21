@@ -28194,11 +28194,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8d67243356c8d524ebb6e363312f83f7, type: 3}
   m_PrefabInstance: {fileID: 829795893}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &830149394 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7177980281159728555, guid: ff1ac0109a6631049aa4228b32be56e6, type: 3}
-  m_PrefabInstance: {fileID: 978034662}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &832211292
 GameObject:
   m_ObjectHideFlags: 0
@@ -32776,6 +32771,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 334025683}
     m_Modifications:
+    - target: {fileID: 5017724729906484530, guid: ff1ac0109a6631049aa4228b32be56e6, type: 3}
+      propertyPath: displayText
+      value: Weigelt
+      objectReference: {fileID: 0}
     - target: {fileID: 7177980281159728555, guid: ff1ac0109a6631049aa4228b32be56e6, type: 3}
       propertyPath: m_Name
       value: AirforceSoldier
@@ -32864,10 +32863,7 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 8496786584056930994, guid: ff1ac0109a6631049aa4228b32be56e6, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7177980281159728555, guid: ff1ac0109a6631049aa4228b32be56e6, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1580590900}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff1ac0109a6631049aa4228b32be56e6, type: 3}
 --- !u!1 &979219182
 GameObject:
@@ -57888,7 +57884,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4618546184181590, guid: 74d0740f4abc7e54fab50d33af2582da, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.93
+      value: -10.89
       objectReference: {fileID: 0}
     - target: {fileID: 4618546184181590, guid: 74d0740f4abc7e54fab50d33af2582da, type: 3}
       propertyPath: m_LocalPosition.y
@@ -58060,27 +58056,12 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8070656635677405717, guid: ff1ac0109a6631049aa4228b32be56e6, type: 3}
   m_PrefabInstance: {fileID: 978034662}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 830149394}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 29fb528b809b07d40b8ff7ff8a5d2b48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1580590900
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 830149394}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc0691284e869464c985e8c4b8875762, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  namePlatePrefab: {fileID: 6493483073272055653, guid: 089d53c74b0f59c4db75179d57ef1d6a, type: 3}
-  hightAbove: 1.5
-  displayText: Georg
 --- !u!1001 &1580836937
 PrefabInstance:
   m_ObjectHideFlags: 0

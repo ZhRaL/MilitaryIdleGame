@@ -89,15 +89,6 @@ public class Room : MonoBehaviour
             beds[index].Upgrade();
     }
 
-    public void LevelUpBeds()
-    {
-        if (GameManager.INSTANCE.gold > Calculator.INSTANCE.getReward(
-                new ObjDefEntity() { DefenseType = this.DefenseType, ObjectType = ObjectType.BED }, unlockedBeds))
-        {
-            beds.ForEach(bed => bed.Level++);
-        }
-    }
-
     public int GetLevelForBed(int index)
     {
         if (index < beds.Count)

@@ -7,7 +7,7 @@ using Util;
 
 public class Table : MonoBehaviour
 {
-    public Chair[] chairs;
+    [SerializeField] private List<Chair> chairs;
     public int speed;
     public int unlockedChairs;
     public Transform waitingPosParent;
@@ -34,23 +34,21 @@ public class Table : MonoBehaviour
         return chairs.FirstOrDefault(chair => chair.Unlocked && !chair.Occupied);
     }
 
-    public void Init(int amount, int level)
+    public void Init(int[] levels)
     {
-        if (amount >= chairs.Length)
-        {
-            Debug.LogError("Amount greater than array Length");
-            return;
-        }
+        if (levels.Length > chairs.Count) throw new ArgumentException("invalid Amount!");
 
-        for (int i = 0; i < chairs.Length; i++)
+        for (int i = 0; i < chairs.Count; i++)
         {
-            if (i < amount)
-                chairs[i].Unlocked = true;
-            else chairs[i].gameObject.SetActive(false);
+            int level = levels[i];
+            Chair currentBed = chairs[i];
+            if (level > 0)
+            {
+                currentBed.Level = level;
+                unlockedChairs++;
+            }
+            else currentBed.gameObject.SetActive(false);
         }
-
-        unlockedChairs = amount;
-        speed = level;
     }
 
     public float getWaitingAmount()
@@ -112,14 +110,18 @@ public class Table : MonoBehaviour
 
     public void UpgradeChair(int index)
     {
-         logger.log("Try to Upgrade Chair Nr: "+index);
-        if(index < chairs.Length)
+        logger.log("Try to Upgrade Chair Nr: " + index);
+        if (index < chairs.Count)
             chairs[index].Upgrade();
+    }
+    public int[] getState()
+    {
+        return chairs.Select(chair => chair.Level).ToArray();
     }
 
     public int GetLevelForTable(int index)
     {
-        if (index < chairs.Length)
+        if (index < chairs.Count)
             return chairs[index].Level;
         return -1;
     }

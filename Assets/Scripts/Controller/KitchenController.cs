@@ -17,20 +17,19 @@ public class KitchenController : MonoBehaviour, IController
      */
     public int[] getState()
     {
-        return new[]
-        {
-            _tableArmy.unlockedChairs, _tableArmy.speed, _tableAirForce.unlockedChairs, _tableAirForce.speed,
-            _tableMarine.unlockedChairs, _tableMarine.speed
-        };
+        return _tableArmy.getState()
+            .Concat(_tableAirForce.getState())
+            .Concat(_tableMarine.getState())
+            .ToArray();
     }
 
     public void loadState(int[] state)
     {
-        if (state.Length != 6) throw new ArgumentException("Wrong Length of Array");
+        if (state.Length != 12) throw new ArgumentException("Wrong Length of Array");
 
-        _tableArmy.Init(state[0], state[1]);
-        _tableAirForce.Init(state[2], state[3]);
-        _tableMarine.Init(state[4], state[5]);
+        _tableArmy.Init(state[..4]);
+        _tableAirForce.Init(state[4..8]);
+        _tableMarine.Init(state[8..12]);
     }
 
     public bool isObjectUnlocked(int i)
