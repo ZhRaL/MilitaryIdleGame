@@ -68,8 +68,11 @@ public class GameManager : MonoBehaviour
 
     public GameObject[] Controllers;
 
+    private OfflineCalculator _offlineCalculator;
+
     private void Start()
     {
+        _offlineCalculator = new OfflineCalculator();
         initializeController();
         LoadGame();
     }
@@ -113,6 +116,7 @@ public class GameManager : MonoBehaviour
         BathController.loadState(JsonHelper.FromJson<int>(PlayerPrefs.GetString(BATHSAFESTRING," {\"Items\":[1,1,1,1,1,1]}")));
         SleepingController.loadState(JsonHelper.FromJson<int>(PlayerPrefs.GetString(SLEEPINGSAFESTRING," {\"Items\":[1,0,0,0,1,0,0,0,1,0,0,0]}")));
         isInitialized = true;
+        _offlineCalculator.calculateReward();
         SaveGame();
     }
 
@@ -123,7 +127,8 @@ public class GameManager : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-         logger.log("Closing...");
+        logger.log("Closing...");
+        _offlineCalculator.safeTime();
         SaveGame();
     }
 }
