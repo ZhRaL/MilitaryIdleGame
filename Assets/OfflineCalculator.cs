@@ -72,7 +72,9 @@ public class OfflineCalculator
     private float getTimeEating(Soldier soldier, int soldierAmount)
     {
         Table table = kitchenController.getTable(soldier.SoldierType);
-        return 0;
+        var eZ = table.getAverageTime();
+        eZ += (1 - (soldierAmount / table.unlockedChairs)) * eZ;
+        return eZ;
     }
     
     private float getTimePooing(Soldier soldier, int soldierAmount)

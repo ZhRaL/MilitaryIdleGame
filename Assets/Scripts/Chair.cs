@@ -41,10 +41,15 @@ namespace DefaultNamespace
            // if(_timeLeft<0) SoldierGetUp();
         }
 
+        public float getTimeForRound()
+        {
+            return 10 - Calculator.INSTANCE.getTimeReductionReward(Level);
+        }
+
         public void SoldierSitDown(Soldier soldier)
         {
             _soldier = soldier;
-            _timeLeft = Table.getWaitingAmount();
+            _timeLeft = getTimeForRound();
             soldier.anim.SetBool("isRunning",false);
             Vector3 newPos = soldier.transform.position;
             newPos.y -= distanceSoldierGoDown;

@@ -51,11 +51,6 @@ public class Table : MonoBehaviour
         }
     }
 
-    public float getWaitingAmount()
-    {
-        return 4f;
-    }
-
     public void PlaceSoldier(Soldier soldier)
     {
         Chair targetChair = GetNextFreeChair();
@@ -124,5 +119,11 @@ public class Table : MonoBehaviour
         if (index < chairs.Count)
             return chairs[index].Level;
         return -1;
+    }
+
+    public float getAverageTime()
+    {
+        return chairs.Average(chair => chair.getTimeForRound()) 
+            * chairs.Count();
     }
 }
