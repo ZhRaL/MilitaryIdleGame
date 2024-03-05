@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,7 +10,18 @@ public class RecruitmentController : MonoBehaviour, IController
 {
 
     public Platoon armyPlatoon, airforcePlatoon, marinePlatoon;
-    
+    private readonly List<Soldier> soldiers = new();
+
+    public List<Soldier> GetSoldiers()
+    {
+        return soldiers;
+    }
+
+    public int getSoldierTypeAmount(Soldier.SoldierTypeEnum type)
+    {
+        return soldiers.Count(s => s.SoldierType == type);
+    }
+
     public int[] getState()
     {
         throw new System.NotImplementedException();

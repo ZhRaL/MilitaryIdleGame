@@ -14,6 +14,14 @@ public class OfflineCalculator
     
     private const string saveString = "OFFLINE_CALC";
 
+    public KitchenController kitchenController;
+    public BathController bathController;
+    public SleepingController sleepingController;
+    public ArmyController armyController;
+    public MarineController marineController;
+    public AirforceController airforceController;
+    public RecruitmentController recruitmentController;
+    
     public OfflineCalculator()
     {
         string savedStartTime = PlayerPrefs.GetString(saveString, string.Empty);
@@ -35,8 +43,61 @@ public class OfflineCalculator
         TimeSpan elapsedTime = DateTime.Now - savedTime;
 
         int diff  = (int) elapsedTime.TotalSeconds;
-        
-        // Caluclate real reward
 
+        float hourlyReward = calculate();
+
+    }
+
+    private float calculate()
+    {
+        float amount = 0;
+        List<Soldier> soldiers = recruitmentController.GetSoldiers();
+        
+        foreach (Soldier soldier in soldiers)
+        {
+            int soldierAmount = recruitmentController.getSoldierTypeAmount(soldier.SoldierType);
+            float roundTrip = getNettoRunningTime(soldier, soldierAmount)
+                              + getTimeEating(soldier, soldierAmount)
+                              + getTimePooing(soldier, soldierAmount)
+                              + getTimeSleeping(soldier, soldierAmount)
+                              + getTimeForMission(soldier, soldierAmount);
+            float numberRT = (60 * 60) / roundTrip;
+            float moneyEarned = numberRT * getMissionMoney(soldier);
+            amount += moneyEarned;
+        }
+
+        return amount;
+    }
+
+    private float getTimeEating(Soldier soldier, int soldierAmount)
+    {
+        Table table = kitchenController.getTable(soldier.SoldierType);
+        return 0;
+    }
+    
+    private float getTimePooing(Soldier soldier, int soldierAmount)
+    {
+        return 0;
+    }
+    
+    private float getTimeSleeping(Soldier soldier, int soldierAmount)
+    {
+        return 0;
+    }
+
+    private float getNettoRunningTime(Soldier soldier, int soldierAmount)
+    {
+        return 0;
+    }
+
+    private float getTimeForMission(Soldier soldier, int soldierAmount)
+    {
+        return 0;
+    }
+
+    private float getMissionMoney(Soldier soldier)
+    {
+        // Calculate average of all active vehicles and multiply it with amount of active vehicles
+        return 0;
     }
 }

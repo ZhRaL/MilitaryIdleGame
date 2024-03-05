@@ -62,7 +62,7 @@ public class KitchenController : MonoBehaviour, IController
         getTable(soldier.SoldierType).PlaceSoldier(soldier);
     }
     
-    private Table getTable(Soldier.SoldierTypeEnum type)
+    public Table getTable(Soldier.SoldierTypeEnum type)
     {
         if (type == Soldier.SoldierTypeEnum.ARMY) return _tableArmy;
         if (type == Soldier.SoldierTypeEnum.AIRFORCE) return _tableAirForce;
