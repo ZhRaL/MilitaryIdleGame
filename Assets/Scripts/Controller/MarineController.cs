@@ -127,4 +127,15 @@ public class MarineController : MonoBehaviour, IController
         Soldier freeS = WaitingService.Shift();
         if(freeS!=null) PlaceSoldier(freeS);
     }
+    
+    public float getAverageTime()
+    {
+        return ships.Average(chair => chair.getTimeForRound()) 
+               * ships.Count();
+    }
+    
+    public int unlockedVehics()
+    {
+        return ships.Count(s => s.unlocked);
+    }
 }

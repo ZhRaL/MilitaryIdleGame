@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using Util;
 
@@ -79,12 +80,18 @@ public class OfflineCalculator
     
     private float getTimePooing(Soldier soldier, int soldierAmount)
     {
-        return 0;
+        Table table = kitchenController.getTable(soldier.SoldierType);
+        var eZ = table.getAverageTime();
+        eZ += (1 - (soldierAmount / table.unlockedChairs)) * eZ;
+        return eZ;
     }
     
     private float getTimeSleeping(Soldier soldier, int soldierAmount)
     {
-        return 0;
+        Table table = kitchenController.getTable(soldier.SoldierType);
+        var eZ = table.getAverageTime();
+        eZ += (1 - (soldierAmount / table.unlockedChairs)) * eZ;
+        return eZ;
     }
 
     private float getNettoRunningTime(Soldier soldier, int soldierAmount)
@@ -94,8 +101,30 @@ public class OfflineCalculator
 
     private float getTimeForMission(Soldier soldier, int soldierAmount)
     {
-        return 0;
+        float time;
+        int amount;
+        switch (soldier.SoldierType)
+        {
+            case Soldier.SoldierTypeEnum.ARMY:
+                time = armyController.getAverageTime();
+                amount = armyController.unlockedVehics();
+                break;
+            case Soldier.SoldierTypeEnum.MARINE:
+                time = marineController.getAverageTime();
+                amount = marineController.unlockedVehics();
+                break;
+            case Soldier.SoldierTypeEnum.AIRFORCE:
+                time = airforceController.getAverageTime();
+                amount = airforceController.unlockedVehics();
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+        
+        time += (1 - (soldierAmount / amount)) * time;
+        return time;
     }
+    
 
     private float getMissionMoney(Soldier soldier)
     {

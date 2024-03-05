@@ -36,6 +36,12 @@ public class Ship : MonoBehaviour
     {
         return 10 - Calculator.INSTANCE.getTimeReductionReward(durationLevel);
     }
+    
+    public float getTimeForRound()
+    {
+        // TODO - more specific value including animation Duration
+        return 10;
+    }
 
     IEnumerator ExecuteAfterTime(float time)
     {

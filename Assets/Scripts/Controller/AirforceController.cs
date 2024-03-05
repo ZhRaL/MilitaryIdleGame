@@ -131,4 +131,15 @@ public class AirforceController : MonoBehaviour, IController
         Soldier freeS = WaitingService.Shift();
         if(freeS!=null) PlaceSoldier(freeS);
     }
+    
+    public float getAverageTime()
+    {
+        return jets.Average(chair => chair.getTimeForRound()) 
+               * jets.Count();
+    }
+    
+    public int unlockedVehics()
+    {
+        return jets.Count(s => s.unlocked);
+    }
 }

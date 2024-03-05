@@ -37,6 +37,11 @@ public class Tank : MonoBehaviour
         return 1f;
     }
 
+    public float getTimeForRound()
+    {
+        // TODO - more specific value including animation Duration
+        return 10;
+    }
     
     IEnumerator ExecuteAfterTime(float time)
     {

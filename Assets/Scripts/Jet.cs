@@ -106,4 +106,10 @@ public class Jet : MonoBehaviour
             durationLevel++;
         }
     }
+    
+    public float getTimeForRound()
+    {
+        // TODO - more specific value including animation Duration
+        return 10;
+    }
 }

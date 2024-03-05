@@ -40,6 +40,7 @@ public class ArmyController : MonoBehaviour, IController
 
         foreach (var tank in tanks)
         {
+            // Not active
             if (!tank.Init(state[index++], state[index++]))
             {
                 Instantiate(Baustelle_1_Prefab, tank.transform.position + positionOffset, Quaternion.Euler(0, 140, 0));
@@ -117,5 +118,16 @@ public class ArmyController : MonoBehaviour, IController
     {
         Soldier freeS = WaitingService.Shift();
         if(freeS!=null) PlaceSoldier(freeS);
+    }
+
+    public float getAverageTime()
+    {
+        return tanks.Average(chair => chair.getTimeForRound()) 
+               * tanks.Count();
+    }
+
+    public int unlockedVehics()
+    {
+        return tanks.Count(s => s.unlocked);
     }
 }
