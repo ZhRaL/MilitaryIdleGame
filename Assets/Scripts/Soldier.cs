@@ -10,6 +10,7 @@ public class Soldier : MonoBehaviour
     public GameObject parentRoute;
     public Transform[] path;
     public Animator anim;
+    // TODO - Remove SolderTypeEnum and Use DefenseType!
     [SerializeField] private SoldierTypeEnum soldierTypeEnum;
 
     public int currentTarget = 0;
