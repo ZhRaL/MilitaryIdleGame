@@ -52,7 +52,8 @@ public class DataProvider : MonoBehaviour
             ObjectType.TANK_AMOUNT => armyController.getLevelLevel(index),
             ObjectType.TANK_TIME => armyController.getTimeLevel(index),
             
-            ObjectType.TOILET => BathController.getLevelLevel(index)
+            // TODO - 
+            //ObjectType.TOILET => BathController.getLevelLevel(index)
         };
 
     }

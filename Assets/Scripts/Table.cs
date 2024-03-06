@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using DefaultNamespace;
 using UnityEngine;
+using UnityEngine.Events;
 using Util;
 
-public class Table : MonoBehaviour
+public class Table : MonoBehaviour, IManageItem
 {
     [SerializeField] private List<Chair> chairs;
     public int speed;
@@ -49,6 +50,36 @@ public class Table : MonoBehaviour
             }
             else currentBed.gameObject.SetActive(false);
         }
+    }
+
+    public void PlaceSoldier()
+    {
+        throw new NotImplementedException();
+    }
+
+    public int GetLevelForItem(int index)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void UpgradeItem(int index)
+    {
+        throw new NotImplementedException();
+    }
+
+    public UnityAction GetUpgradeMethod(int index)
+    {
+        throw new NotImplementedException();
+    }
+
+    public float GetAverageTime()
+    {
+        throw new NotImplementedException();
+    }
+
+    public int GetAmountOfUnlockedItems()
+    {
+        throw new NotImplementedException();
     }
 
     public void PlaceSoldier(Soldier soldier)

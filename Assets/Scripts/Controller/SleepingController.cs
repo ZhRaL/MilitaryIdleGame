@@ -5,8 +5,9 @@ using System.Linq;
 using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.UI;
+using Util;
 
-public class SleepingController : MonoBehaviour, IController
+public class SleepingController : MonoBehaviour
 {
 
     public Room roomArmy, roomAirF, roomMar;
@@ -28,27 +29,7 @@ public class SleepingController : MonoBehaviour, IController
         roomMar.Init(state[8..12]);
     }
 
-    public bool isObjectUnlocked(int i)
-    {
-        throw new NotImplementedException();
-    }
-
-    public int getLevelLevel(int index)
-    {
-        throw new NotImplementedException();
-    }
-
-    public int getTimeLevel(int index)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void upgrade_Level(int index)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void upgrade_Time(int index)
+    public IManageItem GetItemManager(DefenseType defenseType)
     {
         throw new NotImplementedException();
     }

@@ -5,7 +5,7 @@ using System.Linq;
 using DefaultNamespace;
 using UnityEngine;
 
-public class ArmyController : MonoBehaviour, IController
+public class ArmyController : MonoBehaviour
 {
     public List<Tank> tanks;
     private List<SoldierWalkUtil> _walkingSoldiers = new List<SoldierWalkUtil>();

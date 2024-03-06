@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Util;
 
 public class Soldier : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class Soldier : MonoBehaviour
     public Transform[] path;
     public Animator anim;
     // TODO - Remove SolderTypeEnum and Use DefenseType!
-    [SerializeField] private SoldierTypeEnum soldierTypeEnum;
+    [SerializeField] private DefenseType soldierTypeEnum;
 
     public int currentTarget = 0;
     [SerializeField]
@@ -34,7 +35,7 @@ public class Soldier : MonoBehaviour
         }
     }
 
-    public SoldierTypeEnum SoldierType
+    public DefenseType SoldierType
     {
         get => soldierTypeEnum;
         set => soldierTypeEnum = value;
@@ -96,12 +97,5 @@ public class Soldier : MonoBehaviour
         currentTarget = ++currentTarget % parentRoute.transform.childCount;
 
         Run();
-    }
-
-    public enum SoldierTypeEnum
-    {
-        ARMY,
-        MARINE,
-        AIRFORCE
     }
 }

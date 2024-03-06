@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using Util;
 
-public class AirforceController : MonoBehaviour, IController
+public class AirforceController : MonoBehaviour
 {
     public List<Jet> jets;
     private List<SoldierWalkUtil> _walkingSoldiers = new List<SoldierWalkUtil>();

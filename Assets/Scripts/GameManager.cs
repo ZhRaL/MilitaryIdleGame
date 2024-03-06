@@ -64,7 +64,10 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
-    public IController ArmyContr, MarineContr, AirforceContr, KitchenController, BathController, SleepingController, RecruitmentController;
+    public MissionController MissionController;
+    public KitchenController KitchenController;
+    public BathController BathController;
+    public SleepingController SleepingController;
 
     public GameObject[] Controllers;
 
@@ -79,13 +82,35 @@ public class GameManager : MonoBehaviour
 
     private void initializeController()
     {
-        MarineContr = Controllers[0].GetComponent<MarineController>();
-        ArmyContr = Controllers[1].GetComponent<ArmyController>();
-        AirforceContr = Controllers[2].GetComponent<AirforceController>();
-        KitchenController = Controllers[3].GetComponent<KitchenController>();
-        BathController = Controllers[4].GetComponent<BathController>();
-        SleepingController = Controllers[5].GetComponent<SleepingController>();
-        RecruitmentController = Controllers[6].GetComponent<RecruitmentController>();
+        // TODO
+      //  MarineContr = Controllers[0].GetComponent<MarineController>();
+      //  ArmyContr = Controllers[1].GetComponent<ArmyController>();
+      //  AirforceContr = Controllers[2].GetComponent<AirforceController>();
+      //  KitchenController = Controllers[3].GetComponent<KitchenController>();
+      //  BathController = Controllers[4].GetComponent<BathController>();
+      //  SleepingController = Controllers[5].GetComponent<SleepingController>();
+      //  RecruitmentController = Controllers[6].GetComponent<RecruitmentController>();
+    }
+
+    public IController GetTopLevel(ObjectType type)
+    {
+        switch (type)
+        {
+            case ObjectType.CHAIR: return KitchenController;
+       //     case ObjectType.BED: return SleepingController;
+       //     case ObjectType.TOILET: return BathController;
+            
+            case ObjectType.JET_AMOUNT: 
+            case ObjectType.JET_TIME:
+            case ObjectType.SHIP_AMOUNT:
+            case ObjectType.SHIP_TIME:
+            case ObjectType.TANK_AMOUNT:
+            case ObjectType.TANK_TIME:
+        //        return MissionController;
+                break;
+        }
+
+        throw new ArgumentException("Invalid ObjectType!");
     }
 
     public void SaveGame()
@@ -93,10 +118,10 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetFloat("Gold", gold);
         PlayerPrefs.SetFloat("Badges", badges);
 
-
-        PlayerPrefs.SetString(MARINESAFESTRING, JsonHelper.ToJson(MarineContr.getState()));
-        PlayerPrefs.SetString(AIRFORCEAFESTRING, JsonHelper.ToJson(AirforceContr.getState()));
-        PlayerPrefs.SetString(ARMYAFESTRING,JsonHelper.ToJson(ArmyContr.getState()));
+        // TODO
+      //   PlayerPrefs.SetString(MARINESAFESTRING, JsonHelper.ToJson(MarineContr.getState()));
+      //   PlayerPrefs.SetString(AIRFORCEAFESTRING, JsonHelper.ToJson(AirforceContr.getState()));
+      //   PlayerPrefs.SetString(ARMYAFESTRING,JsonHelper.ToJson(ArmyContr.getState()));
         PlayerPrefs.SetString(KITCHENSAFESTRING,JsonHelper.ToJson(KitchenController.getState()));
         PlayerPrefs.SetString(BATHSAFESTRING,JsonHelper.ToJson(BathController.getState()));
         PlayerPrefs.SetString(SLEEPINGSAFESTRING,JsonHelper.ToJson(SleepingController.getState()));
@@ -108,9 +133,9 @@ public class GameManager : MonoBehaviour
         gold = PlayerPrefs.GetFloat("Gold", 550);
         badges = PlayerPrefs.GetFloat("Badges", 0);
         
-        MarineContr.loadState(JsonHelper.FromJson<int>(PlayerPrefs.GetString(MARINESAFESTRING, " {\"Items\":[1,1,0,0,0,0]}")));
-        AirforceContr.loadState(JsonHelper.FromJson<int>(PlayerPrefs.GetString(AIRFORCEAFESTRING, " {\"Items\":[1,1,0,0,0,0]}")));
-        ArmyContr.loadState(JsonHelper.FromJson<int>(PlayerPrefs.GetString(ARMYAFESTRING," {\"Items\":[1,1,0,0,0,0]}")));
+       //  MarineContr.loadState(JsonHelper.FromJson<int>(PlayerPrefs.GetString(MARINESAFESTRING, " {\"Items\":[1,1,0,0,0,0]}")));
+       //  AirforceContr.loadState(JsonHelper.FromJson<int>(PlayerPrefs.GetString(AIRFORCEAFESTRING, " {\"Items\":[1,1,0,0,0,0]}")));
+       //  ArmyContr.loadState(JsonHelper.FromJson<int>(PlayerPrefs.GetString(ARMYAFESTRING," {\"Items\":[1,1,0,0,0,0]}")));
         
         KitchenController.loadState(JsonHelper.FromJson<int>(PlayerPrefs.GetString(KITCHENSAFESTRING," {\"Items\":[1,0,0,0,1,0,0,0,1,0,0,0]}")));
         BathController.loadState(JsonHelper.FromJson<int>(PlayerPrefs.GetString(BATHSAFESTRING," {\"Items\":[1,1,1,1,1,1]}")));

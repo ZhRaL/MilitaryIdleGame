@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Util;
 
-public class RecruitmentController : MonoBehaviour, IController
+public class RecruitmentController : MonoBehaviour
 {
 
     public Platoon armyPlatoon, airforcePlatoon, marinePlatoon;
@@ -17,7 +17,7 @@ public class RecruitmentController : MonoBehaviour, IController
         return soldiers;
     }
 
-    public int getSoldierTypeAmount(Soldier.SoldierTypeEnum type)
+    public int getSoldierTypeAmount(DefenseType type)
     {
         return soldiers.Count(s => s.SoldierType == type);
     }
@@ -32,27 +32,7 @@ public class RecruitmentController : MonoBehaviour, IController
         throw new System.NotImplementedException();
     }
 
-    public bool isObjectUnlocked(int i)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public int getLevelLevel(int index)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public int getTimeLevel(int index)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void upgrade_Level(int index)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void upgrade_Time(int index)
+    public IManageItem GetItemManager(DefenseType defenseType)
     {
         throw new System.NotImplementedException();
     }

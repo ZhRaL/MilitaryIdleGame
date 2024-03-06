@@ -5,8 +5,9 @@ using System.Linq;
 using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.UI;
+using Util;
 
-public class BathController : MonoBehaviour, IController
+public class BathController : MonoBehaviour
 {
     [SerializeField] private Rest armyRest, airForceRest, marineRest;
 
@@ -30,27 +31,7 @@ public class BathController : MonoBehaviour, IController
 
     }
 
-    public bool isObjectUnlocked(int i)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public int getLevelLevel(int index)
-    {
-        throw new NotImplementedException();
-    }
-
-    public int getTimeLevel(int index)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void upgrade_Level(int index)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void upgrade_Time(int index)
+    public IManageItem GetItemManager(DefenseType defenseType)
     {
         throw new NotImplementedException();
     }
@@ -60,11 +41,11 @@ public class BathController : MonoBehaviour, IController
         getRest(soldier.SoldierType).PlaceSoldier(soldier);
     }
     
-    private Rest getRest(Soldier.SoldierTypeEnum type)
+    private Rest getRest(DefenseType type)
     {
-        if (type == Soldier.SoldierTypeEnum.ARMY) return armyRest;
-        if (type == Soldier.SoldierTypeEnum.AIRFORCE) return airForceRest;
-        if (type == Soldier.SoldierTypeEnum.MARINE) return marineRest;
+        if (type == DefenseType.ARMY) return armyRest;
+        if (type == DefenseType.AIRFORCE) return airForceRest;
+        if (type == DefenseType.MARINE) return marineRest;
 
         throw new ArgumentException("not a valid type");
     }

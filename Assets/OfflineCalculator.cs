@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace;
+using Interfaces;
 using UnityEditor;
 using UnityEngine;
 using Util;
@@ -72,25 +74,25 @@ public class OfflineCalculator
 
     private float getTimeEating(Soldier soldier, int soldierAmount)
     {
-        Table table = kitchenController.getTable(soldier.SoldierType);
-        var eZ = table.getAverageTime();
-        eZ += (1 - (soldierAmount / table.unlockedChairs)) * eZ;
+        IManageItem table = kitchenController.GetItemManager(soldier.SoldierType);
+        var eZ = table.GetAverageTime();
+        eZ += (1 - (soldierAmount / table.GetAmountOfUnlockedItems())) * eZ;
         return eZ;
     }
     
     private float getTimePooing(Soldier soldier, int soldierAmount)
     {
-        Table table = kitchenController.getTable(soldier.SoldierType);
-        var eZ = table.getAverageTime();
-        eZ += (1 - (soldierAmount / table.unlockedChairs)) * eZ;
+        IManageItem table = kitchenController.GetItemManager(soldier.SoldierType);
+        var eZ = table.GetAverageTime();
+        eZ += (1 - (soldierAmount / table.GetAmountOfUnlockedItems())) * eZ;
         return eZ;
     }
     
     private float getTimeSleeping(Soldier soldier, int soldierAmount)
     {
-        Table table = kitchenController.getTable(soldier.SoldierType);
-        var eZ = table.getAverageTime();
-        eZ += (1 - (soldierAmount / table.unlockedChairs)) * eZ;
+        IManageItem table = kitchenController.GetItemManager(soldier.SoldierType);
+        var eZ = table.GetAverageTime();
+        eZ += (1 - (soldierAmount / table.GetAmountOfUnlockedItems())) * eZ;
         return eZ;
     }
 
@@ -105,15 +107,15 @@ public class OfflineCalculator
         int amount;
         switch (soldier.SoldierType)
         {
-            case Soldier.SoldierTypeEnum.ARMY:
+            case DefenseType.ARMY:
                 time = armyController.getAverageTime();
                 amount = armyController.unlockedVehics();
                 break;
-            case Soldier.SoldierTypeEnum.MARINE:
+            case DefenseType.MARINE:
                 time = marineController.getAverageTime();
                 amount = marineController.unlockedVehics();
                 break;
-            case Soldier.SoldierTypeEnum.AIRFORCE:
+            case DefenseType.AIRFORCE:
                 time = airforceController.getAverageTime();
                 amount = airforceController.unlockedVehics();
                 break;

@@ -1,18 +1,19 @@
-﻿using UnityEngine.Rendering;
+﻿using System;
+using System.Diagnostics;
+using UnityEngine.Rendering;
+using Util;
 
 namespace DefaultNamespace
 {
     public interface IController
     {
+        IManageItem ArmyManager { get; }
+        IManageItem AirforceManager { get; }
+        IManageItem MarineManager { get; }
+
         int[] getState();
         void loadState(int[] state);
 
-        bool isObjectUnlocked(int i);
-        
-        int getLevelLevel(int index);
-        int getTimeLevel(int index);
-        
-        void upgrade_Level(int index);
-        void upgrade_Time(int index);
+
     }
 }

@@ -5,7 +5,7 @@ using System.Linq;
 using DefaultNamespace;
 using UnityEngine;
 
-public class MarineController : MonoBehaviour, IController
+public class MarineController : MonoBehaviour
 {
     public List<Ship> ships;
     private List<SoldierWalkUtil> _walkingSoldiers = new ();
