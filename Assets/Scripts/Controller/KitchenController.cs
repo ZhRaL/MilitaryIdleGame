@@ -28,7 +28,8 @@ public class KitchenController : MonoBehaviour, IController
 
     public void loadState(int[] state)
     {
-        if (state.Length != 12) throw new ArgumentException("Wrong Length of Array");
+        if (state.Length != 12) 
+            throw new ArgumentException("Wrong Length of Array");
 
         _tableArmy.Init(state[..4]);
         _tableAirForce.Init(state[4..8]);

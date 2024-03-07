@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5566105430369751531}
   - component: {fileID: 7131976528858880515}
   m_Layer: 0
-  m_Name: Table_AirF
+  m_Name: Table
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4701181318726530405}
   - component: {fileID: 7451579902001796033}
   m_Layer: 0
-  m_Name: Chair_Conference_Violet
+  m_Name: Chair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
