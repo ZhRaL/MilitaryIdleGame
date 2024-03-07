@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour
         switch (type)
         {
             case ObjectType.CHAIR: return KitchenController;
-       //     case ObjectType.BED: return SleepingController;
+            case ObjectType.BED: return SleepingController;
             case ObjectType.TOILET: return BathController;
             
             case ObjectType.JET_AMOUNT: 
@@ -109,7 +109,7 @@ public class GameManager : MonoBehaviour
       //   PlayerPrefs.SetString(ARMYAFESTRING,JsonHelper.ToJson(ArmyContr.getState()));
         PlayerPrefs.SetString(KITCHENSAFESTRING,JsonHelper.ToJson(KitchenController.getState()));
         PlayerPrefs.SetString(BATHSAFESTRING,JsonHelper.ToJson(BathController.getState()));
-       // PlayerPrefs.SetString(SLEEPINGSAFESTRING,JsonHelper.ToJson(SleepingController.getState()));
+        PlayerPrefs.SetString(SLEEPINGSAFESTRING,JsonHelper.ToJson(SleepingController.getState()));
         PlayerPrefs.Save();
     }
 
@@ -124,7 +124,7 @@ public class GameManager : MonoBehaviour
         
         KitchenController.loadState(JsonHelper.FromJson<int>(PlayerPrefs.GetString(KITCHENSAFESTRING," {\"Items\":[1,0,0,0,1,0,0,0,1,0,0,0]}")));
         BathController.loadState(JsonHelper.FromJson<int>(PlayerPrefs.GetString(BATHSAFESTRING," {\"Items\":[1,0,0,1,0,0,1,0,0]}")));
-      //  SleepingController.loadState(JsonHelper.FromJson<int>(PlayerPrefs.GetString(SLEEPINGSAFESTRING," {\"Items\":[1,0,0,0,1,0,0,0,1,0,0,0]}")));
+        SleepingController.loadState(JsonHelper.FromJson<int>(PlayerPrefs.GetString(SLEEPINGSAFESTRING," {\"Items\":[1,0,0,0,1,0,0,0,1,0,0,0]}")));
         isInitialized = true;
         _offlineCalculator.calculateReward();
         SaveGame();

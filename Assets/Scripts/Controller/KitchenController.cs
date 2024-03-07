@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using DefaultNamespace;
-using Interfaces;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.UI;
-using Util;
 
 public class KitchenController : MonoBehaviour, IController
 {
@@ -16,7 +10,6 @@ public class KitchenController : MonoBehaviour, IController
     public IManageItem ArmyManager => _tableArmy;
     public IManageItem AirforceManager => _tableAirForce;
     public IManageItem MarineManager => _tableMarine;
-    
     
     public int[] getState()
     {

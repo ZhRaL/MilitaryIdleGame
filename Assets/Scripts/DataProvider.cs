@@ -9,7 +9,7 @@ using Util;
 public class DataProvider : MonoBehaviour
 {
     public Table armyTable, airforceTable, marineTable;
-    public Rest rest1,rest2,rest3,rest4;
+    public Rest armyRest, airforceRest, marineRest;
     public Room armyRoom, airforceRoom, marineRoom;
 
     public ArmyController armyController;
@@ -38,9 +38,15 @@ public class DataProvider : MonoBehaviour
             },
             ObjectType.BED => defType switch
             {   
-                DefenseType.ARMY => armyRoom.GetLevelForBed(index),
-                DefenseType.AIRFORCE => airforceRoom.GetLevelForBed(index),
-                DefenseType.MARINE => marineRoom.GetLevelForBed(index)
+                DefenseType.ARMY => armyRoom.GetLevelForItem(index),
+                DefenseType.AIRFORCE => airforceRoom.GetLevelForItem(index),
+                DefenseType.MARINE => marineRoom.GetLevelForItem(index)
+            },
+            ObjectType.TOILET => defType switch
+            {   
+                DefenseType.ARMY => armyRest.GetLevelForItem(index),
+                DefenseType.AIRFORCE => airforceRest.GetLevelForItem(index),
+                DefenseType.MARINE => marineRest.GetLevelForItem(index)
             },
             
             ObjectType.JET_AMOUNT => airForceController.getLevelLevel(index),
@@ -52,8 +58,7 @@ public class DataProvider : MonoBehaviour
             ObjectType.TANK_AMOUNT => armyController.getLevelLevel(index),
             ObjectType.TANK_TIME => armyController.getTimeLevel(index),
             
-            // TODO - 
-            //ObjectType.TOILET => BathController.getLevelLevel(index)
+
         };
 
     }
@@ -71,9 +76,15 @@ public class DataProvider : MonoBehaviour
             },
             ObjectType.BED => defType switch
             {   
-                DefenseType.ARMY => () => armyRoom.UpgradeBed(index),
-                DefenseType.AIRFORCE => () => airforceRoom.UpgradeBed(index),
-                DefenseType.MARINE => () => marineRoom.UpgradeBed(index),
+                DefenseType.ARMY => () => armyRoom.GetUpgradeMethod(index),
+                DefenseType.AIRFORCE => () => airforceRoom.GetUpgradeMethod(index),
+                DefenseType.MARINE => () => marineRoom.GetUpgradeMethod(index),
+            },
+            ObjectType.TOILET => defType switch
+            {   
+                DefenseType.ARMY => () => armyRest.GetUpgradeMethod(index),
+                DefenseType.AIRFORCE => () => airforceRest.GetUpgradeMethod(index),
+                DefenseType.MARINE => () => marineRest.GetUpgradeMethod(index),
             },
 
             ObjectType.SHIP_AMOUNT => () => marineController.upgrade_Level(index),
