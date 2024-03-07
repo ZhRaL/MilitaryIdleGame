@@ -5,6 +5,12 @@ namespace DefaultNamespace
 {
     public interface IManageItem
     {
+        List<IItem> Items { Get; };
+
+        DefenseType DefenseType { Get; };
+
+        
+        
         void Init(int[] levels);
 
         void PlaceSoldier();
