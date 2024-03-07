@@ -13,10 +13,16 @@ public class RouteManager : MonoBehaviour
 
     private float calculate()
     {
-        int children = transform.childCount;
-        for (int i = 0; i < children; ++i)
-            print("For loop: " + transform.GetChild(i));
+        float sumDistance=0;
+
+        for (int i = 0; i < transform.childCount -1; ++i) {
+            Transform prev = transform.GetChild(i);
+            Transform curr = transform.GetChild(i+1);
+            float distance = Vector3.Distance(prev.position, curr.position);
+            sumDistance +=distance;
+        }
+        sumDistance += Vector3.Distance(transform.GetChild(0), transform.GetChild(transform.childCount-1));
         
-        return -1;
+        return sumDistance;
     }
 }
