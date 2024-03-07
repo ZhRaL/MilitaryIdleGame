@@ -12,12 +12,11 @@ namespace DefaultNamespace
         [SerializeField] private DefenseType _defenseType;
         [SerializeField] private Transform _waitingPosParent;
         private WaitingService _waitingService;
-        private List<SoldierWalkUtil> walkingSoldiers;
         
-        List<Item> Items { get; set; }
+        public abstract List<Item> Items { get; }
         DefenseType DefenseType => _defenseType;
         WaitingService WaitingService { get; set; }
-        List<SoldierWalkUtil> WalkingSoldiers => walkingSoldiers = new();
+        private List<SoldierWalkUtil> WalkingSoldiers { get; } = new();
         Transform WaitingPosParent => _waitingPosParent;
 
         private void Start()
@@ -44,6 +43,7 @@ namespace DefaultNamespace
                 Item item = Items[i];
                 if (level > 0)
                 {
+                    item.Unlocked = true;
                     item.Level = level;
                     item.Parent = this;
                 }
@@ -51,7 +51,7 @@ namespace DefaultNamespace
             }
         }
 
-        void PlaceSoldier(Soldier soldier)
+        public void PlaceSoldier(Soldier soldier)
         {
             Item targetItem = GetNextFreeItem();
             if (targetItem != null)

@@ -1,8 +1,9 @@
+using UnityEngine;
 using Util;
 
 namespace DefaultNamespace
 {
-    public class MissionController 
+    public class MissionController : MonoBehaviour
     {
         public int[] getState()
         {

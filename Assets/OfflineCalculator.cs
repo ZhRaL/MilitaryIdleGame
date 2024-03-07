@@ -55,7 +55,8 @@ public class OfflineCalculator
     private float calculate()
     {
         float amount = 0;
-        List<Soldier> soldiers = recruitmentController.GetSoldiers();
+        // TODO
+      /*  List<Soldier> soldiers = recruitmentController.GetSoldiers();
         
         foreach (Soldier soldier in soldiers)
         {
@@ -69,6 +70,7 @@ public class OfflineCalculator
             float moneyEarned = numberRT * getMissionMoney(soldier);
             amount += moneyEarned;
         }
+        */
 
         return amount;
     }

@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using Util;
+using Object = UnityEngine.Object;
 
 namespace DefaultNamespace
 {
     public class SoldierItemBehaviour
     {
-        private float _timeLeft;
         
         public Soldier Soldier { get; set; }
         public Item Item { get; set; }
@@ -14,18 +16,9 @@ namespace DefaultNamespace
             Item = item;
         }
         
-        public void Update()
-        {
-            if(!Soldier) return;
-            
-             _timeLeft -= Time.deltaTime;
-             if(_timeLeft<0) SoldierGetUp();
-        }
-        
         public void SoldierSitDown(Soldier soldier)
         {
             Soldier = soldier;
-            _timeLeft = Item.TimeNeeded();
             Soldier.anim.SetBool("isRunning",false);
             Vector3 newPos = soldier.transform.position;
             // Offset for animation needs to be berücksichtigt
@@ -33,7 +26,7 @@ namespace DefaultNamespace
             Soldier.transform.position = newPos;
             GameObject rb = Object.Instantiate(Soldier.RadialBarPrefab, Soldier.transform);
             rb.transform.rotation = Camera.main.transform.rotation;
-            rb.GetComponent<RadialBar>().Initialize(_timeLeft,SoldierGetUp);
+            rb.GetComponent<RadialBar>().Initialize(Item.TimeNeeded(),SoldierGetUp);
         }
 
         public void SoldierGetUp()

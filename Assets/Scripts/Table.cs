@@ -11,6 +11,6 @@ using Util;
 public class Table : IManageItem
 {
     [SerializeField] private List<Chair> _chairs;
-    public List<Item> Items => new(_chairs);
+    public override List<Item> Items => new(_chairs);
 
 }

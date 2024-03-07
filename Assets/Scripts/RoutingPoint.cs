@@ -22,7 +22,7 @@ public class RoutingPoint : MonoBehaviour
     
     private void ExecuteAction(Soldier soldier)
     {
-        act?.Invoke(soldier);
+        act?.Invoke( soldier);
         if (waitAfterAction) return;
         soldier.StartNextRun();
     }

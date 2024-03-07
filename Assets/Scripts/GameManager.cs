@@ -108,8 +108,8 @@ public class GameManager : MonoBehaviour
       //   PlayerPrefs.SetString(AIRFORCEAFESTRING, JsonHelper.ToJson(AirforceContr.getState()));
       //   PlayerPrefs.SetString(ARMYAFESTRING,JsonHelper.ToJson(ArmyContr.getState()));
         PlayerPrefs.SetString(KITCHENSAFESTRING,JsonHelper.ToJson(KitchenController.getState()));
-        PlayerPrefs.SetString(BATHSAFESTRING,JsonHelper.ToJson(BathController.getState()));
-        PlayerPrefs.SetString(SLEEPINGSAFESTRING,JsonHelper.ToJson(SleepingController.getState()));
+        //PlayerPrefs.SetString(BATHSAFESTRING,JsonHelper.ToJson(BathController.getState()));
+       // PlayerPrefs.SetString(SLEEPINGSAFESTRING,JsonHelper.ToJson(SleepingController.getState()));
         PlayerPrefs.Save();
     }
 
@@ -123,8 +123,8 @@ public class GameManager : MonoBehaviour
        //  ArmyContr.loadState(JsonHelper.FromJson<int>(PlayerPrefs.GetString(ARMYAFESTRING," {\"Items\":[1,1,0,0,0,0]}")));
         
         KitchenController.loadState(JsonHelper.FromJson<int>(PlayerPrefs.GetString(KITCHENSAFESTRING," {\"Items\":[1,0,0,0,1,0,0,0,1,0,0,0]}")));
-        BathController.loadState(JsonHelper.FromJson<int>(PlayerPrefs.GetString(BATHSAFESTRING," {\"Items\":[1,1,1,1,1,1]}")));
-        SleepingController.loadState(JsonHelper.FromJson<int>(PlayerPrefs.GetString(SLEEPINGSAFESTRING," {\"Items\":[1,0,0,0,1,0,0,0,1,0,0,0]}")));
+      //  BathController.loadState(JsonHelper.FromJson<int>(PlayerPrefs.GetString(BATHSAFESTRING," {\"Items\":[1,1,1,1,1,1]}")));
+      //  SleepingController.loadState(JsonHelper.FromJson<int>(PlayerPrefs.GetString(SLEEPINGSAFESTRING," {\"Items\":[1,0,0,0,1,0,0,0,1,0,0,0]}")));
         isInitialized = true;
         _offlineCalculator.calculateReward();
         SaveGame();

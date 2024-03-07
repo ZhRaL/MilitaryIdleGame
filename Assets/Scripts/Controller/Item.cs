@@ -34,11 +34,6 @@ namespace DefaultNamespace
             Index = transform.GetSiblingIndex();
         }
 
-        private void Update()
-        {
-            SoldierItemBehaviour.Update();
-        }
-
         public void Upgrade()
         {
             Level++;
