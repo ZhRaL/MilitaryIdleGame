@@ -45,6 +45,7 @@ namespace DefaultNamespace
                 if (level > 0)
                 {
                     item.Level = level;
+                    item.Parent = this;
                 }
                 else item.gameObject.SetActive(false);
             }
