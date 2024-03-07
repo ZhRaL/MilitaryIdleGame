@@ -5,21 +5,10 @@ using Util;
 
 namespace DefaultNamespace
 {
-    public class Chair : MonoBehaviour,IGatherable
+    public class Chair : Item,IGatherable
     {
         private float distanceSoldierGoDown = .3f;
-        private bool _unlocked;
-        public bool Unlocked
-        {
-            get { return _unlocked;}
-            set
-            {
-                gameObject.SetActive(value);
-                _unlocked = value;
-            }
-        }
-
-        public bool Occupied { get; set; }
+        
         public RoutingPoint RoutingPoint;
         public Table Table;
         private float _timeLeft;
@@ -67,7 +56,7 @@ namespace DefaultNamespace
             newPos.y += distanceSoldierGoDown;
             transform1.position = newPos;
 
-            Table.ChairFree();
+            Table.ItemIsFree();
             RoutingPoint.LetSoldierMove(_soldier);
             _soldier = null;
         }

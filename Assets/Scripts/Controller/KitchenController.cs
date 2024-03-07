@@ -20,9 +20,9 @@ public class KitchenController : MonoBehaviour, IController
     
     public int[] getState()
     {
-        return _tableArmy.getState()
-            .Concat(_tableAirForce.getState())
-            .Concat(_tableMarine.getState())
+        return _tableArmy.GetState()
+            .Concat(_tableAirForce.GetState())
+            .Concat(_tableMarine.GetState())
             .ToArray();
     }
 

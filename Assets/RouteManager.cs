@@ -1,18 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Util;
 
 public class RouteManager : MonoBehaviour
 {
-    Transform armyRouter, airforceRouter, marineRouter
+    private Transform armyRouter, airforceRouter, marineRouter;
 
     public float getRouteLength(DefenseType type)
     {
-        switch(type) {
-            case ARMY: return calculate(armyRouter);
-            case AIRFORCE: return calculate(airforceRouter);
-            case MARINE: return calculate(marineRouter);
-        }
+        return type switch
+        {
+            DefenseType.ARMY => calculate(armyRouter),
+            DefenseType.AIRFORCE => calculate(airforceRouter),
+            DefenseType.MARINE => calculate(marineRouter)
+        };
     }
 
     private float calculate(Transform router)
@@ -25,7 +27,8 @@ public class RouteManager : MonoBehaviour
             float distance = Vector3.Distance(prev.position, curr.position);
             sumDistance +=distance;
         }
-        sumDistance += Vector3.Distance(router.GetChild(0), transform.router(transform.childCount-1));
+        sumDistance += Vector3.Distance(router.GetChild(0).position, 
+            router.GetChild(router.transform.childCount-1).position);
         
         return sumDistance;
     }

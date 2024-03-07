@@ -32,9 +32,9 @@ public class DataProvider : MonoBehaviour
         {
             ObjectType.CHAIR => defType switch
             {   
-                DefenseType.ARMY => armyTable.GetLevelForTable(index),
-                DefenseType.AIRFORCE => airforceTable.GetLevelForTable(index),
-                DefenseType.MARINE => marineTable.GetLevelForTable(index)
+                DefenseType.ARMY => armyTable.GetLevelForItem(index),
+                DefenseType.AIRFORCE => airforceTable.GetLevelForItem(index),
+                DefenseType.MARINE => marineTable.GetLevelForItem(index)
             },
             ObjectType.BED => defType switch
             {   
@@ -65,9 +65,9 @@ public class DataProvider : MonoBehaviour
         {
             ObjectType.CHAIR => defType switch
             {   
-                DefenseType.ARMY => () => armyTable.UpgradeChair(index),
-                DefenseType.AIRFORCE => () => airforceTable.UpgradeChair(index),
-                DefenseType.MARINE => () => marineTable.UpgradeChair(index),
+                DefenseType.ARMY => () => armyTable.GetUpgradeMethod(index),
+                DefenseType.AIRFORCE => () => airforceTable.GetUpgradeMethod(index),
+                DefenseType.MARINE => () => marineTable.GetUpgradeMethod(index),
             },
             ObjectType.BED => defType switch
             {   

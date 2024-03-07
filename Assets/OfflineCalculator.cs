@@ -99,7 +99,7 @@ public class OfflineCalculator
 
     private float getNettoRunningTime(Soldier soldier, int soldierAmount)
     {
-        return routeManager.getRouteLength();
+        return routeManager.getRouteLength(soldier.SoldierType);
     }
 
     private float getTimeForMission(Soldier soldier, int soldierAmount)
