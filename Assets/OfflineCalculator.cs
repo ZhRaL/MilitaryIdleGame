@@ -24,6 +24,7 @@ public class OfflineCalculator
     public MarineController marineController;
     public AirforceController airforceController;
     public RecruitmentController recruitmentController;
+    public RouteManager routeManager;
     
     public OfflineCalculator()
     {
@@ -98,7 +99,7 @@ public class OfflineCalculator
 
     private float getNettoRunningTime(Soldier soldier, int soldierAmount)
     {
-        return 0;
+        return routeManager.getRouteLength();
     }
 
     private float getTimeForMission(Soldier soldier, int soldierAmount)
