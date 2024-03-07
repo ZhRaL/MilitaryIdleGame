@@ -69,27 +69,12 @@ public class GameManager : MonoBehaviour
     public BathController BathController;
     public SleepingController SleepingController;
 
-    public GameObject[] Controllers;
-
     private OfflineCalculator _offlineCalculator;
 
     private void Start()
     {
         _offlineCalculator = new OfflineCalculator();
-        initializeController();
         LoadGame();
-    }
-
-    private void initializeController()
-    {
-        // TODO
-      //  MarineContr = Controllers[0].GetComponent<MarineController>();
-      //  ArmyContr = Controllers[1].GetComponent<ArmyController>();
-      //  AirforceContr = Controllers[2].GetComponent<AirforceController>();
-      //  KitchenController = Controllers[3].GetComponent<KitchenController>();
-      //  BathController = Controllers[4].GetComponent<BathController>();
-      //  SleepingController = Controllers[5].GetComponent<SleepingController>();
-      //  RecruitmentController = Controllers[6].GetComponent<RecruitmentController>();
     }
 
     public IController GetTopLevel(ObjectType type)
