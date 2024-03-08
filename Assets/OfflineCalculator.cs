@@ -20,9 +20,6 @@ public class OfflineCalculator
     public KitchenController kitchenController;
     public BathController bathController;
     public SleepingController sleepingController;
-    public ArmyController armyController;
-    public MarineController marineController;
-    public AirforceController airforceController;
     public RecruitmentController recruitmentController;
     public RouteManager routeManager;
     
@@ -110,18 +107,18 @@ public class OfflineCalculator
         int amount;
         switch (soldier.SoldierType)
         {
-            case DefenseType.ARMY:
-                time = armyController.getAverageTime();
-                amount = armyController.unlockedVehics();
-                break;
-            case DefenseType.MARINE:
-                time = marineController.getAverageTime();
-                amount = marineController.unlockedVehics();
-                break;
-            case DefenseType.AIRFORCE:
-                time = airforceController.getAverageTime();
-                amount = airforceController.unlockedVehics();
-                break;
+       //     case DefenseType.ARMY:
+       //         time = armyController.getAverageTime();
+       //         amount = armyController.unlockedVehics();
+       //         break;
+       //     case DefenseType.MARINE:
+       //         time = marineController.getAverageTime();
+       //         amount = marineController.unlockedVehics();
+       //         break;
+       //     case DefenseType.AIRFORCE:
+       //         time = airforceController.getAverageTime();
+       //         amount = airforceController.unlockedVehics();
+       //         break;
             default:
                 throw new ArgumentOutOfRangeException();
         }

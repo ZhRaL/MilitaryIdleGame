@@ -54,5 +54,10 @@ namespace DefaultNamespace
         {
             SoldierItemBehaviour.SoldierGetUp();
         }
+
+        public bool isMissionItem()
+        {
+            return this is MissionItem;
+        }
     }
 }

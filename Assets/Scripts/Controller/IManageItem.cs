@@ -31,7 +31,7 @@ namespace DefaultNamespace
             WaitingService.Update();
         }
 
-        public void Init(int[] levels)
+        public virtual void Init(int[] levels)
         {
             
             if (levels.Length > Items.Count) 

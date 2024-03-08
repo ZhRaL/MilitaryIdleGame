@@ -5092,7 +5092,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: fd83e6cb9fb13014fbdfae82bc65d764, type: 3}
       propertyPath: m_Name
-      value: SD_Firefly (2)
+      value: Tank 3
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: fd83e6cb9fb13014fbdfae82bc65d764, type: 3}
       propertyPath: m_RootOrder
@@ -5174,7 +5174,7 @@ PrefabInstance:
       addedObject: {fileID: 134754594}
     - targetCorrespondingSourceObject: {fileID: 100000, guid: fd83e6cb9fb13014fbdfae82bc65d764, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 134754593}
+      addedObject: {fileID: 134754595}
   m_SourcePrefab: {fileID: 100100000, guid: fd83e6cb9fb13014fbdfae82bc65d764, type: 3}
 --- !u!4 &134754591 stripped
 Transform:
@@ -5186,30 +5186,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: fd83e6cb9fb13014fbdfae82bc65d764, type: 3}
   m_PrefabInstance: {fileID: 134754590}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &134754593
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 134754592}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4fb36a980c0d834a81a9e15ae0b3988, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  routingPoint: {fileID: 739036368}
-  unlocked: 0
-  occupied: 0
-  rewardLevel: 0
-  durationLevel: 0
-  waypoints:
-  - {fileID: 1766210126}
-  - {fileID: 178375459}
-  - {fileID: 144498556}
-  - {fileID: 1338285931}
-  - {fileID: 1944198368}
-  _controller: {fileID: 803014826}
 --- !u!95 &134754594
 Animator:
   serializedVersion: 5
@@ -5231,6 +5207,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &134754595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 134754592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f981825021ce482eaa8bf2db0c22e6f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _routingPoint: {fileID: 0}
+  _objectType: 8
 --- !u!1001 &134918390
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6843,7 +6833,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1054090067}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MarineController, Assembly-CSharp
         m_MethodName: BuySecondPier
         m_Mode: 1
@@ -7141,7 +7131,7 @@ PrefabInstance:
       addedObject: {fileID: 1564577008}
     - targetCorrespondingSourceObject: {fileID: 1171684472522874, guid: 74d0740f4abc7e54fab50d33af2582da, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1564577009}
+      addedObject: {fileID: 1564577012}
   m_SourcePrefab: {fileID: 100100000, guid: 74d0740f4abc7e54fab50d33af2582da, type: 3}
 --- !u!1 &186830699
 GameObject:
@@ -12207,7 +12197,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: fd83e6cb9fb13014fbdfae82bc65d764, type: 3}
       propertyPath: m_Name
-      value: SD_Firefly (1)
+      value: Tank 2
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: fd83e6cb9fb13014fbdfae82bc65d764, type: 3}
       propertyPath: m_RootOrder
@@ -12289,7 +12279,7 @@ PrefabInstance:
       addedObject: {fileID: 340074294}
     - targetCorrespondingSourceObject: {fileID: 100000, guid: fd83e6cb9fb13014fbdfae82bc65d764, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 340074293}
+      addedObject: {fileID: 340074295}
   m_SourcePrefab: {fileID: 100100000, guid: fd83e6cb9fb13014fbdfae82bc65d764, type: 3}
 --- !u!4 &340074291 stripped
 Transform:
@@ -12301,30 +12291,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: fd83e6cb9fb13014fbdfae82bc65d764, type: 3}
   m_PrefabInstance: {fileID: 340074290}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &340074293
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 340074292}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4fb36a980c0d834a81a9e15ae0b3988, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  routingPoint: {fileID: 739036368}
-  unlocked: 0
-  occupied: 0
-  rewardLevel: 0
-  durationLevel: 0
-  waypoints:
-  - {fileID: 1538148797}
-  - {fileID: 1952891709}
-  - {fileID: 1099234527}
-  - {fileID: 1846659155}
-  - {fileID: 1865944064}
-  _controller: {fileID: 803014826}
 --- !u!95 &340074294
 Animator:
   serializedVersion: 5
@@ -12346,6 +12312,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &340074295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 340074292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f981825021ce482eaa8bf2db0c22e6f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _routingPoint: {fileID: 0}
+  _objectType: 8
 --- !u!1001 &340564669
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20706,9 +20686,9 @@ MonoBehaviour:
   armyRoom: {fileID: 990572596}
   airforceRoom: {fileID: 0}
   marineRoom: {fileID: 0}
-  armyController: {fileID: 803014826}
-  airForceController: {fileID: 1407493887}
-  marineController: {fileID: 1054090067}
+  armyController: {fileID: 0}
+  airForceController: {fileID: 0}
+  marineController: {fileID: 0}
   BathController: {fileID: 0}
 --- !u!1 &650668302
 GameObject:
@@ -23669,7 +23649,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 803014826}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ArmyController, Assembly-CSharp
         m_MethodName: BuySecondWay
         m_Mode: 1
@@ -23848,7 +23828,7 @@ MonoBehaviour:
   act:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 803014826}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ArmyController, Assembly-CSharp
         m_MethodName: PlaceSoldier
         m_Mode: 0
@@ -25472,6 +25452,7 @@ GameObject:
   - component: {fileID: 794662940}
   - component: {fileID: 794662939}
   - component: {fileID: 794662941}
+  - component: {fileID: 794662942}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -25493,7 +25474,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tx_Gold: {fileID: 1683322241}
   tx_Badges: {fileID: 1846348428}
-  MissionController: {fileID: 0}
+  MissionController: {fileID: 794662942}
   KitchenController: {fileID: 1977752689}
   BathController: {fileID: 609277453}
   SleepingController: {fileID: 2041004101}
@@ -25525,6 +25506,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alwaysShowNamesOverSoldiers: 1
+--- !u!114 &794662942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 794662938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1d2ec266e8844c1818dfec63a717c6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  companyArmy: {fileID: 803014826}
+  companyAirforce: {fileID: 1407493887}
+  companyMarine: {fileID: 1054090067}
 --- !u!1 &795155956
 GameObject:
   m_ObjectHideFlags: 0
@@ -25697,15 +25693,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 803014824}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cfc2522468e99548b8bd307734913bc, type: 3}
+  m_Script: {fileID: 11500000, guid: 91cc81e7aaae44569b902056d39b44db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tanks:
-  - {fileID: 1392630416}
-  - {fileID: 340074293}
-  - {fileID: 134754593}
-  Baustelle_1_Prefab: {fileID: 5407434873886917093, guid: 89cd4b66e656c364da82d9f115f3523e, type: 3}
-  waitingPosParent: {fileID: 1459408481}
+  _defenseType: 0
+  _waitingPosParent: {fileID: 1459408481}
+  vehicles:
+  - {fileID: 1725627991}
+  - {fileID: 340074295}
+  - {fileID: 134754595}
 --- !u!1 &804048989
 GameObject:
   m_ObjectHideFlags: 0
@@ -27308,7 +27304,7 @@ MonoBehaviour:
   act:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1407493887}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: AirforceController, Assembly-CSharp
         m_MethodName: PlaceSoldier
         m_Mode: 0
@@ -29043,7 +29039,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 803014826}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ArmyController, Assembly-CSharp
         m_MethodName: BuyThirdWay
         m_Mode: 1
@@ -33196,15 +33192,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1054090065}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 592e8fbfbeea83e4bafa076c417e7425, type: 3}
+  m_Script: {fileID: 11500000, guid: 91cc81e7aaae44569b902056d39b44db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ships:
-  - {fileID: 1564577009}
+  _defenseType: 2
+  _waitingPosParent: {fileID: 1091313691}
+  vehicles:
+  - {fileID: 1564577012}
   - {fileID: 1268938469}
   - {fileID: 1573668874}
-  Baustelle_1_Prefab: {fileID: 5407434873886917093, guid: 89cd4b66e656c364da82d9f115f3523e, type: 3}
-  waitingPosParent: {fileID: 1091313691}
 --- !u!4 &1054987119 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f81696a9182dbec439396d3b4fbd0cec, type: 3}
@@ -43507,19 +43503,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1268938466}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47f0e430e49b13b4e9f233af3830f636, type: 3}
+  m_Script: {fileID: 11500000, guid: f981825021ce482eaa8bf2db0c22e6f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  routingPoint: {fileID: 1962766801}
-  unlocked: 0
-  occupied: 0
-  rewardLevel: 0
-  durationLevel: 0
-  waypoints:
-  - {fileID: 436987655}
-  - {fileID: 774769450}
-  - {fileID: 1543506793}
-  _Controller: {fileID: 1054090067}
+  _routingPoint: {fileID: 0}
+  _objectType: 6
 --- !u!1 &1274452701
 GameObject:
   m_ObjectHideFlags: 0
@@ -48874,18 +48862,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1358948850}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a3264693d95a6548844e9be1d758342, type: 3}
+  m_Script: {fileID: 11500000, guid: f981825021ce482eaa8bf2db0c22e6f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  routingPoint: {fileID: 862395183}
-  unlocked: 0
-  occupied: 0
-  rewardLevel: 0
-  durationLevel: 0
-  waypoints:
-  - {fileID: 641993035}
-  - {fileID: 603997654}
-  _controller: {fileID: 1407493887}
+  _routingPoint: {fileID: 0}
+  _objectType: 4
 --- !u!1 &1360688819
 GameObject:
   m_ObjectHideFlags: 0
@@ -49805,30 +49786,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: fd83e6cb9fb13014fbdfae82bc65d764, type: 3}
   m_PrefabInstance: {fileID: 1725627989}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1392630416
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1392630415}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4fb36a980c0d834a81a9e15ae0b3988, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  routingPoint: {fileID: 739036368}
-  unlocked: 0
-  occupied: 0
-  rewardLevel: 0
-  durationLevel: 0
-  waypoints:
-  - {fileID: 1743567473}
-  - {fileID: 921579072}
-  - {fileID: 522483663}
-  - {fileID: 1570316387}
-  - {fileID: 1000163780}
-  _controller: {fileID: 803014826}
 --- !u!95 &1392630417
 Animator:
   serializedVersion: 5
@@ -50293,14 +50250,14 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 958988492}
+  - {fileID: 1684886115}
+  - {fileID: 1828506585}
   - {fileID: 1040505758260900421}
   - {fileID: 64318701}
   - {fileID: 1858016870}
   - {fileID: 1662181098}
   - {fileID: 1129659038}
-  - {fileID: 958988492}
-  - {fileID: 1684886115}
-  - {fileID: 1828506585}
   - {fileID: 134918391}
   - {fileID: 1134775412}
   m_Father: {fileID: 0}
@@ -50314,15 +50271,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1407493885}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f6f71c178fe66f48abffc9e9280948c, type: 3}
+  m_Script: {fileID: 11500000, guid: 91cc81e7aaae44569b902056d39b44db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jets:
+  _defenseType: 1
+  _waitingPosParent: {fileID: 1134775412}
+  vehicles:
   - {fileID: 1358948852}
-  - {fileID: 1684886117}
-  - {fileID: 1828506587}
-  Baustelle_1_Prefab: {fileID: 5407434873886917093, guid: 89cd4b66e656c364da82d9f115f3523e, type: 3}
-  waitingPosParent: {fileID: 1134775412}
+  - {fileID: 1684886119}
+  - {fileID: 1828506589}
 --- !u!1001 &1410746267
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54537,7 +54494,12 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1564577009
+--- !u!4 &1564577011 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4618546184181590, guid: 74d0740f4abc7e54fab50d33af2582da, type: 3}
+  m_PrefabInstance: {fileID: 183175527}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1564577012
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -54546,26 +54508,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1564577007}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47f0e430e49b13b4e9f233af3830f636, type: 3}
+  m_Script: {fileID: 11500000, guid: f981825021ce482eaa8bf2db0c22e6f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  routingPoint: {fileID: 1962766801}
-  unlocked: 0
-  occupied: 0
-  rewardLevel: 0
-  durationLevel: 0
-  waypoints:
-  - {fileID: 91141950}
-  - {fileID: 1120492950}
-  - {fileID: 1630261444}
-  - {fileID: 597684231}
-  - {fileID: 1937915780}
-  _Controller: {fileID: 1054090067}
---- !u!4 &1564577011 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4618546184181590, guid: 74d0740f4abc7e54fab50d33af2582da, type: 3}
-  m_PrefabInstance: {fileID: 183175527}
-  m_PrefabAsset: {fileID: 0}
+  _routingPoint: {fileID: 0}
+  _objectType: 6
 --- !u!1001 &1565825644
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54879,21 +54826,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1573668871}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47f0e430e49b13b4e9f233af3830f636, type: 3}
+  m_Script: {fileID: 11500000, guid: f981825021ce482eaa8bf2db0c22e6f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  routingPoint: {fileID: 1962766801}
-  unlocked: 0
-  occupied: 0
-  rewardLevel: 0
-  durationLevel: 0
-  waypoints:
-  - {fileID: 509882384}
-  - {fileID: 1479566544}
-  - {fileID: 70743147}
-  - {fileID: 1134999328}
-  - {fileID: 1041523619}
-  _Controller: {fileID: 1054090067}
+  _routingPoint: {fileID: 0}
+  _objectType: 6
 --- !u!1 &1575989056
 GameObject:
   m_ObjectHideFlags: 0
@@ -55618,7 +55555,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1564577009}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Ship, Assembly-CSharp
         m_MethodName: LevelUp_Reward
         m_Mode: 1
@@ -57826,7 +57763,7 @@ PrefabInstance:
       addedObject: {fileID: 1684886118}
     - targetCorrespondingSourceObject: {fileID: 4155046195482119558, guid: 05868fab2d415b84abdc41e4d376b804, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1684886117}
+      addedObject: {fileID: 1684886119}
   m_SourcePrefab: {fileID: 100100000, guid: 05868fab2d415b84abdc41e4d376b804, type: 3}
 --- !u!4 &1684886115 stripped
 Transform:
@@ -57838,26 +57775,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4155046195482119558, guid: 05868fab2d415b84abdc41e4d376b804, type: 3}
   m_PrefabInstance: {fileID: 1684886114}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1684886117
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1684886116}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a3264693d95a6548844e9be1d758342, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  routingPoint: {fileID: 862395183}
-  unlocked: 0
-  occupied: 0
-  rewardLevel: 0
-  durationLevel: 0
-  waypoints:
-  - {fileID: 1337808376}
-  _controller: {fileID: 1407493887}
 --- !u!95 &1684886118
 Animator:
   serializedVersion: 5
@@ -57879,6 +57796,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1684886119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684886116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f981825021ce482eaa8bf2db0c22e6f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _routingPoint: {fileID: 0}
+  _objectType: 4
 --- !u!1 &1684892739
 GameObject:
   m_ObjectHideFlags: 0
@@ -59860,7 +59791,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: fd83e6cb9fb13014fbdfae82bc65d764, type: 3}
       propertyPath: m_Name
-      value: SD_Firefly
+      value: Tank 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: fd83e6cb9fb13014fbdfae82bc65d764, type: 3}
       propertyPath: m_RootOrder
@@ -59942,13 +59873,27 @@ PrefabInstance:
       addedObject: {fileID: 1392630417}
     - targetCorrespondingSourceObject: {fileID: 100000, guid: fd83e6cb9fb13014fbdfae82bc65d764, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1392630416}
+      addedObject: {fileID: 1725627991}
   m_SourcePrefab: {fileID: 100100000, guid: fd83e6cb9fb13014fbdfae82bc65d764, type: 3}
 --- !u!4 &1725627990 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: fd83e6cb9fb13014fbdfae82bc65d764, type: 3}
   m_PrefabInstance: {fileID: 1725627989}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1725627991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1392630415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f981825021ce482eaa8bf2db0c22e6f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _routingPoint: {fileID: 0}
+  _objectType: 8
 --- !u!114 &1728541978 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3447104301042026893, guid: afee1140c8336c3d080121fa415264c6, type: 3}
@@ -62616,7 +62561,7 @@ PrefabInstance:
       addedObject: {fileID: 1828506588}
     - targetCorrespondingSourceObject: {fileID: 4155046195482119558, guid: 05868fab2d415b84abdc41e4d376b804, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1828506587}
+      addedObject: {fileID: 1828506589}
   m_SourcePrefab: {fileID: 100100000, guid: 05868fab2d415b84abdc41e4d376b804, type: 3}
 --- !u!4 &1828506585 stripped
 Transform:
@@ -62628,27 +62573,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4155046195482119558, guid: 05868fab2d415b84abdc41e4d376b804, type: 3}
   m_PrefabInstance: {fileID: 1828506584}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1828506587
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1828506586}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a3264693d95a6548844e9be1d758342, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  routingPoint: {fileID: 862395183}
-  unlocked: 0
-  occupied: 0
-  rewardLevel: 0
-  durationLevel: 0
-  waypoints:
-  - {fileID: 1540339750}
-  - {fileID: 771512134}
-  _controller: {fileID: 1407493887}
 --- !u!95 &1828506588
 Animator:
   serializedVersion: 5
@@ -62670,6 +62594,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1828506589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1828506586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f981825021ce482eaa8bf2db0c22e6f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _routingPoint: {fileID: 0}
+  _objectType: 4
 --- !u!1 &1832934646 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2581877055410126497, guid: 543bd759b63f26c36967f8ac09436abc, type: 3}
@@ -67280,7 +67218,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1054090067}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MarineController, Assembly-CSharp
         m_MethodName: BuyThirdPier
         m_Mode: 1
@@ -68246,7 +68184,7 @@ MonoBehaviour:
   act:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1054090067}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MarineController, Assembly-CSharp
         m_MethodName: PlaceSoldier
         m_Mode: 0

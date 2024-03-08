@@ -63,7 +63,6 @@ public class Jet : MonoBehaviour
         wayBack = new SoldierWalkUtil(_soldier, null, () => routingPoint.LetSoldierMove(_soldier), RemoveWayBack, .2f,
             waypoints.Reverse().ToArray());
         
-        _controller.JetFree();
     }
     private void RemoveWayBack(SoldierWalkUtil util)
     {

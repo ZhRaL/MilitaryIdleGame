@@ -49,15 +49,7 @@ public class DataProvider : MonoBehaviour
                 DefenseType.MARINE => marineRest.GetLevelForItem(index)
             },
             
-            ObjectType.JET_AMOUNT => airForceController.getLevelLevel(index),
-            ObjectType.JET_TIME => airForceController.getTimeLevel(index),
-            
-            ObjectType.SHIP_AMOUNT => marineController.getLevelLevel(index),
-            ObjectType.SHIP_TIME => marineController.getTimeLevel(index),
-            
-            ObjectType.TANK_AMOUNT => armyController.getLevelLevel(index),
-            ObjectType.TANK_TIME => armyController.getTimeLevel(index),
-            
+// TODO           
 
         };
 
@@ -86,16 +78,8 @@ public class DataProvider : MonoBehaviour
                 DefenseType.AIRFORCE => () => airforceRest.GetUpgradeMethod(index),
                 DefenseType.MARINE => () => marineRest.GetUpgradeMethod(index),
             },
-
-            ObjectType.SHIP_AMOUNT => () => marineController.upgrade_Level(index),
-            ObjectType.SHIP_TIME => () => marineController.upgrade_Time(index),
-
-            ObjectType.TANK_AMOUNT => () => armyController.upgrade_Level(index),
-            ObjectType.TANK_TIME => () => armyController.upgrade_Time(index),
-
-            ObjectType.JET_AMOUNT => () => airForceController.upgrade_Level(index),
-            ObjectType.JET_TIME => () => airForceController.upgrade_Time(index),
-
+            
+            // TODO - Add Vehics
             
         };
     }
