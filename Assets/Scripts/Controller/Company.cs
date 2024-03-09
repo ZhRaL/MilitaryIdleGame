@@ -44,5 +44,20 @@ namespace DefaultNamespace
                 }
             }
         }
+        
+        public override void PlaceSoldier(Soldier soldier)
+        {
+            // TODO - hie rweiter machen
+            MissionItem targetItem = (MissionItem) GetNextFreeItem();
+            if (targetItem != null)
+            {
+                targetItem.Occupied = true;
+                moveSoldierTo(soldier, targetItem.transform, () => targetItem.SoldierSitDown(soldier));
+            }
+            else
+            {
+                TheWaitingService.addSoldier(soldier);
+            }
+        }
     }
 }

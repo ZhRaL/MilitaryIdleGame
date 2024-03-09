@@ -24,7 +24,7 @@ namespace DefaultNamespace
 
         public void loadState(int[] state)
         {
-            if (state.Length != 12) 
+            if (state.Length != 18) 
                 throw new ArgumentException("Wrong Length of Array");
 
             ArmyManager.Init(state[..6]);

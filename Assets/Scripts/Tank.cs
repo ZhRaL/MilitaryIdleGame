@@ -63,7 +63,7 @@ public class Tank : MonoBehaviour
 
     public void LetSoldierMove()
     {
-        occupied = false;
+       // occupied = false;
         _soldier.gameObject.SetActive(true);
         _soldier.anim.SetBool("isRunning",true);
         wayBack = new SoldierWalkUtil(_soldier, null, () => routingPoint.LetSoldierMove(_soldier), RemoveWayBack, .2f,

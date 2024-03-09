@@ -11,24 +11,24 @@ namespace DefaultNamespace
     {
         [SerializeField] private DefenseType _defenseType;
         [SerializeField] private Transform _waitingPosParent;
-        private WaitingService _waitingService;
+        private protected WaitingService _waitingService;
         
         public abstract List<Item> Items { get; }
         DefenseType DefenseType => _defenseType;
-        WaitingService WaitingService { get; set; }
+        private protected WaitingService TheWaitingService { get; set; }
         private List<SoldierWalkUtil> WalkingSoldiers { get; } = new();
         Transform WaitingPosParent => _waitingPosParent;
 
         private void Start()
         {
-            WaitingService = new WaitingService(_waitingPosParent);
+            TheWaitingService = new WaitingService(_waitingPosParent);
         }
         
         void Update()
         {
             var copyOfWalkingSoldiers = new List<SoldierWalkUtil>(WalkingSoldiers);
             copyOfWalkingSoldiers.ForEach(soldierWalkUtil => soldierWalkUtil.Update());
-            WaitingService.Update();
+            TheWaitingService.Update();
         }
 
         public virtual void Init(int[] levels)
@@ -51,7 +51,7 @@ namespace DefaultNamespace
             }
         }
 
-        public void PlaceSoldier(Soldier soldier)
+        public virtual void PlaceSoldier(Soldier soldier)
         {
             Item targetItem = GetNextFreeItem();
             if (targetItem != null)
@@ -61,11 +61,11 @@ namespace DefaultNamespace
             }
             else
             {
-                WaitingService.addSoldier(soldier);
+                TheWaitingService.addSoldier(soldier);
             }
         }
         
-        private void moveSoldierTo(Soldier soldier, Transform target, Action executeWhenReached)
+        private protected void moveSoldierTo(Soldier soldier, Transform target, Action executeWhenReached)
         {
             soldier.anim.SetBool("isRunning", true);
             WalkingSoldiers.Add(new SoldierWalkUtil(soldier, target, executeWhenReached, RemoveWalkingSoldier));
@@ -96,7 +96,7 @@ namespace DefaultNamespace
             return Items.Count(s => s.Unlocked);
         }
         
-        private Item GetNextFreeItem()
+        private protected Item GetNextFreeItem()
         {
             return Items.FirstOrDefault(item => item.Unlocked && !item.Occupied);
         }
@@ -108,7 +108,7 @@ namespace DefaultNamespace
         
         public void ItemIsFree()
         {
-            Soldier freeS = WaitingService.Shift();
+            Soldier freeS = TheWaitingService.Shift();
             if (freeS != null) PlaceSoldier(freeS);
         }
 
