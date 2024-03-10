@@ -20,8 +20,8 @@ namespace DefaultNamespace
         public override void SoldierSitDown(Soldier soldier)
         {
             _soldier = soldier;
-            MissionStart();
             soldier.gameObject.SetActive(false);
+            MissionStart();
         }
         
         public void MissionStart()
