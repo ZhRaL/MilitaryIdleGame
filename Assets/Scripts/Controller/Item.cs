@@ -45,7 +45,7 @@ namespace DefaultNamespace
             return 10 - Calculator.INSTANCE.getTimeReductionReward(Level);
         }
 
-        public void SoldierSitDown(Soldier soldier)
+        public virtual void SoldierSitDown(Soldier soldier)
         {
             SoldierItemBehaviour.SoldierSitDown(soldier);
         }

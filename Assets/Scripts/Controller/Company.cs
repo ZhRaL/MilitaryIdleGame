@@ -65,6 +65,12 @@ namespace DefaultNamespace
             }
         }
         
+        public override void ItemIsFree()
+        {
+            Soldier freeS = TheWaitingService.Shift();
+            if (freeS != null) PlaceSoldier(freeS);
+        }
+        
         public override int[] GetState()
         {
             return vehicles.Select(tank => new[] { tank.Level, tank.MoneyLevel }).SelectMany(arr => arr).ToArray();

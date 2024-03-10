@@ -106,7 +106,7 @@ namespace DefaultNamespace
             return Items.Select(item => item.Level).ToArray();
         }
         
-        public void ItemIsFree()
+        public virtual void ItemIsFree()
         {
             Soldier freeS = TheWaitingService.Shift();
             if (freeS != null) PlaceSoldier(freeS);
