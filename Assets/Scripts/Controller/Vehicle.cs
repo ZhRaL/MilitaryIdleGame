@@ -8,7 +8,7 @@ namespace DefaultNamespace
     {
         [SerializeField] private Transform _waypoints;
 
-        public Transform Waypoints
+        public override Transform Waypoints
         {
             get => _waypoints;
             set => _waypoints = value;
@@ -20,5 +20,7 @@ namespace DefaultNamespace
         {
             return Level;
         }
+        
+        
     }
 }

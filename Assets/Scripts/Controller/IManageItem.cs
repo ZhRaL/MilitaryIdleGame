@@ -16,7 +16,7 @@ namespace DefaultNamespace
         public abstract List<Item> Items { get; }
         DefenseType DefenseType => _defenseType;
         private protected WaitingService TheWaitingService { get; set; }
-        private List<SoldierWalkUtil> WalkingSoldiers { get; } = new();
+        private protected List<SoldierWalkUtil> WalkingSoldiers { get; } = new();
         Transform WaitingPosParent => _waitingPosParent;
 
         private void Start()
@@ -101,7 +101,7 @@ namespace DefaultNamespace
             return Items.FirstOrDefault(item => item.Unlocked && !item.Occupied);
         }
 
-        public int[] GetState()
+        public virtual int[] GetState()
         {
             return Items.Select(item => item.Level).ToArray();
         }

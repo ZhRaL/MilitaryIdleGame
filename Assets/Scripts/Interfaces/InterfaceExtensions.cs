@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using DefaultNamespace;
+using UnityEngine;
 using Util;
 
 namespace Interfaces
@@ -16,6 +18,18 @@ namespace Interfaces
                 default:
                     throw new ArgumentOutOfRangeException(nameof(defenseType), defenseType, null);
             }
+        }
+
+        public static Transform[] GetAllChildren(this Transform TransformP)
+        {
+            if (!TransformP) return null;
+            List<Transform> childs = new();
+            foreach (Transform child in TransformP)
+            {
+                childs.Add(child);
+            }
+
+            return childs.ToArray();
         }
     }
 }

@@ -38,7 +38,7 @@ namespace DefaultNamespace
                 _targetDirection = (this.waypoints[currentTargetIndex].position - soldier.transform.position).normalized;
             }
         }
-
+        
         private void ReachedTarget()
         {
             if (waypoints == null || currentTargetIndex == waypoints.Length-1)

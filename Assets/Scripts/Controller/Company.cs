@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using Interfaces;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -21,10 +23,10 @@ namespace DefaultNamespace
             if (levels.Length > 2 * Items.Count)
                 throw new ArgumentException("invalid Amount!");
 
-            for (int i = 0; i < Items.Count; i+=2)
+            for (int i = 0; i < Items.Count; i++)
             {
-                int timeLevel = levels[i];
-                int moneyLevel = levels[i + 1];
+                int timeLevel = levels[2*i];
+                int moneyLevel = levels[2*i + 1];
                 
                 Item item = Items[i];
                 if (timeLevel > 0 && item.isMissionItem())
@@ -52,12 +54,20 @@ namespace DefaultNamespace
             if (targetItem != null)
             {
                 targetItem.Occupied = true;
-                moveSoldierTo(soldier, targetItem.transform, () => targetItem.SoldierSitDown(soldier));
+                WalkingSoldiers.Add(
+                    new SoldierWalkUtil(soldier, null, () => targetItem.SoldierSitDown(soldier), 
+                        RemoveWalkingSoldier, .2f, targetItem.Waypoints.GetAllChildren()));
+
             }
             else
             {
                 TheWaitingService.addSoldier(soldier);
             }
+        }
+        
+        public override int[] GetState()
+        {
+            return vehicles.Select(tank => new[] { tank.Level, tank.MoneyLevel }).SelectMany(arr => arr).ToArray();
         }
     }
 }
