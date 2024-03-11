@@ -48,4 +48,15 @@ public class DisplayName : MonoBehaviour
         _namePlate.transform.position = transform.position + (Vector3.up*hightAbove);
         _namePlate.transform.rotation = Camera.main.transform.rotation;
     }
+
+    private void OnDisable()
+    {
+        if(_namePlate)
+        _namePlate.SetActive(false);
+    }
+
+    private void OnEnable()
+    {
+        _namePlate?.SetActive(true);
+    }
 }
