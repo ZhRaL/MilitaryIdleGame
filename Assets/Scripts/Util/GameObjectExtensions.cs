@@ -61,5 +61,16 @@ namespace Util
                     throw new ArgumentOutOfRangeException(nameof(item.ObjectType.objectType));
             }
         }
+
+        // Maybe Obsolete
+        public static int GetMySiblingIndex(this Transform child)
+        {
+            for (int i = 0; i < child.parent.childCount; i++)
+            {
+                if (child.GetInstanceID() == child.parent.GetChild(i).GetInstanceID()) return i;
+            }
+
+            throw new ArgumentException("Child not part of the parent!");
+        }
     }
 }

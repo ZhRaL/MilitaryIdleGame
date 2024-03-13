@@ -16,7 +16,7 @@ namespace DefaultNamespace
         }
 
         public int Level { get; set; }
-        public int Index { get; set; }
+        public int Index => transform.GetSiblingIndex();
         public bool Occupied { get; set; }
         public bool Unlocked { get; set; }
         public SoldierItemBehaviour SoldierItemBehaviour { get; set; }
@@ -31,7 +31,6 @@ namespace DefaultNamespace
         private void Start()
         {
             SoldierItemBehaviour = new(this);
-            Index = transform.GetSiblingIndex();
         }
 
         public void Upgrade()

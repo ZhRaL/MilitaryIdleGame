@@ -13,8 +13,11 @@ public class GimmeAName : MonoBehaviour
 
     public GameObject IconPrefab;
 
+    private IconScript selected;
+
     private void OnEnable()
     {
+        
         var tl = GameManager.INSTANCE.GetTopLevel(_objectType);
         IManageItem imanag;
         switch (_objectType.defenseType)
@@ -35,6 +38,7 @@ public class GimmeAName : MonoBehaviour
 
         foreach (Item item in imanag.Items)
         {
+            logger.log("NR: "+item.Index);
             if (item is MissionItem missionItem)
             {
                 return;
@@ -42,8 +46,13 @@ public class GimmeAName : MonoBehaviour
             
             GameObject go = Instantiate(IconPrefab, AvailablesParent);
             IconScript script = go.GetComponent<IconScript>();
-            script.initializePreview(item);
+            script.InitializePreview(this,item);
 
         }
+    }
+
+    public void Selected(IconScript child)
+    {
+        logger.log("Item Nr: "+child.Item.Index);
     }
 }
