@@ -28,13 +28,13 @@ public class DataCollector : MonoBehaviour
 
     private void Start()
     {
-        if (index == -1)
-            index = transform.GetSiblingIndex();
-        currentLevel = DataProvider.INSTANCE.GetLevel(defType, objectType, index);
-        if(_txLevel!=null)
-        _txLevel.text = "" + currentLevel;
-        GameManager.INSTANCE.OnMoneyChanged += checkBalance;
-        checkBalance();
+    //     if (index == -1)
+    //         index = transform.GetSiblingIndex();
+    //     currentLevel = DataProvider.INSTANCE.GetLevel(defType, objectType, index);
+    //     if(_txLevel!=null)
+    //     _txLevel.text = "" + currentLevel;
+    //     GameManager.INSTANCE.OnMoneyChanged += checkBalance;
+    //     checkBalance();
     }
 
     public void OnClick()

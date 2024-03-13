@@ -23,7 +23,7 @@ namespace Util
 
             // Vergleichen von DefenseType und ObjectType
             return this.DefenseType == otherEntity.DefenseType &&
-                   this.ObjectType == otherEntity.ObjectType;
+                   this.ObjectType.objectType == otherEntity.ObjectType.objectType;
         }
     }
 }

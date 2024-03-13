@@ -24,58 +24,58 @@ namespace Util
         {
             startingValues.Add(new ObjDefEntity
             {
-                ObjectType = ObjectType.CHAIR,
+            //    ObjectType = ObjectType.CHAIR,
                 startingCost = 10,
                 startingReward = 2
             });
             startingValues.Add(new ObjDefEntity
             {
-                ObjectType = ObjectType.TOILET,
+            //    ObjectType = ObjectType.TOILET,
                 startingCost = 10,
                 startingReward = 2
             });
             startingValues.Add(new ObjDefEntity
             {
-                ObjectType = ObjectType.BED,
-                startingCost = 10,
-                startingReward = 2
-            });
-            
-            startingValues.Add(new ObjDefEntity
-            {
-                ObjectType = ObjectType.JET_AMOUNT,
-                startingCost = 10,
-                startingReward = 2
-            });
-            startingValues.Add(new ObjDefEntity
-            {
-                ObjectType = ObjectType.JET_TIME,
+            //    ObjectType = ObjectType.BED,
                 startingCost = 10,
                 startingReward = 2
             });
             
             startingValues.Add(new ObjDefEntity
             {
-                ObjectType = ObjectType.SHIP_AMOUNT,
+            //    ObjectType = ObjectType.JET_AMOUNT,
                 startingCost = 10,
                 startingReward = 2
             });
             startingValues.Add(new ObjDefEntity
             {
-                ObjectType = ObjectType.SHIP_TIME,
+            //    ObjectType = ObjectType.JET_TIME,
                 startingCost = 10,
                 startingReward = 2
             });
             
             startingValues.Add(new ObjDefEntity
             {
-                ObjectType = ObjectType.TANK_AMOUNT,
+             //   ObjectType = ObjectType.SHIP_AMOUNT,
                 startingCost = 10,
                 startingReward = 2
             });
             startingValues.Add(new ObjDefEntity
             {
-                ObjectType = ObjectType.TANK_TIME,
+            //    ObjectType = ObjectType.SHIP_TIME,
+                startingCost = 10,
+                startingReward = 2
+            });
+            
+            startingValues.Add(new ObjDefEntity
+            {
+             //   ObjectType = ObjectType.TANK_AMOUNT,
+                startingCost = 10,
+                startingReward = 2
+            });
+            startingValues.Add(new ObjDefEntity
+            {
+              //  ObjectType = ObjectType.TANK_TIME,
                 startingCost = 10,
                 startingReward = 2
             });

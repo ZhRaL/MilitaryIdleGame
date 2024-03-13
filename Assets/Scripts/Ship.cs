@@ -57,7 +57,7 @@ public class Ship : MonoBehaviour
 
     public void Reward()
     {
-        GameManager.INSTANCE.gold += Calculator.INSTANCE.getReward(new ObjDefEntity(){ObjectType = ObjectType.JET_AMOUNT},rewardLevel);
+    //    GameManager.INSTANCE.gold += Calculator.INSTANCE.getReward(new ObjDefEntity(){ObjectType = ObjectType.JET_AMOUNT},rewardLevel);
 
     }
 
@@ -107,9 +107,9 @@ public class Ship : MonoBehaviour
 
     public void LevelUpDuration()
     {
-        if (GameManager.INSTANCE.gold > Calculator.INSTANCE.getReward(new ObjDefEntity(){ObjectType = ObjectType.JET_AMOUNT}, durationLevel))
-        {
-            durationLevel++;
-        }
+     //  if (GameManager.INSTANCE.gold > Calculator.INSTANCE.getReward(new ObjDefEntity(){ObjectType = ObjectType.JET_AMOUNT}, durationLevel))
+     //  {
+     //      durationLevel++;
+     //  }
     }
 }

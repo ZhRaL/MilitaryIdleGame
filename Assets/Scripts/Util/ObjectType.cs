@@ -1,16 +1,38 @@
+using System;
+
 namespace Util
 {
-    public enum ObjectType
+    [Serializable]
+    public struct ObjectType
     {
-        CHAIR,
-        BED,
-        TOILET,
-
-        JET_AMOUNT,
-        JET_TIME,
-        SHIP_AMOUNT,
-        SHIP_TIME,
-        TANK_AMOUNT,
-        TANK_TIME
+        public DefenseType defenseType;
+        public GenericObjectType objectType;
     }
+
+    public enum GenericObjectType
+    {
+        KITCHEN,
+        BATH,
+        SLEEPING,
+
+        JET,
+        TANK,
+        SHIP,
+    }
+
+    public enum UpgradeType
+    {
+        KITCHEN,
+        BATH,
+        SLEEPING,
+
+        JET_MONEY,
+        JET_TIME,
+        TANK_MONEY,
+        TANK_TIME,
+        SHIP_MONEY,
+        SHIP_TIME
+        
+}
+
 }

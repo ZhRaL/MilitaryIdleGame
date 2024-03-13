@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
     private const string BATHSAFESTRING = "Bath_Levels";
     private const string SLEEPINGSAFESTRING = "Sleeping_Levels";
     public const string RECRUITMENTSAFESTRING = "Recruitment_Levels";
+    
+    public DataProvider DataProvider = new();
 
     #region currencies
 
@@ -77,20 +79,12 @@ public class GameManager : MonoBehaviour
 
     public IController GetTopLevel(ObjectType type)
     {
-        switch (type)
+        switch (type.objectType)
         {
-            case ObjectType.CHAIR: return KitchenController;
-            case ObjectType.BED: return SleepingController;
-            case ObjectType.TOILET: return BathController;
-            
-            case ObjectType.JET_AMOUNT: 
-            case ObjectType.JET_TIME:
-            case ObjectType.SHIP_AMOUNT:
-            case ObjectType.SHIP_TIME:
-            case ObjectType.TANK_AMOUNT:
-            case ObjectType.TANK_TIME:
-        //        return MissionController;
-                break;
+            case GenericObjectType.KITCHEN: return KitchenController;
+            case GenericObjectType.SLEEPING: return SleepingController;
+            case GenericObjectType.BATH: return BathController;
+            default: return MissionController;
         }
 
         throw new ArgumentException("Invalid ObjectType!");
