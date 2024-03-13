@@ -11,35 +11,40 @@ public class IconScript : MonoBehaviour
     public Image iconImage, upgradeArrowImage;
     public TMP_Text tx_level;
     public Item Item;
-    private GimmeAName Parent;
+    private protected GimmeAName Parent;
 
-    public void InitializePreview(GimmeAName parent, Item item)
+    public virtual void InitializePreview(GimmeAName parent, Item item)
     {
         Item = item;
         Parent = parent;
-        
+
         IconProvider iconProvider = GameManager.INSTANCE.DataProvider.IconProvider;
 
         iconImage.sprite = iconProvider.GetIcon(item.ToUpgradeType());
         tx_level.text = "" + item.Level;
-        
+
         if (Upgradable(item))
             upgradeArrowImage.gameObject.SetActive(true);
         else upgradeArrowImage.gameObject.SetActive(false);
-        
+
         AddButton();
     }
 
-    private bool Upgradable(Item item)
+    protected virtual bool Upgradable(Item item)
     {
         int costs = GameManager.INSTANCE.DataProvider.GetCost(item.ObjectType.defenseType, item.ObjectType, item.Index);
         return GameManager.INSTANCE.gold >= costs;
     }
 
-    private void AddButton()
+    protected virtual void AddButton()
     {
         Button button = gameObject.AddComponent<Button>();
-        button.onClick.AddListener( () => Parent.Selected(this));
+        button.onClick.AddListener(() => Parent.Selected(this));
+        button.onClick.AddListener(highlightMe);
     }
-    
+
+    public void highlightMe()
+    {
+        HighLightManager.highlight(GetComponent<Image>());
+    }
 }
