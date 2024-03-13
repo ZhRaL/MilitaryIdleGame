@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1167146236490443627}
   - component: {fileID: 830713944467828645}
   m_Layer: 5
-  m_Name: Button1
+  m_Name: TabButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -174,7 +174,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
+  m_fontSize: 120.95
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

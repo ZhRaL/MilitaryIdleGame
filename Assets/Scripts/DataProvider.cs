@@ -103,8 +103,21 @@ public class DataProvider
         return -1;
     }
 
+    public int GetCost(Item item)
+    {
+        return GetCost(item.ObjectType.defenseType, item.ObjectType, item.Index);
+    }
     
-
+    public int GetReward(Item item)
+    {
+        return GetReward(item.ObjectType.defenseType, item.ObjectType, item.Index);
+    }
+    
+    public int GetRewardDiff(Item item)
+    {
+        return GetRewardDiff(item.ObjectType.defenseType, item.ObjectType, item.Index);
+    }
+    
 
     
 }

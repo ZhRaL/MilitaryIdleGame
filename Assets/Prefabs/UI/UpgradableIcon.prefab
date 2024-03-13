@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 7048921529848910971}
   - component: {fileID: 7299445195729982359}
   m_Layer: 5
-  m_Name: Icon (1)
+  m_Name: UpgradableIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -169,6 +169,7 @@ MonoBehaviour:
   iconImage: {fileID: 3497011270436070507}
   upgradeArrowImage: {fileID: 1197203760318290353}
   tx_level: {fileID: 5244293692635051357}
+  Item: {fileID: 0}
 --- !u!1 &4139215298600881034
 GameObject:
   m_ObjectHideFlags: 0

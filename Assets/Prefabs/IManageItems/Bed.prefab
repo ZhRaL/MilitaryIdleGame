@@ -297,4 +297,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _routingPoint: {fileID: 0}
-  _objectType: 0
+  _objectType:
+    defenseType: 0
+    objectType: 2

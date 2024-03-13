@@ -276,7 +276,6 @@ GameObject:
   - component: {fileID: 8594537355955922323}
   - component: {fileID: 8021177750811904893}
   - component: {fileID: 1080412529808251107}
-  - component: {fileID: 6541660074331674306}
   - component: {fileID: 4119135249492395139}
   m_Layer: 5
   m_Name: UpgradeScreen
@@ -345,18 +344,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6541660074331674306
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1335348392869494369}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a400457c88721f409cf7fe17b94a1e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &4119135249492395139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -374,6 +361,8 @@ MonoBehaviour:
     objectType: 0
   AvailablesParent: {fileID: 2867216587646505467}
   IconPrefab: {fileID: 2581877055410126497, guid: 543bd759b63f26c36967f8ac09436abc, type: 3}
+  UpgradeScript: {fileID: 5549807186998318489}
+  SelectFirst: 1
 --- !u!1 &1590603431103636034
 GameObject:
   m_ObjectHideFlags: 0
@@ -1671,7 +1660,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.995283, b: 0.995283, a: 0.84313726}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1984,7 +1973,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8888377, g: 0.5545235, b: 0.5545235, a: 1}
+  m_Color: {r: 0.764151, g: 0.764151, b: 0.764151, a: 0.92941177}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
