@@ -11,7 +11,6 @@ public class Soldier : MonoBehaviour
     public GameObject parentRoute;
     public Transform[] path;
     public Animator anim;
-    // TODO - Remove SolderTypeEnum and Use DefenseType!
     [SerializeField] private DefenseType soldierTypeEnum;
 
     public int currentTarget = 0;
@@ -23,6 +22,15 @@ public class Soldier : MonoBehaviour
     public float distanceToTarget;
     public GameObject RadialBarPrefab;
 
+    public float Crit { get; set; }
+
+    public float MovementSpeed
+    {
+        get => speed;
+        set => speed = value;
+    }
+
+    public int MissionReward { get; set; }
     
 
     public float Speed

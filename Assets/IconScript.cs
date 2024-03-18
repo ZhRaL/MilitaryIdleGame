@@ -13,6 +13,12 @@ public class IconScript : MonoBehaviour
     public Item Item;
     private protected GimmeAName Parent;
 
+    private protected delegate void parentSelected(IconScript script);
+    private protected delegate void parentDoubleSelected(IconScript script,bool isMoney);
+
+    private protected parentSelected SingleSelect;
+    private protected parentDoubleSelected DoubleSelect;
+
     public virtual void InitializePreview(GimmeAName parent, Item item)
     {
         Item = item;
