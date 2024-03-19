@@ -5,5 +5,10 @@ public class InAppBuyManager : MonoBehaviour
     private void Awake() {
       INSTANCE = this;
     }
+
+    public bool Collect(int amount) {
+        // TODO
+        return true;
+    }
     
   }
