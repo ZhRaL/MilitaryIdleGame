@@ -7,24 +7,29 @@ namespace DefaultNameSpace {
     public Cost Cost {get;set;}
 
     public void Buy() {
-    switch(Cost.type) {
-      case Costs.MONEY:
-        if(InAppBuyManager.INSTANCE.Collect(Cost.amount)) 
-          Reward.Checkout();
-        break;
-      case Costs.ADVERTISMENT:
-        if(AdManager.Show())
-          Reward.Checkout();
-        break;
-      case Costs.GOLD:
-        GameManager.INSTANCE.Gold -= Cost.amount;
-        break;
-      case Costs.BADGES:
-        GameManager.INSTANCE.Badges -= Cost.amount;
-        break;
-      default:
-        throw new ArgumentOutOfRangeException("Not a valid Type");
-      }
+      if(Validate()) 
+        Reward.Checkout();
     }
+
+    private bool Validate() {
+      switch(Cost.type) {
+        case Costs.MONEY:
+          return InAppBuyManager.INSTANCE.Collect(Cost.amount);
+        case Costs.ADVERTISMENT:
+          return AdManager.Show();
+        case Costs.GOLD:
+          GameManager.INSTANCE.Gold -= Cost.amount;
+          return true;
+        case Costs.BADGES:
+          GameManager.INSTANCE.Badges -= Cost.amount;
+          return true;
+          
+        default:
+          throw new ArgumentOutOfRangeException("Not a valid Type");
+      }
+      return false;
+    }
+
+    
   }
 }
