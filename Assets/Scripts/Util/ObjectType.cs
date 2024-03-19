@@ -31,7 +31,11 @@ namespace Util
         TANK_MONEY,
         TANK_TIME,
         SHIP_MONEY,
-        SHIP_TIME
+        SHIP_TIME,
+        
+        SOLDIER_SPEED,
+        SOLDIER_CRIT,
+        SOLDIER_REWARD
         
 }
 

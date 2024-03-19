@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Util;
@@ -31,7 +33,8 @@ public class Soldier : MonoBehaviour
     }
 
     public int MissionReward { get; set; }
-    
+
+    private int LVL_Crit, LVL_Speed, LVL_Reward;
 
     public float Speed
     {
@@ -105,5 +108,32 @@ public class Soldier : MonoBehaviour
         currentTarget = ++currentTarget % parentRoute.transform.childCount;
 
         Run();
+    }
+
+    public Item ToItem(SoldierUpgradeType type)
+    {
+        SoldierItem item = new SoldierItem();
+        item.Soldier = this;
+        switch (type)
+        {
+            case SoldierUpgradeType.SPEED:
+                item.Level = LVL_Speed;
+                break;
+            case SoldierUpgradeType.REWARD:
+                item.Level = LVL_Reward;
+                break;
+            case SoldierUpgradeType.CRIT:
+                item.Level = LVL_Crit;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(type), type, null);
+        }
+        
+        return item;
+    }
+
+    public enum SoldierUpgradeType
+    {
+        SPEED,REWARD,CRIT
     }
 }

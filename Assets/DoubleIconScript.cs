@@ -21,7 +21,7 @@ public class DoubleIconScript : IconScript
     {
         logger.log("I am a MissionItem!!");
         Item = item;
-        Parent = parent;
+        DoubleSelect = parent.DoubleSelect;
         MissionItem mit = (MissionItem)item;
 
         IconProvider iconProvider = GameManager.INSTANCE.DataProvider.IconProvider;
@@ -73,13 +73,15 @@ public class DoubleIconScript : IconScript
 
     public void TimeButtonPressed()
     {
-        Parent.Selected(this, false);
+        DoubleSelect(this,false);
+        //Parent.DoubleSelect(this, false);
         HighLightManager.highlight(TimeP.GetComponent<Image>());
     }
 
     public void MoneyButtonPressed()
     {
-        Parent.Selected(this, true);
+        DoubleSelect(this, true);
+        //Parent.DoubleSelect(this, true);
         HighLightManager.highlight(MoneyP.GetComponent<Image>());
     }
 

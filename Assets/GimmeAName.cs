@@ -76,7 +76,7 @@ public class GimmeAName : MonoBehaviour
         UpgradeScript.selectionChanged(BuildUpgradeDto());
     }
 
-    public void Selected(DoubleIconScript child, bool isMoney)
+    public void DoubleSelect(DoubleIconScript child, bool isMoney)
     {
         if(!child.Item) return;
         UpgradeScript.selectionChanged(BuildMissionUpgradeDto(child,isMoney));

@@ -13,16 +13,22 @@ public class IconScript : MonoBehaviour
     public Item Item;
     private protected GimmeAName Parent;
 
-    private protected delegate void parentSelected(IconScript script);
-    private protected delegate void parentDoubleSelected(IconScript script,bool isMoney);
+    public delegate void parentSelected(IconScript script);
+    public delegate void parentDoubleSelected(DoubleIconScript script,bool isMoney);
 
-    private protected parentSelected SingleSelect;
-    private protected parentDoubleSelected DoubleSelect;
+    public parentSelected SingleSelect;
+    public parentDoubleSelected DoubleSelect;
 
     public virtual void InitializePreview(GimmeAName parent, Item item)
     {
+        InitializePreview(parent.Selected,parent.DoubleSelect,item);
+    }
+    
+    public virtual void InitializePreview(parentSelected singleSelect,parentDoubleSelected doubleSelect, Item item)
+    {
         Item = item;
-        Parent = parent;
+        SingleSelect = singleSelect;
+        DoubleSelect = doubleSelect;
 
         IconProvider iconProvider = GameManager.INSTANCE.DataProvider.IconProvider;
 
@@ -45,7 +51,7 @@ public class IconScript : MonoBehaviour
     protected virtual void AddButton()
     {
         Button button = gameObject.AddComponent<Button>();
-        button.onClick.AddListener(() => Parent.Selected(this));
+        button.onClick.AddListener(() => SingleSelect(this));
         button.onClick.AddListener(highlightMe);
     }
 
