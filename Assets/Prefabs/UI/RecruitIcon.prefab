@@ -366,6 +366,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6b83e19b4a5a104b96501e778f14cd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tx_name: {fileID: 6682940217835466584}
   movSpeedPrefab: {fileID: 8777258478973856335}
   missionRewardPrefab: {fileID: 4971398629144684309}
   critPrefab: {fileID: 1836003235172574019}

@@ -53,13 +53,13 @@ public class DoubleIconScript : IconScript
     protected override bool Upgradable(Item item)
     {
         int costs = GameManager.INSTANCE.DataProvider.GetCost(item.ObjectType.defenseType, item.ObjectType, item.Index);
-        return GameManager.INSTANCE.gold >= costs;
+        return GameManager.INSTANCE.Gold >= costs;
     }
     
     private bool Upgradable(MissionItem item)
     {
         int costs = GameManager.INSTANCE.DataProvider.GetCost(item.ObjectType.defenseType, item.ObjectType, item.Index);
-        return GameManager.INSTANCE.gold >= costs;
+        return GameManager.INSTANCE.Gold >= costs;
     }
 
     protected void AddButtons()

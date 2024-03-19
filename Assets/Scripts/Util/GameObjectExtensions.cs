@@ -56,6 +56,9 @@ namespace Util
                 case GenericObjectType.BATH : return UpgradeType.BATH;
                 case GenericObjectType.KITCHEN : return UpgradeType.KITCHEN;
                 case GenericObjectType.SLEEPING : return UpgradeType.SLEEPING;
+                case GenericObjectType.SOLDIER_SPEED: return UpgradeType.SOLDIER_SPEED;
+                case GenericObjectType.SOLDIER_CRIT: return UpgradeType.SOLDIER_CRIT;
+                case GenericObjectType.SOLDIER_REWARD: return UpgradeType.SOLDIER_REWARD;
 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(item.ObjectType.objectType));

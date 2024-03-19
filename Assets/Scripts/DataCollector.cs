@@ -75,7 +75,7 @@ public class DataCollector : MonoBehaviour
         {
             dto.upgradeAction += () => OnClick();
         }
-        dto.upgradeAction += () => GameManager.INSTANCE.gold -= upgradeCost;
+        dto.upgradeAction += () => GameManager.INSTANCE.Gold -= upgradeCost;
         
         UpgradeScript.selectionChanged(dto);
         Image image = GetComponent<Image>();
@@ -86,7 +86,7 @@ public class DataCollector : MonoBehaviour
     {
         var entity = new ObjDefEntity() { DefenseType = defType, ObjectType = objectType };
         // TODO - get Level of this index, first chair, second chair etc..
-        if (GameManager.INSTANCE.gold > Calculator.INSTANCE.getCost(entity, currentLevel + 1))
+        if (GameManager.INSTANCE.Gold > Calculator.INSTANCE.getCost(entity, currentLevel + 1))
             upgradeArrowImg.SetActive(true);
         else upgradeArrowImg.SetActive(false);
     }

@@ -18,6 +18,9 @@ namespace Util
         JET,
         TANK,
         SHIP,
+        SOLDIER_SPEED,
+        SOLDIER_CRIT,
+        SOLDIER_REWARD
     }
 
     public enum UpgradeType

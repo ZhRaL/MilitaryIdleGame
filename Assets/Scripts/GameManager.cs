@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
     public Text tx_Gold, tx_Badges;
 
     // Always SaveGame() at Changing Gold or Badge Amount
-    public float gold
+    public float Gold
     {
         get => _gold;
         set
@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
 
     public event Action OnMoneyChanged;
 
-    public float badges
+    public float Badges
     {
         get => _badges;
         set
@@ -68,6 +68,7 @@ public class GameManager : MonoBehaviour
     public KitchenController KitchenController;
     public BathController BathController;
     public SleepingController SleepingController;
+    public SoldierController SoldierController;
 
     private OfflineCalculator _offlineCalculator;
 
@@ -92,26 +93,29 @@ public class GameManager : MonoBehaviour
 
     public void SaveGame()
     {
-        PlayerPrefs.SetFloat("Gold", gold);
-        PlayerPrefs.SetFloat("Badges", badges);
+        PlayerPrefs.SetFloat("Gold", Gold);
+        PlayerPrefs.SetFloat("Badges", Badges);
         
         PlayerPrefs.SetString(MISSIONSAFESTRING,JsonHelper.ToJson(MissionController.getState()));
         PlayerPrefs.SetString(KITCHENSAFESTRING,JsonHelper.ToJson(KitchenController.getState()));
         PlayerPrefs.SetString(BATHSAFESTRING,JsonHelper.ToJson(BathController.getState()));
         PlayerPrefs.SetString(SLEEPINGSAFESTRING,JsonHelper.ToJson(SleepingController.getState()));
+        PlayerPrefs.SetString(RECRUITMENTSAFESTRING,JsonHelper.ToJson(SoldierController.getState()));
+
         PlayerPrefs.Save();
     }
 
     private void LoadGame()
     {
-        gold = PlayerPrefs.GetFloat("Gold", 550);
-        badges = PlayerPrefs.GetFloat("Badges", 0);
+        Gold = PlayerPrefs.GetFloat("Gold", 550);
+        Badges = PlayerPrefs.GetFloat("Badges", 0);
         
         MissionController.loadState(JsonHelper.FromJson<int>(PlayerPrefs.GetString(MISSIONSAFESTRING," {\"Items\":[1,1,1,1,0,0,1,1,0,0,0,0,1,1,0,0,0,0]}")));
         KitchenController.loadState(JsonHelper.FromJson<int>(PlayerPrefs.GetString(KITCHENSAFESTRING," {\"Items\":[1,0,0,0,1,0,0,0,1,0,0,0]}")));
         BathController.loadState(JsonHelper.FromJson<int>(PlayerPrefs.GetString(BATHSAFESTRING," {\"Items\":[1,0,0,1,0,0,1,0,0]}")));
         SleepingController.loadState(JsonHelper.FromJson<int>(PlayerPrefs.GetString(SLEEPINGSAFESTRING," {\"Items\":[1,0,0,0,1,0,0,0,1,0,0,0]}")));
-        
+        SoldierController.loadState(JsonHelper.FromJson<int>(PlayerPrefs.GetString(RECRUITMENTSAFESTRING," {\"Items\":[1,1,1,-1,-1,-1,1,1,1,-1,-1,-1,1,1,1]}")));
+
         isInitialized = true;
         _offlineCalculator.calculateReward();
         SaveGame();

@@ -22,7 +22,7 @@ public class UpgradeScript : MonoBehaviour
 
     private void checkBalance()
     {
-        if (GameManager.INSTANCE.gold > 10)
+        if (GameManager.INSTANCE.Gold > 10)
             upgradeBtn.interactable = true;
         else upgradeBtn.interactable = false;
     }
@@ -40,7 +40,7 @@ public class UpgradeScript : MonoBehaviour
         diffReward.text = "+ " + upgrade.diffReward;
         sliderTx.text = "Level " + upgrade.level;
 
-        if (GameManager.INSTANCE.gold < upgrade.upgradeCost)
+        if (GameManager.INSTANCE.Gold < upgrade.upgradeCost)
         {
             upgradeBtn.interactable = false;
             upgradeBtn.onClick.RemoveAllListeners();

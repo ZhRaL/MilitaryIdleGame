@@ -45,7 +45,7 @@ public class IconScript : MonoBehaviour
     protected virtual bool Upgradable(Item item)
     {
         int costs = GameManager.INSTANCE.DataProvider.GetCost(item.ObjectType.defenseType, item.ObjectType, item.Index);
-        return GameManager.INSTANCE.gold >= costs;
+        return GameManager.INSTANCE.Gold >= costs;
     }
 
     protected virtual void AddButton()

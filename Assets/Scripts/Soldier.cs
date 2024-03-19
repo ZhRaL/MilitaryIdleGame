@@ -32,9 +32,9 @@ public class Soldier : MonoBehaviour
         set => speed = value;
     }
 
-    public int MissionReward { get; set; }
+    public int MissionReward => 0; // DataProvider.GetReward(LVL_Reward)
 
-    private int LVL_Crit, LVL_Speed, LVL_Reward;
+    public int LVL_Crit, LVL_Speed, LVL_Reward;
 
     public float Speed
     {
@@ -112,7 +112,7 @@ public class Soldier : MonoBehaviour
 
     public Item ToItem(SoldierUpgradeType type)
     {
-        SoldierItem item = new SoldierItem();
+        SoldierItem item = gameObject.AddComponent<SoldierItem>();
         item.Soldier = this;
         switch (type)
         {

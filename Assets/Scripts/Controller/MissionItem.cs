@@ -68,7 +68,7 @@ namespace DefaultNamespace
 
         public void Reward()
         {
-            GameManager.INSTANCE.gold += 500; // TODO - more specific
+            GameManager.INSTANCE.Gold += 500; // TODO - more specific
 
         }
         private void RemoveWayBack(SoldierWalkUtil util)
