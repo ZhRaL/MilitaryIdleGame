@@ -53,16 +53,16 @@ public class RecruitTemplate : MonoBehaviour
         logger.log("SOldier "+Soldier.name+" Upgraded Crit to "+script.Item.Level);
     }
 
-    private void ToUpgrade()
+    private void ToUpgrade(int level, UnityAction upgradeAction)
     {
         UpgradeScript.selectionChanged(new UpgradeDto
         {
             IconBackground = null,
             Icon = null,
-            title = null,
-            description = null,
-            level = 0,
-            upgradeAction = null,
+            title = "Soldier "+Soldier.Index,
+            description = "TBD",
+            level = level,
+            upgradeAction = upgradeAction,
             upgradeCost = 0,
             currentReward = 0,
             diffReward = 0
