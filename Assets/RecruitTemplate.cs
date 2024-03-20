@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace;
 using TMPro;
 using UnityEngine;
 using Util;
@@ -13,8 +14,11 @@ public class RecruitTemplate : MonoBehaviour
 
     public GameObject movSpeedPrefab, missionRewardPrefab, critPrefab;
 
-    public void Init(Soldier soldier)
+    public UpgradeScript UpgradeScript;
+    
+    public void Init(Soldier soldier, UpgradeScript upgradeScript)
     {
+        UpgradeScript = upgradeScript;
         Soldier = soldier;
         tx_name.text = Soldier.name;
         // TODO - add correct Portrait
@@ -32,6 +36,7 @@ public class RecruitTemplate : MonoBehaviour
 
     private void SpeedUpgrade(IconScript script)
     {
+        // Hier nicht direkt upgraden, sondern nur als UpgradeScript machen, mit der Option zu Upgrade etc
         Soldier.LVL_Speed++;
         logger.log("SOldier "+Soldier.name+" Upgraded Speed to "+script.Item.Level);
     }
@@ -46,5 +51,21 @@ public class RecruitTemplate : MonoBehaviour
     {
         Soldier.LVL_Crit++;
         logger.log("SOldier "+Soldier.name+" Upgraded Crit to "+script.Item.Level);
+    }
+
+    private void ToUpgrade()
+    {
+        UpgradeScript.selectionChanged(new UpgradeDto
+        {
+            IconBackground = null,
+            Icon = null,
+            title = null,
+            description = null,
+            level = 0,
+            upgradeAction = null,
+            upgradeCost = 0,
+            currentReward = 0,
+            diffReward = 0
+        });
     }
 }

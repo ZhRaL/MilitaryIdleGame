@@ -17,7 +17,7 @@ public class RecruitInitializer : MonoBehaviour
         {
             GameObject go = Instantiate(SoldierIconPrefab, transform);
             var x = go.GetComponent<RecruitTemplate>();
-            x.Init(soldier);
+            x.Init(soldier,UpgradeScript);
         }
     }
 }
