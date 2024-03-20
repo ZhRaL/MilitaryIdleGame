@@ -24,6 +24,8 @@ public class Soldier : MonoBehaviour
     public float distanceToTarget;
     public GameObject RadialBarPrefab;
 
+    public int Index => transform.GetSiblingIndex();
+
     public float Crit { get; set; }
 
     public float MovementSpeed
