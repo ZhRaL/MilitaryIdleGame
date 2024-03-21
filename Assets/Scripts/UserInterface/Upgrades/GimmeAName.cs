@@ -48,7 +48,7 @@ public class GimmeAName : MonoBehaviour
 
         selectFirstIcon();
     }
-
+    
     private void OnEnable()
     {
         selectFirstIcon();
@@ -56,6 +56,7 @@ public class GimmeAName : MonoBehaviour
 
     private void selectFirstIcon()
     {
+        logger.log("Select First Tryto");
         if (SelectFirst)
         {
             IconScript x = GetComponentInChildren<IconScript>();
@@ -64,7 +65,7 @@ public class GimmeAName : MonoBehaviour
                 ds.MoneyButtonPressed();
                 return;
             }
-            if (x) Selected(x);
+            if(x) x.SingleSelect.Invoke(x);
         }
     }
 

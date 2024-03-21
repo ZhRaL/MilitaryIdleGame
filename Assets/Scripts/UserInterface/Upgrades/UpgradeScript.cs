@@ -5,6 +5,7 @@ using DefaultNamespace;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Util;
 
 public class UpgradeScript : MonoBehaviour
 {
@@ -14,10 +15,12 @@ public class UpgradeScript : MonoBehaviour
     public TextMeshProUGUI title, description, upgradeCost, currentReward, diffReward, sliderTx;
     public Slider slider;
     public Button upgradeBtn;
+    private SliderValues _sliderValues;
 
     private void Start()
     {
         GameManager.INSTANCE.OnMoneyChanged += checkBalance;
+        _sliderValues = new SliderValues(slider);
     }
 
     private void checkBalance()
@@ -29,17 +32,19 @@ public class UpgradeScript : MonoBehaviour
 
     public void selectionChanged(UpgradeDto upgrade)
     {
+        logger.log("Ich will geändert werden");
         current = upgrade;
         if(upgrade.IconBackground!=null)
         IconBackground.sprite = upgrade.IconBackground;
         Icon.sprite = upgrade.Icon;
         title.text = upgrade.title;
         description.text = upgrade.description;
-        slider.value = upgrade.level;
+        _sliderValues.setValue(upgrade.level);
         upgradeCost.text = ""+upgrade.upgradeCost;
         currentReward.text = "" + upgrade.currentReward;
         diffReward.text = "+ " + upgrade.diffReward;
         sliderTx.text = "Level " + upgrade.level;
+
 
         if (GameManager.INSTANCE.Gold < upgrade.upgradeCost)
         {

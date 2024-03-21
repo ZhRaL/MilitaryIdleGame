@@ -13,18 +13,12 @@ namespace DefaultNamespace
         [SerializeField] private List<Vehicle> vehicles;
 
         public override List<Item> Items => new(vehicles);
-
-        public UnityAction GetMoneyUpgradeMethod(int index)
-        {
-            return vehicles[index].MoneyUpgrade;
-        }
-
+        
         public override void Init(int[] levels)
         {
             if (levels.Length > 2 * Items.Count)
                 throw new ArgumentException("invalid Amount!");
-
-            logger.log("Vehicle String is: "+levels.ArrayToPrint());
+            
             for (int i = 0; i < Items.Count; i++)
             {
                 int timeLevel = levels[2*i];
@@ -76,7 +70,6 @@ namespace DefaultNamespace
         public override int[] GetState()
         {
             var x =  vehicles.Select(vehi => new[] { vehi.Level, vehi.MoneyLevel }).SelectMany(arr => arr).ToArray();
-            logger.log("I would like to safe: "+x.ArrayToPrint());
             return x;
         }
     }

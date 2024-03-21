@@ -1,8 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Util;
 
@@ -30,7 +27,7 @@ public class MyTabPane : MonoBehaviour
         
         buttons = buttonParent.transform.GetComponentsInChildren<Button>();
         screens = Screenparent.GetAllChildren().ToArray();
-        
+
         currentScreen = screens[0];
         currentButton = buttons[0];
 
