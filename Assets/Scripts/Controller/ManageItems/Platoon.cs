@@ -15,6 +15,7 @@ public class Platoon : MonoBehaviour
     {
         GameObject go = Instantiate(SoldierPrefab, transform);
         Soldier so = go.GetComponent<Soldier>();
+        so.name = "John Doe";
         so.LVL_Speed = speed;
         so.LVL_Reward = reward;
         so.LVL_Crit = crit;
