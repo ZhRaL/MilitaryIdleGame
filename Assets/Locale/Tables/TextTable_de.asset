@@ -34,6 +34,18 @@ MonoBehaviour:
     m_Localized: Musik
     m_Metadata:
       m_Items: []
+  - m_Id: 7510537564160
+    m_Localized: Kontakt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7715169267712
+    m_Localized: Impressum
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7902793068544
+    m_Localized: Datenschutz
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

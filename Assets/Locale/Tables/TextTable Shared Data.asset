@@ -31,6 +31,90 @@ MonoBehaviour:
     m_Key: Settings.Music
     m_Metadata:
       m_Items: []
+  - m_Id: 7510537564160
+    m_Key: Settings.Contact
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7715169267712
+    m_Key: Settings.Impressum
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7902793068544
+    m_Key: Settings.DatSchutz
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10507204194304
+    m_Key: Statistics.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10540997701632
+    m_Key: Statistics.Missions
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10569191813120
+    m_Key: Statistics.Tables
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10605925527552
+    m_Key: Statistics.Bedrooms
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10636980154368
+    m_Key: Statistics.Restrooms
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10782933544960
+    m_Key: Recruiting.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10933475504128
+    m_Key: Chair.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10998382358528
+    m_Key: Chair.Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11047480881152
+    m_Key: Bed.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11069781995520
+    m_Key: Bed.Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11095962841088
+    m_Key: Toilet.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11120528879616
+    m_Key: Toilet.Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11149087895552
+    m_Key: MissionUpgrade.Reward.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11508464250880
+    m_Key: MissionUpgrade.Reward.Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11556694552576
+    m_Key: MissionUpgrade.TimeRed.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11671488458752
+    m_Key: MissionUpgrade.TimeRed.Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11751079571456
+    m_Key: Soldier
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11796424192000
+    m_Key: Soldier.Description
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
