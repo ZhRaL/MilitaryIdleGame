@@ -18,9 +18,6 @@ public class OfflineCalculator
     private const string saveString = "OFFLINE_CALC";
 
     public KitchenController kitchenController;
-    public BathController bathController;
-    public SleepingController sleepingController;
-    public RecruitmentController recruitmentController;
     public RouteManager routeManager;
     
     public OfflineCalculator()
