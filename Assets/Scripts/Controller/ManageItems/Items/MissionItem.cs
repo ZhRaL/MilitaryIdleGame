@@ -7,11 +7,25 @@ namespace DefaultNamespace
 {
     public abstract class MissionItem : Item
     {
-        public int MoneyLevel { get; set; }
+        public int MoneyLevel
+        {
+            get => _level;
+            set
+            {
+                _level = value;
+                OnMoneyLevelUp?.Invoke(value);
+            }
+        }
         public abstract Transform Waypoints { get; set; }
         private Soldier _soldier;
         private SoldierWalkUtil wayBack;
 
+        public delegate void MoneyLevelUpEventHandler(int newLevel);
+    
+        // Ereignis für Levelaufstieg
+        public event MoneyLevelUpEventHandler OnMoneyLevelUp;
+
+        
         public void MoneyUpgrade()
         {
             MoneyLevel++;

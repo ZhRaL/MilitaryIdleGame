@@ -29,6 +29,7 @@ public class UpgradeScript : MonoBehaviour
 
     public void selectionChanged(UpgradeDto upgrade)
     {
+        current = upgrade;
         if(upgrade.IconBackground!=null)
         IconBackground.sprite = upgrade.IconBackground;
         Icon.sprite = upgrade.Icon;

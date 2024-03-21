@@ -9,13 +9,28 @@ namespace DefaultNamespace
         [SerializeField] private RoutingPoint _routingPoint;
         [SerializeField] private ObjectType _objectType;
 
+        public delegate void LevelUpEventHandler(int newLevel);
+    
+        // Ereignis für Levelaufstieg
+        public event LevelUpEventHandler OnLevelUp;
+        
         public ObjectType ObjectType
         {
             set => _objectType = value;
             get => _objectType;
         }
 
-        public int Level { get; set; }
+        private protected int _level;
+        public int Level
+        {
+            get => _level;
+            set
+            {
+                _level = value;
+                OnLevelUp?.Invoke(value);
+            }
+        }
+
         public int Index => transform.GetSiblingIndex();
         public bool Occupied { get; set; }
         public bool Unlocked { get; set; }

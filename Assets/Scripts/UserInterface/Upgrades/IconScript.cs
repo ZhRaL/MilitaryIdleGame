@@ -34,12 +34,22 @@ public class IconScript : MonoBehaviour
 
         iconImage.sprite = iconProvider.GetIcon(item.ToUpgradeType());
         tx_level.text = "" + item.Level;
+        item.OnLevelUp += ResetOnLevelUpdate;
 
         if (Upgradable(item))
             upgradeArrowImage.gameObject.SetActive(true);
         else upgradeArrowImage.gameObject.SetActive(false);
 
         AddButton();
+    }
+
+    private protected void ResetOnLevelUpdate(int newlevel)
+    {
+        tx_level.text = "" + newlevel;
+        
+        if (Upgradable(Item))
+            upgradeArrowImage.gameObject.SetActive(true);
+        else upgradeArrowImage.gameObject.SetActive(false);
     }
 
     protected virtual bool Upgradable(Item item)

@@ -35,6 +35,11 @@ public class Soldier : MonoBehaviour
     }
 
     public int MissionReward => 0; // DataProvider.GetReward(LVL_Reward)
+    
+    public delegate void LevelUpEventHandler(int newLevel);
+    
+    // Ereignis für Levelaufstieg
+    public event LevelUpEventHandler OnLevelUp;
 
     public int LVL_Crit, LVL_Speed, LVL_Reward;
 

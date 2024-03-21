@@ -29,10 +29,12 @@ public class DoubleIconScript : IconScript
         // Initialize Time Icon
         iconImage.sprite = iconProvider.GetIcon(getUpgradeType(true, parent.ObjType));
         tx_level.text = "" + item.Level;
+        item.OnLevelUp += ResetOnLevelUpdate;
 
         // Initialize Money Icon
         MoneyIconImage.sprite = iconProvider.GetIcon(getUpgradeType(false, parent.ObjType));
         MoneyTx_Level.text = "" + mit.MoneyLevel;
+        mit.OnMoneyLevelUp += ResetOnMoneyLevelUpdate;
 
         VehicleText.text = parent.ObjType.objectType + " " + item.Index;
         
@@ -48,6 +50,17 @@ public class DoubleIconScript : IconScript
         
         
         AddButtons();
+    }
+    
+    private protected void ResetOnMoneyLevelUpdate(int newlevel)
+    {
+        MoneyTx_Level.text = "" + newlevel;
+        
+
+        if (Upgradable((MissionItem)Item))
+            MoneyUpgradeArrowImage.gameObject.SetActive(true);
+        else MoneyUpgradeArrowImage.gameObject.SetActive(false);
+
     }
 
     protected override bool Upgradable(Item item)

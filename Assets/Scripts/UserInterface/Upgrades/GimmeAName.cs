@@ -91,7 +91,7 @@ public class GimmeAName : MonoBehaviour
                 title = "Mission Reward",
                 description = "DescriptionManager",
                 level = ((MissionItem) child.Item).MoneyLevel,
-                upgradeAction = ((MissionItem) child.Item).Upgrade,
+                upgradeAction = ((MissionItem) child.Item).MoneyUpgrade,
                 upgradeCost = GameManager.INSTANCE.DataProvider.GetCost(child.Item, true),
                 currentReward = GameManager.INSTANCE.DataProvider.GetReward(child.Item, true),
                 diffReward = GameManager.INSTANCE.DataProvider.GetRewardDiff(child.Item, true)
