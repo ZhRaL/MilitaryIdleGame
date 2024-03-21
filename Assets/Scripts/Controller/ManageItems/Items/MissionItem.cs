@@ -9,13 +9,16 @@ namespace DefaultNamespace
     {
         public int MoneyLevel
         {
-            get => _level;
+            get => _moneyLevel;
             set
             {
-                _level = value;
+                _moneyLevel = value;
                 OnMoneyLevelUp?.Invoke(value);
             }
         }
+
+        private int _moneyLevel;
+        
         public abstract Transform Waypoints { get; set; }
         private Soldier _soldier;
         private SoldierWalkUtil wayBack;

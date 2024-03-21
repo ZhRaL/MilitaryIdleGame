@@ -13,10 +13,6 @@ namespace DefaultNamespace
             get => _waypoints;
             set => _waypoints = value;
         }
-
-        private SoldierWalkUtil Wayback { get; set; }
-        
-        
         
     }
 }

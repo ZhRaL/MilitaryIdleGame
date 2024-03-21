@@ -94,7 +94,9 @@ public class GimmeAName : MonoBehaviour
                 upgradeAction = ((MissionItem) child.Item).MoneyUpgrade,
                 upgradeCost = GameManager.INSTANCE.DataProvider.GetCost(child.Item, true),
                 currentReward = GameManager.INSTANCE.DataProvider.GetReward(child.Item, true),
-                diffReward = GameManager.INSTANCE.DataProvider.GetRewardDiff(child.Item, true)
+                diffReward = GameManager.INSTANCE.DataProvider.GetRewardDiff(child.Item, true),
+                item = child.Item,
+                moneyItem = true
             }
             : new UpgradeDto
             {
@@ -106,7 +108,8 @@ public class GimmeAName : MonoBehaviour
                 upgradeAction = child.Item.Upgrade,
                 upgradeCost = GameManager.INSTANCE.DataProvider.GetCost(child.Item),
                 currentReward = GameManager.INSTANCE.DataProvider.GetReward(child.Item),
-                diffReward = GameManager.INSTANCE.DataProvider.GetRewardDiff(child.Item)
+                diffReward = GameManager.INSTANCE.DataProvider.GetRewardDiff(child.Item),
+                item = child.Item
             };
     }
 
@@ -121,7 +124,9 @@ public class GimmeAName : MonoBehaviour
             upgradeAction = selected.Item.Upgrade,
             upgradeCost = GameManager.INSTANCE.DataProvider.GetCost(selected.Item),
             currentReward = GameManager.INSTANCE.DataProvider.GetReward(selected.Item),
-            diffReward = GameManager.INSTANCE.DataProvider.GetRewardDiff(selected.Item)
+            diffReward = GameManager.INSTANCE.DataProvider.GetRewardDiff(selected.Item),
+            item = selected.Item
+            
         };
     }
 }

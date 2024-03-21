@@ -4,6 +4,7 @@ using System.Linq;
 using Interfaces;
 using UnityEngine;
 using UnityEngine.Events;
+using Util;
 
 namespace DefaultNamespace
 {
@@ -23,6 +24,7 @@ namespace DefaultNamespace
             if (levels.Length > 2 * Items.Count)
                 throw new ArgumentException("invalid Amount!");
 
+            logger.log("Vehicle String is: "+levels.ArrayToPrint());
             for (int i = 0; i < Items.Count; i++)
             {
                 int timeLevel = levels[2*i];
@@ -73,7 +75,9 @@ namespace DefaultNamespace
         
         public override int[] GetState()
         {
-            return vehicles.Select(tank => new[] { tank.Level, tank.MoneyLevel }).SelectMany(arr => arr).ToArray();
+            var x =  vehicles.Select(vehi => new[] { vehi.Level, vehi.MoneyLevel }).SelectMany(arr => arr).ToArray();
+            logger.log("I would like to safe: "+x.ArrayToPrint());
+            return x;
         }
     }
 }

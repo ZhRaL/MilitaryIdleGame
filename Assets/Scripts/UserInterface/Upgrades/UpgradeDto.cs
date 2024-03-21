@@ -13,5 +13,8 @@ namespace DefaultNamespace
         public UnityAction upgradeAction;
         public int upgradeCost, currentReward; 
         public float diffReward;
+        public Item item;
+        public bool moneyItem;
+        
     }
 }

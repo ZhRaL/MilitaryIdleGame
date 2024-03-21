@@ -75,6 +75,7 @@ public class RecruitTemplate : MonoBehaviour
             upgradeCost = GameManager.INSTANCE.DataProvider.GetCost(Soldier.ToItem(type)), 
             currentReward = GameManager.INSTANCE.DataProvider.GetReward(Soldier.ToItem(type)), 
             diffReward = GameManager.INSTANCE.DataProvider.GetRewardDiff(Soldier.ToItem(type)), 
+            item = Soldier.ToItem(type)
         });
     }
 }

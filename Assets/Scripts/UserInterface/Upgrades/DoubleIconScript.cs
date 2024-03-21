@@ -77,11 +77,11 @@ public class DoubleIconScript : IconScript
 
     protected void AddButtons()
     {
-        Button button = MoneyP.AddComponent<Button>();
+        var button = MoneyP.AddComponent<Button>();
         button.onClick.AddListener(() => MoneyButtonPressed());
         
-        button = TimeP.AddComponent<Button>();
-        button.onClick.AddListener(() => TimeButtonPressed());
+        var button2 = TimeP.AddComponent<Button>();
+        button2.onClick.AddListener(() => TimeButtonPressed());
     }
 
     public void TimeButtonPressed()

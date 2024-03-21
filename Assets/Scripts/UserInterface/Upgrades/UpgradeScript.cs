@@ -51,7 +51,18 @@ public class UpgradeScript : MonoBehaviour
             upgradeBtn.interactable = true;
             upgradeBtn.onClick.RemoveAllListeners();
             upgradeBtn.onClick.AddListener(() => GameManager.INSTANCE.Gold -= upgrade.upgradeCost);
+            upgradeBtn.onClick.AddListener(Refresh);
             upgradeBtn.onClick.AddListener(upgrade.upgradeAction);
         }
+    }
+
+    private void Refresh()
+    {
+        current.level++;
+        current.upgradeCost = GameManager.INSTANCE.DataProvider.GetCost(current.item, current.moneyItem);
+        current.currentReward = GameManager.INSTANCE.DataProvider.GetReward(current.item, current.moneyItem);
+        current.diffReward = GameManager.INSTANCE.DataProvider.GetRewardDiff(current.item, current.moneyItem);
+        
+        selectionChanged(current);
     }
 }

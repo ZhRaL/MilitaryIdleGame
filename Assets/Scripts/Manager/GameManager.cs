@@ -110,7 +110,7 @@ public class GameManager : MonoBehaviour
         Gold = PlayerPrefs.GetFloat("Gold", 550);
         Badges = PlayerPrefs.GetFloat("Badges", 0);
         
-        MissionController.loadState(JsonHelper.FromJson<int>(PlayerPrefs.GetString(MISSIONSAFESTRING," {\"Items\":[1,1,1,1,0,0,1,1,0,0,0,0,1,1,0,0,0,0]}")));
+        MissionController.loadState(JsonHelper.FromJson<int>(PlayerPrefs.GetString(MISSIONSAFESTRING," {\"Items\":[1,2,3,4,0,0,1,2,0,0,0,0,1,5,0,0,0,0]}")));
         KitchenController.loadState(JsonHelper.FromJson<int>(PlayerPrefs.GetString(KITCHENSAFESTRING," {\"Items\":[1,0,0,0,1,0,0,0,1,0,0,0]}")));
         BathController.loadState(JsonHelper.FromJson<int>(PlayerPrefs.GetString(BATHSAFESTRING," {\"Items\":[1,0,0,1,0,0,1,0,0]}")));
         SleepingController.loadState(JsonHelper.FromJson<int>(PlayerPrefs.GetString(SLEEPINGSAFESTRING," {\"Items\":[1,0,0,0,1,0,0,0,1,0,0,0]}")));
