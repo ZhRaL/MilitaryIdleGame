@@ -37,22 +37,20 @@ public class RecruitTemplate : MonoBehaviour
 
     private void SpeedUpgrade(IconScript script)
     {
-        ToUpgrade(Soldier.LVL_Speed, () => Soldier.LVL_Speed++);
-    }
+        ToUpgrade(Soldier.LVL_Speed, () => Soldier.LVL_Speed++,Soldier.SoldierUpgradeType.SPEED); 
+    } 
     
     private void RewardUpgrade(IconScript script)
     {
-        Soldier.LVL_Reward++;
-        logger.log("SOldier "+Soldier.name+" Upgraded Reward to "+script.Item.Level);
-    }
+        ToUpgrade(Soldier.LVL_Speed, () => Soldier.LVL_Speed++,Soldier.SoldierUpgradeType.REWARD); 
+    } 
     
     private void CritUpgrade(IconScript script)
     {
-        Soldier.LVL_Crit++;
-        logger.log("SOldier "+Soldier.name+" Upgraded Crit to "+script.Item.Level);
-    }
+        ToUpgrade(Soldier.LVL_Speed, () => Soldier.LVL_Speed++,Soldier.SoldierUpgradeType.CRIT); 
+    } 
 
-    private void ToUpgrade(int level, UnityAction upgradeAction)
+    private void ToUpgrade(int level, UnityAction upgradeAction, Soldier.SoldierUpgradeType type) 
     {
         UpgradeScript.selectionChanged(new UpgradeDto
         {
@@ -62,9 +60,9 @@ public class RecruitTemplate : MonoBehaviour
             description = "TBD",
             level = level,
             upgradeAction = upgradeAction,
-            upgradeCost = 0,
-            currentReward = 1,
-            diffReward = 2
+            upgradeCost = GameManager.INSTANCE.DataProvider.GetCost(Soldier.ToItem(type)), 
+            currentReward = GameManager.INSTANCE.DataProvider.GetReward(Soldier.ToItem(type)), 
+            diffReward = GameManager.INSTANCE.DataProvider.GetRewardDiff(Soldier.ToItem(type)), 
         });
     }
 }
