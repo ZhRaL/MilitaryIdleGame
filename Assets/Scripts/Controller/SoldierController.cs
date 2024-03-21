@@ -15,7 +15,7 @@ public class SoldierController : MonoBehaviour
     {
         INSTANCE = this;
     }
-
+// Test
     public Soldier[] GetAllSoldiersFrom(DefenseType type)
     {
         return type switch
