@@ -114,7 +114,7 @@ public class GameManager : MonoBehaviour
         KitchenController.loadState(JsonHelper.FromJson<int>(PlayerPrefs.GetString(KITCHENSAFESTRING," {\"Items\":[1,0,0,0,1,0,0,0,1,0,0,0]}")));
         BathController.loadState(JsonHelper.FromJson<int>(PlayerPrefs.GetString(BATHSAFESTRING," {\"Items\":[1,0,0,1,0,0,1,0,0]}")));
         SleepingController.loadState(JsonHelper.FromJson<int>(PlayerPrefs.GetString(SLEEPINGSAFESTRING," {\"Items\":[1,0,0,0,1,0,0,0,1,0,0,0]}")));
-        SoldierController.loadState(JsonHelper.FromJson<int>(PlayerPrefs.GetString(RECRUITMENTSAFESTRING," {\"Items\":[1,1,1,-1,-1,-1,1,1,1,-1,-1,-1,1,1,1]}")));
+        SoldierController.loadState(JsonHelper.FromJson<int>(PlayerPrefs.GetString(RECRUITMENTSAFESTRING," {\"Items\":[1,1,1,1,1,1,-1,-1,-1,1,1,1,-1,-1,-1,1,1,1]}")));
 
         isInitialized = true;
         _offlineCalculator.calculateReward();

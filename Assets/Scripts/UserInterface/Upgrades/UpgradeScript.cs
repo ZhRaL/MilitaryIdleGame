@@ -49,6 +49,7 @@ public class UpgradeScript : MonoBehaviour
         {
             upgradeBtn.interactable = true;
             upgradeBtn.onClick.RemoveAllListeners();
+            upgradeBtn.onClick.AddListener(() => GameManager.INSTANCE.Gold -= upgrade.upgradeCost);
             upgradeBtn.onClick.AddListener(upgrade.upgradeAction);
         }
     }

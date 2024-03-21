@@ -42,12 +42,12 @@ public class RecruitTemplate : MonoBehaviour
     
     private void RewardUpgrade(IconScript script)
     {
-        ToUpgrade(Soldier.LVL_Speed, () => Soldier.LVL_Speed++,Soldier.SoldierUpgradeType.REWARD); 
+        ToUpgrade(Soldier.LVL_Reward, () => Soldier.LVL_Speed++,Soldier.SoldierUpgradeType.REWARD); 
     } 
     
     private void CritUpgrade(IconScript script)
     {
-        ToUpgrade(Soldier.LVL_Speed, () => Soldier.LVL_Speed++,Soldier.SoldierUpgradeType.CRIT); 
+        ToUpgrade(Soldier.LVL_Crit, () => Soldier.LVL_Speed++,Soldier.SoldierUpgradeType.CRIT); 
     } 
 
     private void ToUpgrade(int level, UnityAction upgradeAction, Soldier.SoldierUpgradeType type) 
@@ -66,3 +66,31 @@ public class RecruitTemplate : MonoBehaviour
         });
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
