@@ -4542,6 +4542,7 @@ GameObject:
   - component: {fileID: 186830701}
   - component: {fileID: 186830700}
   - component: {fileID: 186830703}
+  - component: {fileID: 186830704}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -4588,11 +4589,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: -129.5
-  far clip plane: 119.01
+  near clip plane: 0
+  far clip plane: 30.4
   field of view: 102
   orthographic: 1
-  orthographic size: 6.7
+  orthographic size: 9
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -4617,7 +4618,7 @@ Transform:
   m_GameObject: {fileID: 186830699}
   serializedVersion: 2
   m_LocalRotation: {x: -0.07719711, y: -0.9157724, z: 0.33158654, w: -0.21319465}
-  m_LocalPosition: {x: -3.2045574, y: 7.3730435, z: 13.764991}
+  m_LocalPosition: {x: 0.17, y: 15.73, z: 13.764991}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4630,7 +4631,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 186830699}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1dd8bb9361e998b40bb033c01477790e, type: 3}
   m_Name: 
@@ -4651,7 +4652,38 @@ MonoBehaviour:
   Right: -32
   Top: -45
   Bottom: 16
-  camTarget: {fileID: 964780283}
+  camTarget: {fileID: 0}
+  offset: {x: 0, y: 0, z: 0}
+  smoothSpeed: 7
+  mouseScaleFactor: 24
+--- !u!114 &186830704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 186830699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ed9cf575d895904db79501298cf0faf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedPan: 0.05
+  perspectiveZoomSpeed: 1
+  orthoZoomSpeed: 0.02
+  mainCamera: {fileID: 186830701}
+  FirstPoint: {x: 0, y: 0, z: 0}
+  SecondPoint: {x: 0, y: 0, z: 0}
+  xAngle: 0
+  yAngle: 0
+  xAngleTemp: 0
+  yAngleTemp: 0
+  minDistanceZoomIn: 7
+  maxDistanceZoomOut: 15
+  Left: 40
+  Right: -32
+  Top: -45
+  Bottom: 16
   offset: {x: 0, y: 0, z: 0}
   smoothSpeed: 7
   mouseScaleFactor: 24
@@ -22242,37 +22274,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 956749555}
   m_CullTransparentMesh: 0
---- !u!1 &964780282
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 964780283}
-  m_Layer: 0
-  m_Name: CamTarget
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &964780283
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 964780282}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.091160595, y: -0.9059298, z: 0.32802227, w: -0.25175878}
-  m_LocalPosition: {x: 13.27, y: -21.4, z: -17}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1813304783}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &972152258
 GameObject:
   m_ObjectHideFlags: 0
@@ -46301,7 +46302,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 964780283}
   - {fileID: 186830702}
   - {fileID: 562261078}
   m_Father: {fileID: 0}
