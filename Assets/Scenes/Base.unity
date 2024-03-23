@@ -4590,7 +4590,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0
-  far clip plane: 30.4
+  far clip plane: 50
   field of view: 102
   orthographic: 1
   orthographic size: 9
@@ -4668,16 +4668,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ed9cf575d895904db79501298cf0faf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedPan: 0.05
+  speedPan: 0.2
   perspectiveZoomSpeed: 1
   orthoZoomSpeed: 0.02
   mainCamera: {fileID: 186830701}
-  FirstPoint: {x: 0, y: 0, z: 0}
-  SecondPoint: {x: 0, y: 0, z: 0}
-  xAngle: 0
-  yAngle: 0
-  xAngleTemp: 0
-  yAngleTemp: 0
   minDistanceZoomIn: 7
   maxDistanceZoomOut: 15
   Left: 40

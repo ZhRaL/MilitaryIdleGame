@@ -15,15 +15,6 @@ public class MovementController : MonoBehaviour
 
     public Camera mainCamera;
 
-    //variables for camera orbit
-    public Vector3 FirstPoint;
-    public Vector3 SecondPoint;
-
-    public float xAngle; //angle for axes x for rotation
-    public float yAngle;
-    public float xAngleTemp; //temp variable for angle
-    public float yAngleTemp;
-
     public float minDistanceZoomIn, maxDistanceZoomOut;
 
     private float zoomFaktorRecalculate;
