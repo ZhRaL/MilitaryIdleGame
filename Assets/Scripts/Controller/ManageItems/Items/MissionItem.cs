@@ -97,5 +97,11 @@ namespace DefaultNamespace
         {
             wayBack?.Update();
         }
+
+        public override JsonItem ToJson() {
+            return new MissionItemJO() {
+                SpeedLevel = Level;
+                MoneyLevel = MoneyLevel;
+        }
     }
 }
