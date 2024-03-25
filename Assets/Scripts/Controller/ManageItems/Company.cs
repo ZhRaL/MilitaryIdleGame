@@ -14,35 +14,6 @@ namespace DefaultNamespace
 
         public override List<Item> Items => new(vehicles);
         
-        public override void Init(int[] levels)
-        {
-            if (levels.Length > 2 * Items.Count)
-                throw new ArgumentException("invalid Amount!");
-            
-            for (int i = 0; i < Items.Count; i++)
-            {
-                int timeLevel = levels[2*i];
-                int moneyLevel = levels[2*i + 1];
-                
-                Item item = Items[i];
-                if (timeLevel > 0 && item.isMissionItem())
-                {
-                    item.Unlocked = true;
-                    item.Parent = this;
-                    
-                    MissionItem missionItem = (MissionItem) item;
-
-                    item.Level = timeLevel;
-                    missionItem.MoneyLevel = moneyLevel;
-                }
-                else
-                {
-                    // TODO - Add Baustellen Prefab
-                    item.gameObject.SetActive(false);
-                }
-            }
-        }
-        
         public override void PlaceSoldier(Soldier soldier)
         {
             // TODO - hie rweiter machen
@@ -67,10 +38,33 @@ namespace DefaultNamespace
             if (freeS != null) PlaceSoldier(freeS);
         }
         
-        public override int[] GetState()
+        public override void Load(JsonManageItem levels)
         {
-            var x =  vehicles.Select(vehi => new[] { vehi.Level, vehi.MoneyLevel }).SelectMany(arr => arr).ToArray();
-            return x;
+  
+          // TODO_OLD  for (int i = 0; i < Items.Count; i++)
+          // TODO_OLD  {
+          // TODO_OLD      int timeLevel = levels[2*i];
+          // TODO_OLD      int moneyLevel = levels[2*i + 1];
+          // TODO_OLD      
+          // TODO_OLD      Item item = Items[i];
+          // TODO_OLD      if (timeLevel > 0 && item.isMissionItem())
+          // TODO_OLD      {
+          // TODO_OLD          item.Unlocked = true;
+          // TODO_OLD          item.Parent = this;
+          // TODO_OLD          
+          // TODO_OLD          MissionItem missionItem = (MissionItem) item;
+// TODO_OLD
+          // TODO_OLD          item.Level = timeLevel;
+          // TODO_OLD          missionItem.MoneyLevel = moneyLevel;
+          // TODO_OLD      }
+          // TODO_OLD      else
+          // TODO_OLD      {
+          // TODO_OLD          // TODO - Add Baustellen Prefab
+          // TODO_OLD          item.gameObject.SetActive(false);
+          // TODO_OLD      }
+          // TODO_OLD  }
         }
+        
+        
     }
 }

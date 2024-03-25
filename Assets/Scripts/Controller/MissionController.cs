@@ -13,23 +13,16 @@ namespace DefaultNamespace
         public IManageItem ArmyManager => companyArmy;
         public IManageItem AirforceManager => companyAirforce;
         public IManageItem MarineManager => companyMarine;
-        
-        public int[] getState()
+
+        public JsonController Save()
         {
-            return ArmyManager.GetState()
-                .Concat(AirforceManager.GetState())
-                .Concat(MarineManager.GetState())
-                .ToArray();
+            Debug.Log("Was called on MissioNControlelr");
+            return null;
         }
 
-        public void loadState(int[] state)
+        public void Load(JsonController state)
         {
-            if (state.Length != 18) 
-                throw new ArgumentException("Wrong Length of Array");
-
-            ArmyManager.Init(state[..6]);
-            AirforceManager.Init(state[6..12]);
-            MarineManager.Init(state[12..18]);
+            Debug.Log("Was called on MissioNControlelr");
         }
     }
 }

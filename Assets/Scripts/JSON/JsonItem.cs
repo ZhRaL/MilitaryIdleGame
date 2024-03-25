@@ -1,3 +1,8 @@
 
+using System;
+
 [Serializable]
-public abstract class JsonItem{}
+public class JsonItem
+{
+    public int Level {get; set;} = 1;
+}

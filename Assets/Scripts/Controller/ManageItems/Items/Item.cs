@@ -76,8 +76,22 @@ namespace DefaultNamespace
 
         public virtual JsonItem ToJson() {
             return new ItemJO() {
-                Level = Level;
+                Level = Level
             };
+        }
+
+        public void Load(IManageItem parent, JsonItem jsonItem)
+        {
+            Parent = parent;
+            if (jsonItem != null)
+            {
+                Unlocked = true;
+                Level = jsonItem.Level;
+            }
+            else
+            {
+                gameObject.SetActive(false);
+            }
         }
     }
 }

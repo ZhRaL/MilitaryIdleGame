@@ -30,27 +30,7 @@ namespace DefaultNamespace
             copyOfWalkingSoldiers.ForEach(soldierWalkUtil => soldierWalkUtil.Update());
             TheWaitingService.Update();
         }
-
-        public virtual void Init(int[] levels)
-        {
-            
-            if (levels.Length > Items.Count) 
-                throw new ArgumentException("invalid Amount!");
-
-            for (int i = 0; i < Items.Count; i++)
-            {
-                int level = levels[i];
-                Item item = Items[i];
-                if (level > 0)
-                {
-                    item.Unlocked = true;
-                    item.Level = level;
-                    item.Parent = this;
-                }
-                else item.gameObject.SetActive(false);
-            }
-        }
-
+        
         public virtual void PlaceSoldier(Soldier soldier)
         {
             Item targetItem = GetNextFreeItem();
@@ -101,9 +81,34 @@ namespace DefaultNamespace
             return Items.FirstOrDefault(item => item.Unlocked && !item.Occupied);
         }
 
-        public virtual int[] GetState()
+        public virtual JsonManageItem Save()
         {
-            return Items.Select(item => item.Level).ToArray();
+            JsonManageItem item = new JsonManageItem();
+            Items.ForEach(x => item.AddItem(x.ToJson()));
+            return item;
+        }
+        
+        public virtual void Load(JsonManageItem levels)
+        {
+            for (int i = 0; i < Items.Count; i++)
+            {
+                Items[i].Load(this, levels.GetIndex(i));
+            }
+
+           /* for (int i = 0; i < Items.Count; i++)
+            {
+                int level = levels[i];
+                Item item = Items[i];
+                if (level > 0)
+                {
+                    item.Unlocked = true;
+                    item.Level = level;
+                    item.Parent = this;
+                }
+                else item.gameObject.SetActive(false);
+                }
+                */
+
         }
         
         public virtual void ItemIsFree()

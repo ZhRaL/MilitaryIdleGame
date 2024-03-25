@@ -11,8 +11,9 @@ namespace DefaultNamespace
         IManageItem AirforceManager { get; }
         IManageItem MarineManager { get; }
 
-        int[] getState();
-        void loadState(int[] state);
+        // JsonController Save();
+        // void Load(JsonController state);
+        // look at Class InterfaceExtensions
 
 
     }

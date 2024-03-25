@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+
 [Serializable]
 public class Jsonmanager {
     public List<JsonController> Controllers = new();
@@ -8,5 +11,6 @@ public class Jsonmanager {
 
     public string GetSaveString() {
       // return Jsonhelper.ToString(this);
+      return null;
     }
 }
