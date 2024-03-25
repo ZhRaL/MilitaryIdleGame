@@ -73,5 +73,11 @@ namespace DefaultNamespace
         {
             return this is MissionItem;
         }
+
+        public virtual JsonItem ToJson() {
+            return new ItemJO() {
+                Level = Level;
+            };
+        }
     }
 }
