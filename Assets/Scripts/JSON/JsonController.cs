@@ -1,4 +1,4 @@
-
+[Serializable]
 public class JsonController {
     public List<JsonManageItem> SaveManagers = new();
 
