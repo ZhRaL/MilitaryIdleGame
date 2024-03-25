@@ -1,4 +1,4 @@
-
+[Serializable]
 public class JsonManageItem {
     public List<JsonItem> SaveItems = new();
 
