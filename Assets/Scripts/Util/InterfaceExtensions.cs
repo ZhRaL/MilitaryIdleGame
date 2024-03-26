@@ -1,4 +1,5 @@
 ﻿using DefaultNamespace;
+using UnityEngine;
 
 namespace Util
 {
@@ -17,9 +18,8 @@ namespace Util
         public static void Load(this IController controller, JsonController state)
         {
             controller.ArmyManager.Load(state.GetAt(0));
-            controller.AirforceManager.Load(state.GetAt(0));
-            controller.MarineManager.Load(state.GetAt(0));
-
+            controller.AirforceManager.Load(state.GetAt(1));
+            controller.MarineManager.Load(state.GetAt(2));
         }
     }
 }

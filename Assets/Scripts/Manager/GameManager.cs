@@ -96,11 +96,11 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetFloat("Gold", Gold);
         PlayerPrefs.SetFloat("Badges", Badges);
         
-       // PlayerPrefs.SetString(MISSIONSAFESTRING,JsonHelper.ToJson(MissionController.Save()));
-       // PlayerPrefs.SetString(KITCHENSAFESTRING,JsonHelper.ToJson(KitchenController.Save()));
-       // PlayerPrefs.SetString(BATHSAFESTRING,JsonHelper.ToJson(BathController.Save()));
-       // PlayerPrefs.SetString(SLEEPINGSAFESTRING,JsonHelper.ToJson(SleepingController.Save()));
-       // PlayerPrefs.SetString(RECRUITMENTSAFESTRING,JsonHelper.ToJson(SoldierController.getState()));
+       PlayerPrefs.SetString(MISSIONSAFESTRING,JsonUtility.ToJson(MissionController.Save()));
+       PlayerPrefs.SetString(KITCHENSAFESTRING,JsonUtility.ToJson(KitchenController.Save()));
+       PlayerPrefs.SetString(BATHSAFESTRING,JsonUtility.ToJson(BathController.Save()));
+       PlayerPrefs.SetString(SLEEPINGSAFESTRING,JsonUtility.ToJson(SleepingController.Save()));
+       PlayerPrefs.SetString(RECRUITMENTSAFESTRING,JsonUtility.ToJson(SoldierController.Save()));
 
         PlayerPrefs.Save();
     }
@@ -110,11 +110,11 @@ public class GameManager : MonoBehaviour
         Gold = PlayerPrefs.GetFloat("Gold", 550);
         Badges = PlayerPrefs.GetFloat("Badges", 0);
         
-      //  MissionController.Load(JsonHelper.FromJson<int>(PlayerPrefs.GetString(MISSIONSAFESTRING," {\"Items\":[1,2,3,4,0,0,1,2,0,0,0,0,1,5,0,0,0,0]}")));
-      //  KitchenController.Load(JsonHelper.FromJson<int>(PlayerPrefs.GetString(KITCHENSAFESTRING," {\"Items\":[1,0,0,0,1,0,0,0,1,0,0,0]}")));
-      //  BathController.Load(JsonHelper.FromJson<int>(PlayerPrefs.GetString(BATHSAFESTRING," {\"Items\":[1,0,0,1,0,0,1,0,0]}")));
-      //  SleepingController.Load(JsonHelper.FromJson<int>(PlayerPrefs.GetString(SLEEPINGSAFESTRING," {\"Items\":[1,0,0,0,1,0,0,0,1,0,0,0]}")));
-      //  SoldierController.loadState(JsonHelper.FromJson<int>(PlayerPrefs.GetString(RECRUITMENTSAFESTRING," {\"Items\":[1,1,1,1,1,1,-1,-1,-1,1,1,1,-1,-1,-1,1,1,1]}")));
+        MissionController.Load(JsonUtility.FromJson<JsonController>(PlayerPrefs.GetString(MISSIONSAFESTRING,"")) ?? JsonController.Default());
+        KitchenController.Load(JsonUtility.FromJson<JsonController>(PlayerPrefs.GetString(KITCHENSAFESTRING,"")) ?? JsonController.Default());
+        BathController.Load(JsonUtility.FromJson<JsonController>(PlayerPrefs.GetString(BATHSAFESTRING,""))?? JsonController.Default());
+        SleepingController.Load(JsonUtility.FromJson<JsonController>(PlayerPrefs.GetString(SLEEPINGSAFESTRING,"")) ?? JsonController.Default());
+        SoldierController.Load(JsonUtility.FromJson<JsonController>(PlayerPrefs.GetString(RECRUITMENTSAFESTRING,""))?? JsonController.Default());
 
         isInitialized = true;
         _offlineCalculator.calculateReward();

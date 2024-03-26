@@ -12,7 +12,7 @@ namespace DefaultNamespace
         [SerializeField] private DefenseType _defenseType;
         [SerializeField] private Transform _waitingPosParent;
         private protected WaitingService _waitingService;
-        
+
         public abstract List<Item> Items { get; }
         DefenseType DefenseType => _defenseType;
         private protected WaitingService TheWaitingService { get; set; }
@@ -23,14 +23,14 @@ namespace DefaultNamespace
         {
             TheWaitingService = new WaitingService(_waitingPosParent);
         }
-        
+
         void Update()
         {
             var copyOfWalkingSoldiers = new List<SoldierWalkUtil>(WalkingSoldiers);
             copyOfWalkingSoldiers.ForEach(soldierWalkUtil => soldierWalkUtil.Update());
             TheWaitingService.Update();
         }
-        
+
         public virtual void PlaceSoldier(Soldier soldier)
         {
             Item targetItem = GetNextFreeItem();
@@ -44,13 +44,13 @@ namespace DefaultNamespace
                 TheWaitingService.addSoldier(soldier);
             }
         }
-        
+
         private protected void moveSoldierTo(Soldier soldier, Transform target, Action executeWhenReached)
         {
             soldier.anim.SetBool("isRunning", true);
             WalkingSoldiers.Add(new SoldierWalkUtil(soldier, target, executeWhenReached, RemoveWalkingSoldier));
         }
-        
+
         public void RemoveWalkingSoldier(SoldierWalkUtil walk)
         {
             WalkingSoldiers.Remove(walk);
@@ -60,7 +60,7 @@ namespace DefaultNamespace
         {
             return Items[index].Level;
         }
-        
+
         public UnityAction GetUpgradeMethod(int index)
         {
             return Items[index].Upgrade;
@@ -75,7 +75,7 @@ namespace DefaultNamespace
         {
             return Items.Count(s => s.Unlocked);
         }
-        
+
         private protected Item GetNextFreeItem()
         {
             return Items.FirstOrDefault(item => item.Unlocked && !item.Occupied);
@@ -87,35 +87,20 @@ namespace DefaultNamespace
             Items.ForEach(x => item.AddItem(x.ToJson()));
             return item;
         }
-        
+
         public virtual void Load(JsonManageItem levels)
         {
+            
             for (int i = 0; i < Items.Count; i++)
             {
                 Items[i].Load(this, levels.GetIndex(i));
             }
-
-           /* for (int i = 0; i < Items.Count; i++)
-            {
-                int level = levels[i];
-                Item item = Items[i];
-                if (level > 0)
-                {
-                    item.Unlocked = true;
-                    item.Level = level;
-                    item.Parent = this;
-                }
-                else item.gameObject.SetActive(false);
-                }
-                */
-
         }
-        
+
         public virtual void ItemIsFree()
         {
             Soldier freeS = TheWaitingService.Shift();
             if (freeS != null) PlaceSoldier(freeS);
         }
-
     }
 }

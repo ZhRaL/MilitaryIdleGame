@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -8,10 +9,10 @@ using Util;
 public class Platoon : MonoBehaviour
 {
     public GameObject SoldierPrefab;
-    public List<Soldier> Soldiers=new();
+    public List<Soldier> Soldiers = new();
     public GameObject parentRoute;
 
-    public void createSoldier(int speed, int reward, int crit)
+    public void createSoldier(int speed, int reward, int crit, string name)
     {
         GameObject go = Instantiate(SoldierPrefab, transform);
         Soldier so = go.GetComponent<Soldier>();
@@ -20,22 +21,37 @@ public class Platoon : MonoBehaviour
         so.LVL_Reward = reward;
         so.LVL_Crit = crit;
         so.parentRoute = parentRoute;
+        so.SoldierName = name;
         Soldiers.Add(so);
     }
 
-
-    public int[] GetState()
+    public void Load(JsonManageItem levels)
     {
-        List<int> result = new();
-        for (int i = 0; i < transform.childCount; i++)
+        foreach (var ji in levels.SaveItems)
         {
-            Soldier so = transform.GetChild(i).gameObject.GetComponent<Soldier>();
-            result.Add(so.LVL_Speed);
-            result.Add(so.LVL_Reward);
-            result.Add(so.LVL_Crit);
+            SoldierItemJO jo = ji as SoldierItemJO ?? new SoldierItemJO();
+            createSoldier(jo.SpeedLevel, jo.MissionRewardLevel, jo.CritLevel, jo.Name);
+        }
+    }
 
+    public JsonManageItem Save()
+    {
+        JsonManageItem item = new JsonManageItem();
+
+        foreach (Transform trans in transform)
+        {
+            Soldier so = trans.GetComponent<Soldier>();
+            SoldierItemJO jo = new SoldierItemJO
+            {
+                Level = -1,
+                Name = so.SoldierName,
+                SpeedLevel = so.LVL_Speed,
+                MissionRewardLevel = so.LVL_Reward,
+                CritLevel = so.LVL_Crit,
+            };
+            item.AddItem(jo);
         }
 
-        return result.ToArray();
+        return item;
     }
 }
