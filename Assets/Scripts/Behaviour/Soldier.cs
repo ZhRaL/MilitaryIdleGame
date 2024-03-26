@@ -5,12 +5,29 @@ using DefaultNamespace;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Serialization;
 using Util;
 
 public class Soldier : MonoBehaviour
 {
-    public string SoldierName;
+    [SerializeField]
+    private string _soldierName;
+
+    public string SoldierName
+    {
+        get
+        {
+            return _soldierName;
+        }
+        set
+        {
+            OnNameChanged?.Invoke(value);
+            _soldierName = value;
+        }
+    }
+
+    public UnityAction<string> OnNameChanged;
     public GameObject parentRoute;
     public Transform[] path;
     public Animator anim;
