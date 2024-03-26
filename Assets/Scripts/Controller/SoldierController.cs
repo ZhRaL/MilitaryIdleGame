@@ -5,15 +5,17 @@ using System.Linq;
 using UnityEngine;
 using Util;
 
+[Serializable]
 public class SoldierController : MonoBehaviour
 {
     public static SoldierController INSTANCE;
 
-    public Platoon Army, Airf, Marine;
     private void Awake()
     {
         INSTANCE = this;
     }
+
+    public Platoon Army, Airf, Marine;
 
     public Soldier[] GetAllSoldiersFrom(DefenseType type)
     {
@@ -25,19 +27,19 @@ public class SoldierController : MonoBehaviour
         };
     }
     
-    public JsonController Save()
+    public JsonController<SoldierItemJO> Save()
     {
-        JsonController contr = new JsonController();
+        JsonController<SoldierItemJO> contr = new JsonController<SoldierItemJO>();
         contr.AddManager(Army.Save());
         contr.AddManager(Airf.Save());
         contr.AddManager(Marine.Save());
         return contr;
     }
     
-    public void Load(JsonController state)
+    public void Load(JsonController<SoldierItemJO> state)
     {
         if (state == null)
-            state = new JsonController();
+            state = JsonController<SoldierItemJO>.Default(new SoldierItemJO());
         
         Army.Load(state.GetAt(0));
         Airf.Load(state.GetAt(1));

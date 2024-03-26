@@ -37,26 +37,26 @@ namespace DefaultNamespace
             if (freeS != null) PlaceSoldier(freeS);
         }
 
-        public override void Load(JsonManageItem levels)
+        public override void Load<T>(JsonManageItem<T> levels)
         {
             for (int i = 0; i < vehicles.Count; i++)
             {
-                // Hier noch null dan nwird auch neues MissionItem gemacht, unterbinden durch null abfrage vorhers
-                MissionItemJO jo = levels.GetIndex(i) as MissionItemJO ?? new MissionItemJO();
                 MissionItem item = (MissionItem)Items[i];
-                
-                if (jo != null)
-                {
-                    item.Unlocked = true;
-                    item.Parent = this;
-                    item.Level = jo.Level;
-                    item.MoneyLevel = jo.MoneyLevel;
-                    continue;
-                }
 
+                if (levels.GetIndex(i) == null)
                 {
                     // TODO - Add Baustellen Prefab
                     item.gameObject.SetActive(false);
+                    continue;
+                }
+
+                if (levels.GetIndex(i) is JsonItem ji)
+                {
+                    MissionItemJO jo = ji as MissionItemJO ?? new MissionItemJO();
+                    item.Unlocked = true;
+                    item.Parent = this;
+                    item.Level = jo.Json_Level;
+                    item.MoneyLevel = jo.MoneyLevel;
                 }
             }
         }

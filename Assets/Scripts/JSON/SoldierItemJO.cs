@@ -1,10 +1,14 @@
-
+using System;
+using Interfaces;
 using Util;
 
-public class SoldierItemJO : JsonItem {
-    public string Name {get;set;} = "John Doe";
-    public int SpeedLevel {get;set;} = 1;
-    public int MissionRewardLevel {get;set;} = 1;
-    public int CritLevel {get;set;} = 1;
+[Serializable]
+public class SoldierItemJO : JsonItem, IDefaultable<SoldierItemJO>
+{
+    public string Name = "John Doe";
+    public int SpeedLevel = 1;
+    public int MissionRewardLevel = 1;
+    public int CritLevel = 1;
 
+    public SoldierItemJO CreateDefault => new();
 }

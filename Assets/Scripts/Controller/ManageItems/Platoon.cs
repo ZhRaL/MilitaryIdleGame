@@ -25,7 +25,7 @@ public class Platoon : MonoBehaviour
         Soldiers.Add(so);
     }
 
-    public void Load(JsonManageItem levels)
+    public void Load(JsonManageItem<SoldierItemJO> levels)
     {
         foreach (var ji in levels.SaveItems)
         {
@@ -34,16 +34,16 @@ public class Platoon : MonoBehaviour
         }
     }
 
-    public JsonManageItem Save()
+    public JsonManageItem<SoldierItemJO> Save()
     {
-        JsonManageItem item = new JsonManageItem();
+        JsonManageItem<SoldierItemJO> item = new JsonManageItem<SoldierItemJO>();
 
         foreach (Transform trans in transform)
         {
             Soldier so = trans.GetComponent<Soldier>();
             SoldierItemJO jo = new SoldierItemJO
             {
-                Level = -1,
+                Json_Level = -1,
                 Name = so.SoldierName,
                 SpeedLevel = so.LVL_Speed,
                 MissionRewardLevel = so.LVL_Reward,

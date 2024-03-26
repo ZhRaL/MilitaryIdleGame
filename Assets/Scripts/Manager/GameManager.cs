@@ -21,12 +21,13 @@ public class GameManager : MonoBehaviour
     private bool isInitialized = false;
 
     #endregion
+
     private const string MISSIONSAFESTRING = "Mission_Levels";
     private const string KITCHENSAFESTRING = "Kitchen_Levels";
     private const string BATHSAFESTRING = "Bath_Levels";
     private const string SLEEPINGSAFESTRING = "Sleeping_Levels";
     public const string RECRUITMENTSAFESTRING = "Recruitment_Levels";
-    
+
     public DataProvider DataProvider = new();
 
     #region currencies
@@ -43,7 +44,7 @@ public class GameManager : MonoBehaviour
         {
             _gold = value;
             tx_Gold.text = "" + _gold;
-            if (isInitialized) 
+            if (isInitialized)
                 SaveGame();
             OnMoneyChanged?.Invoke();
         }
@@ -95,12 +96,18 @@ public class GameManager : MonoBehaviour
     {
         PlayerPrefs.SetFloat("Gold", Gold);
         PlayerPrefs.SetFloat("Badges", Badges);
-        
-       PlayerPrefs.SetString(MISSIONSAFESTRING,JsonUtility.ToJson(MissionController.Save()));
-       PlayerPrefs.SetString(KITCHENSAFESTRING,JsonUtility.ToJson(KitchenController.Save()));
-       PlayerPrefs.SetString(BATHSAFESTRING,JsonUtility.ToJson(BathController.Save()));
-       PlayerPrefs.SetString(SLEEPINGSAFESTRING,JsonUtility.ToJson(SleepingController.Save()));
-       PlayerPrefs.SetString(RECRUITMENTSAFESTRING,JsonUtility.ToJson(SoldierController.Save()));
+
+        string b = JsonUtility.ToJson(KitchenController.Save<JsonItem>());
+        Debug.Log("String is: " + b);
+        PlayerPrefs.SetString(KITCHENSAFESTRING, b);
+        PlayerPrefs.SetString(BATHSAFESTRING, JsonUtility.ToJson(BathController.Save<JsonItem>()));
+        PlayerPrefs.SetString(SLEEPINGSAFESTRING, JsonUtility.ToJson(SleepingController.Save<JsonItem>()));
+
+        PlayerPrefs.SetString(MISSIONSAFESTRING, JsonUtility.ToJson(MissionController.Save<MissionItemJO>()));
+
+        string s = JsonUtility.ToJson(SoldierController.Save());
+        Debug.Log("String is: " + s);
+        PlayerPrefs.SetString(RECRUITMENTSAFESTRING, s);
 
         PlayerPrefs.Save();
     }
@@ -109,12 +116,17 @@ public class GameManager : MonoBehaviour
     {
         Gold = PlayerPrefs.GetFloat("Gold", 550);
         Badges = PlayerPrefs.GetFloat("Badges", 0);
-        
-        MissionController.Load(JsonUtility.FromJson<JsonController>(PlayerPrefs.GetString(MISSIONSAFESTRING,"")) ?? JsonController.Default());
-        KitchenController.Load(JsonUtility.FromJson<JsonController>(PlayerPrefs.GetString(KITCHENSAFESTRING,"")) ?? JsonController.Default());
-        BathController.Load(JsonUtility.FromJson<JsonController>(PlayerPrefs.GetString(BATHSAFESTRING,""))?? JsonController.Default());
-        SleepingController.Load(JsonUtility.FromJson<JsonController>(PlayerPrefs.GetString(SLEEPINGSAFESTRING,"")) ?? JsonController.Default());
-        SoldierController.Load(JsonUtility.FromJson<JsonController>(PlayerPrefs.GetString(RECRUITMENTSAFESTRING,""))?? JsonController.Default());
+        string s = PlayerPrefs.GetString(KITCHENSAFESTRING, "");
+        var x = JsonUtility.FromJson<JsonController<JsonItem>>(s) ??
+                JsonController<JsonItem>.Default(new JsonItem());
+        Debug.Log(x);
+        KitchenController.Load(x);
+        BathController.Load(JsonUtility.FromJson<JsonController<JsonItem>>(PlayerPrefs.GetString(BATHSAFESTRING, "")) ?? JsonController<JsonItem>.Default(new JsonItem()));
+        SleepingController.Load(JsonUtility.FromJson<JsonController<JsonItem>>(PlayerPrefs.GetString(SLEEPINGSAFESTRING, "")) ?? JsonController<JsonItem>.Default(new JsonItem()));
+
+        MissionController.Load(JsonUtility.FromJson<JsonController<MissionItemJO>>(PlayerPrefs.GetString(MISSIONSAFESTRING, "")) ?? JsonController<MissionItemJO>.Default(new MissionItemJO()));
+
+        SoldierController.Load(JsonUtility.FromJson<JsonController<SoldierItemJO>>(PlayerPrefs.GetString(RECRUITMENTSAFESTRING, "")) ?? JsonController<SoldierItemJO>.Default(new SoldierItemJO()));
 
         isInitialized = true;
         _offlineCalculator.calculateReward();

@@ -75,8 +75,8 @@ namespace DefaultNamespace
         }
 
         public virtual JsonItem ToJson() {
-            return new ItemJO() {
-                Level = Level
+            return new JsonItem() {
+                Json_Level = Level
             };
         }
 
@@ -86,7 +86,7 @@ namespace DefaultNamespace
             if (jsonItem != null)
             {
                 Unlocked = true;
-                Level = jsonItem.Level;
+                Level = jsonItem.Json_Level;
             }
             else
             {

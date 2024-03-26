@@ -81,19 +81,27 @@ namespace DefaultNamespace
             return Items.FirstOrDefault(item => item.Unlocked && !item.Occupied);
         }
 
-        public virtual JsonManageItem Save()
+        public virtual JsonManageItem<T> Save<T>()
         {
-            JsonManageItem item = new JsonManageItem();
-            Items.ForEach(x => item.AddItem(x.ToJson()));
-            return item;
+            JsonManageItem<T> mi = new JsonManageItem<T>();
+            Items.ForEach(x =>
+            {
+                if (x.Unlocked && x.ToJson() is T te)
+                {
+                    mi.AddItem(te);
+                }
+            });
+            return mi;
         }
 
-        public virtual void Load(JsonManageItem levels)
+        public virtual void Load<T>(JsonManageItem<T> levels)
         {
-            
             for (int i = 0; i < Items.Count; i++)
             {
-                Items[i].Load(this, levels.GetIndex(i));
+                if (levels.GetIndex(i) == null)
+                    Items[i].Load(this, null);
+                if (levels.GetIndex(i) is JsonItem ji)
+                    Items[i].Load(this, ji);
             }
         }
 

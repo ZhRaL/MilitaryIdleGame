@@ -1,8 +1,11 @@
 
 using System;
+using Interfaces;
+using UnityEngine.Serialization;
 
 [Serializable]
-public class JsonItem
+public class JsonItem : IDefaultable<JsonItem>
 {
-    public int Level {get; set;} = 1;
+    [FormerlySerializedAs("Level")] public int Json_Level = 1;
+    public JsonItem CreateDefault => new();
 }

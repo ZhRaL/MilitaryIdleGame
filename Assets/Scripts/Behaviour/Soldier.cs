@@ -10,7 +10,7 @@ using Util;
 
 public class Soldier : MonoBehaviour
 {
-    public string SoldierName { get; set; }
+    public string SoldierName;
     public GameObject parentRoute;
     public Transform[] path;
     public Animator anim;

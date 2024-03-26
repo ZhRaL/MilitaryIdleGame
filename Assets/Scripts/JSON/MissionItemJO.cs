@@ -1,7 +1,12 @@
 
-public class MissionItemJO : JsonItem {
+using System;
+using Interfaces;
 
-    public int TimeLevel { get;set; } = 1;
-    public int MoneyLevel {get;set; } = 1;
+[Serializable]
+public class MissionItemJO : JsonItem, IDefaultable<MissionItemJO> {
 
+    public int TimeLevel  = 1;
+    public int MoneyLevel  = 1;
+
+    public MissionItemJO CreateDefault => new();
 }
