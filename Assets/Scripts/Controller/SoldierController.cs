@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
 using Util;
 
@@ -24,6 +25,16 @@ public class SoldierController : MonoBehaviour
             DefenseType.AIRFORCE => Airf.Soldiers.ToArray(),
             DefenseType.MARINE => Marine.Soldiers.ToArray(),
             DefenseType.ARMY => Army.Soldiers.ToArray(),
+        };
+    }
+
+    public Platoon GetPlatoon(DefenseType type)
+    {
+        return type switch
+        {
+            DefenseType.ARMY => Army,
+            DefenseType.AIRFORCE => Airf,
+            DefenseType.MARINE => Marine
         };
     }
     

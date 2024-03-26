@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace;
 using UnityEngine;
+using UnityEngine.UI;
 using Util;
 
 public class RecruitInitializer : MonoBehaviour
@@ -9,6 +11,8 @@ public class RecruitInitializer : MonoBehaviour
     public GameObject SoldierIconPrefab;
     public UpgradeScript UpgradeScript;
     public DefenseType DefenseType;
+    public GameObject buyNewSoldierGameObject;
+    public BuyScript BuyNewSoldierUpgrade;
 
     private IconScript Select;
     private void Start()
@@ -21,8 +25,40 @@ public class RecruitInitializer : MonoBehaviour
             var x = go.GetComponent<RecruitTemplate>();
             x.Init(soldier,UpgradeScript);
         }
+        UpgradeScript.gameObject.SetActive(true);
 
+        activateBuy();
+        
         selectFirstIcon();
+    }
+
+    private void activateBuy()
+    {
+        buyNewSoldierGameObject.transform.SetSiblingIndex(transform.childCount-1);
+
+        Button button = buyNewSoldierGameObject.AddComponent<Button>();
+        button.onClick.AddListener(UpgradeBuy);
+    }
+
+    private void UpgradeBuy()
+    {
+        UpgradeScript.gameObject.SetActive(false);
+        BuyNewSoldierUpgrade.gameObject.SetActive(true);
+        var x = new UpgradeDto
+        {
+            IconBackground = null,
+            Icon = null,
+            title = "New Soldier",
+            description = "TBD",
+            level = 0,
+            upgradeCost = 0,
+            currentReward = 0,
+            diffReward = 0,
+            item = null,
+            moneyItem = false
+        };
+        x.upgradeAction += () => UpgradeScript.gameObject.SetActive(true);
+        BuyNewSoldierUpgrade.Init(x, DefenseType);
     }
 
     private void selectFirstIcon()
