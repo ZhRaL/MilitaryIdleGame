@@ -22,7 +22,7 @@ public class JsonManageItem<T>
     public static JsonManageItem<T> Default(IDefaultable<T> gen)
     {
         JsonManageItem<T> ji = new JsonManageItem<T>();
-        ji.AddItem(gen.CreateDefault);
+        ji.AddItem(gen.CreateADefault);
         return ji;
     }
 }

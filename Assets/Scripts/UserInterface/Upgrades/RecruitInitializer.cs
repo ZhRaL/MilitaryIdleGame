@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,19 +18,33 @@ public class RecruitInitializer : MonoBehaviour
     private IconScript Select;
     private void Start()
     {
-        Soldier[] soldiers=SoldierController.INSTANCE.GetAllSoldiersFrom(DefenseType);
-        
-        foreach (Soldier soldier in soldiers)
-        {
-            GameObject go = Instantiate(SoldierIconPrefab, transform);
-            var x = go.GetComponent<RecruitTemplate>();
-            x.Init(soldier,UpgradeScript);
-        }
-        UpgradeScript.gameObject.SetActive(true);
+        Refresh();
 
         activateBuy();
         
         selectFirstIcon();
+    }
+
+    public void Refresh()
+    {
+        Soldier[] soldiers=SoldierController.INSTANCE.GetAllSoldiersFrom(DefenseType);
+        RecruitTemplate[] childs = GetComponentsInChildren<RecruitTemplate>();
+        
+        foreach (Soldier soldier in soldiers)
+        {
+            if (childs.Count(y => y.Soldier.Equals(soldier)) > 0)
+                continue;
+            
+            GameObject go = Instantiate(SoldierIconPrefab, transform);
+            go.transform.SetSiblingIndex(transform.childCount - 1);
+            var x = go.GetComponent<RecruitTemplate>();
+            x.Init(soldier,UpgradeScript);
+        }
+        
+        buyNewSoldierGameObject.transform.SetSiblingIndex(transform.childCount-1);
+        
+        BuyNewSoldierUpgrade.gameObject.SetActive(false);
+        UpgradeScript.gameObject.SetActive(true);
     }
 
     private void activateBuy()
@@ -44,7 +59,7 @@ public class RecruitInitializer : MonoBehaviour
     {
         UpgradeScript.gameObject.SetActive(false);
         BuyNewSoldierUpgrade.gameObject.SetActive(true);
-        var x = new UpgradeDto
+        var upgradeDto = new UpgradeDto
         {
             IconBackground = null,
             Icon = null,
@@ -57,8 +72,10 @@ public class RecruitInitializer : MonoBehaviour
             item = null,
             moneyItem = false
         };
-        x.upgradeAction += () => UpgradeScript.gameObject.SetActive(true);
-        BuyNewSoldierUpgrade.Init(x, DefenseType);
+        upgradeDto.upgradeAction += () => UpgradeScript.gameObject.SetActive(true);
+        upgradeDto.upgradeAction += Refresh;
+
+        BuyNewSoldierUpgrade.Init(upgradeDto, DefenseType);
     }
 
     private void selectFirstIcon()

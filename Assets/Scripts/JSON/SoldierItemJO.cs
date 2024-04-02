@@ -10,5 +10,5 @@ public class SoldierItemJO : JsonItem, IDefaultable<SoldierItemJO>
     public int MissionRewardLevel = 1;
     public int CritLevel = 1;
 
-    public SoldierItemJO CreateDefault => new();
+    public SoldierItemJO CreateADefault => new();
 }

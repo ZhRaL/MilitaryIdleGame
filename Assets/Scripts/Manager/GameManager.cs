@@ -101,7 +101,6 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetFloat("Badges", Badges);
 
         string b = JsonUtility.ToJson(KitchenController.Save<JsonItem>());
-        Debug.Log("String is: " + b);
         PlayerPrefs.SetString(KITCHENSAFESTRING, b);
         PlayerPrefs.SetString(BATHSAFESTRING, JsonUtility.ToJson(BathController.Save<JsonItem>()));
         PlayerPrefs.SetString(SLEEPINGSAFESTRING, JsonUtility.ToJson(SleepingController.Save<JsonItem>()));
@@ -109,7 +108,6 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetString(MISSIONSAFESTRING, JsonUtility.ToJson(MissionController.Save<MissionItemJO>()));
 
         string s = JsonUtility.ToJson(SoldierController.Save());
-        Debug.Log("String is: " + s);
         PlayerPrefs.SetString(RECRUITMENTSAFESTRING, s);
 
         PlayerPrefs.Save();

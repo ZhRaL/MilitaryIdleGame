@@ -7,5 +7,5 @@ using UnityEngine.Serialization;
 public class JsonItem : IDefaultable<JsonItem>
 {
     [FormerlySerializedAs("Level")] public int Json_Level = 1;
-    public JsonItem CreateDefault => new();
+    public JsonItem CreateADefault => new();
 }

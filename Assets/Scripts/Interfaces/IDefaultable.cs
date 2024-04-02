@@ -2,6 +2,6 @@
 {
     public interface IDefaultable<T>
     {
-        public T CreateDefault { get; }
+        public T CreateADefault { get; }
     }
 }
