@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Util;
 
 public class MovementController : MonoBehaviour
 {
@@ -49,44 +46,46 @@ public class MovementController : MonoBehaviour
 
 
         // This part is for camera pan only & for 2 fingers stationary gesture
-        if ((Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Moved) ||
-            (Input.GetMouseButton(0)))
+        if (Input.touchCount > 0)
         {
-            
-            zoomFaktorRecalculate = mainCamera.orthographicSize / 15;
-            Vector2 inputPosition = Input.touchCount == 1
-                ? Input.GetTouch(0).deltaPosition
-                : new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y")) * mouseScaleFactor;
+            Touch firstTouch = Input.GetTouch(0);
 
-            moveCamTarget(inputPosition);
-        }
-
-        //this part is for zoom in and out 
-        if (Input.touchCount == 2)
-        {
-            Touch touchZero = Input.GetTouch(0);
-            Touch touchOne = Input.GetTouch(1);
-
-            Vector2 touchZeroPreviousPosition = touchZero.position - touchZero.deltaPosition;
-            Vector2 touchOnePreviousPosition = touchOne.position - touchOne.deltaPosition;
-
-            float prevTouchDeltaMag = (touchZeroPreviousPosition - touchOnePreviousPosition).magnitude;
-            float TouchDeltaMag = (touchZero.position - touchOne.position).magnitude;
-
-            float deltaMagDiff = prevTouchDeltaMag - TouchDeltaMag;
-
-
-            if (mainCamera.orthographic)
+            if (firstTouch.phase == TouchPhase.Moved)
             {
-                mainCamera.orthographicSize += deltaMagDiff * orthoZoomSpeed;
-                mainCamera.orthographicSize = Mathf.Max(mainCamera.orthographicSize, minDistanceZoomIn);
-                mainCamera.orthographicSize = Mathf.Min(mainCamera.orthographicSize, maxDistanceZoomOut);
+                zoomFaktorRecalculate = mainCamera.orthographicSize / 15;
+                Vector2 inputPosition = Input.touchCount == 1
+                    ? Input.GetTouch(0).deltaPosition
+                    : new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y")) * mouseScaleFactor;
+
+                moveCamTarget(inputPosition);
             }
-            else
+
+            if (Input.touchCount > 1)
             {
-                mainCamera.fieldOfView += deltaMagDiff * perspectiveZoomSpeed;
-                mainCamera.fieldOfView = Mathf.Clamp(mainCamera.fieldOfView, .1f, 179.9f);
+                Touch secondTouch = Input.GetTouch(1);
+                
+                Vector2 touchZeroPreviousPosition = firstTouch.position - firstTouch.deltaPosition;
+                Vector2 touchOnePreviousPosition = secondTouch.position - secondTouch.deltaPosition;
+
+                float prevTouchDeltaMag = (touchZeroPreviousPosition - touchOnePreviousPosition).magnitude;
+                float TouchDeltaMag = (firstTouch.position - secondTouch.position).magnitude;
+
+                float deltaMagDiff = prevTouchDeltaMag - TouchDeltaMag;
+// Go
+
+                if (mainCamera.orthographic)
+                {
+                    mainCamera.orthographicSize += deltaMagDiff * orthoZoomSpeed;
+                    mainCamera.orthographicSize = Mathf.Max(mainCamera.orthographicSize, minDistanceZoomIn);
+                    mainCamera.orthographicSize = Mathf.Min(mainCamera.orthographicSize, maxDistanceZoomOut);
+                }
+                else
+                {
+                    mainCamera.fieldOfView += deltaMagDiff * perspectiveZoomSpeed;
+                    mainCamera.fieldOfView = Mathf.Clamp(mainCamera.fieldOfView, .1f, 179.9f);
+                }
             }
+
         }
 
         moveCamera();

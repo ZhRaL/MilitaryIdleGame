@@ -5662,7 +5662,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ed9cf575d895904db79501298cf0faf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedPan: 0.2
+  speedPan: 0.05
   perspectiveZoomSpeed: 1
   orthoZoomSpeed: 0.02
   mainCamera: {fileID: 186830701}

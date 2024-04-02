@@ -75,6 +75,9 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        QualitySettings.vSyncCount = 2;
+        Application.targetFrameRate = 30;
+        
         _offlineCalculator = new OfflineCalculator();
         LoadGame();
     }
