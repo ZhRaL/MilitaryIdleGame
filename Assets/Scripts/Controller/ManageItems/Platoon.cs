@@ -23,6 +23,9 @@ public class Platoon : MonoBehaviour
         so.parentRoute = parentRoute;
         so.SoldierName = name;
         Soldiers.Add(so);
+        
+        // Spawn at random location
+        SoldierPlacement.INSTANCE.PlaceSoldier(so);
     }
 
     public void Load(JsonManageItem<SoldierItemJO> levels)

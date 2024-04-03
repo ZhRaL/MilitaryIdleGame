@@ -7,20 +7,22 @@ namespace DefaultNamespace
 {
     public class SoldierPlacement : MonoBehaviour
     {
-        public Soldier[] soldiers => transform.GetComponentsInChildren<Soldier>();
-
         public Transform routeParent1, routeParent2, routeParent3;
 
-        private void Start()
+        public static SoldierPlacement INSTANCE;
+
+        private void Awake()
         {
-            foreach (Soldier soldier in soldiers)
-            {
-                Transform parent = getBrancheParent(soldier);
-                Tuple<int, RoutingPoint> tuple = getRandomPoint(parent);
-                RoutingPoint point = tuple.Item2;
-                soldier.transform.position = point.transform.position;
-                soldier.currentTarget = tuple.Item1;
-            }
+            INSTANCE = this;
+        }
+        
+        public void PlaceSoldier(Soldier soldier)
+        {
+            Transform parent = getBrancheParent(soldier);
+            Tuple<int, RoutingPoint> tuple = getRandomPoint(parent);
+            RoutingPoint point = tuple.Item2;
+            soldier.transform.position = point.transform.position;
+            soldier.currentTarget = tuple.Item1;
         }
 
         private Transform getBrancheParent(Soldier soldier)
@@ -37,7 +39,6 @@ namespace DefaultNamespace
 
         private Tuple<int, RoutingPoint> getRandomPoint(Transform parent)
         {
-            int x = Random.Range(0, 1);
             int randomValue = Random.Range(0, parent.childCount);
             return new Tuple<int, RoutingPoint>(randomValue, parent.GetChild(randomValue).GetComponent<RoutingPoint>());
         }
