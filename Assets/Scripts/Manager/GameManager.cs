@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     #region Singleton
 
     public static GameManager INSTANCE;
+    
 
     private void Awake()
     {
@@ -19,6 +20,18 @@ public class GameManager : MonoBehaviour
     }
 
     private bool isInitialized = false;
+    public bool resetPlayerPrefsOnRestart = false;
+
+    public bool ResetEnable
+    {
+        get => resetPlayerPrefsOnRestart;
+        set
+        {
+            PlayerPrefs.SetInt("reset",value?1:0);
+            resetPlayerPrefsOnRestart=value;    
+        }
+        
+    }
 
     #endregion
 
@@ -115,6 +128,11 @@ public class GameManager : MonoBehaviour
 
     private void LoadGame()
     {
+        resetPlayerPrefsOnRestart = PlayerPrefs.GetInt("reset",0)==1;
+        if (resetPlayerPrefsOnRestart)
+            ResetAllOwnPlayerPrefs();
+        
+        
         Gold = PlayerPrefs.GetFloat("Gold", 550);
         Badges = PlayerPrefs.GetFloat("Badges", 0);
         string s = PlayerPrefs.GetString(KITCHENSAFESTRING, "");
@@ -132,6 +150,15 @@ public class GameManager : MonoBehaviour
         isInitialized = true;
         _offlineCalculator.calculateReward();
         SaveGame();
+    }
+
+    private void ResetAllOwnPlayerPrefs()
+    {
+        string[] sl = { BATHSAFESTRING,SLEEPINGSAFESTRING,KITCHENSAFESTRING,MISSIONSAFESTRING,RECRUITMENTSAFESTRING,"Gold","Badges","reset","saveString"};
+        foreach (var s in sl)
+        {
+            PlayerPrefs.DeleteKey(s);
+        }
     }
 
     public void ResetPlayerprefs()

@@ -18,6 +18,7 @@ public class BuyScript : MonoBehaviour
     private void Start()
     {
         GameManager.INSTANCE.OnMoneyChanged += checkBalance;
+        inputField.onValueChanged.AddListener(s => title.text=s);
     }
     
     private void checkBalance()
@@ -44,9 +45,9 @@ public class BuyScript : MonoBehaviour
         {
             button.interactable = true;
             button.onClick.RemoveAllListeners();
-            button.onClick.AddListener(dto.upgradeAction);
             button.onClick.AddListener(() => GameManager.INSTANCE.Gold -= dto.upgradeCost);
             button.onClick.AddListener(() => SoldierController.INSTANCE.GetPlatoon(type).createSoldier(1,1,1, inputField.text));
+            button.onClick.AddListener(dto.upgradeAction);
             button.onClick.AddListener(() =>
             {
                 gameObject.SetActive(false);

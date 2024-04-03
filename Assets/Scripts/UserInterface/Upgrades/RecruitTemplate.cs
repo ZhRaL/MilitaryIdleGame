@@ -21,7 +21,7 @@ public class RecruitTemplate : MonoBehaviour
     {
         UpgradeScript = upgradeScript;
         Soldier = soldier;
-        tx_name.text = Soldier.name;
+        tx_name.text = Soldier.SoldierName;
         // TODO - add correct Portrait
 
         var MoveIcon = movSpeedPrefab.GetComponent<IconScript>();
@@ -33,6 +33,11 @@ public class RecruitTemplate : MonoBehaviour
         var CritIcon = critPrefab.GetComponent<IconScript>();
         CritIcon.InitializePreview(CritUpgrade,null,Soldier.ToItem(Soldier.SoldierUpgradeType.CRIT));
 
+    }
+
+    public void ChangeSoldierName(string newName)
+    {
+        Soldier.SoldierName = newName;
     }
 
     private void SpeedUpgrade(IconScript script)
@@ -68,8 +73,8 @@ public class RecruitTemplate : MonoBehaviour
         {
             IconBackground = null,
             Icon = DataProvider.INSTANCE.IconProvider.GetIcon(UpgradeType.SOLDIER_SPEED),   // HardCoded
-            title = "Soldier "+Soldier.Index,
-            description = "TBD",
+            title = Soldier.SoldierName,
+            description = "cool Description",
             level = level,
             upgradeAction = upgradeAction,
             upgradeCost = GameManager.INSTANCE.DataProvider.GetCost(Soldier.ToItem(type)), 

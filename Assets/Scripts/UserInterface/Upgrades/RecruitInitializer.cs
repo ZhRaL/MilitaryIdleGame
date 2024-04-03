@@ -63,8 +63,8 @@ public class RecruitInitializer : MonoBehaviour
         {
             IconBackground = null,
             Icon = null,
-            title = "New Soldier",
-            description = "TBD",
+            title = "George",
+            description = "There will be an awesome description for this specific soldier",
             level = 0,
             upgradeCost = 0,
             currentReward = 0,
