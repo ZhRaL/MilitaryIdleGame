@@ -15,12 +15,11 @@ public class UpgradeScript : MonoBehaviour
     public TextMeshProUGUI title, description, upgradeCost, currentReward, diffReward, sliderTx;
     public Slider slider;
     public Button upgradeBtn;
-    private SliderValues _sliderValues;
+    private SliderValues _sliderValues => new (slider);
 
     private void Start()
     {
         GameManager.INSTANCE.OnMoneyChanged += checkBalance;
-        _sliderValues = new SliderValues(slider);
     }
 
     private void checkBalance()
