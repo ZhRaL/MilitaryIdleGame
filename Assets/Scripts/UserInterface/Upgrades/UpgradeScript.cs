@@ -35,7 +35,7 @@ public class UpgradeScript : MonoBehaviour
         logger.log("Ich will geändert werden");
         current = upgrade;
         if(upgrade.IconBackground!=null)
-        IconBackground.sprite = upgrade.IconBackground;
+            IconBackground.sprite = upgrade.IconBackground;
         Icon.sprite = upgrade.Icon;
         title.text = upgrade.title;
         description.text = upgrade.description;
