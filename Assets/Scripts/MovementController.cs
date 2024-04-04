@@ -110,7 +110,6 @@ public class MovementController : MonoBehaviour
 
     private void moveCamera()
     {
-        adjustBorders();
         targetPosition = new Vector3(Mathf.Min(Mathf.Max(targetPosition.x, Right), Left), targetPosition.y,
             Mathf.Min(Mathf.Max(targetPosition.z, Top), Bottom));
 
