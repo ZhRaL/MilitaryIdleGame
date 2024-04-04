@@ -18,6 +18,7 @@ namespace Bitgem.VFX.StylisedWater
 
         #region Public fields
 
+        public float multiplier;
         public WaterVolumeBase WaterVolume = null;
 
         #endregion
@@ -56,7 +57,7 @@ namespace Bitgem.VFX.StylisedWater
             var _WaveSpeed = renderer.sharedMaterial.GetFloat("_WaveSpeed");
             var time = Time.time * _WaveSpeed;
             var shaderOffset = (Mathf.Sin(_position.x * _WaveFrequency + time) + Mathf.Cos(_position.z * _WaveFrequency + time)) * _WaveScale;
-            return waterHeight.Value + shaderOffset;
+            return (waterHeight.Value + shaderOffset*multiplier);
         }
 
         #endregion
