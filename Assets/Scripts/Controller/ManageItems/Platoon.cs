@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,14 +17,14 @@ public class Platoon : MonoBehaviour
     {
         GameObject go = Instantiate(SoldierPrefab, transform);
         Soldier so = go.GetComponent<Soldier>();
-        so.name = "John Doe";
         so.LVL_Speed = speed;
         so.LVL_Reward = reward;
         so.LVL_Crit = crit;
         so.parentRoute = parentRoute;
-        so.SoldierName = name;
+        so.SoldierName = String.IsNullOrEmpty(name) ? NameGenerator.getRandomName() : name;
+        so.name = so.SoldierName;
         Soldiers.Add(so);
-        
+
         // Spawn at random location
         SoldierPlacement.INSTANCE.PlaceSoldier(so);
     }
