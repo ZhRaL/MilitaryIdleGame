@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using Util;
 
 public class DisplayName : MonoBehaviour
 {
@@ -11,17 +12,38 @@ public class DisplayName : MonoBehaviour
 
     public float hightAbove;
     private TMP_Text textComponent;
+    private Color color_Army;
+    private Color color_Airf;
+    private Color color_Mar;
 
     void Start()
     {
+        ColorUtility.TryParseHtmlString("#27973C", out color_Army);
+        ColorUtility.TryParseHtmlString("#B92E35", out color_Airf);
+        ColorUtility.TryParseHtmlString("#443EAD", out color_Mar);
+        
         GameObject worldCanvas = GameObject.FindGameObjectWithTag("WorldCanvas");
         _namePlate = Instantiate(namePlatePrefab);
         _namePlate.transform.SetParent(worldCanvas.transform, false);
         textComponent = _namePlate.GetComponentInChildren<TMP_Text>();
-        
+
         Soldier soldier = GetComponent<Soldier>();
         soldier.OnNameChanged += adjustText;
         adjustText(soldier.SoldierName);
+        switch (soldier.SoldierType)
+        {
+            case DefenseType.ARMY:
+                textComponent.color = color_Army;
+                break;
+            case DefenseType.AIRFORCE:
+                textComponent.color = color_Airf;
+                break;
+            case DefenseType.MARINE:
+                textComponent.color = color_Mar;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
     }
 
     private void adjustText(string text)
