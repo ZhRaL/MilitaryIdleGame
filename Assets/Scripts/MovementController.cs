@@ -30,6 +30,8 @@ public class MovementController : MonoBehaviour
     private Vector3 lastMousePos;
     private bool mousMoving;
     public float mouseScaleFactor;
+    
+    public Vector2 World_X, World_Z;
 
     private Vector3 targetPosition;
  
@@ -94,6 +96,7 @@ public class MovementController : MonoBehaviour
 
     private void moveCamTarget(Vector2 touchDeltaPosition)
     {
+
         var tempTargetPos = localTransform.localPosition + (new Vector3(-touchDeltaPosition.x * zoomFaktorRecalculate, 0,
             -touchDeltaPosition.y * zoomFaktorRecalculate) * speedPan);
         
@@ -101,7 +104,18 @@ public class MovementController : MonoBehaviour
         var tempZ = Between(tempTargetPos.z, Local_Z.x, Local_Z.y);
         
         targetPosition = new Vector3(tempX,targetPosition.y,tempZ);
+        
+        // adjust World Coordinates
 
+        var tempWorld = localTransform.TransformVector(targetPosition);
+
+        tempX = Between(tempWorld.x, World_X.x, World_X.y);
+        tempZ = Between(tempWorld.z, World_Z.x, World_Z.y);
+
+        var temptemp = new Vector3(tempX, tempWorld.y, tempZ);
+        var transformed = localTransform.InverseTransformVector(temptemp);
+        
+        targetPosition = transformed;
     }
 
     private float Between(float value, float min, float max)
