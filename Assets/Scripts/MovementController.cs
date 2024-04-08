@@ -35,7 +35,6 @@ public class MovementController : MonoBehaviour
  
      private void Start()
     {
-
         targetPosition = localTransform.position;
     }
 
@@ -111,7 +110,7 @@ public class MovementController : MonoBehaviour
         // targetPosition = transform.position;
         // targetPosition += temp;
     }
-
+// test
     private float Between(float value, float min, float max)
     {
         return Mathf.Min(max, Mathf.Max(value, min));
