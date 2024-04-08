@@ -35,7 +35,7 @@ public class MovementController : MonoBehaviour
  
      private void Start()
     {
-        targetPosition = localTransform.position;
+        targetPosition = localTransform.localPosition;
     }
 
     void Update()
@@ -94,34 +94,26 @@ public class MovementController : MonoBehaviour
 
     private void moveCamTarget(Vector2 touchDeltaPosition)
     {
-        var tempTargetPos = localTransform.position + new Vector3(-touchDeltaPosition.x * zoomFaktorRecalculate, 0,
-            -touchDeltaPosition.y * zoomFaktorRecalculate) * speedPan;
+        var tempTargetPos = localTransform.localPosition + (new Vector3(-touchDeltaPosition.x * zoomFaktorRecalculate, 0,
+            -touchDeltaPosition.y * zoomFaktorRecalculate) * speedPan);
         
-        var tempRight = Mathf.Max(tempTargetPos.x, Local_X.y);
-        var tempX = Mathf.Min(tempRight, Local_X.x);
+        var tempX = Between(tempTargetPos.x, Local_X.x, Local_X.y);
+        var tempZ = Between(tempTargetPos.z, Local_Z.x, Local_Z.y);
         
-        var tempTop = Mathf.Max(tempTargetPos.z, Local_Z.y);
-        var tempZ = Mathf.Min(tempTop, Local_Z.x);
+        targetPosition = new Vector3(tempX,targetPosition.y,tempZ);
 
-        targetPosition = new Vector3(tempX, targetPosition.y, tempZ);
-        
-        // Vector3 temp = Quaternion.Euler(0, 150, 0) * new Vector3(-touchDeltaPosition.x * zoomFaktorRecalculate, 0,
-        //     -touchDeltaPosition.y * zoomFaktorRecalculate) * speedPan;
-        // targetPosition = transform.position;
-        // targetPosition += temp;
     }
-// test
+
     private float Between(float value, float min, float max)
     {
         return Mathf.Min(max, Mathf.Max(value, min));
     }
-
-
+    
     private void moveCamera()
     {
-        Vector3 smoothedPosition = Vector3.Lerp(localTransform.position, targetPosition, smoothSpeed * Time.deltaTime);
+        Vector3 smoothedPosition = Vector3.Lerp(localTransform.localPosition, targetPosition, smoothSpeed * Time.deltaTime);
 
-        localTransform.position = smoothedPosition;
+        localTransform.localPosition = smoothedPosition;
     }
     
     
