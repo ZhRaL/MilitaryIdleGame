@@ -53,16 +53,18 @@ public class NavBar : MonoBehaviour
         }
         
         Image ig = ob.GetComponent<Image>();
+        savedHighlightColor = ig.color;
         ig.color = highlightColor;
         ActiveItem = ob;
     }
 
     public void OnValueChange(Vector2 value)
     {
-        var height = tuple[0].ItemContainer.rect.height;
+        var height = (int) tuple[0].ItemContainer.rect.height -30;
         var sliderValue = value.y;
 
-        var currentHeight = content.anchoredPosition.y;
+        // half height cause of the correct hightlighting of NavBar, inclluding height fo spearator
+        var currentHeight = height/2 + content.anchoredPosition.y;
         Debug.Log($"Height is {height} and current ist {content.anchoredPosition}");
         var index = (int)((int) currentHeight / height);
         
