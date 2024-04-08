@@ -5,8 +5,8 @@ using Util;
 
 public class ShopItem : MonoBehaviour
 {
-    public Reward Reward { get; set; }
-    public Cost Cost { get; set; }
+    public Reward Reward;
+    public Cost Cost;
 
     public void Buy()
     {
