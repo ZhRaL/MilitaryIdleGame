@@ -1,4 +1,8 @@
+using System.Drawing;
+using System.Linq;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class MovementController : MonoBehaviour
 {
@@ -8,6 +12,7 @@ public class MovementController : MonoBehaviour
 
     // variables for camera zoom in and out
     public float perspectiveZoomSpeed;
+    
     public float orthoZoomSpeed;
 
     public Camera mainCamera;
@@ -15,10 +20,11 @@ public class MovementController : MonoBehaviour
     public float minDistanceZoomIn, maxDistanceZoomOut;
 
     private float zoomFaktorRecalculate;
-    public float Left, Right, Top, Bottom;
-    private float Left_Origin, Right_Origin, Top_Origin, Bottom_Origin;
+
+    public Vector2 Local_X, Local_Z;
+
+    public Transform localTransform;
     
-    public Vector3 offset;
     public float smoothSpeed;
 
     private Vector3 lastMousePos;
@@ -26,14 +32,11 @@ public class MovementController : MonoBehaviour
     public float mouseScaleFactor;
 
     private Vector3 targetPosition;
-
-    private void Start()
+ 
+     private void Start()
     {
-        Left_Origin = Left;
-        Right_Origin = Right;
-        Top_Origin = Top;
-        Bottom_Origin = Bottom;
-        targetPosition = transform.position;
+
+        targetPosition = localTransform.position;
     }
 
     void Update()
@@ -49,7 +52,7 @@ public class MovementController : MonoBehaviour
         if (Input.touchCount > 0)
         {
             Touch firstTouch = Input.GetTouch(0);
-
+            
             if (firstTouch.phase == TouchPhase.Moved)
             {
                 zoomFaktorRecalculate = mainCamera.orthographicSize / 15;
@@ -71,8 +74,7 @@ public class MovementController : MonoBehaviour
                 float TouchDeltaMag = (firstTouch.position - secondTouch.position).magnitude;
 
                 float deltaMagDiff = prevTouchDeltaMag - TouchDeltaMag;
-// Go
-
+                
                 if (mainCamera.orthographic)
                 {
                     mainCamera.orthographicSize += deltaMagDiff * orthoZoomSpeed;
@@ -93,29 +95,37 @@ public class MovementController : MonoBehaviour
 
     private void moveCamTarget(Vector2 touchDeltaPosition)
     {
-        Vector3 temp = Quaternion.Euler(0, 150, 0) * new Vector3(-touchDeltaPosition.x * zoomFaktorRecalculate, 0,
+        var tempTargetPos = localTransform.position + new Vector3(-touchDeltaPosition.x * zoomFaktorRecalculate, 0,
             -touchDeltaPosition.y * zoomFaktorRecalculate) * speedPan;
-        targetPosition = transform.position;
-        targetPosition += temp;
+        
+        var tempRight = Mathf.Max(tempTargetPos.x, Local_X.y);
+        var tempX = Mathf.Min(tempRight, Local_X.x);
+        
+        var tempTop = Mathf.Max(tempTargetPos.z, Local_Z.y);
+        var tempZ = Mathf.Min(tempTop, Local_Z.x);
+
+        targetPosition = new Vector3(tempX, targetPosition.y, tempZ);
+        
+        // Vector3 temp = Quaternion.Euler(0, 150, 0) * new Vector3(-touchDeltaPosition.x * zoomFaktorRecalculate, 0,
+        //     -touchDeltaPosition.y * zoomFaktorRecalculate) * speedPan;
+        // targetPosition = transform.position;
+        // targetPosition += temp;
     }
 
-    private void adjustBorders()
+    private float Between(float value, float min, float max)
     {
-        float temp = (1 - zoomFaktorRecalculate) * 8;
-        Left = Left_Origin + temp;
-        Right = Right_Origin - temp;
-        Top = Top_Origin - temp;
-        Bottom = Bottom_Origin + temp;
+        return Mathf.Min(max, Mathf.Max(value, min));
     }
+
 
     private void moveCamera()
     {
-        targetPosition = new Vector3(Mathf.Min(Mathf.Max(targetPosition.x, Right), Left), targetPosition.y,
-            Mathf.Min(Mathf.Max(targetPosition.z, Top), Bottom));
+        Vector3 smoothedPosition = Vector3.Lerp(localTransform.position, targetPosition, smoothSpeed * Time.deltaTime);
 
-        Vector3 desiredPosition = targetPosition + offset;
-        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.deltaTime);
-
-        transform.position = smoothedPosition;
+        localTransform.position = smoothedPosition;
     }
+    
+    
+    
+    
 }
