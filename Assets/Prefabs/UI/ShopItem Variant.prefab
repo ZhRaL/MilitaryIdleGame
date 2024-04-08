@@ -20,6 +20,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.38074887
       objectReference: {fileID: 0}
+    - target: {fileID: 1437676044452628476, guid: e2dead3a0fdb01b4494dc50403c7a36e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 58
+      objectReference: {fileID: 0}
     - target: {fileID: 2943833039842102162, guid: e2dead3a0fdb01b4494dc50403c7a36e, type: 3}
       propertyPath: m_Name
       value: ShopItem Variant
@@ -131,6 +135,10 @@ PrefabInstance:
     - target: {fileID: 8324924567686581185, guid: e2dead3a0fdb01b4494dc50403c7a36e, type: 3}
       propertyPath: m_Color.r
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8407803373845930513, guid: e2dead3a0fdb01b4494dc50403c7a36e, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

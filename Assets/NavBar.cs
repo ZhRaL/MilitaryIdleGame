@@ -11,9 +11,7 @@ public class NavBar : MonoBehaviour
     public Color highlightColor;
     private Color savedHighlightColor;
     public RectTransform content;
-
-    private float pos1 = 0.3775112f;
-
+    
     private void Start()
     {
         foreach (var navItem in tuple)
@@ -32,12 +30,10 @@ public class NavBar : MonoBehaviour
     {
         RectTransform targetTransform = GetTransform(ob);
         
-        // caluclate effective Height ?!
-        float eff = 1338.313f;
-        float contentPosY = Mathf.Lerp(0, eff, 1-pos1);
+        var height = targetTransform.rect.height;
+        height *= (ob.transform.GetSiblingIndex() / 2);
         
-        // Aktualisieren Sie die vertikale Position des Inhalts
-        content.anchoredPosition = new Vector2(content.anchoredPosition.x, contentPosY);
+        content.anchoredPosition = new Vector2(content.anchoredPosition.x, height);
         
         SetActive(ob);
     }
@@ -45,8 +41,7 @@ public class NavBar : MonoBehaviour
     public void SetActive(GameObject tf)
     {
         Hightlight(tf);
-        ActiveItem = tf;
-        
+
     }
 
     private void Hightlight(GameObject ob)
@@ -59,7 +54,21 @@ public class NavBar : MonoBehaviour
         
         Image ig = ob.GetComponent<Image>();
         ig.color = highlightColor;
+        ActiveItem = ob;
+    }
 
+    public void OnValueChange(Vector2 value)
+    {
+        var height = tuple[0].ItemContainer.rect.height;
+        var sliderValue = value.y;
+
+        var currentHeight = content.anchoredPosition.y;
+        Debug.Log($"Height is {height} and current ist {content.anchoredPosition}");
+        var index = (int)((int) currentHeight / height);
+        
+        // Separator
+        
+        Hightlight(tuple[index].NavItem);
     }
 
     private RectTransform GetTransform(GameObject ob)
