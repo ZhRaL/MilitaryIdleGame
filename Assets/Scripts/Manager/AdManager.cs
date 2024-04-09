@@ -7,6 +7,11 @@ public class AdManager : MonoBehaviour {
     INSTANCE = this;
   }
 
+  public void SpecialFunc()
+  {
+    Debug.Log("I am Special");
+  }
+
   public bool Show() {
     return false;
   }

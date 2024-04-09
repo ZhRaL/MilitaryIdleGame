@@ -134,7 +134,7 @@ public class GameManager : MonoBehaviour
         
         
         Gold = PlayerPrefs.GetFloat("Gold", 550);
-        Badges = PlayerPrefs.GetFloat("Badges", 0);
+        Badges = PlayerPrefs.GetFloat("Badges", 100);
         string s = PlayerPrefs.GetString(KITCHENSAFESTRING, "");
         var x = JsonUtility.FromJson<JsonController<JsonItem>>(s) ??
                 JsonController<JsonItem>.Default(new JsonItem());

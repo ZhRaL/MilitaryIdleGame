@@ -5,7 +5,7 @@ namespace DefaultNameSpace {
   public class Enums {
 
     public enum Rewards {
-      MONEY,BADGES
+      MONEY,BADGES,SPECIAL
     }
     
     public enum Costs {

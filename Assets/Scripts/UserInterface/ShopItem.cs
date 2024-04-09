@@ -1,12 +1,26 @@
 using System;
 using DefaultNameSpace;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
+using UnityEngine.UI;
 using Util;
 
 public class ShopItem : MonoBehaviour
 {
     public Reward Reward;
-    public Cost Cost;
+    [FormerlySerializedAs("Cost")] public Cost cost;
+
+    public Image costImage;
+    public TMP_Text costText;
+    private void Start()
+    {
+        if (costImage)
+        {
+            costImage.sprite = FindObjectOfType<ShopManager>().GetSprite(cost.type.ToString());
+            costText.text = cost.amount.ToString();
+        }
+    }
 
     public void Buy()
     {
@@ -18,20 +32,20 @@ public class ShopItem : MonoBehaviour
 
     private bool Validate()
     {
-        switch (Cost.type)
+        switch (cost.type)
         {
             case Enums.Costs.MONEY:
-                return InAppBuyManager.INSTANCE.Collect(Cost.amount);
+                return InAppBuyManager.INSTANCE.Collect(cost.amount);
 
             case Enums.Costs.ADVERTISMENT:
                 return AdManager.INSTANCE.Show();
 
             case Enums.Costs.GOLD:
-                GameManager.INSTANCE.Gold -= Cost.amount;
+                GameManager.INSTANCE.Gold -= cost.amount;
                 return true;
 
             case Enums.Costs.BADGES:
-                GameManager.INSTANCE.Badges -= Cost.amount;
+                GameManager.INSTANCE.Badges -= cost.amount;
                 return true;
 
             default:
@@ -42,7 +56,7 @@ public class ShopItem : MonoBehaviour
     }
 
     private bool RichEnough() {
-         switch (Cost.type)
+         switch (cost.type)
         {
             case Enums.Costs.MONEY:
                 return true;
@@ -51,10 +65,10 @@ public class ShopItem : MonoBehaviour
                 return true;
 
             case Enums.Costs.GOLD:
-                return GameManager.INSTANCE.Gold >= Cost.amount;
+                return GameManager.INSTANCE.Gold >= cost.amount;
 
             case Enums.Costs.BADGES:
-                return GameManager.INSTANCE.Badges >= Cost.amount;
+                return GameManager.INSTANCE.Badges >= cost.amount;
 
             default:
                 throw new ArgumentOutOfRangeException("Not a valid Type");
