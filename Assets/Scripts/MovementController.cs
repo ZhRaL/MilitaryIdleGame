@@ -20,8 +20,7 @@ public class MovementController : MonoBehaviour
     public float minDistanceZoomIn, maxDistanceZoomOut;
 
     private float zoomFaktorRecalculate;
-
-    public Vector2 Local_X, Local_Z;
+    
 
     public Transform localTransform;
     
@@ -31,9 +30,21 @@ public class MovementController : MonoBehaviour
     private bool mousMoving;
     public float mouseScaleFactor;
     
-    public Vector2 World_X, World_Z;
-
     private Vector3 targetPosition;
+
+    private float currentZoom => mainCamera.orthographicSize;
+    private float zoomDelta => maxDistanceZoomOut - minDistanceZoomIn;
+    private float zoomLerper => (currentZoom - minDistanceZoomIn) /zoomDelta;
+
+    [Header("Low Zoom Level")] 
+    public Vector2 Local_Low_X;
+    public Vector2 Local_Low_Z;
+    public Vector2 World_Low_X, World_Low_Z;
+
+    [Header("High Zoom Level")] 
+    public Vector2 Local_High_X;
+    public Vector2 Local_High_Z;
+    public Vector2 World_High_X, World_High_Z;
  
      private void Start()
     {
@@ -96,31 +107,66 @@ public class MovementController : MonoBehaviour
 
     private void moveCamTarget(Vector2 touchDeltaPosition)
     {
-
+        Debug.Log("Zoom: "+currentZoom);
         var tempTargetPos = localTransform.localPosition + (new Vector3(-touchDeltaPosition.x * zoomFaktorRecalculate, 0,
             -touchDeltaPosition.y * zoomFaktorRecalculate) * speedPan);
         
-        var tempX = Between(tempTargetPos.x, Local_X.x, Local_X.y);
-        var tempZ = Between(tempTargetPos.z, Local_Z.x, Local_Z.y);
+        targetPosition = tempTargetPos;
         
-        targetPosition = new Vector3(tempX,targetPosition.y,tempZ);
+        targetPosition = checkLocal(tempTargetPos);
+        var tempWorld = localTransform.TransformPoint(targetPosition-localTransform.localPosition);
+
+        tempWorld = checkWorld(tempWorld);
+        var transformed = localTransform.InverseTransformPoint(tempWorld);
+
+        Debug.Log($"First is {tempTargetPos}, After checkLocal is {targetPosition} and after worldCheck is {transformed}");
         
-        // adjust World Coordinates
-
-        var tempWorld = localTransform.TransformVector(targetPosition);
-
-        tempX = Between(tempWorld.x, World_X.x, World_X.y);
-        tempZ = Between(tempWorld.z, World_Z.x, World_Z.y);
-
-        var temptemp = new Vector3(tempX, tempWorld.y, tempZ);
-        var transformed = localTransform.InverseTransformVector(temptemp);
-        
-        targetPosition = transformed;
+        targetPosition += transformed;
     }
 
     private float Between(float value, float min, float max)
     {
         return Mathf.Min(max, Mathf.Max(value, min));
+    }
+    
+    private Vector3 checkLocal(Vector3 vec) {
+        var borderX = GetValue(CameraValues.LOCAL_X);
+        var borderZ = GetValue(CameraValues.LOCAL_Z);
+
+        Debug.Log($"Locals are {borderX} and {borderZ}");
+        
+        return new Vector3(Within(vec.x,borderX),
+            vec.y,
+            Within(vec.z,borderZ));
+    }
+
+    private Vector3 checkWorld(Vector3 vec) {
+        var borderX = GetValue(CameraValues.WORLD_X);
+        var borderZ = GetValue(CameraValues.WORLD_Z);
+    
+        return new Vector3(Within(vec.x,borderX),
+            vec.y,
+            Within(vec.z,borderZ));
+    }
+
+    private float Within(float value, Vector2 borders) {
+        return Between(value,borders.x,borders.y);
+    }
+
+    private Vector2 GetValue(CameraValues type)
+    {
+        return type switch
+        {
+            CameraValues.LOCAL_X => Vector2.Lerp(Local_Low_X, Local_High_X, zoomLerper),
+            CameraValues.LOCAL_Z => Vector2.Lerp(Local_Low_Z, Local_High_Z, zoomLerper),
+
+            CameraValues.WORLD_X => Vector2.Lerp(World_Low_X, World_High_X, zoomLerper),
+            CameraValues.WORLD_Z => Vector2.Lerp(World_Low_Z, World_High_Z, zoomLerper)
+        };
+    }
+
+    private enum CameraValues {
+        LOCAL_X,LOCAL_Z,WORLD_X,WORLD_Z
     }
     
     private void moveCamera()
@@ -129,8 +175,5 @@ public class MovementController : MonoBehaviour
 
         localTransform.localPosition = smoothedPosition;
     }
-    
-    
-    
     
 }
