@@ -19,7 +19,9 @@ public class OfflineCalculator
 
     public KitchenController kitchenController;
     public RouteManager routeManager;
-    
+    private int amount;
+
+    private bool initialized;
     public OfflineCalculator()
     {
         string savedStartTime = PlayerPrefs.GetString(saveString, string.Empty);
@@ -44,6 +46,13 @@ public class OfflineCalculator
 
         float hourlyReward = calculate();
 
+        amount = -2;
+        initialized = true;
+    }
+
+    public int GetOfflineAmount()
+    {
+        return initialized ? amount : -1;
     }
 
     private float calculate()

@@ -84,14 +84,13 @@ public class GameManager : MonoBehaviour
     public SleepingController SleepingController;
     public SoldierController SoldierController;
 
-    private OfflineCalculator _offlineCalculator;
+    public OfflineCalculator OfflineCalculator;
 
     private void Start()
     {
         QualitySettings.vSyncCount = 2;
         Application.targetFrameRate = 30;
-        
-        _offlineCalculator = new OfflineCalculator();
+        OfflineCalculator = new OfflineCalculator();
         LoadGame();
     }
 
@@ -104,9 +103,8 @@ public class GameManager : MonoBehaviour
             case GenericObjectType.BATH: return BathController;
             default: return MissionController;
         }
-
-        throw new ArgumentException("Invalid ObjectType!");
     }
+    
 
     public void SaveGame()
     {
@@ -148,7 +146,7 @@ public class GameManager : MonoBehaviour
         SoldierController.Load(JsonUtility.FromJson<JsonController<SoldierItemJO>>(PlayerPrefs.GetString(RECRUITMENTSAFESTRING, "")) ?? JsonController<SoldierItemJO>.Default(new SoldierItemJO()));
 
         isInitialized = true;
-        _offlineCalculator.calculateReward();
+        OfflineCalculator.calculateReward();
         SaveGame();
     }
 
@@ -164,7 +162,7 @@ public class GameManager : MonoBehaviour
     private void OnApplicationQuit()
     {
         logger.log("Closing...");
-        _offlineCalculator.safeTime();
+        OfflineCalculator.safeTime();
         SaveGame();
     }
 }
