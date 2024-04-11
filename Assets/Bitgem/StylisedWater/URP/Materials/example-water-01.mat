@@ -121,8 +121,8 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_7D9A58EC: {r: 0, g: 0.39487204, b: 0.7264151, a: 1}
-    - Color_F01C36BF: {r: 0.03208439, g: 0.8383391, b: 0.9716981, a: 0.34901962}
+    - Color_7D9A58EC: {r: 0.027450979, g: 0.36601526, b: 0.7647059, a: 0.5254902}
+    - Color_F01C36BF: {r: 0.1745283, g: 0.883058, b: 1, a: 0.34901962}
     - Vector2_37B21477: {r: 0.15, g: 0.15, b: 0, a: 0}
     - WaveSpeed: {r: 19, g: 9, b: -16, a: -7}
     - _AnimationDirection: {r: 1, g: 1, b: 1, a: 1}
