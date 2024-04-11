@@ -19,23 +19,41 @@ public class DoubleIconScript : IconScript
 
     public override void InitializePreview(GimmeAName parent, Item item)
     {
-        logger.log("I am a MissionItem!!");
-        Item = item;
         DoubleSelect = parent.DoubleSelect;
-        MissionItem mit = (MissionItem)item;
-
+        
         IconProvider iconProvider = GameManager.INSTANCE.DataProvider.IconProvider;
+        
+        Item = item;
+        MissionItem mit = (MissionItem)item;
+        
+        if (item.Level > 0)
+        {
+            // Initialize Time Icon
 
-        // Initialize Time Icon
-        iconImage.sprite = iconProvider.GetIcon(getUpgradeType(true, parent.ObjType));
-        tx_level.text = "" + item.Level;
-        item.OnLevelUp += ResetOnLevelUpdate;
+            iconImage.sprite = iconProvider.GetIcon(getUpgradeType(true, parent.ObjType));
+            tx_level.text = "" + item.Level;
+            item.OnLevelUp += ResetOnLevelUpdate;
+            
+            // Initialize Money Icon
 
-        // Initialize Money Icon
-        MoneyIconImage.sprite = iconProvider.GetIcon(getUpgradeType(false, parent.ObjType));
-        MoneyTx_Level.text = "" + mit.MoneyLevel;
-        mit.OnMoneyLevelUp += ResetOnMoneyLevelUpdate;
-
+            MoneyIconImage.sprite = iconProvider.GetIcon(getUpgradeType(false, parent.ObjType));
+            MoneyTx_Level.text = "" + mit.MoneyLevel;
+            mit.OnMoneyLevelUp += ResetOnMoneyLevelUpdate;
+        }
+        else
+        {
+            iconImage.sprite = iconProvider.GetIcon(UpgradeType.LOCKED);
+            tx_level.text = "";
+            item.OnLevelUp += ResetOnLevelUpdate;
+            
+            MoneyP.SetActive(false);
+            
+        }
+        
+        // Baustellen Schild verschwinden bei Kauf
+        // Beide Buttons erscheinen bei Unlocking
+        // PlayerPrefsHelper für Oerview und GetAllKeys
+        
         VehicleText.text = parent.ObjType.objectType + " " + item.Index;
         
 
@@ -46,8 +64,6 @@ public class DoubleIconScript : IconScript
         if (Upgradable(mit))
             MoneyUpgradeArrowImage.gameObject.SetActive(true);
         else MoneyUpgradeArrowImage.gameObject.SetActive(false);
-
-        
         
         AddButtons();
     }
@@ -77,6 +93,7 @@ public class DoubleIconScript : IconScript
 
     protected void AddButtons()
     {
+        
         var button = MoneyP.AddComponent<Button>();
         button.onClick.AddListener(() => MoneyButtonPressed());
         
@@ -87,14 +104,12 @@ public class DoubleIconScript : IconScript
     public void TimeButtonPressed()
     {
         DoubleSelect(this,false);
-        //Parent.DoubleSelect(this, false);
         HighLightManager.highlight(TimeP.GetComponent<Image>());
     }
 
     public void MoneyButtonPressed()
     {
         DoubleSelect(this, true);
-        //Parent.DoubleSelect(this, true);
         HighLightManager.highlight(MoneyP.GetComponent<Image>());
     }
 
