@@ -12,13 +12,19 @@ public class Loader : MonoBehaviour
     public float transitionTime;
     public Image transitionImage;
 
+    public bool clickForStart;
     private void Start()
     {
-        StartCoroutine(LoadNewScene());
-
+        if(!clickForStart)
+            StartCoroutine(LoadScene());
     }
 
-    private IEnumerator LoadNewScene()
+    public void LoadNewScene()
+    {
+        StartCoroutine(LoadScene());
+    }
+    
+    private IEnumerator LoadScene()
     {
         float t = 0f;
         while (t < waitForSeconds)
