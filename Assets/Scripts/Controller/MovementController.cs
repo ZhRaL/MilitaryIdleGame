@@ -1,8 +1,4 @@
-using System.Drawing;
-using System.Linq;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class MovementController : MonoBehaviour
 {
