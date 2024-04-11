@@ -75,8 +75,9 @@ public class GimmeAName : MonoBehaviour
         selected = child;
         child.highlightMe();
         UpgradeScript.selectionChanged(BuildUpgradeDto());
-    }
 
+    }
+    
     public void DoubleSelect(DoubleIconScript child, bool isMoney)
     {
         if(!child.Item) return;

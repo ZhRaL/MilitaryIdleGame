@@ -38,7 +38,8 @@ namespace Util
         
         SOLDIER_SPEED,
         SOLDIER_CRIT,
-        SOLDIER_REWARD
+        SOLDIER_REWARD,
+        LOCKED
         
 }
 

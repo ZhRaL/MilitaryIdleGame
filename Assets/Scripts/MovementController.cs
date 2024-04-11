@@ -107,7 +107,6 @@ public class MovementController : MonoBehaviour
 
     private void moveCamTarget(Vector2 touchDeltaPosition)
     {
-        Debug.Log("Zoom: "+currentZoom);
         var tempTargetPos = localTransform.localPosition + (new Vector3(-touchDeltaPosition.x * zoomFaktorRecalculate, 0,
             -touchDeltaPosition.y * zoomFaktorRecalculate) * speedPan);
         
@@ -118,8 +117,6 @@ public class MovementController : MonoBehaviour
 
         tempWorld = checkWorld(tempWorld);
         var transformed = localTransform.InverseTransformPoint(tempWorld);
-
-        Debug.Log($"First is {tempTargetPos}, After checkLocal is {targetPosition} and after worldCheck is {transformed}");
         
         targetPosition += transformed;
     }
@@ -132,8 +129,6 @@ public class MovementController : MonoBehaviour
     private Vector3 checkLocal(Vector3 vec) {
         var borderX = GetValue(CameraValues.LOCAL_X);
         var borderZ = GetValue(CameraValues.LOCAL_Z);
-
-        Debug.Log($"Locals are {borderX} and {borderZ}");
         
         return new Vector3(Within(vec.x,borderX),
             vec.y,

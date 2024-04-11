@@ -51,6 +51,8 @@ namespace DefaultNamespace
         public void Upgrade()
         {
             Level++;
+            Unlocked = true;
+            gameObject.SetActive(true);
         }
 
         public float TimeNeeded()

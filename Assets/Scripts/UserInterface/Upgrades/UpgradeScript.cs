@@ -31,7 +31,6 @@ public class UpgradeScript : MonoBehaviour
 
     public void selectionChanged(UpgradeDto upgrade)
     {
-        logger.log("Ich will geändert werden");
         current = upgrade;
         if(upgrade.IconBackground!=null)
             IconBackground.sprite = upgrade.IconBackground;
@@ -43,6 +42,7 @@ public class UpgradeScript : MonoBehaviour
         currentReward.text = "" + upgrade.currentReward;
         diffReward.text = "+ " + upgrade.diffReward;
         sliderTx.text = "Level " + upgrade.level;
+        upgradeBtn.GetComponentInChildren<TMP_Text>().text = upgrade.level<=0 ? "UNLOCK": "UPGRADE";
 
 
         if (GameManager.INSTANCE.Gold < upgrade.upgradeCost)
@@ -66,6 +66,9 @@ public class UpgradeScript : MonoBehaviour
         current.upgradeCost = GameManager.INSTANCE.DataProvider.GetCost(current.item, current.moneyItem);
         current.currentReward = GameManager.INSTANCE.DataProvider.GetReward(current.item, current.moneyItem);
         current.diffReward = GameManager.INSTANCE.DataProvider.GetRewardDiff(current.item, current.moneyItem);
+        current.Icon = GameManager.INSTANCE.DataProvider.IconProvider.GetIcon(current.item.ToUpgradeType());
+        Icon.sprite = current.Icon;
+        upgradeBtn.GetComponentInChildren<TMP_Text>().text = current.level<=0 ? "UNLOCK": "UPGRADE";
         
         selectionChanged(current);
     }

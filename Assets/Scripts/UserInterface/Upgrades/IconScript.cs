@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DefaultNamespace;
 using TMPro;
+using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
 using UnityEngine.UI;
 using Util;
@@ -32,19 +33,33 @@ public class IconScript : MonoBehaviour
 
         IconProvider iconProvider = GameManager.INSTANCE.DataProvider.IconProvider;
 
-        iconImage.sprite = iconProvider.GetIcon(item.ToUpgradeType());
-        tx_level.text = "" + item.Level;
-        item.OnLevelUp += ResetOnLevelUpdate;
+        if (item.Level > 0)
+        {
+            iconImage.sprite = iconProvider.GetIcon(item.ToUpgradeType());
+            tx_level.text = "" + item.Level;
 
+        }
+
+        else
+        {
+            iconImage.sprite = iconProvider.GetIcon(UpgradeType.LOCKED);
+            tx_level.text = "";
+        }
+        
+        item.OnLevelUp += ResetOnLevelUpdate;
+        
         if (Upgradable(item))
             upgradeArrowImage.gameObject.SetActive(true);
         else upgradeArrowImage.gameObject.SetActive(false);
 
         AddButton();
+        
     }
 
     private protected void ResetOnLevelUpdate(int newlevel)
     {
+        if(newlevel==1)
+            iconImage.sprite = GameManager.INSTANCE.DataProvider.IconProvider.GetIcon(Item.ToUpgradeType());
         tx_level.text = "" + newlevel;
         
         if (Upgradable(Item))

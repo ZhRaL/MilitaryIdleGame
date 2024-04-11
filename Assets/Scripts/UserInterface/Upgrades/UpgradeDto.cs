@@ -15,6 +15,5 @@ namespace DefaultNamespace
         public float diffReward;
         public Item item;
         public bool moneyItem;
-        
     }
 }
