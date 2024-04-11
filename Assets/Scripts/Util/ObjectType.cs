@@ -15,9 +15,13 @@ namespace Util
         BATH,
         SLEEPING,
 
-        JET,
-        TANK,
-        SHIP,
+        JET_MONEY,
+        JET_TIME,
+        TANK_MONEY,
+        TANK_TIME,
+        SHIP_MONEY,
+        SHIP_TIME,
+        
         SOLDIER_SPEED,
         SOLDIER_CRIT,
         SOLDIER_REWARD
@@ -39,7 +43,8 @@ namespace Util
         SOLDIER_SPEED,
         SOLDIER_CRIT,
         SOLDIER_REWARD,
-        LOCKED
+        LOCKED,
+        BIG_LOCKED
         
 }
 

@@ -110,7 +110,7 @@ public class GameManager : MonoBehaviour
 
     public void SaveGame()
     {
-        PlayerPrefs.SetFloat("Gold", Gold);
+        PlayerPrefsHelper.SetFloat("Gold", Gold);
         PlayerPrefs.SetFloat("Badges", Badges);
 
         string b = JsonUtility.ToJson(KitchenController.Save<JsonItem>());
@@ -133,7 +133,7 @@ public class GameManager : MonoBehaviour
             ResetAllOwnPlayerPrefs();
         
         
-        Gold = PlayerPrefs.GetFloat("Gold", 550);
+        Gold = PlayerPrefsHelper.GetFloat("Gold", 550);
         Badges = PlayerPrefs.GetFloat("Badges", 100);
         string s = PlayerPrefs.GetString(KITCHENSAFESTRING, "");
         var x = JsonUtility.FromJson<JsonController<JsonItem>>(s) ??

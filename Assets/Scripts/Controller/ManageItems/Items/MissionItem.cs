@@ -17,7 +17,7 @@ namespace DefaultNamespace
             }
         }
 
-        private int _moneyLevel;
+        private int _moneyLevel=1;
 
         public abstract Transform Waypoints { get; set; }
         private Soldier _soldier;
@@ -32,6 +32,7 @@ namespace DefaultNamespace
         public void MoneyUpgrade()
         {
             MoneyLevel++;
+            Unlocked = true;
         }
 
         public override void SoldierSitDown(Soldier soldier)
@@ -104,7 +105,7 @@ namespace DefaultNamespace
         {
             return new MissionItemJO()
             {
-                TimeLevel = Level,
+                Json_Level = Level,
                 MoneyLevel = MoneyLevel
             };
         }

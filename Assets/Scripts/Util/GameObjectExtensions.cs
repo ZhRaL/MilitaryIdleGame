@@ -59,6 +59,10 @@ namespace Util
                 case GenericObjectType.SOLDIER_SPEED: return UpgradeType.SOLDIER_SPEED;
                 case GenericObjectType.SOLDIER_CRIT: return UpgradeType.SOLDIER_CRIT;
                 case GenericObjectType.SOLDIER_REWARD: return UpgradeType.SOLDIER_REWARD;
+                case GenericObjectType.JET_TIME: return UpgradeType.JET_TIME;
+                case GenericObjectType.SHIP_TIME: return UpgradeType.SHIP_TIME;
+                case GenericObjectType.TANK_TIME: return UpgradeType.TANK_TIME;
+
 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(item.ObjectType.objectType));

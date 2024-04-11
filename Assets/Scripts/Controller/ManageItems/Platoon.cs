@@ -33,7 +33,7 @@ public class Platoon : MonoBehaviour
     {
         foreach (var ji in levels.SaveItems)
         {
-            SoldierItemJO jo = ji as SoldierItemJO ?? new SoldierItemJO();
+            SoldierItemJO jo = ji ?? new SoldierItemJO();
             createSoldier(jo.SpeedLevel, jo.MissionRewardLevel, jo.CritLevel, jo.Name);
         }
     }

@@ -47,8 +47,10 @@ namespace DefaultNamespace
 
                 if (levels.GetIndex(i) == null)
                 {
-                    constructionParent.transform.GetChild(i-1).gameObject.SetActive(true);
+                    GameObject constructionObject = constructionParent.transform.GetChild(i-1).gameObject;
+                    constructionObject.SetActive(true);
                     item.gameObject.SetActive(false);
+                    item.OnLevelUp += _ => constructionObject.SetActive(false);
                     continue;
                 }
 
@@ -59,8 +61,10 @@ namespace DefaultNamespace
                     item.Parent = this;
                     item.Level = jo.Json_Level;
                     item.MoneyLevel = jo.MoneyLevel;
+
                 }
             }
         }
+        
     }
 }

@@ -34,7 +34,8 @@ public class UpgradeScript : MonoBehaviour
         current = upgrade;
         if(upgrade.IconBackground!=null)
             IconBackground.sprite = upgrade.IconBackground;
-        Icon.sprite = upgrade.Icon;
+        Sprite lockedSprite = GameManager.INSTANCE.DataProvider.IconProvider.GetIcon(UpgradeType.BIG_LOCKED);
+        Icon.sprite = (upgrade.Icon == lockedSprite)?GameManager.INSTANCE.DataProvider.IconProvider.GetIcon(UpgradeType.LOCKED):upgrade.Icon;
         title.text = upgrade.title;
         description.text = upgrade.description;
         _sliderValues.setValue(upgrade.level);
@@ -66,8 +67,12 @@ public class UpgradeScript : MonoBehaviour
         current.upgradeCost = GameManager.INSTANCE.DataProvider.GetCost(current.item, current.moneyItem);
         current.currentReward = GameManager.INSTANCE.DataProvider.GetReward(current.item, current.moneyItem);
         current.diffReward = GameManager.INSTANCE.DataProvider.GetRewardDiff(current.item, current.moneyItem);
-        current.Icon = GameManager.INSTANCE.DataProvider.IconProvider.GetIcon(current.item.ToUpgradeType());
-        Icon.sprite = current.Icon;
+        if (Icon.sprite == GameManager.INSTANCE.DataProvider.IconProvider.GetIcon(UpgradeType.LOCKED))
+        {
+            current.Icon = GameManager.INSTANCE.DataProvider.IconProvider.GetIcon(current.item.ToUpgradeType());
+            Icon.sprite = current.Icon;
+        }
+
         upgradeBtn.GetComponentInChildren<TMP_Text>().text = current.level<=0 ? "UNLOCK": "UPGRADE";
         
         selectionChanged(current);
