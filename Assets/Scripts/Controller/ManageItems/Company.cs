@@ -14,6 +14,8 @@ namespace DefaultNamespace
 
         public override List<Item> Items => new(vehicles);
 
+        public GameObject constructionParent;
+        
         public override void PlaceSoldier(Soldier soldier)
         {
             // TODO - hie rweiter machen
@@ -45,7 +47,7 @@ namespace DefaultNamespace
 
                 if (levels.GetIndex(i) == null)
                 {
-                    // TODO - Add Baustellen Prefab
+                    constructionParent.transform.GetChild(i-1).gameObject.SetActive(true);
                     item.gameObject.SetActive(false);
                     continue;
                 }

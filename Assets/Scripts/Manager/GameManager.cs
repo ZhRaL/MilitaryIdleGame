@@ -152,18 +152,13 @@ public class GameManager : MonoBehaviour
         SaveGame();
     }
 
-    private void ResetAllOwnPlayerPrefs()
+    public void ResetAllOwnPlayerPrefs()
     {
         string[] sl = { BATHSAFESTRING,SLEEPINGSAFESTRING,KITCHENSAFESTRING,MISSIONSAFESTRING,RECRUITMENTSAFESTRING,"Gold","Badges","reset","saveString"};
         foreach (var s in sl)
         {
             PlayerPrefs.DeleteKey(s);
         }
-    }
-
-    public void ResetPlayerprefs()
-    {
-        PlayerPrefs.DeleteAll();
     }
 
     private void OnApplicationQuit()

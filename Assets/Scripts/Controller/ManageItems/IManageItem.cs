@@ -15,15 +15,23 @@ namespace DefaultNamespace
 
         public abstract List<Item> Items { get; }
         DefenseType DefenseType => _defenseType;
-        private protected WaitingService TheWaitingService { get; set; }
+
         private protected List<SoldierWalkUtil> WalkingSoldiers { get; } = new();
+        
         Transform WaitingPosParent => _waitingPosParent;
 
-        private void Start()
+        private protected WaitingService TheWaitingService
         {
-            TheWaitingService = new WaitingService(_waitingPosParent);
+            get
+            {
+                if (_waitingService == null)
+                {
+                    _waitingService = new WaitingService(_waitingPosParent);
+                }
+                return _waitingService;
+            }
         }
-
+        
         void Update()
         {
             var copyOfWalkingSoldiers = new List<SoldierWalkUtil>(WalkingSoldiers);

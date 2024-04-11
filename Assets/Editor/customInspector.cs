@@ -13,7 +13,7 @@ public class customInspector : Editor
         GameManager gm = (GameManager) target;
         if (GUILayout.Button("Reset Playerprefs"))
         {
-            gm.ResetPlayerprefs();
+            gm.ResetAllOwnPlayerPrefs();
         }
     }
 }
