@@ -44,8 +44,8 @@ namespace Util
         SOLDIER_CRIT,
         SOLDIER_REWARD,
         LOCKED,
-        BIG_LOCKED
-        
-}
+        BIG_LOCKED,
+        Soldier
+    }
 
 }

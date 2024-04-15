@@ -85,7 +85,7 @@ public class RecruitInitializer : MonoBehaviour
         var upgradeDto = new UpgradeDto
         {
             IconBackground = null,
-            Icon = null,
+            Icon = GameManager.INSTANCE.DataProvider.IconProvider.GetIcon(UpgradeType.Soldier),
             title = "George",
             description = "There will be an awesome description for this specific soldier",
             level = 0,
