@@ -22,7 +22,7 @@ public class RecruitTemplate : MonoBehaviour
         UpgradeScript = upgradeScript;
         Soldier = soldier;
         tx_name.text = Soldier.SoldierName;
-        // TODO - add correct Portrait
+
 
         var MoveIcon = movSpeedPrefab.GetComponent<IconScript>();
         MoveIcon.InitializePreview(SpeedUpgrade,null,Soldier.ToItem(Soldier.SoldierUpgradeType.SPEED));
@@ -72,7 +72,7 @@ public class RecruitTemplate : MonoBehaviour
         UpgradeScript.selectionChanged(new UpgradeDto
         {
             IconBackground = null,
-            Icon = DataProvider.INSTANCE.IconProvider.GetIcon(UpgradeType.SOLDIER_SPEED),   // HardCoded
+            Icon = DataProvider.INSTANCE.IconProvider.GetIcon(Soldier.ToUpgradeType(type)),
             title = Soldier.SoldierName,
             description = "cool Description",
             level = level,

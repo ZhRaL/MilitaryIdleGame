@@ -137,24 +137,38 @@ public class Soldier : MonoBehaviour
 
     public Item ToItem(SoldierUpgradeType type)
     {
-        SoldierItem item = gameObject.AddComponent<SoldierItem>();
-        item.Soldier = this;
+        SoldierItem item;
+
         switch (type)
         {
             case SoldierUpgradeType.SPEED:
+                item = gameObject.AddComponent<SoldierSpeedItem>();
                 item.Level = LVL_Speed;
                 break;
             case SoldierUpgradeType.REWARD:
+                item = gameObject.AddComponent<SoldierRewardItem>();
                 item.Level = LVL_Reward;
                 break;
             case SoldierUpgradeType.CRIT:
+                item = gameObject.AddComponent<SoldierCritItem>();
                 item.Level = LVL_Crit;
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(type), type, null);
         }
-        
+        item.Soldier = this;
+        item.Init();
         return item;
+    }
+
+    public static UpgradeType ToUpgradeType(SoldierUpgradeType type)
+    {
+        return type switch
+        {
+            SoldierUpgradeType.CRIT => UpgradeType.SOLDIER_CRIT,
+            SoldierUpgradeType.SPEED => UpgradeType.SOLDIER_SPEED,
+            SoldierUpgradeType.REWARD => UpgradeType.SOLDIER_REWARD
+        };
     }
 
     public enum SoldierUpgradeType
