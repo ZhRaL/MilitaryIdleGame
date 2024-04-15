@@ -16,6 +16,8 @@ public class RecruitTemplate : MonoBehaviour
     public GameObject movSpeedPrefab, missionRewardPrefab, critPrefab;
 
     public UpgradeScript UpgradeScript;
+
+    private UnityAction<bool> Toggler;
     
     public void Init(Soldier soldier, UpgradeScript upgradeScript)
     {
@@ -34,6 +36,12 @@ public class RecruitTemplate : MonoBehaviour
         CritIcon.InitializePreview(CritUpgrade,null,Soldier.ToItem(Soldier.SoldierUpgradeType.CRIT));
 
     }
+
+    public void Init(Soldier soldier, UpgradeScript upgradeScript, UnityAction<bool> toggler)
+    {
+        Toggler = toggler;
+        Init(soldier,upgradeScript);
+        }
 
     public void ChangeSoldierName(string newName)
     {
@@ -69,6 +77,10 @@ public class RecruitTemplate : MonoBehaviour
 
     private void ToUpgrade(int level, UnityAction upgradeAction, Soldier.SoldierUpgradeType type) 
     {
+        if (!UpgradeScript.gameObject.activeSelf)
+        {
+            Toggler?.Invoke(false);
+        }
         UpgradeScript.selectionChanged(new UpgradeDto
         {
             IconBackground = null,

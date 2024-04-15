@@ -44,13 +44,12 @@ public class RecruitInitializer : MonoBehaviour
             GameObject go = Instantiate(SoldierIconPrefab, transform);
             go.transform.SetSiblingIndex(transform.childCount - 1);
             var x = go.GetComponent<RecruitTemplate>();
-            x.Init(soldier, UpgradeScript);
+            x.Init(soldier, UpgradeScript,SwitchMode);
         }
 
         buyNewSoldierGameObject.transform.SetSiblingIndex(transform.childCount - 1);
 
-        BuyNewSoldierUpgrade.gameObject.SetActive(false);
-        UpgradeScript.gameObject.SetActive(true);
+        SwitchMode(false);
     }
 
     private void activateBuy()
@@ -59,12 +58,30 @@ public class RecruitInitializer : MonoBehaviour
 
         Button button = buyNewSoldierGameObject.AddComponent<Button>();
         button.onClick.AddListener(UpgradeBuy);
+        button.onClick.AddListener(() =>
+        {
+            HighLightManager.highlight(button.gameObject.GetComponent<Image>());
+        });
+    }
+
+    private void SwitchMode(bool b)
+    {
+        if (b)
+        {
+            UpgradeScript.gameObject.SetActive(false);
+            BuyNewSoldierUpgrade.gameObject.SetActive(true);
+        }
+        else
+        {
+            UpgradeScript.gameObject.SetActive(true);
+            BuyNewSoldierUpgrade.gameObject.SetActive(false);
+        }
     }
 
     private void UpgradeBuy()
     {
-        UpgradeScript.gameObject.SetActive(false);
-        BuyNewSoldierUpgrade.gameObject.SetActive(true);
+        SwitchMode(true);
+        
         var upgradeDto = new UpgradeDto
         {
             IconBackground = null,
