@@ -64,9 +64,11 @@ public class UpgradeScript : MonoBehaviour
     private void Refresh()
     {
         current.level++;
+        
         current.upgradeCost = GameManager.INSTANCE.DataProvider.GetCost(current.item, current.moneyItem);
         current.currentReward = GameManager.INSTANCE.DataProvider.GetReward(current.item, current.moneyItem);
         current.diffReward = GameManager.INSTANCE.DataProvider.GetRewardDiff(current.item, current.moneyItem);
+        
         if (Icon.sprite == GameManager.INSTANCE.DataProvider.IconProvider.GetIcon(UpgradeType.LOCKED))
         {
             current.Icon = GameManager.INSTANCE.DataProvider.IconProvider.GetIcon(current.item.ToUpgradeType());

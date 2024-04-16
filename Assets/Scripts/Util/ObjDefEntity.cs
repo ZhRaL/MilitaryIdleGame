@@ -2,7 +2,6 @@ namespace Util
 {
     public class ObjDefEntity
     {
-        public DefenseType DefenseType;
         public ObjectType ObjectType;
         public int startingCost;
         public int startingReward;
@@ -22,8 +21,7 @@ namespace Util
             }
 
             // Vergleichen von DefenseType und ObjectType
-            return this.DefenseType == otherEntity.DefenseType &&
-                   this.ObjectType.objectType == otherEntity.ObjectType.objectType;
+            return ObjectType.objectType == otherEntity.ObjectType.objectType;
         }
     }
 }

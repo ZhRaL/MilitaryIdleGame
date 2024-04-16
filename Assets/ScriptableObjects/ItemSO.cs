@@ -14,15 +14,15 @@ public class ItemSO : ScriptableObject
 
             var upgradeDto = new UpgradeDto
             {
-                IconBackground = this.iconBackground,
-                Icon = this.icon,
-                title = this.itemName,
-                description = this.description,
-                level = DataProvider.INSTANCE.GetLevel(defenseType, objectType, index),
-                upgradeAction = DataProvider.INSTANCE.getUpgradeMethod(defenseType, objectType, index),
-                upgradeCost = DataProvider.INSTANCE.GetCost(defenseType, objectType, index),
-                currentReward = DataProvider.INSTANCE.GetReward(defenseType, objectType, index),
-                diffReward = DataProvider.INSTANCE.GetRewardDiff(defenseType, objectType, index)
+             //   IconBackground = this.iconBackground,
+             //   Icon = this.icon,
+             //   title = this.itemName,
+             //   description = this.description,
+             //   level = DataProvider.INSTANCE.GetLevel(defenseType, objectType, index),
+             //  // upgradeAction = DataProvider.INSTANCE.getUpgradeMethod(defenseType, objectType, index),
+             //   upgradeCost = DataProvider.INSTANCE.GetCost( objectType, index),
+             //   currentReward = DataProvider.INSTANCE.GetReward( objectType, index),
+             //   diffReward = DataProvider.INSTANCE.GetRewardDiff( objectType, index)
             };
             return upgradeDto;
         }

@@ -58,7 +58,7 @@ namespace DefaultNamespace
         public float TimeNeeded()
         {
             // TODO
-            return 10 - Calculator.INSTANCE.getTimeReductionReward(Level);
+            return 10 - Calculator.INSTANCE.GetTimeReductionReward(Level);
         }
 
         public virtual void SoldierSitDown(Soldier soldier)

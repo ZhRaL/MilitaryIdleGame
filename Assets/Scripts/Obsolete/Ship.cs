@@ -34,7 +34,7 @@ public class Ship : MonoBehaviour
 
     public float calculateDuration()
     {
-        return 10 - Calculator.INSTANCE.getTimeReductionReward(durationLevel);
+        return 10 - Calculator.INSTANCE.GetTimeReductionReward(durationLevel);
     }
     
     public float getTimeForRound()

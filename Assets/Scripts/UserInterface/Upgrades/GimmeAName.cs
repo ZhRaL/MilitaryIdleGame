@@ -113,9 +113,9 @@ public class GimmeAName : MonoBehaviour
                 description = "DescriptionManager",
                 level = child.Item.Level,
                 upgradeAction = child.Item.Upgrade,
-                upgradeCost = GameManager.INSTANCE.DataProvider.GetCost(child.Item),
-                currentReward = GameManager.INSTANCE.DataProvider.GetReward(child.Item),
-                diffReward = GameManager.INSTANCE.DataProvider.GetRewardDiff(child.Item),
+                upgradeCost = GameManager.INSTANCE.DataProvider.GetCost(child.Item, false),
+                currentReward = GameManager.INSTANCE.DataProvider.GetReward(child.Item, false),
+                diffReward = GameManager.INSTANCE.DataProvider.GetRewardDiff(child.Item, false),
                 item = child.Item
             };
     }

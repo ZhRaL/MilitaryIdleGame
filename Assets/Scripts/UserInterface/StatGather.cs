@@ -22,7 +22,7 @@ public class StatGather : MonoBehaviour
         level = DataProvider.INSTANCE.GetLevel(defType, type, index);
         
         if (level == 0) hideStat();
-        reward = Calculator.INSTANCE.getReward(new ObjDefEntity() { ObjectType = type }, level);
+        reward = Calculator.INSTANCE.GetReward(type, level);
         tx_reward.text = "" + reward;
     }
 

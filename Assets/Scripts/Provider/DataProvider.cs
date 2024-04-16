@@ -18,6 +18,7 @@ public class DataProvider
     
     public static DataProvider INSTANCE => GameManager.INSTANCE.DataProvider;
 
+    // Obsolete
     public int GetLevel(DefenseType defType, ObjectType objType, int index)
     {
         return objType.objectType switch
@@ -47,89 +48,95 @@ public class DataProvider
 
     }
     
-    public UnityAction getUpgradeMethod(DefenseType defType, ObjectType objType, int index)
+    
+    
+    // correct Methods!
+    private int GetReward(ObjectType objType, int level)
     {
-        return objType.objectType switch
-        {
-            GenericObjectType.KITCHEN => defType switch
-            {   
-                DefenseType.ARMY => () => armyTable.GetUpgradeMethod(index),
-                DefenseType.AIRFORCE => () => airforceTable.GetUpgradeMethod(index),
-                DefenseType.MARINE => () => marineTable.GetUpgradeMethod(index),
-            },
-            GenericObjectType.SLEEPING => defType switch
-            {   
-                DefenseType.ARMY => () => armyRoom.GetUpgradeMethod(index),
-                DefenseType.AIRFORCE => () => airforceRoom.GetUpgradeMethod(index),
-                DefenseType.MARINE => () => marineRoom.GetUpgradeMethod(index),
-            },
-            GenericObjectType.BATH => defType switch
-            {   
-                DefenseType.ARMY => () => armyRest.GetUpgradeMethod(index),
-                DefenseType.AIRFORCE => () => airforceRest.GetUpgradeMethod(index),
-                DefenseType.MARINE => () => marineRest.GetUpgradeMethod(index),
-            },
-            
-            // TODO - Add Vehics
-            
-        };
-    }
-
-    public int GetMoneyLevel(DefenseType defType, ObjectType objType, int index)
-    {
-        return -1;
+        var value = Calculator.INSTANCE.GetReward(objType, level);
+        return (int) value;
     }
     
-    public int GetReward(DefenseType defType, ObjectType objType, int index)
+    private int GetRewardDiff(ObjectType objType, int level)
     {
-        return -1;
+        var value = Calculator.INSTANCE.GetRewardDiff(objType, level);
+        return (int) value;
     }
     
-    public int GetRewardDiff(DefenseType defType, ObjectType objType, int index)
+    private int GetCost(ObjectType objType, int level)
     {
-        return -1;
+        var value = Calculator.INSTANCE.GetCost(objType, level);
+        return (int) value;
     }
     
-    public int GetCost(DefenseType defType, ObjectType objType, int index)
-    {
-        return -1;
-    }
-    
-    public int GetTimeReduction(DefenseType defType, ObjectType objType, int index)
-    {
-        return -1;
-    }
-
+    // Item Upgrades
     public int GetCost(Item item)
     {
-        return GetCost(item.ObjectType.defenseType, item.ObjectType, item.Index);
+        return GetCost(item.ObjectType, item.Level);
     }
     
     public int GetReward(Item item)
     {
-        return GetReward(item.ObjectType.defenseType, item.ObjectType, item.Index);
+        return GetReward(item.ObjectType, item.Level);
     }
     
     public int GetRewardDiff(Item item)
     {
-        return GetRewardDiff(item.ObjectType.defenseType, item.ObjectType, item.Index);
+        return GetRewardDiff(item.ObjectType, item.Level);
     }
     
+    
+    // Mission Upgrades
     public int GetCost(Item item, bool isMoney)
     {
-        return GetCost(item.ObjectType.defenseType, item.ObjectType, item.Index);
+        if (item is MissionItem mi)
+        {
+            ObjectType type = Convert(item.ObjectType,isMoney) ;
+            return GetCost(type, isMoney ? mi.MoneyLevel : mi.Level);
+        }
+        return GetCost(item);
     }
     
     public int GetReward(Item item, bool isMoney)
     {
-        return GetReward(item.ObjectType.defenseType, item.ObjectType, item.Index);
+        if (item is MissionItem mi)
+        {
+            ObjectType type = Convert(item.ObjectType,isMoney) ;
+            return GetReward(type, isMoney ? mi.MoneyLevel : mi.Level);
+        }
+        return GetReward(item);
     }
     
     public int GetRewardDiff(Item item, bool isMoney)
     {
-        return GetRewardDiff(item.ObjectType.defenseType, item.ObjectType, item.Index);
+        if (item is MissionItem mi)
+        {
+            ObjectType type = Convert(item.ObjectType,isMoney) ;
+            return GetRewardDiff(type, isMoney ? mi.MoneyLevel : mi.Level);
+        }
+        return GetRewardDiff(item);
     }
     
-
+    // Soldier Upgrades
     
+    // TODO
+    
+    private ObjectType Convert(ObjectType type, bool isMoney)
+    {
+        switch (type.objectType)
+        {
+            case GenericObjectType.JET_MONEY:
+            case GenericObjectType.JET_TIME:
+                return new ObjectType() { objectType = isMoney ? GenericObjectType.JET_MONEY : GenericObjectType.JET_TIME };
+            case GenericObjectType.TANK_MONEY:
+            case GenericObjectType.TANK_TIME:
+                return new ObjectType() { objectType = isMoney ? GenericObjectType.TANK_MONEY : GenericObjectType.TANK_TIME };
+            case GenericObjectType.SHIP_MONEY:
+            case GenericObjectType.SHIP_TIME:
+                return new ObjectType() { objectType = isMoney ? GenericObjectType.SHIP_MONEY : GenericObjectType.SHIP_TIME };
+            
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+    }
 }
