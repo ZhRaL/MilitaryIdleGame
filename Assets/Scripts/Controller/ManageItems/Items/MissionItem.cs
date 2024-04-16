@@ -38,6 +38,7 @@ namespace DefaultNamespace
         public override void SoldierSitDown(Soldier soldier)
         {
             _soldier = soldier;
+            _soldier.transform.RotateAround(Vector3.up, 180);
             soldier.gameObject.SetActive(false);
             MissionStart();
         }
@@ -69,6 +70,7 @@ namespace DefaultNamespace
 
         public void MissionEnd()
         {
+            Debug.Log("End was called!");
             Reward();
             LetSoldierMove();
         }

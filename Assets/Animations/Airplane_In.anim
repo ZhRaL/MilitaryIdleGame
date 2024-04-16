@@ -587,7 +587,7 @@ AnimationClip:
   m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 6.5
+  - time: 6.4166665
     functionName: MissionEnd
     data: 
     objectReferenceParameter: {fileID: 0}
