@@ -7,6 +7,20 @@ namespace Util
     {
         public DefenseType defenseType;
         public GenericObjectType objectType;
+
+        public static ObjectType Kit => new ObjectType
+        {
+            objectType = GenericObjectType.KITCHEN
+        };
+        public static ObjectType Bat => new ObjectType
+        {
+            objectType = GenericObjectType.BATH
+        };
+        public static ObjectType Sle => new ObjectType
+        {
+            objectType = GenericObjectType.SLEEPING
+        };
+        
     }
 
     public enum GenericObjectType

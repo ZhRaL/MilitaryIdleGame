@@ -44,7 +44,7 @@ public class OfflineCalcManager : MonoBehaviour
         }
         else
         {
-            // Load Shop and Buy Option
+            // TODO: Load Shop and Buy Option
             gameObject.SetActive(false);
         }
 

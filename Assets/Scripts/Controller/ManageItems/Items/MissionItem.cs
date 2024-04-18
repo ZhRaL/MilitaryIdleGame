@@ -17,7 +17,7 @@ namespace DefaultNamespace
             }
         }
 
-        private int _moneyLevel=1;
+        private int _moneyLevel = 1;
 
         public abstract Transform Waypoints { get; set; }
         private Soldier _soldier;
@@ -65,7 +65,6 @@ namespace DefaultNamespace
             // Duration - AnimationDuration
             float animationDuration = 9; // TODO - compute value somehow?!
             return TimeNeeded() - animationDuration;
-
         }
 
         public void MissionEnd()
@@ -84,13 +83,25 @@ namespace DefaultNamespace
             wayBack = new SoldierWalkUtil(_soldier, null, () => RoutingPoint.LetSoldierMove(_soldier), RemoveWayBack,
                 .2f,
                 Waypoints.GetAllChildren().Reverse().ToArray());
-
         }
 
         public void Reward()
         {
-            GameManager.INSTANCE.Gold += 500; // TODO - more specific
+            var amount = GameManager.INSTANCE.DataProvider.GetReward(this, true);
+            amount *= (_soldier.LVL_Reward * 2) / 100;
+            if (IsCrit())
+            {
+                //TODO Anim?
+                amount *= 2;
+            }
 
+            GameManager.INSTANCE.Gold += amount;
+        }
+
+        private bool IsCrit()
+        {
+            var val = Random.Range(0, 100);
+            return val <= _soldier.LVL_Crit / 2;
         }
 
         private void RemoveWayBack(SoldierWalkUtil util)

@@ -11,15 +11,11 @@ using Util;
 
 public class Soldier : MonoBehaviour
 {
-    [SerializeField]
-    private string _soldierName;
+    [SerializeField] private string _soldierName;
 
     public string SoldierName
     {
-        get
-        {
-            return _soldierName;
-        }
+        get { return _soldierName; }
         set
         {
             OnNameChanged?.Invoke(value);
@@ -34,8 +30,8 @@ public class Soldier : MonoBehaviour
     [SerializeField] private DefenseType soldierTypeEnum;
 
     public int currentTarget = 0;
-    [SerializeField]
-    private float speed;
+    private float baseSpeed = 2f;
+    [SerializeField] private float speed;
     private bool isRunning;
     public bool isWaiting;
     Vector3 targetDirection;
@@ -46,30 +42,16 @@ public class Soldier : MonoBehaviour
 
     public float Crit { get; set; }
 
-    public float MovementSpeed
-    {
-        get => speed;
-        set => speed = value;
-    }
-
     public int MissionReward => 0; // DataProvider.GetReward(LVL_Reward)
-    
+
     public delegate void LevelUpEventHandler(int newLevel);
-    
+
     // Ereignis für Levelaufstieg
     public event LevelUpEventHandler OnLevelUp;
 
     public int LVL_Crit, LVL_Speed, LVL_Reward;
 
-    public float Speed
-    {
-        get => speed;
-        set
-        {
-            distanceToTarget = .15f * value;
-            speed = value;
-        }
-    }
+    public float Speed => baseSpeed + 2 * (LVL_Speed / 100);
 
     public DefenseType SoldierType
     {
@@ -80,7 +62,7 @@ public class Soldier : MonoBehaviour
     void Start()
     {
         distanceToTarget = .15f * Speed;
-        
+
         anim = GetComponent<Animator>();
         // Creating Route
         path = new Transform[parentRoute.transform.childCount];
@@ -110,8 +92,7 @@ public class Soldier : MonoBehaviour
             Quaternion neededRotation = Quaternion.LookRotation(forward);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, neededRotation, Time.deltaTime * 200f);
         }
-
-
+        
         if (!isWaiting)
             CheckDistance();
     }
@@ -156,6 +137,7 @@ public class Soldier : MonoBehaviour
             default:
                 throw new ArgumentOutOfRangeException(nameof(type), type, null);
         }
+
         item.Soldier = this;
         item.Init();
         return item;
@@ -173,6 +155,8 @@ public class Soldier : MonoBehaviour
 
     public enum SoldierUpgradeType
     {
-        SPEED,REWARD,CRIT
+        SPEED,
+        REWARD,
+        CRIT
     }
 }

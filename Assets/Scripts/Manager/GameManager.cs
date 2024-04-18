@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DefaultNamespace;
+using Provider;
 using UnityEngine;
 using UnityEngine.UI;
 using Util;
@@ -146,7 +147,6 @@ public class GameManager : MonoBehaviour
         SoldierController.Load(JsonUtility.FromJson<JsonController<SoldierItemJO>>(PlayerPrefs.GetString(RECRUITMENTSAFESTRING, "")) ?? JsonController<SoldierItemJO>.Default(new SoldierItemJO()));
 
         isInitialized = true;
-        OfflineCalculator.calculateReward();
         SaveGame();
     }
 
@@ -162,7 +162,7 @@ public class GameManager : MonoBehaviour
     private void OnApplicationQuit()
     {
         logger.log("Closing...");
-        OfflineCalculator.safeTime();
+        OfflineCalculator.SafeTime();
         SaveGame();
     }
 }

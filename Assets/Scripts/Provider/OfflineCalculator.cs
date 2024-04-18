@@ -1,142 +1,153 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using System.Linq;
 using DefaultNamespace;
 using Interfaces;
-using UnityEditor;
 using UnityEngine;
 using Util;
 
-public class OfflineCalculator
+namespace Provider
 {
-    private float percentage = .6f;
-    
-    private DateTime  savedTime;
-    
-    public float validOfflineTime = 60 * 60;
-    
-    private const string saveString = "OFFLINE_CALC";
-
-    public KitchenController kitchenController;
-    public RouteManager routeManager;
-    private int amount;
-
-    private bool initialized;
-    public OfflineCalculator()
+    public class OfflineCalculator
     {
-        string savedStartTime = PlayerPrefs.GetString(saveString, string.Empty);
-        if (!string.IsNullOrEmpty(savedStartTime))
+        private float percentage = .6f;
+
+        private DateTime savedTime;
+
+        // In Seconds
+        public int validOfflineTime = 60 * 60;
+
+        private const string saveString = "OFFLINE_CALC";
+
+        private KitchenController kitchenController;
+        public RouteManager routeManager;
+
+        private int amount;
+
+        private bool initialized;
+
+        public OfflineCalculator()
         {
-            savedTime = DateTime.Parse(savedStartTime);
+            string savedStartTime = PlayerPrefs.GetString(saveString, string.Empty);
+            if (!string.IsNullOrEmpty(savedStartTime))
+            {
+                savedTime = DateTime.Parse(savedStartTime);
+            }
         }
-    }
-    
-    public void safeTime()
-    {
-        logger.log("I saved: "+DateTime.Now);
-        PlayerPrefs.SetString(saveString, DateTime.Now.ToString());
-        PlayerPrefs.Save(); // PlayerPrefs speichern (wichtig!)
-    }
 
-    public void calculateReward()
-    {
-        TimeSpan elapsedTime = DateTime.Now - savedTime;
-
-        int diff  = (int) elapsedTime.TotalSeconds;
-
-        float hourlyReward = calculate();
-
-        amount = -2;
-        initialized = true;
-    }
-
-    public int GetOfflineAmount()
-    {
-        return initialized ? amount : -1;
-    }
-
-    private float calculate()
-    {
-        float amount = 0;
-        // TODO
-      /*  List<Soldier> soldiers = recruitmentController.GetSoldiers();
-        
-        foreach (Soldier soldier in soldiers)
+        public void SafeTime()
         {
-            int soldierAmount = recruitmentController.getSoldierTypeAmount(soldier.SoldierType);
-            float roundTrip = getNettoRunningTime(soldier, soldierAmount)
-                              + getTimeEating(soldier, soldierAmount)
-                              + getTimePooing(soldier, soldierAmount)
-                              + getTimeSleeping(soldier, soldierAmount)
-                              + getTimeForMission(soldier, soldierAmount);
-            float numberRT = (60 * 60) / roundTrip;
-            float moneyEarned = numberRT * getMissionMoney(soldier);
-            amount += moneyEarned;
+            PlayerPrefs.SetString(saveString, DateTime.Now.ToString());
+            PlayerPrefs.Save();
         }
-        */
 
-        return amount;
-    }
-
-    private float getTimeEating(Soldier soldier, int soldierAmount)
-    {
-        IManageItem table = kitchenController.GetItemManager(soldier.SoldierType);
-        var eZ = table.GetAverageTime();
-        eZ += (1 - (soldierAmount / table.GetAmountOfUnlockedItems())) * eZ;
-        return eZ;
-    }
-    
-    private float getTimePooing(Soldier soldier, int soldierAmount)
-    {
-        IManageItem table = kitchenController.GetItemManager(soldier.SoldierType);
-        var eZ = table.GetAverageTime();
-        eZ += (1 - (soldierAmount / table.GetAmountOfUnlockedItems())) * eZ;
-        return eZ;
-    }
-    
-    private float getTimeSleeping(Soldier soldier, int soldierAmount)
-    {
-        IManageItem table = kitchenController.GetItemManager(soldier.SoldierType);
-        var eZ = table.GetAverageTime();
-        eZ += (1 - (soldierAmount / table.GetAmountOfUnlockedItems())) * eZ;
-        return eZ;
-    }
-
-    private float getNettoRunningTime(Soldier soldier, int soldierAmount)
-    {
-        return routeManager.getRouteLength(soldier.SoldierType);
-    }
-
-    private float getTimeForMission(Soldier soldier, int soldierAmount)
-    {
-        float time;
-        int amount;
-        switch (soldier.SoldierType)
+        private void CalculateReward()
         {
-       //     case DefenseType.ARMY:
-       //         time = armyController.getAverageTime();
-       //         amount = armyController.unlockedVehics();
-       //         break;
-       //     case DefenseType.MARINE:
-       //         time = marineController.getAverageTime();
-       //         amount = marineController.unlockedVehics();
-       //         break;
-       //     case DefenseType.AIRFORCE:
-       //         time = airforceController.getAverageTime();
-       //         amount = airforceController.unlockedVehics();
-       //         break;
-            default:
-                throw new ArgumentOutOfRangeException();
-        }
-        
-        time += (1 - (soldierAmount / amount)) * time;
-        return time;
-    }
-    
+            TimeSpan elapsedTime = DateTime.Now - savedTime;
 
-    private float getMissionMoney(Soldier soldier)
-    {
-        // Calculate average of all active vehicles and multiply it with amount of active vehicles
-        return 0;
+            int diff = (int)elapsedTime.TotalSeconds;
+            diff = Mathf.Min(diff, validOfflineTime);
+
+            float hourlyReward = calculate();
+
+            amount = (int) ((diff / 3600) * hourlyReward);
+            initialized = true;
+        }
+
+        public int GetOfflineAmount()
+        {
+            if (!initialized)
+                CalculateReward();
+            return amount;
+        }
+
+        private float calculate()
+        {
+            float amount = 0;
+            var soldiers = GameManager.INSTANCE.SoldierController.GetAllSoldiers();
+
+            foreach (Soldier soldier in soldiers)
+            {
+                int soldierAmount = soldiers.Count(x => x.SoldierType == soldier.SoldierType);
+              
+                float roundTrip = getNettoRunningTime(soldier)
+                                  + getTimeEating(soldier, soldierAmount)
+                                  + getTimePooing(soldier, soldierAmount)
+                                  + getTimeSleeping(soldier, soldierAmount)
+                                  + getTimeForMission(soldier, soldierAmount);
+                float numberRT = (60 * 60) / roundTrip;
+                float moneyEarned = numberRT * getMissionMoney(soldier);
+                amount += moneyEarned;
+            }
+          
+
+            return amount;
+        }
+
+        private float getTimeEating(Soldier soldier, int soldierAmount)
+        {
+            IManageItem manager = GameManager.INSTANCE.GetTopLevel(ObjectType.Kit).GetItemManager(soldier.SoldierType);
+            
+            var eZ = manager.GetAverageTime();
+            eZ += (1 - (soldierAmount / manager.GetAmountOfUnlockedItems())) * eZ;
+            return eZ;
+        }
+
+        private float getTimePooing(Soldier soldier, int soldierAmount)
+        {
+            IManageItem manager = GameManager.INSTANCE.GetTopLevel(ObjectType.Bat).GetItemManager(soldier.SoldierType);
+            
+            var eZ = manager.GetAverageTime();
+            eZ += (1 - (soldierAmount / manager.GetAmountOfUnlockedItems())) * eZ;
+            return eZ;
+        }
+
+        private float getTimeSleeping(Soldier soldier, int soldierAmount)
+        {
+            IManageItem manager = GameManager.INSTANCE.GetTopLevel(ObjectType.Sle).GetItemManager(soldier.SoldierType);
+            
+            var eZ = manager.GetAverageTime();
+            eZ += (1 - (soldierAmount / manager.GetAmountOfUnlockedItems())) * eZ;
+            return eZ;
+        }
+
+        private float getNettoRunningTime(Soldier soldier)
+        {
+            var length = routeManager.getRouteLength(soldier.SoldierType);
+            // TODO involve soldier.movementSpeed
+            return length;
+        }
+
+        private float getTimeForMission(Soldier soldier, int soldierAmount)
+        {
+            float time;
+            int amount;
+            switch (soldier.SoldierType)
+            {
+                //     case DefenseType.ARMY:
+                //         time = armyController.getAverageTime();
+                //         amount = armyController.unlockedVehics();
+                //         break;
+                //     case DefenseType.MARINE:
+                //         time = marineController.getAverageTime();
+                //         amount = marineController.unlockedVehics();
+                //         break;
+                //     case DefenseType.AIRFORCE:
+                //         time = airforceController.getAverageTime();
+                //         amount = airforceController.unlockedVehics();
+                //         break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            time += (1 - (soldierAmount / amount)) * time;
+            return time;
+        }
+
+
+        private float getMissionMoney(Soldier soldier)
+        {
+            // Calculate average of all active vehicles and multiply it with amount of active vehicles
+            return 0;
+        }
     }
 }

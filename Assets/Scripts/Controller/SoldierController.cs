@@ -28,6 +28,13 @@ public class SoldierController : MonoBehaviour
         };
     }
 
+    public List<Soldier> GetAllSoldiers()
+    {
+        return GetAllSoldiersFrom(DefenseType.ARMY)
+            .Concat(GetAllSoldiersFrom(DefenseType.MARINE))
+            .Concat(GetAllSoldiersFrom(DefenseType.AIRFORCE)).ToList();
+    }
+
     public Platoon GetPlatoon(DefenseType type)
     {
         return type switch
