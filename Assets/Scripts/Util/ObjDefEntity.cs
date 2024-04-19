@@ -4,7 +4,8 @@ namespace Util
     {
         public ObjectType ObjectType;
         public int startingCost;
-        public int startingReward;
+        public float startingReward; // Float because the required time is also a 'reward'  
+        public bool timeValueNeeded;
 
         public override bool Equals(object obj)
         {

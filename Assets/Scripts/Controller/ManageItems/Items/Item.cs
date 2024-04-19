@@ -55,10 +55,9 @@ namespace DefaultNamespace
             gameObject.SetActive(true);
         }
 
-        public float TimeNeeded()
+        public virtual float TimeNeeded()
         {
-            // TODO
-            return 10 - Calculator.INSTANCE.GetTimeReductionReward(Level);
+            return Calculator.INSTANCE.GetReward(ObjectType, Level);
         }
 
         public virtual void SoldierSitDown(Soldier soldier)

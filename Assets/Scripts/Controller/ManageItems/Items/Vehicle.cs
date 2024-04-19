@@ -8,6 +8,7 @@ namespace DefaultNamespace
     {
         [SerializeField] private Transform _waypoints;
 
+
         public override Transform Waypoints
         {
             get => _waypoints;

@@ -2,6 +2,7 @@
 using System.Linq;
 using Interfaces;
 using UnityEngine;
+using Util;
 
 namespace DefaultNamespace
 {
@@ -19,6 +20,8 @@ namespace DefaultNamespace
 
         private int _moneyLevel = 1;
 
+        public Animation anim1, anim2;
+        
         public abstract Transform Waypoints { get; set; }
         private Soldier _soldier;
         private SoldierWalkUtil wayBack;
@@ -57,13 +60,16 @@ namespace DefaultNamespace
 
         public void getBackDelayed()
         {
-            StartCoroutine(ExecuteAfterTime(calculateDuration()));
+            StartCoroutine(ExecuteAfterTime(calculateWaitingDuration()));
         }
-
-        public float calculateDuration()
+        
+        private float calculateWaitingDuration()
         {
+            var anim = GetComponent<Animator>();
+            AnimationClip[] clips = anim.runtimeAnimatorController.animationClips;
+            float animationDuration = clips.Sum(cl => cl.averageDuration);
+            
             // Duration - AnimationDuration
-            float animationDuration = 9; // TODO - compute value somehow?!
             return TimeNeeded() - animationDuration;
         }
 
@@ -97,7 +103,7 @@ namespace DefaultNamespace
 
             GameManager.INSTANCE.Gold += amount;
         }
-
+        
         private bool IsCrit()
         {
             var val = Random.Range(0, 100);

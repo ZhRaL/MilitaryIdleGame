@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace Util
@@ -10,19 +8,25 @@ namespace Util
         private float rewardMultiplier = 1.2f;
         private float costMultiplier = 1.3f;
         
-
-
+        private AnimationCurve itemCurve, missionItemCurve;
+        
         private List<ObjDefEntity> startingValues = new();
 
         public static Calculator INSTANCE;
+        
+        private const float itemBaseLevel=10;
+        private const float missionItemBaseLevel=30;
 
-        public Calculator()
+        public Calculator(AnimationCurve itemCurve, AnimationCurve missionItemCurve)
         {
             INSTANCE ??= this;
-            InitalizeData();
+            this.itemCurve = itemCurve;
+            this.missionItemCurve = missionItemCurve;
+            
+            InitializeData();
         }
 
-        private void InitalizeData()
+        private void InitializeData()
         {
             startingValues.Add(new ObjDefEntity
             {
@@ -31,7 +35,8 @@ namespace Util
                     objectType = GenericObjectType.KITCHEN
                 },
                 startingCost = 10,
-                startingReward = 20
+                startingReward = itemBaseLevel,
+                timeValueNeeded = true
             });
             startingValues.Add(new ObjDefEntity
             {
@@ -40,7 +45,8 @@ namespace Util
                     objectType = GenericObjectType.BATH
                 },
                 startingCost = 10,
-                startingReward = 20
+                startingReward = itemBaseLevel,
+                timeValueNeeded = true
             });
             startingValues.Add(new ObjDefEntity
             {
@@ -49,7 +55,8 @@ namespace Util
                     objectType = GenericObjectType.SLEEPING
                 },
                 startingCost = 10,
-                startingReward = 20
+                startingReward = itemBaseLevel,
+                timeValueNeeded = true
             });
 
             startingValues.Add(new ObjDefEntity
@@ -59,7 +66,8 @@ namespace Util
                     objectType = GenericObjectType.JET_TIME
                 },
                 startingCost = 10,
-                startingReward = 20
+                startingReward = missionItemBaseLevel,
+                timeValueNeeded = true
             });
             startingValues.Add(new ObjDefEntity
             {
@@ -78,7 +86,8 @@ namespace Util
                     objectType = GenericObjectType.TANK_TIME
                 },
                 startingCost = 10,
-                startingReward = 20
+                startingReward = missionItemBaseLevel,
+                timeValueNeeded = true
             });
             startingValues.Add(new ObjDefEntity
             {
@@ -98,7 +107,8 @@ namespace Util
                     objectType = GenericObjectType.SHIP_TIME
                 },
                 startingCost = 10,
-                startingReward = 20
+                startingReward = missionItemBaseLevel,
+                timeValueNeeded = true
             });
             startingValues.Add(new ObjDefEntity
             {
@@ -149,9 +159,25 @@ namespace Util
 
         public float GetReward(ObjectType type, int level)
         {
-            var exponent = Mathf.Pow(rewardMultiplier, level - 1);
-            var startValue = GetEntity(type).startingReward;
-            return Mathf.RoundToInt(startValue * exponent);
+            var entity = GetEntity(type);
+
+            // Money Reward
+            if (!entity.timeValueNeeded)
+            {
+                var exponent = Mathf.Pow(rewardMultiplier, level - 1);
+                var startValue = entity.startingReward;
+                return Mathf.RoundToInt(startValue * exponent);   
+            }
+            // Time Reward
+            // Longest AnimatinoDuration is Tank with 12seconds only for way to move
+            var baseValue = entity.startingReward;
+            // Item
+            if (baseValue == itemBaseLevel)
+            {
+                return baseValue - itemCurve.Evaluate(level);
+            }
+
+            return baseValue - missionItemCurve.Evaluate(level);
         }
 
         public float GetCost(ObjectType type, int level)

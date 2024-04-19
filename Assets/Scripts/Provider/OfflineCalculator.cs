@@ -13,6 +13,7 @@ namespace Provider
 
         private DateTime savedTime;
 
+
         // In Seconds
         public int validOfflineTime = 60 * 60;
 
@@ -47,9 +48,9 @@ namespace Provider
             int diff = (int)elapsedTime.TotalSeconds;
             diff = Mathf.Min(diff, validOfflineTime);
 
-            float hourlyReward = calculate();
+            float hourlyReward = calculateHourlyReward();
 
-            amount = (int) ((diff / 3600) * hourlyReward);
+            amount = (int)((diff / 3600) * hourlyReward);
             initialized = true;
         }
 
@@ -60,7 +61,7 @@ namespace Provider
             return amount;
         }
 
-        private float calculate()
+        private float calculateHourlyReward()
         {
             float amount = 0;
             var soldiers = GameManager.INSTANCE.SoldierController.GetAllSoldiers();
@@ -68,17 +69,17 @@ namespace Provider
             foreach (Soldier soldier in soldiers)
             {
                 int soldierAmount = soldiers.Count(x => x.SoldierType == soldier.SoldierType);
-              
-                float roundTrip = getNettoRunningTime(soldier)
-                                  + getTimeEating(soldier, soldierAmount)
-                                  + getTimePooing(soldier, soldierAmount)
-                                  + getTimeSleeping(soldier, soldierAmount)
-                                  + getTimeForMission(soldier, soldierAmount);
-                float numberRT = (60 * 60) / roundTrip;
-                float moneyEarned = numberRT * getMissionMoney(soldier);
+
+                float singleRoundTrip = getNettoRunningTime(soldier)
+                                        + getTimeEating(soldier, soldierAmount)
+                                        + getTimePooing(soldier, soldierAmount)
+                                        + getTimeSleeping(soldier, soldierAmount)
+                                        + getTimeForMission(soldier, soldierAmount);
+                float amountOfAllRoundTrips = (60 * 60) / singleRoundTrip;
+                float moneyEarned = amountOfAllRoundTrips * getMissionMoney(soldier);
                 amount += moneyEarned;
             }
-          
+
 
             return amount;
         }
@@ -86,7 +87,7 @@ namespace Provider
         private float getTimeEating(Soldier soldier, int soldierAmount)
         {
             IManageItem manager = GameManager.INSTANCE.GetTopLevel(ObjectType.Kit).GetItemManager(soldier.SoldierType);
-            
+
             var eZ = manager.GetAverageTime();
             eZ += (1 - (soldierAmount / manager.GetAmountOfUnlockedItems())) * eZ;
             return eZ;
@@ -95,7 +96,7 @@ namespace Provider
         private float getTimePooing(Soldier soldier, int soldierAmount)
         {
             IManageItem manager = GameManager.INSTANCE.GetTopLevel(ObjectType.Bat).GetItemManager(soldier.SoldierType);
-            
+
             var eZ = manager.GetAverageTime();
             eZ += (1 - (soldierAmount / manager.GetAmountOfUnlockedItems())) * eZ;
             return eZ;
@@ -104,7 +105,7 @@ namespace Provider
         private float getTimeSleeping(Soldier soldier, int soldierAmount)
         {
             IManageItem manager = GameManager.INSTANCE.GetTopLevel(ObjectType.Sle).GetItemManager(soldier.SoldierType);
-            
+
             var eZ = manager.GetAverageTime();
             eZ += (1 - (soldierAmount / manager.GetAmountOfUnlockedItems())) * eZ;
             return eZ;
@@ -113,31 +114,20 @@ namespace Provider
         private float getNettoRunningTime(Soldier soldier)
         {
             var length = routeManager.getRouteLength(soldier.SoldierType);
-            // TODO involve soldier.movementSpeed
-            return length;
+            return length / soldier.Speed;
         }
 
         private float getTimeForMission(Soldier soldier, int soldierAmount)
         {
             float time;
             int amount;
-            switch (soldier.SoldierType)
+            IManageItem manager = GameManager.INSTANCE.GetTopLevel(new ObjectType
             {
-                //     case DefenseType.ARMY:
-                //         time = armyController.getAverageTime();
-                //         amount = armyController.unlockedVehics();
-                //         break;
-                //     case DefenseType.MARINE:
-                //         time = marineController.getAverageTime();
-                //         amount = marineController.unlockedVehics();
-                //         break;
-                //     case DefenseType.AIRFORCE:
-                //         time = airforceController.getAverageTime();
-                //         amount = airforceController.unlockedVehics();
-                //         break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+                objectType = GenericObjectType.SOLDIER_SPEED
+            }).GetItemManager(soldier.SoldierType);
+
+            time = manager.GetAverageTime();
+            amount = manager.GetAmountOfUnlockedItems();
 
             time += (1 - (soldierAmount / amount)) * time;
             return time;
@@ -146,8 +136,24 @@ namespace Provider
 
         private float getMissionMoney(Soldier soldier)
         {
-            // Calculate average of all active vehicles and multiply it with amount of active vehicles
-            return 0;
+            IManageItem manager = GameManager.INSTANCE.GetTopLevel(new ObjectType
+            {
+                objectType = GenericObjectType.SOLDIER_SPEED
+            }).GetItemManager(soldier.SoldierType);
+
+            int avg = 0;
+            foreach (var managerItem in manager.Items)
+            {
+                if (managerItem.Level < 1) continue;
+                var reward = (int)Calculator.INSTANCE.GetReward(managerItem.ObjectType, managerItem.Level);
+                reward *= soldier.LVL_Reward / 100;
+                reward *= 1 + ((soldier.LVL_Crit / 2) / 100);
+                avg += reward;
+            }
+
+            // /= UnlockedItems -> *= UnlockedItems 
+
+            return avg;
         }
     }
 }

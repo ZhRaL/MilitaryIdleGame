@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using DefaultNamespace;
 using Provider;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Util;
 
@@ -12,12 +13,13 @@ public class GameManager : MonoBehaviour
     #region Singleton
 
     public static GameManager INSTANCE;
-    
 
+    [FormerlySerializedAs("curve")] public AnimationCurve itemCurve;
+    public AnimationCurve missionItemCurve;
     private void Awake()
     {
         if (!INSTANCE) INSTANCE = this;
-        new Calculator();
+        new Calculator(itemCurve,missionItemCurve);
     }
 
     private bool isInitialized = false;
@@ -46,7 +48,9 @@ public class GameManager : MonoBehaviour
 
     #region currencies
 
-    private float _gold, _badges;
+    [SerializeField]
+    private float _gold;
+    private float _badges;
 
     public Text tx_Gold, tx_Badges;
 

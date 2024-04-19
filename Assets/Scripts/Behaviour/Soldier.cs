@@ -87,7 +87,11 @@ public class Soldier : MonoBehaviour
     {
         if (isRunning)
         {
-            transform.position += targetDirection * (Speed * Time.deltaTime);
+            // transform.position += targetDirection * (Speed * Time.deltaTime);
+            float distance = Vector3.Distance(transform.position, path[currentTarget].position);
+            var step = Speed / distance * Time.deltaTime;
+            transform.position = Vector3.Lerp(transform.position, path[currentTarget].position, step);
+            
             Vector3 forward = path[currentTarget].position - transform.position;
             Quaternion neededRotation = Quaternion.LookRotation(forward);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, neededRotation, Time.deltaTime * 200f);
