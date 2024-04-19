@@ -18,6 +18,40 @@ namespace Util
 
             return children;
         }
+        
+        public static ObjectType ToMoney(this ObjectType type)
+        {
+            switch (type.objectType)
+            {
+                case GenericObjectType.JET_MONEY:
+                case GenericObjectType.JET_TIME:
+                    return new ObjectType
+                    {
+                        defenseType = type.defenseType,
+                        objectType = GenericObjectType.JET_MONEY
+                    };
+
+                case GenericObjectType.TANK_MONEY:
+                case GenericObjectType.TANK_TIME:
+                    return new ObjectType
+                    {
+                        defenseType = type.defenseType,
+                        objectType = GenericObjectType.TANK_MONEY
+                    };
+                
+                case GenericObjectType.SHIP_MONEY:
+                case GenericObjectType.SHIP_TIME:
+                    return new ObjectType
+                    {
+                        defenseType = type.defenseType,
+                        objectType = GenericObjectType.SHIP_MONEY
+                    };
+
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+        
 
         public static string toFriendlyName(this ObjectType type)
         {

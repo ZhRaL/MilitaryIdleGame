@@ -4,6 +4,7 @@ using DefaultNamespace;
 using Interfaces;
 using UnityEngine;
 using Util;
+using Object = UnityEngine.Object;
 
 namespace Provider
 {
@@ -33,6 +34,8 @@ namespace Provider
             {
                 savedTime = DateTime.Parse(savedStartTime);
             }
+
+            routeManager = Object.FindObjectOfType<RouteManager>();
         }
 
         public void SafeTime()
@@ -50,7 +53,7 @@ namespace Provider
 
             float hourlyReward = calculateHourlyReward();
 
-            amount = (int)((diff / 3600) * hourlyReward);
+            amount = (int)((float) diff / 3600 * hourlyReward);
             initialized = true;
         }
 
@@ -145,8 +148,9 @@ namespace Provider
             foreach (var managerItem in manager.Items)
             {
                 if (managerItem.Level < 1) continue;
-                var reward = (int)Calculator.INSTANCE.GetReward(managerItem.ObjectType, managerItem.Level);
-                reward *= soldier.LVL_Reward / 100;
+                
+                var reward = (int)Calculator.INSTANCE.GetReward(managerItem.ObjectType.ToMoney(), managerItem.Level);
+                reward *= 1+soldier.LVL_Reward / 100;
                 reward *= 1 + ((soldier.LVL_Crit / 2) / 100);
                 avg += reward;
             }

@@ -5,6 +5,7 @@ using Util;
 
 public class RouteManager : MonoBehaviour
 {
+    [SerializeField]
     private Transform armyRouter, airforceRouter, marineRouter;
 
     public float getRouteLength(DefenseType type)
