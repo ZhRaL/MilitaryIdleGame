@@ -63,9 +63,8 @@ public class NavBar : MonoBehaviour
         var height = (int) tuple[0].ItemContainer.rect.height -30;
         var sliderValue = value.y;
 
-        // half height cause of the correct hightlighting of NavBar, inclluding height fo spearator
+        // half height cause of the correct highlighting of NavBar, including height for separator
         var currentHeight = height/2 + content.anchoredPosition.y;
-        Debug.Log($"Height is {height} and current ist {content.anchoredPosition}");
         var index = (int)((int) currentHeight / height);
         
         // Separator
