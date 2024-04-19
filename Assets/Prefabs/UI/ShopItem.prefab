@@ -30,7 +30,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7917902882371688324}
   - {fileID: 4406058014569720706}
   - {fileID: 8517724067278633581}
   m_Father: {fileID: 6968810416296981056}
@@ -317,6 +316,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8de2b8678cc649aa2c412907def58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Reward:
+    amount: 0
+    type: 0
+    SpecialAction:
+      m_PersistentCalls:
+        m_Calls: []
   cost:
     amount: 0
     type: 3
@@ -467,6 +472,7 @@ GameObject:
   - component: {fileID: 7917902882371688324}
   - component: {fileID: 539494993201377093}
   - component: {fileID: 9085099984036681853}
+  - component: {fileID: 501684977592010842}
   m_Layer: 5
   m_Name: Radial
   m_TagString: Untagged
@@ -481,12 +487,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5698948881093808734}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1878231328580159312}
+  m_Father: {fileID: 6968810416296981056}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -514,14 +520,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.12156863}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: ece73d8c8fe79b4459c06d7ef6c9f4ab, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -531,6 +537,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &501684977592010842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5698948881093808734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46d47af8bdc65c644bd68eab1c097288, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0.01
 --- !u!1 &6882167514141847359
 GameObject:
   m_ObjectHideFlags: 0
@@ -695,6 +714,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 7917902882371688324}
   - {fileID: 4590201547938606952}
   - {fileID: 1878231328580159312}
   m_Father: {fileID: 3125550797175377115}
