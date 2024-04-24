@@ -28,6 +28,8 @@ namespace Provider
         private bool initialized;
         private int offTime;
 
+        private float hourlyReward;
+        
         public OfflineCalculator()
         {
             string savedStartTime = PlayerPrefs.GetString(saveString, string.Empty);
@@ -45,16 +47,26 @@ namespace Provider
             PlayerPrefs.Save();
         }
 
-        private void CalculateReward()
+        public int CalculateOnlineAmountFor(int seconds)
+        {
+            return CalculateReward(seconds);
+        }
+
+        private int CalculateReward(int seconds)
+        {
+            hourlyReward = calculateHourlyReward();
+
+            return (int)((float) seconds / 3600 * hourlyReward);
+        }
+
+        private void CalculateOfflineAmount()
         {
             var elapsedTime = DateTime.Now - savedTime;
 
             offTime = (int)elapsedTime.TotalSeconds;
             offTime = Mathf.Min(offTime, validOfflineTime);
-
-            float hourlyReward = calculateHourlyReward();
-
-            amount = (int)((float) offTime / 3600 * hourlyReward);
+            
+            amount = CalculateReward(offTime);
             initialized = true;
         }
 
@@ -66,8 +78,8 @@ namespace Provider
         public int GetOfflineAmount()
         {
             if (!initialized)
-                CalculateReward();
-            return amount;
+                CalculateOfflineAmount();
+            return (int) (amount*percentage);
         }
 
         private float calculateHourlyReward()
