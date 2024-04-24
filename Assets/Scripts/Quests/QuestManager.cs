@@ -18,10 +18,10 @@ public class QuestManager : MonoBehaviour
 
     private void Initialize()
     {
-        foreach (var quest in Quests)
-        {
-            
-        }
+      //  foreach (var quest in Quests)
+      //  {
+      //      
+      //  }
     }
 
     // Update is called once per frame

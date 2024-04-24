@@ -26,6 +26,7 @@ namespace Provider
         private int amount;
 
         private bool initialized;
+        private int offTime;
 
         public OfflineCalculator()
         {
@@ -46,15 +47,20 @@ namespace Provider
 
         private void CalculateReward()
         {
-            TimeSpan elapsedTime = DateTime.Now - savedTime;
+            var elapsedTime = DateTime.Now - savedTime;
 
-            int diff = (int)elapsedTime.TotalSeconds;
-            diff = Mathf.Min(diff, validOfflineTime);
+            offTime = (int)elapsedTime.TotalSeconds;
+            offTime = Mathf.Min(offTime, validOfflineTime);
 
             float hourlyReward = calculateHourlyReward();
 
-            amount = (int)((float) diff / 3600 * hourlyReward);
+            amount = (int)((float) offTime / 3600 * hourlyReward);
             initialized = true;
+        }
+
+        public int GetOfflineTime()
+        {
+            return offTime;
         }
 
         public int GetOfflineAmount()
