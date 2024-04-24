@@ -525,6 +525,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e75f9efb84e858f48bb1772aba585ff2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tx_Description: {fileID: 2412423732779491461}
+  tx_Progress: {fileID: 8947380623419707516}
+  tx_Reward: {fileID: 4596063005220631642}
+  rewardAmount: 0
 --- !u!1 &6139343332386484266
 GameObject:
   m_ObjectHideFlags: 0

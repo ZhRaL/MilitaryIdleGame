@@ -1,12 +1,14 @@
-﻿using Util;
+﻿using System;
+using Util;
 
 namespace Quests
 {
+    [Serializable]
     public class Requirement
     {
-        private int amount;
-        private int levelAmount;
-        private ObjectType reqObject;
-        private ReqType reqType;
+        public int amount;
+        public int levelAmount;
+        public ObjectType reqObject;
+        public ReqType reqType;
     }
 }

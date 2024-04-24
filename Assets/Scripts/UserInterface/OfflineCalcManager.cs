@@ -3,13 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class OfflineCalcManager : MonoBehaviour
 {
     public TMP_Text amountText,tx_BadgeAmount;
     private int amount;
     public int badgeCost = 30;
-
+    public Slider _Slider;
+    public TMP_Text sliderText;
     private void Start()
     {
         var offlineCalculator = GameManager.INSTANCE.OfflineCalculator;
@@ -20,6 +22,7 @@ public class OfflineCalcManager : MonoBehaviour
         tx_BadgeAmount.text = "" + badgeCost;
 
         // Initialize-Advertisment
+        // TODO Init Slider
     }
     
     public void SelectSingle()

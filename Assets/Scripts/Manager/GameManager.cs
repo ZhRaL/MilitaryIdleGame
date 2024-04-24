@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DefaultNamespace;
+using Manager;
 using Provider;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -44,6 +45,8 @@ public class GameManager : MonoBehaviour
     private const string SLEEPINGSAFESTRING = "Sleeping_Levels";
     public const string RECRUITMENTSAFESTRING = "Recruitment_Levels";
 
+    public Player Player;
+    
     public DataProvider DataProvider = new();
 
     #region currencies
@@ -125,7 +128,8 @@ public class GameManager : MonoBehaviour
 
         string s = JsonUtility.ToJson(SoldierController.Save());
         PlayerPrefs.SetString(RECRUITMENTSAFESTRING, s);
-
+        PlayerPrefsHelper.SetString("PLAYER",JsonUtility.ToJson(Player));
+        
         PlayerPrefs.Save();
     }
 
@@ -149,7 +153,7 @@ public class GameManager : MonoBehaviour
         MissionController.Load(JsonUtility.FromJson<JsonController<MissionItemJO>>(PlayerPrefs.GetString(MISSIONSAFESTRING, "")) ?? JsonController<MissionItemJO>.Default(new MissionItemJO()));
 
         SoldierController.Load(JsonUtility.FromJson<JsonController<SoldierItemJO>>(PlayerPrefs.GetString(RECRUITMENTSAFESTRING, "")) ?? JsonController<SoldierItemJO>.Default(new SoldierItemJO()));
-
+        Player = JsonUtility.FromJson<Player>(PlayerPrefsHelper.GetString("PLAYER",""));
         isInitialized = true;
         SaveGame();
     }
