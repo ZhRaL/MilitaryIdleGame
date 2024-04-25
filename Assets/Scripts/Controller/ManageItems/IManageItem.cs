@@ -118,5 +118,10 @@ namespace DefaultNamespace
             Soldier freeS = TheWaitingService.Shift();
             if (freeS != null) PlaceSoldier(freeS);
         }
+
+        public int GetHighestLevel()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

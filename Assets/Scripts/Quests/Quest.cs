@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Quests;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Quest : MonoBehaviour
 {
@@ -16,9 +17,9 @@ public class Quest : MonoBehaviour
     
     public Requirement Requirement;
     public int rewardAmount;
-    private QuestModel model;
+    public QuestModel model;
     
-    public void Init(QuestModel model) {
+    public void Init(UnityAction<Quest> callBackQuestComplete, QuestModel model) {
         this.model=model;
         // TODO
     }

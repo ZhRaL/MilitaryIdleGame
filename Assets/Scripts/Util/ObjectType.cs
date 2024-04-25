@@ -20,7 +20,11 @@ namespace Util
         {
             objectType = GenericObjectType.SLEEPING
         };
-        
+
+        public ObjectType(GenericObjectType objectType) : this()
+        {
+            this.objectType = objectType;
+        }
     }
 
     public enum GenericObjectType
