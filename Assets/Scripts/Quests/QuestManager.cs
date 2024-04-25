@@ -25,7 +25,12 @@ public class QuestManager : MonoBehaviour
 
     private void InitQuest(int id) {
         GameObject go = Instantiate(QuestPrefab);
-        
+        Quest quest = go.GetComponent<Quest>();
+        quest.Init(GetQuestModel(id));
+    }
+
+    private QuestModel GetQuestModel(int id) {
+        return Quests.Where(x => x.id == id).FirstOrDefault();
     }
 
     // Update is called once per frame
