@@ -21,10 +21,29 @@ public class QuestManager : MonoBehaviour
         
     }
 
+    private void InitQuest() {
+
+    }
+
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void CompleteQuest(int id) {
+        Quest quest = Quests.Where(x=>x.id == id);
+        if(!isComplete(quest)) 
+            throw new ArgumentException("Quest is not Completed!");
+        
+        Reward();
+        Destroy(quest.gameObject);
+           
+        
+    }
+
+    private void Reward(int amount) {
+        GameManager.INSTANCE.Badges += amount;
     }
 
     private bool isComplete(Quest quest)
