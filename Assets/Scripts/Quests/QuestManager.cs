@@ -20,34 +20,25 @@ public class QuestManager : MonoBehaviour
 
     private void Initialize()
     {
-        
+        List<int> quests = GameManager.INSTANCE.Player.activeQuests;
+        quests.ForEach(x=>InitQuest(x));        
     }
 
     private void InitQuest(int id) {
         GameObject go = Instantiate(QuestPrefab);
         Quest quest = go.GetComponent<Quest>();
-        quest.Init(GetQuestModel(id));
+        quest.Init(CompleteQuest, GetQuestModel(id));
     }
 
     private QuestModel GetQuestModel(int id) {
         return Quests.Where(x => x.id == id).FirstOrDefault();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void CompleteQuest(int id) {
-        Quest quest = Quests.Where(x=>x.id == id);
+    private void CompleteQuest(Quest quest) {
         if(!isComplete(quest)) 
             throw new ArgumentException("Quest is not Completed!");
-        
-        Reward();
+        Reward(quest.rewardAmount);
         Destroy(quest.gameObject);
-           
-        
     }
 
     private void Reward(int amount) {
