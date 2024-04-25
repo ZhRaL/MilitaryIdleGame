@@ -32,7 +32,21 @@ public class QuestManager : MonoBehaviour
 
     private bool isComplete(Quest quest)
     {
-        GameManager.INSTANCE.GetTopLevel(quest.Requirement.reqObject);
+        IController controller = GameManager.INSTANCE.GetTopLevel(quest.Requirement.reqObject);
+        IManageItems manager = controller.GetManager(quest.Requirement.reqObject.DefenseType);
+        
+        switch(quest.Requirement.ReqType) {
+            case AMOUNT => return manager.GetAmountOfUnlockedItems() >= quest.Requirement.Amount;
+            case LEVEL => return manager.GetHighestLevel() >= quest.Requirement.Amount;
+            case AMOUNT => {
+                bool amount = manager.GetAmountOfUnlockedItems() >= quest.Requirement.Amount;
+                
+
+            }
+            
+
+
+        }
         return false;
     }
     
