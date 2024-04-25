@@ -5,7 +5,7 @@ namespace Manager
     [Serializable]
     public class Player
     {
-        public float OfflineTime = 3600;
+        public List<int> activeQuests = new(){0,1,2};
         public bool AdFreeMode = false;
         
     }
