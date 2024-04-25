@@ -4,7 +4,7 @@ namespace Quests
 {
     public class QuestGenerator
     {
-        public List<Quest> GetAllQuests()
+        public List<QuestModel> GetAllQuests()
         {
             return null;
         }
