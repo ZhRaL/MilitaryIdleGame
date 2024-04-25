@@ -8,6 +8,8 @@ public class QuestManager : MonoBehaviour
     private List<Quest> Quests=new();
 
     private List<int> activeQuestIds=new();
+
+    public GameObject QuestPrefab;
     
     // Start is called before the first frame update
     void Start()
@@ -21,8 +23,9 @@ public class QuestManager : MonoBehaviour
         
     }
 
-    private void InitQuest() {
-
+    private void InitQuest(int id) {
+        GameObject go = Instantiate(QuestPrefab);
+        
     }
 
     // Update is called once per frame
