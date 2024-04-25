@@ -39,6 +39,11 @@ public class QuestManager : MonoBehaviour
             throw new ArgumentException("Quest is not Completed!");
         Reward(quest.rewardAmount);
         Destroy(quest.gameObject);
+        NewQuest();
+    }
+
+    private void NewQuest(){
+        
     }
 
     private void Reward(int amount) {
