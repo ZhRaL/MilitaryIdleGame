@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class QuestManager : MonoBehaviour
 {
-    private List<Quest> Quests;
+    private List<Quest> Quests=new();
 
-    private List<int> activeQuestIds;
+    private List<int> activeQuestIds=new();
     
     // Start is called before the first frame update
     void Start()
@@ -18,10 +18,7 @@ public class QuestManager : MonoBehaviour
 
     private void Initialize()
     {
-      //  foreach (var quest in Quests)
-      //  {
-      //      
-      //  }
+        
     }
 
     // Update is called once per frame
