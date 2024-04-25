@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class QuestManager : MonoBehaviour
 {
-    private List<Quest> Quests=new();
+    private List<QuestModel> Quests=new();
 
     private List<int> activeQuestIds=new();
 
@@ -49,7 +49,7 @@ public class QuestManager : MonoBehaviour
         GameManager.INSTANCE.Badges += amount;
     }
 
-    private bool isComplete(Quest quest)
+    private bool isComplete(QuestModel quest)
     {
         IController controller = GameManager.INSTANCE.GetTopLevel(quest.Requirement.reqObject);
         IManageItems manager = controller.GetManager(quest.Requirement.reqObject.DefenseType);
