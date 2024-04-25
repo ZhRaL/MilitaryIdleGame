@@ -17,7 +17,9 @@ public class Quest : MonoBehaviour
     public Requirement Requirement;
     public int rewardAmount;
     
-    
+    public void Init(QuestModel model) {
+        // TODO
+    }
     
     public static string GetDescription(Requirement req)
     {
