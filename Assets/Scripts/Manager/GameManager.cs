@@ -153,7 +153,7 @@ public class GameManager : MonoBehaviour
         MissionController.Load(JsonUtility.FromJson<JsonController<MissionItemJO>>(PlayerPrefs.GetString(MISSIONSAFESTRING, "")) ?? JsonController<MissionItemJO>.Default(new MissionItemJO()));
 
         SoldierController.Load(JsonUtility.FromJson<JsonController<SoldierItemJO>>(PlayerPrefs.GetString(RECRUITMENTSAFESTRING, "")) ?? JsonController<SoldierItemJO>.Default(new SoldierItemJO()));
-        Player = JsonUtility.FromJson<Player>(PlayerPrefsHelper.GetString("PLAYER",""));
+        Player = JsonUtility.FromJson<Player>(PlayerPrefsHelper.GetString("PLAYER","")) ?? new Player();
         isInitialized = true;
         SaveGame();
     }
