@@ -121,7 +121,7 @@ namespace DefaultNamespace
 
         public int GetHighestLevel()
         {
-            throw new NotImplementedException();
+            return Items.Max(x => x.Level);
         }
     }
 }

@@ -10,7 +10,7 @@ using UnityEngine;
 
 public class QuestManager : MonoBehaviour
 {
-    private List<QuestModel> Quests = new();
+    private List<QuestModel> AllQuests = new();
 
     private List<int> activeQuestIds = new();
 
@@ -21,7 +21,7 @@ public class QuestManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Quests = new QuestGenerator().GetAllQuests();
+        AllQuests = new QuestGenerator().GetAllQuests();
         Initialize();
     }
 
@@ -64,14 +64,23 @@ public class QuestManager : MonoBehaviour
         quest.Init(CompleteQuest, GetQuestModel(id));
     }
 
+    public void UpdateCompletion()
+    {
+        foreach (Transform child in questParent.transform)
+        {
+            child.GetComponent<Quest>().checkCompletion();
+        }
+        
+    }
+
     private QuestModel GetQuestModel(int id)
     {
-        return Quests.FirstOrDefault(x => x.id == id);
+        return AllQuests.FirstOrDefault(x => x.id == id);
     }
 
     private void CompleteQuest(Quest quest)
     {
-        if (!isComplete(quest.model))
+        if (!quest.model.Requirement.isFulFilled())
             throw new ArgumentException("Quest is not Completed!");
         Reward(quest.rewardAmount);
         Destroy(quest.gameObject);
@@ -81,29 +90,12 @@ public class QuestManager : MonoBehaviour
     private void NewQuest()
     {
         int max = activeQuestIds.Max();
-        if (++max < Quests.Count) 
+        if (++max < AllQuests.Count) 
             InitQuest(max);
     }
 
     private void Reward(int amount)
     {
         GameManager.INSTANCE.Badges += amount;
-    }
-
-    private bool isComplete(QuestModel quest)
-    {
-        IController controller = GameManager.INSTANCE.GetTopLevel(quest.Requirement.reqObject);
-        var manager = controller.GetItemManager(quest.Requirement.reqObject.defenseType);
-
-        switch (quest.Requirement.reqType)
-        {
-            case ReqType.AMOUNT: return manager.GetAmountOfUnlockedItems() >= quest.Requirement.amount;
-            case ReqType.LEVEL: return manager.GetHighestLevel() >= quest.Requirement.amount;
-            case ReqType.AMOUNT_LEVEL:
-                bool amount = manager.GetAmountOfUnlockedItems() >= quest.Requirement.amount;
-                break;
-        }
-
-        return false;
     }
 }
