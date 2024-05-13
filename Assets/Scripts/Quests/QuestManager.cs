@@ -5,6 +5,7 @@ using System.Linq;
 using DefaultNamespace;
 using Interfaces;
 using Quests;
+using TMPro;
 using UnityEngine;
 
 public class QuestManager : MonoBehaviour
@@ -15,6 +16,7 @@ public class QuestManager : MonoBehaviour
 
     public GameObject QuestPrefab;
     public GameObject questParent;
+    public TMP_Text tx_redeemableQuest;
 
     // Start is called before the first frame update
     void Start()
@@ -23,10 +25,36 @@ public class QuestManager : MonoBehaviour
         Initialize();
     }
 
+    public void CheckRedeems()
+    {
+        int count = 0;
+        foreach (var id in activeQuestIds)
+        {
+            var qm = GetQuestModel(id);
+            if (qm.Requirement.isFulFilled()) count++;
+        }
+
+        setRedeemText(count);
+    }
+
+    private void setRedeemText(int set)
+    {
+        var parent = tx_redeemableQuest.transform.parent.gameObject;
+        if (set <= 0)
+        {
+            parent.SetActive(false);
+            return;
+        }
+        parent.SetActive(true);
+        tx_redeemableQuest.text = "" + set;
+
+    }
+
     private void Initialize()
     {
         activeQuestIds = GameManager.INSTANCE.Player.activeQuests;
         activeQuestIds.ForEach(InitQuest);
+        CheckRedeems();
     }
 
     private void InitQuest(int id)
