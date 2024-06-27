@@ -83,6 +83,7 @@ public class QuestManager : MonoBehaviour
         if (!quest.model.Requirement.isFulFilled())
             throw new ArgumentException("Quest is not Completed!");
         Reward(quest.rewardAmount);
+        activeQuestIds.Remove(quest.model.id);
         Destroy(quest.gameObject);
         NewQuest();
     }
@@ -92,6 +93,7 @@ public class QuestManager : MonoBehaviour
         int max = activeQuestIds.Max();
         if (++max < AllQuests.Count) 
             InitQuest(max);
+        activeQuestIds.Add(max);
     }
 
     private void Reward(int amount)
