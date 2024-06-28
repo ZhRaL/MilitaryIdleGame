@@ -722,6 +722,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29fb528b809b07d40b8ff7ff8a5d2b48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _soldierName: 
   parentRoute: {fileID: 0}
   path: []
   anim: {fileID: 0}
@@ -748,7 +749,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   namePlatePrefab: {fileID: 6493483073272055653, guid: 089d53c74b0f59c4db75179d57ef1d6a, type: 3}
   hightAbove: 1.5
-  displayText: Junky
 --- !u!1 &4921108559557993298
 GameObject:
   m_ObjectHideFlags: 0
