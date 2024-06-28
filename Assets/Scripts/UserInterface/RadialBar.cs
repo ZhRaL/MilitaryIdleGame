@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Util;
 
 
 public class RadialBar : MonoBehaviour
@@ -12,7 +13,7 @@ public class RadialBar : MonoBehaviour
 
     public float currentValue, maxValue;
     private Action action;
-
+    private ActionBefore before;
 
     public void Initialize(float maxValue, Action action)
     {
@@ -20,6 +21,12 @@ public class RadialBar : MonoBehaviour
         this.action = action;
         currentValue = maxValue;
         amount = 1;
+    }
+    
+    public void Initialize(float maxValue, Action action, ActionBefore before)
+    {
+        Initialize(maxValue,action);
+        this.before = before;
     }
 
     private void Update()
@@ -32,6 +39,11 @@ public class RadialBar : MonoBehaviour
         {
             currentValue -= Time.deltaTime;
             fill.fillAmount = amount;
+            
+            if (before != null && currentValue < before.time)
+            {
+                before.Action.Invoke();
+            }
         }
         else
         {

@@ -76,8 +76,11 @@ public class Soldier : MonoBehaviour
 
     void Run()
     {
-        anim.speed = Speed / 4;
-        anim.SetBool("isRunning", true);
+        AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
+        if (stateInfo.IsName("Run"))
+        {
+            anim.speed = Speed/4;
+        }
         isRunning = true;
         targetDirection = (path[currentTarget].position - transform.position).normalized;
         isWaiting = false;

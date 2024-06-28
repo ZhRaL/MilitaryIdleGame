@@ -20,13 +20,25 @@ namespace DefaultNamespace
         {
             Soldier = soldier;
             Soldier.anim.SetBool("isRunning",false);
+            AnimatorStateInfo stateInfo = Soldier.anim.GetCurrentAnimatorStateInfo(0);
+            if (!stateInfo.IsName("Run"))
+            {
+                Soldier.anim.speed = 1;
+            }
+            Soldier.anim.SetTrigger("SittingDownTrigger");
+            Soldier.anim.ResetTrigger("SittingUpTrigger");
             Vector3 newPos = soldier.transform.position;
             // Offset for animation needs to be berücksichtigt
             // Maybe as Vector3 as a field?!
             Soldier.transform.position = newPos;
             GameObject rb = Object.Instantiate(Soldier.RadialBarPrefab, Soldier.transform);
             rb.transform.rotation = Camera.main.transform.rotation;
-            rb.GetComponent<RadialBar>().Initialize(Item.TimeNeeded(),SoldierGetUp);
+            rb.GetComponent<RadialBar>().Initialize(Item.TimeNeeded(),SoldierGetUp,new ActionBefore(2.217f,StartGettingUp));
+        }
+
+        public void StartGettingUp()
+        {
+            Soldier.anim.SetTrigger("SittingUpTrigger");
         }
 
         public void SoldierGetUp()
@@ -34,6 +46,7 @@ namespace DefaultNamespace
             Item.Occupied = false;
             var transform1 = Soldier.transform;
             Vector3 newPos = transform1.position;
+            Soldier.anim.SetBool("isRunning",true);
             // Remove the Offset
             transform1.position = newPos;
 

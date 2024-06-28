@@ -84,6 +84,21 @@ namespace UnityStandardAssets.Water
             // Render reflection if needed
             if (mode >= WaterMode.Reflective)
             {
+                // Check and reuse existing RenderTexture
+                if (!m_ReflectionTexture || m_OldReflectionTextureSize != textureSize)
+                {
+                    if (m_ReflectionTexture)
+                    {
+                        DestroyImmediate(m_ReflectionTexture);
+                    }
+                    m_ReflectionTexture = new RenderTexture(textureSize, textureSize, 16);
+                    m_ReflectionTexture.name = "__WaterReflection" + GetInstanceID();
+                    m_ReflectionTexture.isPowerOfTwo = true;
+                    m_ReflectionTexture.hideFlags = HideFlags.DontSave;
+                    m_OldReflectionTextureSize = textureSize;
+                }
+                
+                
                 // Reflect camera around reflection plane
                 float d = -Vector3.Dot(normal, pos) - clipPlaneOffset;
                 Vector4 reflectionPlane = new Vector4(normal.x, normal.y, normal.z, d);
@@ -118,6 +133,20 @@ namespace UnityStandardAssets.Water
             // Render refraction
             if (mode >= WaterMode.Refractive)
             {
+                // Check and reuse existing RenderTexture
+                if (!m_RefractionTexture || m_OldRefractionTextureSize != textureSize)
+                {
+                    if (m_RefractionTexture)
+                    {
+                        DestroyImmediate(m_RefractionTexture);
+                    }
+                    m_RefractionTexture = new RenderTexture(textureSize, textureSize, 16);
+                    m_RefractionTexture.name = "__WaterRefraction" + GetInstanceID();
+                    m_RefractionTexture.isPowerOfTwo = true;
+                    m_RefractionTexture.hideFlags = HideFlags.DontSave;
+                    m_OldRefractionTextureSize = textureSize;
+                }
+                
                 refractionCamera.worldToCameraMatrix = cam.worldToCameraMatrix;
 
                 // Setup oblique projection matrix so that near plane is our reflection
@@ -179,17 +208,20 @@ namespace UnityStandardAssets.Water
                 DestroyImmediate(m_RefractionTexture);
                 m_RefractionTexture = null;
             }
+
             foreach (var kvp in m_ReflectionCameras)
             {
                 DestroyImmediate((kvp.Value).gameObject);
             }
             m_ReflectionCameras.Clear();
+
             foreach (var kvp in m_RefractionCameras)
             {
                 DestroyImmediate((kvp.Value).gameObject);
             }
             m_RefractionCameras.Clear();
         }
+
 
 
         // This just sets up some matrices in the material; for really
@@ -273,7 +305,9 @@ namespace UnityStandardAssets.Water
                 {
                     if (m_ReflectionTexture)
                     {
+                        m_ReflectionTexture.Release();
                         DestroyImmediate(m_ReflectionTexture);
+                        m_ReflectionTexture = null;
                     }
                     m_ReflectionTexture = new RenderTexture(textureSize, textureSize, 16);
                     m_ReflectionTexture.name = "__WaterReflection" + GetInstanceID();
@@ -304,7 +338,9 @@ namespace UnityStandardAssets.Water
                 {
                     if (m_RefractionTexture)
                     {
+                        m_RefractionTexture.Release();
                         DestroyImmediate(m_RefractionTexture);
+                        m_RefractionTexture = null;
                     }
                     m_RefractionTexture = new RenderTexture(textureSize, textureSize, 16);
                     m_RefractionTexture.name = "__WaterRefraction" + GetInstanceID();
