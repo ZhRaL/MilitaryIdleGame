@@ -33,6 +33,8 @@ namespace UnityStandardAssets.Water
                 sharedMaterial.shader.maximumLOD = 201;
             }
 
+            edgeBlend = false;
+            
             // If the system does not support depth textures (ie. NaCl), turn off edge bleeding,
             // as the shader will render everything as transparent if the depth texture is not valid.
             if (!SystemInfo.SupportsRenderTextureFormat(RenderTextureFormat.Depth))
