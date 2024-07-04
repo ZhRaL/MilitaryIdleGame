@@ -11,6 +11,7 @@ namespace DefaultNamespace
         {
             base.SoldierSitDown(soldier);
             soldier.transform.rotation = gameObject.transform.rotation;
+            soldier.transform.position += gameObject.transform.forward*.3f;
         }
     }
 }

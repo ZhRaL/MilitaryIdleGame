@@ -16,7 +16,7 @@ namespace DefaultNamespace
 
 
         public SoldierWalkUtil(Soldier soldier, Transform target, Action action,
-            Action<SoldierWalkUtil> finishedListener, float distanceToTarget = .2f, Transform[] waypoints = null)
+            Action<SoldierWalkUtil> finishedListener, float distanceToTarget = .02f, Transform[] waypoints = null)
         {
             Soldier = soldier;
             Target = target;

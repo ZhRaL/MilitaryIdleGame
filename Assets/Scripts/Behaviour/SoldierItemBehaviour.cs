@@ -27,10 +27,7 @@ namespace DefaultNamespace
             }
             Soldier.anim.SetTrigger("SittingDownTrigger");
             Soldier.anim.ResetTrigger("SittingUpTrigger");
-            Vector3 newPos = soldier.transform.position;
-            // Offset for animation needs to be berücksichtigt
-            // Maybe as Vector3 as a field?!
-            Soldier.transform.position = newPos;
+
             GameObject rb = Object.Instantiate(Soldier.RadialBarPrefab, Soldier.transform);
             rb.transform.rotation = Camera.main.transform.rotation;
             rb.GetComponent<RadialBar>().Initialize(Item.TimeNeeded(),SoldierGetUp,new ActionBefore(2.217f,StartGettingUp));
