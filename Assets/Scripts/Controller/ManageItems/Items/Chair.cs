@@ -11,7 +11,6 @@ namespace DefaultNamespace
         {
             base.SoldierSitDown(soldier);
             soldier.transform.rotation = gameObject.transform.rotation;
-            GC.Collect();
         }
     }
 }
