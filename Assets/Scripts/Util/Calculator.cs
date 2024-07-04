@@ -154,7 +154,12 @@ namespace Util
 
         private ObjDefEntity GetEntity(ObjectType type)
         {
-            return startingValues.Find(entity => entity.ObjectType.Equals(type));
+            var typCopy = new ObjectType
+            {
+                defenseType = DefenseType.ARMY,
+                objectType = type.objectType
+            };
+            return startingValues.Find(entity => entity.ObjectType.Equals(typCopy));
         }
 
         public float GetReward(ObjectType type, int level)

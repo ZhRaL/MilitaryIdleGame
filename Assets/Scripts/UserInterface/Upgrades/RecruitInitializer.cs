@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DefaultNamespace;
+using Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
 using Util;
@@ -14,6 +15,7 @@ public class RecruitInitializer : MonoBehaviour
     public DefenseType DefenseType;
     public GameObject buyNewSoldierGameObject;
     public BuyScript BuyNewSoldierUpgrade;
+    [SerializeField] private int startingCost = 1000;
 
     private IconScript Select;
 
@@ -81,6 +83,9 @@ public class RecruitInitializer : MonoBehaviour
     private void UpgradeBuy()
     {
         SwitchMode(true);
+        int soldierAmount = GameManager.INSTANCE.SoldierController.GetAllSoldiersFrom(DefenseType).Length;
+
+        int costs = (int) (startingCost * Math.Pow(50, soldierAmount-1));
         
         var upgradeDto = new UpgradeDto
         {
@@ -89,7 +94,7 @@ public class RecruitInitializer : MonoBehaviour
             title = "George",
             description = "There will be an awesome description for this specific soldier",
             level = 0,
-            upgradeCost = 0,
+            upgradeCost = costs,
             currentReward = 0,
             diffReward = 0,
             item = null,

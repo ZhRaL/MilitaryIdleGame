@@ -13,6 +13,7 @@ public class BuyScript : MonoBehaviour
     public Image icon;
     public GameObject Screen;
     public TMP_InputField inputField;
+    private int costs;
 
     
     private void Start()
@@ -23,7 +24,7 @@ public class BuyScript : MonoBehaviour
     
     private void checkBalance()
     {
-        if (GameManager.INSTANCE.Gold > 10)
+        if (GameManager.INSTANCE.Gold > costs)
             button.interactable = true;
         else button.interactable = false;
     }
@@ -33,6 +34,7 @@ public class BuyScript : MonoBehaviour
         title.text = dto.title;
         description.text = dto.description;
         cost.text = dto.upgradeCost.ToString();
+        costs = dto.upgradeCost;
         icon.sprite = dto.Icon;
 
         
