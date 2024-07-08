@@ -10,8 +10,6 @@ namespace DefaultNamespace
         public override void SoldierSitDown(Soldier soldier)
         {
             base.SoldierSitDown(soldier);
-            soldier.transform.rotation = gameObject.transform.rotation;
-            soldier.transform.position += gameObject.transform.forward*.3f;
         }
     }
 }

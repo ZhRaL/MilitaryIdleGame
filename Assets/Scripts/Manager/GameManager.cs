@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         if (!INSTANCE) INSTANCE = this;
-        new Calculator(itemCurve,missionItemCurve);
+        new Calculator(itemCurve, missionItemCurve);
     }
 
     private bool isInitialized = false;
@@ -31,10 +31,10 @@ public class GameManager : MonoBehaviour
         get => resetPlayerPrefsOnRestart;
         set
         {
-            PlayerPrefs.SetInt("reset",value?1:0);
-            resetPlayerPrefsOnRestart=value;    
+            PlayerPrefs.SetInt("reset", value ? 1 : 0);
+            resetPlayerPrefsOnRestart = value;
         }
-        
+
     }
 
     #endregion
@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
     public const string RECRUITMENTSAFESTRING = "Recruitment_Levels";
 
     public Player Player;
-    
+
     public DataProvider DataProvider = new();
 
     #region currencies
@@ -112,7 +112,7 @@ public class GameManager : MonoBehaviour
             default: return MissionController;
         }
     }
-    
+
 
     public void SaveGame()
     {
@@ -128,39 +128,36 @@ public class GameManager : MonoBehaviour
 
         string s = JsonUtility.ToJson(SoldierController.Save());
         PlayerPrefs.SetString(RECRUITMENTSAFESTRING, s);
-        PlayerPrefsHelper.SetString("PLAYER",JsonUtility.ToJson(Player));
-        
+        PlayerPrefsHelper.SetString("PLAYER", JsonUtility.ToJson(Player));
+
         PlayerPrefs.Save();
     }
 
     private void LoadGame()
     {
-        resetPlayerPrefsOnRestart = PlayerPrefs.GetInt("reset",0)==1;
+        resetPlayerPrefsOnRestart = PlayerPrefs.GetInt("reset", 0) == 1;
         if (resetPlayerPrefsOnRestart)
             ResetAllOwnPlayerPrefs();
-        
-        
+
+
         Gold = PlayerPrefsHelper.GetFloat("Gold", 5550);
         Badges = PlayerPrefs.GetFloat("Badges", 100);
         string s = PlayerPrefs.GetString(KITCHENSAFESTRING, "");
-        var x = JsonUtility.FromJson<JsonController<JsonItem>>(s) ??
-                JsonController<JsonItem>.Default(new JsonItem());
-        Debug.Log(x);
-        KitchenController.Load(x);
+        KitchenController.Load(JsonUtility.FromJson<JsonController<JsonItem>>(s) ?? JsonController<JsonItem>.Default(new JsonItem()));
         BathController.Load(JsonUtility.FromJson<JsonController<JsonItem>>(PlayerPrefs.GetString(BATHSAFESTRING, "")) ?? JsonController<JsonItem>.Default(new JsonItem()));
         SleepingController.Load(JsonUtility.FromJson<JsonController<JsonItem>>(PlayerPrefs.GetString(SLEEPINGSAFESTRING, "")) ?? JsonController<JsonItem>.Default(new JsonItem()));
 
         MissionController.Load(JsonUtility.FromJson<JsonController<MissionItemJO>>(PlayerPrefs.GetString(MISSIONSAFESTRING, "")) ?? JsonController<MissionItemJO>.Default(new MissionItemJO()));
 
         SoldierController.Load(JsonUtility.FromJson<JsonController<SoldierItemJO>>(PlayerPrefs.GetString(RECRUITMENTSAFESTRING, "")) ?? JsonController<SoldierItemJO>.Default(new SoldierItemJO()));
-        Player = JsonUtility.FromJson<Player>(PlayerPrefsHelper.GetString("PLAYER","")) ?? new Player();
+        Player = JsonUtility.FromJson<Player>(PlayerPrefsHelper.GetString("PLAYER", "")) ?? new Player();
         isInitialized = true;
         SaveGame();
     }
 
     public void ResetAllOwnPlayerPrefs()
     {
-        string[] sl = { BATHSAFESTRING,SLEEPINGSAFESTRING,KITCHENSAFESTRING,MISSIONSAFESTRING,RECRUITMENTSAFESTRING,"Gold","Badges","reset","saveString"};
+        string[] sl = { BATHSAFESTRING, SLEEPINGSAFESTRING, KITCHENSAFESTRING, MISSIONSAFESTRING, RECRUITMENTSAFESTRING, "Gold", "Badges", "reset", "saveString" };
         foreach (var s in sl)
         {
             PlayerPrefs.DeleteKey(s);
@@ -169,7 +166,6 @@ public class GameManager : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        logger.log("Closing...");
         OfflineCalculator.SafeTime();
         SaveGame();
     }

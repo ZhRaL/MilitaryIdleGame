@@ -10,7 +10,6 @@ public class ShopManager : MonoBehaviour
 
     public Sprite GetSprite(string key)
     {
-        Debug.Log("Looking for key: "+key);
         return icons.ToList().FirstOrDefault(a => a.key == key).icon;
     }
 }

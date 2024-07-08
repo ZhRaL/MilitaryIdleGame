@@ -3,9 +3,10 @@ using System;
 using Interfaces;
 
 [Serializable]
-public class MissionItemJO : JsonItem, IDefaultable<MissionItemJO> {
-    
-    public int MoneyLevel  = 1;
+public class MissionItemJO : JsonItem, IDefaultable<MissionItemJO>
+{
 
-    public MissionItemJO CreateADefault => new();
+    public int MoneyLevel = 1;
+
+    public new MissionItemJO CreateADefault => new();
 }

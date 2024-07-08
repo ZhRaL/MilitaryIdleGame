@@ -8,6 +8,7 @@ using Util;
 
 public class Bed : Item
 {
+    public Transform bedTransform;
     public int GetData()
     {
         return Level;

@@ -16,6 +16,6 @@ public class EndlessRadial : MonoBehaviour
 
     private void Update()
     {
-        recci.RotateAround(Vector3.forward, speed);
+        recci.Rotate(Vector3.forward, speed);
     }
 }

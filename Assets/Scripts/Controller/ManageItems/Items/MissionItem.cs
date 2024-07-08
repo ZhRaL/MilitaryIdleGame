@@ -21,7 +21,7 @@ namespace DefaultNamespace
         private int _moneyLevel = 1;
 
         public Animation anim1, anim2;
-        
+
         public abstract Transform Waypoints { get; set; }
         private Soldier _soldier;
         private SoldierWalkUtil wayBack;
@@ -41,7 +41,7 @@ namespace DefaultNamespace
         public override void SoldierSitDown(Soldier soldier)
         {
             _soldier = soldier;
-            _soldier.transform.RotateAround(Vector3.up, 180);
+            _soldier.transform.Rotate(Vector3.up, 180);
             soldier.gameObject.SetActive(false);
             MissionStart();
         }
@@ -62,20 +62,19 @@ namespace DefaultNamespace
         {
             StartCoroutine(ExecuteAfterTime(calculateWaitingDuration()));
         }
-        
+
         private float calculateWaitingDuration()
         {
             var anim = GetComponent<Animator>();
             AnimationClip[] clips = anim.runtimeAnimatorController.animationClips;
             float animationDuration = clips.Sum(cl => cl.averageDuration);
-            
+
             // Duration - AnimationDuration
             return TimeNeeded() - animationDuration;
         }
 
         public void MissionEnd()
         {
-            Debug.Log("End was called!");
             Reward();
             LetSoldierMove();
         }
@@ -103,7 +102,7 @@ namespace DefaultNamespace
 
             GameManager.INSTANCE.Gold += amount;
         }
-        
+
         private bool IsCrit()
         {
             var val = Random.Range(0, 100);

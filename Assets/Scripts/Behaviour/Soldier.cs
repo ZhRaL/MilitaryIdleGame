@@ -47,7 +47,7 @@ public class Soldier : MonoBehaviour
     public delegate void LevelUpEventHandler(int newLevel);
 
     // Ereignis für Levelaufstieg
-    public event LevelUpEventHandler OnLevelUp;
+    // public event LevelUpEventHandler OnLevelUp;
 
     public int LVL_Crit, LVL_Speed, LVL_Reward;
 
@@ -79,7 +79,7 @@ public class Soldier : MonoBehaviour
         AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
         if (stateInfo.IsName("Run"))
         {
-            anim.speed = Speed/4;
+            anim.speed = Speed / 4;
         }
         isRunning = true;
         targetDirection = (path[currentTarget].position - transform.position).normalized;
@@ -88,20 +88,22 @@ public class Soldier : MonoBehaviour
 
     private void Update()
     {
+        if (!isWaiting)
+            CheckDistance();
+
         if (isRunning)
         {
             // transform.position += targetDirection * (Speed * Time.deltaTime);
             float distance = Vector3.Distance(transform.position, path[currentTarget].position);
             var step = Speed / distance * Time.deltaTime;
             transform.position = Vector3.Lerp(transform.position, path[currentTarget].position, step);
-            
+
             Vector3 forward = path[currentTarget].position - transform.position;
             Quaternion neededRotation = Quaternion.LookRotation(forward);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, neededRotation, Time.deltaTime * 200f);
         }
-        
-        if (!isWaiting)
-            CheckDistance();
+
+
     }
 
     // ReSharper disable Unity.PerformanceAnalysis
@@ -156,7 +158,8 @@ public class Soldier : MonoBehaviour
         {
             SoldierUpgradeType.CRIT => UpgradeType.SOLDIER_CRIT,
             SoldierUpgradeType.SPEED => UpgradeType.SOLDIER_SPEED,
-            SoldierUpgradeType.REWARD => UpgradeType.SOLDIER_REWARD
+            SoldierUpgradeType.REWARD => UpgradeType.SOLDIER_REWARD,
+            _ => throw new NotImplementedException()
         };
     }
 

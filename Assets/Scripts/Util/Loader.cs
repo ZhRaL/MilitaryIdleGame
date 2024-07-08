@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-[CreateAssetMenu]
 public class Loader : MonoBehaviour
 {
     public float waitForSeconds;
@@ -15,7 +14,7 @@ public class Loader : MonoBehaviour
     public bool clickForStart;
     private void Start()
     {
-        if(!clickForStart)
+        if (!clickForStart)
             StartCoroutine(LoadScene());
     }
 
@@ -23,7 +22,7 @@ public class Loader : MonoBehaviour
     {
         StartCoroutine(LoadScene());
     }
-    
+
     private IEnumerator LoadScene()
     {
         float t = 0f;

@@ -300,3 +300,4 @@ MonoBehaviour:
   _objectType:
     defenseType: 0
     objectType: 2
+  bedTransform: {fileID: 7648754996122932}

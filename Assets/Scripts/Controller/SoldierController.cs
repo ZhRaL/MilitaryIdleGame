@@ -25,6 +25,7 @@ public class SoldierController : MonoBehaviour
             DefenseType.AIRFORCE => Airf.Soldiers.ToArray(),
             DefenseType.MARINE => Marine.Soldiers.ToArray(),
             DefenseType.ARMY => Army.Soldiers.ToArray(),
+            _ => throw new NotImplementedException(),
         };
     }
 
@@ -41,10 +42,11 @@ public class SoldierController : MonoBehaviour
         {
             DefenseType.ARMY => Army,
             DefenseType.AIRFORCE => Airf,
-            DefenseType.MARINE => Marine
+            DefenseType.MARINE => Marine,
+            _ => throw new NotImplementedException()
         };
     }
-    
+
     public JsonController<SoldierItemJO> Save()
     {
         JsonController<SoldierItemJO> contr = new JsonController<SoldierItemJO>();
@@ -53,16 +55,16 @@ public class SoldierController : MonoBehaviour
         contr.AddManager(Marine.Save());
         return contr;
     }
-    
+
     public void Load(JsonController<SoldierItemJO> state)
     {
         if (state == null)
             state = JsonController<SoldierItemJO>.Default(new SoldierItemJO());
-        
+
         Army.Load(state.GetAt(0));
         Airf.Load(state.GetAt(1));
         Marine.Load(state.GetAt(2));
 
     }
-    
+
 }

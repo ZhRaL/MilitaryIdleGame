@@ -6,7 +6,7 @@ using Util;
 public class RouteManager : MonoBehaviour
 {
 
-    
+
     [SerializeField]
     private Transform armyRouter, airforceRouter, marineRouter;
 
@@ -16,23 +16,25 @@ public class RouteManager : MonoBehaviour
         {
             DefenseType.ARMY => calculate(armyRouter),
             DefenseType.AIRFORCE => calculate(airforceRouter),
-            DefenseType.MARINE => calculate(marineRouter)
+            DefenseType.MARINE => calculate(marineRouter),
+            _ => throw new System.NotImplementedException()
         };
     }
 
     private float calculate(Transform router)
     {
-        float sumDistance=0;
+        float sumDistance = 0;
 
-        for (int i = 0; i < router.childCount -1; ++i) {
+        for (int i = 0; i < router.childCount - 1; ++i)
+        {
             Transform prev = router.GetChild(i);
-            Transform curr = router.GetChild(i+1);
+            Transform curr = router.GetChild(i + 1);
             float distance = Vector3.Distance(prev.position, curr.position);
-            sumDistance +=distance;
+            sumDistance += distance;
         }
-        sumDistance += Vector3.Distance(router.GetChild(0).position, 
-            router.GetChild(router.transform.childCount-1).position);
-        
+        sumDistance += Vector3.Distance(router.GetChild(0).position,
+            router.GetChild(router.transform.childCount - 1).position);
+
         return sumDistance;
     }
 }

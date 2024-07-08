@@ -24,7 +24,7 @@ public class ShopItem : MonoBehaviour
 
     public void Buy()
     {
-        if(!RichEnough())
+        if (!RichEnough())
             return;
         if (Validate())
             Reward.Checkout();
@@ -51,12 +51,11 @@ public class ShopItem : MonoBehaviour
             default:
                 throw new ArgumentOutOfRangeException("Not a valid Type");
         }
-
-        return false;
     }
 
-    private bool RichEnough() {
-         switch (cost.type)
+    private bool RichEnough()
+    {
+        switch (cost.type)
         {
             case Enums.Costs.MONEY:
                 return true;

@@ -19,7 +19,8 @@ namespace Quests
             {
                 ReqType.AMOUNT => checkAmount(),
                 ReqType.LEVEL => checkLevel(),
-                ReqType.AMOUNT_LEVEL => checkAmountLevel()
+                ReqType.AMOUNT_LEVEL => checkAmountLevel(),
+                _ => throw new NotImplementedException()
             };
         }
 

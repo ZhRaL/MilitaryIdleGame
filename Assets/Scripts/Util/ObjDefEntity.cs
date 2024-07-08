@@ -24,5 +24,10 @@ namespace Util
             // Vergleichen von DefenseType und ObjectType
             return ObjectType.objectType == otherEntity.ObjectType.objectType;
         }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 }

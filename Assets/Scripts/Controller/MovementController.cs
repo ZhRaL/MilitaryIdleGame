@@ -111,7 +111,7 @@ public class MovementController : MonoBehaviour
 
         var tempTargetPos = localPosition + (new Vector3(-touchDeltaPosition.x * zoomFaktorRecalculate, 0,
             -touchDeltaPosition.y * zoomFaktorRecalculate) * (speedPan * Time.deltaTime));
-        
+
         targetPosition = tempTargetPos;
 
         adjustBorders();
@@ -123,7 +123,7 @@ public class MovementController : MonoBehaviour
         current = checkLocal(current);
 
         var delta = current - localTransform.localPosition;
-        
+
         var tempWorld = localTransform.TransformPoint(delta);
 
         tempWorld = checkWorld(tempWorld);
@@ -173,7 +173,8 @@ public class MovementController : MonoBehaviour
             CameraValues.LOCAL_Z => Vector2.Lerp(Local_Low_Z, Local_High_Z, zoomLerper),
 
             CameraValues.WORLD_X => Vector2.Lerp(World_Low_X, World_High_X, zoomLerper),
-            CameraValues.WORLD_Z => Vector2.Lerp(World_Low_Z, World_High_Z, zoomLerper)
+            CameraValues.WORLD_Z => Vector2.Lerp(World_Low_Z, World_High_Z, zoomLerper),
+            _ => throw new System.NotImplementedException()
         };
     }
 
