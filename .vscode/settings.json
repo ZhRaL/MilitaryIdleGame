@@ -51,5 +51,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "MilIdleNew.sln"
+    "dotnet.defaultSolution": "MilitaryIdleGame.sln"
 }
