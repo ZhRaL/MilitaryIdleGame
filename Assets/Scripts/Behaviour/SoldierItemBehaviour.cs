@@ -30,7 +30,7 @@ namespace DefaultNamespace
             GameObject rb = Object.Instantiate(Soldier.RadialBarPrefab, Soldier.transform);
             rb.transform.rotation = Camera.main.transform.rotation;
 
-            if (Item is not Bed)
+            if (Item is Chair)
             {
                 Soldier.anim.SetTrigger("SittingDownTrigger");
                 Soldier.anim.ResetTrigger("SittingUpTrigger");
@@ -39,7 +39,20 @@ namespace DefaultNamespace
                 soldier.transform.position += Item.transform.forward * .3f;
                 return;
             }
-            else
+            if (Item is Toilet)
+            {
+                Soldier.anim.SetTrigger("SittingDownTrigger");
+                Soldier.anim.ResetTrigger("SittingUpTrigger");
+                rb.GetComponent<RadialBar>().Initialize(Item.TimeNeeded(), SoldierGetUp, new ActionBefore(2.217f, StartGettingUp));
+                soldier.transform.rotation = Quaternion.LookRotation(Item.transform.up);
+                soldier.transform.Rotate(Vector3.up, 180);
+                Vector3 offset = soldier.transform.position;
+                offset += Item.transform.up * -.3f;
+                soldier.transform.position = offset;
+                soldier.transform.position += new Vector3(0f, -0.22f, 0);
+                return;
+            }
+            if (Item is Bed)
             {
                 Soldier.anim.SetTrigger("LayingDownTrigger");
                 Soldier.anim.ResetTrigger("LayingUpTrigger");
@@ -62,12 +75,8 @@ namespace DefaultNamespace
         public void SoldierGetUp()
         {
             Item.Occupied = false;
-            var transform1 = Soldier.transform;
-            Vector3 newPos = transform1.position;
-            Soldier.anim.SetBool("isRunning", true);
-            // Remove the Offset
-            transform1.position = newPos;
 
+            Soldier.anim.SetBool("isRunning", true);
             Item.Parent.ItemIsFree();
             Item.RoutingPoint.LetSoldierMove(Soldier);
             Soldier = null;
