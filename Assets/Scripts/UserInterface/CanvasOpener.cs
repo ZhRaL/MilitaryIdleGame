@@ -17,21 +17,17 @@ public class CanvasOpener : MonoBehaviour
 
     private void OnMouseUpAsButton()
     {
-         logger.log("WOrks!!");
-
         PointerEventData pointerEventData = new PointerEventData(EventSystem.current);
         pointerEventData.position = Input.mousePosition;
 
         List<RaycastResult> results = new List<RaycastResult>();
-        EventSystem.current.RaycastAll(pointerEventData,results);
-         logger.log("list is: "+results);
-        
+        EventSystem.current.RaycastAll(pointerEventData, results);
+
         if (MouseOverElement() || Time.time - temp > 0.2)
         {
             return;
         }
 
-         logger.log("Great sogar");
         overlay.SetActive(true);
     }
 
@@ -41,7 +37,7 @@ public class CanvasOpener : MonoBehaviour
         pointerEventData.position = Input.mousePosition;
 
         List<RaycastResult> results = new List<RaycastResult>();
-        EventSystem.current.RaycastAll(pointerEventData,results);
+        EventSystem.current.RaycastAll(pointerEventData, results);
 
         for (int i = 0; i < results.Count; i++)
         {
