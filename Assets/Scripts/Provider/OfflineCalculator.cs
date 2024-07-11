@@ -16,7 +16,7 @@ namespace Provider
 
 
         // In Seconds
-        public int validOfflineTime = 60 * 60;
+        public int validOfflineTime = 0;
 
         private const string saveString = "OFFLINE_CALC";
 
@@ -29,7 +29,7 @@ namespace Provider
         private int offTime;
 
         private float hourlyReward;
-        
+
         public OfflineCalculator()
         {
             string savedStartTime = PlayerPrefs.GetString(saveString, string.Empty);
@@ -37,6 +37,7 @@ namespace Provider
             {
                 savedTime = DateTime.Parse(savedStartTime);
             }
+            validOfflineTime = PlayerPrefsHelper.GetInt("OfflineTime", 3600);
 
             routeManager = Object.FindObjectOfType<RouteManager>();
         }
@@ -44,6 +45,15 @@ namespace Provider
         public void SafeTime()
         {
             PlayerPrefs.SetString(saveString, DateTime.Now.ToString());
+            PlayerPrefsHelper.SetInt("OfflineTime", validOfflineTime);
+            PlayerPrefs.Save();
+        }
+
+        public void AddOfflineTime(int seconds)
+        {
+            if (seconds > 0)
+                validOfflineTime += seconds;
+            PlayerPrefsHelper.SetInt("OfflineTime", validOfflineTime);
             PlayerPrefs.Save();
         }
 
@@ -56,7 +66,7 @@ namespace Provider
         {
             hourlyReward = calculateHourlyReward();
 
-            return (int)((float) seconds / 3600 * hourlyReward);
+            return (int)((float)seconds / 3600 * hourlyReward);
         }
 
         private void CalculateOfflineAmount()
@@ -65,7 +75,7 @@ namespace Provider
 
             offTime = (int)elapsedTime.TotalSeconds;
             offTime = Mathf.Min(offTime, validOfflineTime);
-            
+
             amount = CalculateReward(offTime);
             initialized = true;
         }
@@ -79,7 +89,7 @@ namespace Provider
         {
             if (!initialized)
                 CalculateOfflineAmount();
-            return (int) (amount*percentage);
+            return (int)(amount * percentage);
         }
 
         private float calculateHourlyReward()
@@ -166,9 +176,9 @@ namespace Provider
             foreach (var managerItem in manager.Items)
             {
                 if (managerItem.Level < 1) continue;
-                
+
                 var reward = (int)Calculator.INSTANCE.GetReward(managerItem.ObjectType.ToMoney(), managerItem.Level);
-                reward *= 1+soldier.LVL_Reward / 100;
+                reward *= 1 + soldier.LVL_Reward / 100;
                 reward *= 1 + ((soldier.LVL_Crit / 2) / 100);
                 avg += reward;
             }

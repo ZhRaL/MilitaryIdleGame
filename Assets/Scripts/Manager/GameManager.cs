@@ -169,4 +169,9 @@ public class GameManager : MonoBehaviour
         OfflineCalculator.SafeTime();
         SaveGame();
     }
+
+    public void AddOfflineTime(int hours)
+    {
+        OfflineCalculator.AddOfflineTime(hours * 3600);
+    }
 }
