@@ -96,6 +96,8 @@ public class MovementController : MonoBehaviour
                 }
             }
         }
+        // else
+        //     targetPosition = adjustBorders(targetPosition);
 
         moveCamera();
     }
@@ -112,14 +114,13 @@ public class MovementController : MonoBehaviour
         var tempTargetPos = localPosition + (new Vector3(-touchDeltaPosition.x * zoomFaktorRecalculate, 0,
             -touchDeltaPosition.y * zoomFaktorRecalculate) * (speedPan * Time.deltaTime));
 
-        targetPosition = tempTargetPos;
+        targetPosition = adjustBorders(tempTargetPos);
 
-        adjustBorders();
+
     }
 
-    private void adjustBorders()
+    private Vector3 adjustBorders(Vector3 current)
     {
-        var current = targetPosition;
         current = checkLocal(current);
 
         var delta = current - localTransform.localPosition;
@@ -131,8 +132,7 @@ public class MovementController : MonoBehaviour
 
         current += transformed;
 
-
-        targetPosition = current;
+        return current;
     }
 
     private float Between(float value, float min, float max)

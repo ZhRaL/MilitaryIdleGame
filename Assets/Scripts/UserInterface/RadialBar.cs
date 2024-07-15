@@ -22,15 +22,16 @@ public class RadialBar : MonoBehaviour
         currentValue = maxValue;
         amount = 1;
     }
-    
+
     public void Initialize(float maxValue, Action action, ActionBefore before)
     {
-        Initialize(maxValue,action);
+        Initialize(maxValue, action);
         this.before = before;
     }
 
     private void Update()
     {
+        transform.rotation = Camera.main.transform.rotation;
         if (amount <= -1) return;
 
         amount = currentValue / maxValue;
@@ -39,7 +40,7 @@ public class RadialBar : MonoBehaviour
         {
             currentValue -= Time.deltaTime;
             fill.fillAmount = amount;
-            
+
             if (before != null && currentValue < before.time)
             {
                 before.Action.Invoke();

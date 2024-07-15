@@ -28,7 +28,6 @@ namespace DefaultNamespace
             }
 
             GameObject rb = Object.Instantiate(Soldier.RadialBarPrefab, Soldier.transform);
-            rb.transform.rotation = Camera.main.transform.rotation;
 
             if (Item is Chair)
             {
