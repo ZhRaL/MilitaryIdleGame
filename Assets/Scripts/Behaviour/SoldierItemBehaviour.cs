@@ -58,8 +58,6 @@ namespace DefaultNamespace
                 Soldier.transform.rotation = Quaternion.LookRotation(Item.transform.right);
                 Soldier.transform.Rotate(new Vector3(5, 196, 0));
 
-                logger.log("Rotation is: " + Soldier.transform.rotation);
-
                 Vector3 offset = Soldier.transform.position;
                 offset += Item.transform.up * .23f;
                 offset += Item.transform.right * -1 * .55f;

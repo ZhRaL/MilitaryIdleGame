@@ -37,7 +37,6 @@ namespace UnityStandardAssets.Utility
             {
                 yield return null;
             }
-             logger.log("stopping " + name);
 
             // turn off emission
             foreach (var system in systems)

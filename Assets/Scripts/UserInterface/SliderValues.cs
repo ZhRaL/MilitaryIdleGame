@@ -14,11 +14,10 @@ namespace DefaultNamespace
         {
             _slider = slider;
         }
-        
-        
+
+
         private void CheckMagix(float value)
         {
-            logger.log("Checking Value: "+value);
             int min = 0;
             int max = magicValues[0];
             for (int i = 0; i < magicValues.Length - 1; i++)
@@ -29,7 +28,7 @@ namespace DefaultNamespace
                     max = magicValues[i + 1];
                 }
             }
-            if(_slider.minValue==min) return;
+            if (_slider.minValue == min) return;
 
             _slider.minValue = min;
             _slider.maxValue = max;

@@ -6,7 +6,7 @@ namespace Util
     {
         public static void log(string s)
         {
-             Debug.Log(s);
+            Debug.Log(s);
         }
     }
 }

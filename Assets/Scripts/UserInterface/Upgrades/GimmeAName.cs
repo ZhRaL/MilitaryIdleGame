@@ -18,7 +18,7 @@ public class GimmeAName : MonoBehaviour
     public UpgradeScript UpgradeScript;
     public bool SelectFirst;
 
-    public ObjectType ObjType => _objectType; 
+    public ObjectType ObjType => _objectType;
     private void Start()
     {
         var tl = GameManager.INSTANCE.GetTopLevel(_objectType);
@@ -48,7 +48,7 @@ public class GimmeAName : MonoBehaviour
 
         selectFirstIcon();
     }
-    
+
     private void OnEnable()
     {
         selectFirstIcon();
@@ -56,7 +56,6 @@ public class GimmeAName : MonoBehaviour
 
     private void selectFirstIcon()
     {
-        logger.log("Select First Tryto");
         if (SelectFirst)
         {
             IconScript x = GetComponentInChildren<IconScript>();
@@ -65,7 +64,7 @@ public class GimmeAName : MonoBehaviour
                 ds.MoneyButtonPressed();
                 return;
             }
-            if(x) x.SingleSelect.Invoke(x);
+            if (x) x.SingleSelect.Invoke(x);
         }
     }
 
@@ -77,12 +76,12 @@ public class GimmeAName : MonoBehaviour
         UpgradeScript.selectionChanged(BuildUpgradeDto());
 
     }
-    
+
     public void DoubleSelect(DoubleIconScript child, bool isMoney)
     {
-        if(!child.Item) return;
+        if (!child.Item) return;
         UpgradeDto upgrade = BuildMissionUpgradeDto(child, isMoney);
-        upgrade.upgradeAction += ( ) =>
+        upgrade.upgradeAction += () =>
         {
             child.InitializePreview(this, child.Item);
         };
@@ -97,8 +96,8 @@ public class GimmeAName : MonoBehaviour
                 Icon = child.MoneyIconImage.sprite,
                 title = "Mission Reward",
                 description = "DescriptionManager",
-                level = ((MissionItem) child.Item).MoneyLevel,
-                upgradeAction = ((MissionItem) child.Item).MoneyUpgrade,
+                level = ((MissionItem)child.Item).MoneyLevel,
+                upgradeAction = ((MissionItem)child.Item).MoneyUpgrade,
                 upgradeCost = GameManager.INSTANCE.DataProvider.GetCost(child.Item, true),
                 currentReward = GameManager.INSTANCE.DataProvider.GetReward(child.Item, true),
                 diffReward = GameManager.INSTANCE.DataProvider.GetRewardDiff(child.Item, true),
@@ -133,7 +132,7 @@ public class GimmeAName : MonoBehaviour
             currentReward = GameManager.INSTANCE.DataProvider.GetReward(selected.Item),
             diffReward = GameManager.INSTANCE.DataProvider.GetRewardDiff(selected.Item),
             item = selected.Item
-            
+
         };
     }
 }

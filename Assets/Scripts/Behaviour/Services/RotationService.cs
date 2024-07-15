@@ -44,7 +44,6 @@ public class RotationService : MonoBehaviour
             this.degree = degree;
             this.time = time;
             this.turnPerSecond = (degree / time);
-            logger.log("turnPerSecond: " + turnPerSecond);
         }
     }
 }

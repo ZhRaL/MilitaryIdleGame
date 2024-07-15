@@ -18,7 +18,7 @@ namespace Util
 
             return children;
         }
-        
+
         public static ObjectType ToMoney(this ObjectType type)
         {
             switch (type.objectType)
@@ -38,7 +38,7 @@ namespace Util
                         defenseType = type.defenseType,
                         objectType = GenericObjectType.TANK_MONEY
                     };
-                
+
                 case GenericObjectType.SHIP_MONEY:
                 case GenericObjectType.SHIP_TIME:
                     return new ObjectType
@@ -51,45 +51,44 @@ namespace Util
                     throw new ArgumentOutOfRangeException();
             }
         }
-        
+
 
         public static string toFriendlyName(this ObjectType type)
         {
-          //  switch (type)
-          //  {
-          //      case ObjectType.CHAIR:
-          //          return "Chair";
-          //      case ObjectType.BED:
-          //          break;
-          //      case ObjectType.TOILET:
-          //          break;
-          //      case ObjectType.JET_AMOUNT:
-          //          return "Jet";
-          //      case ObjectType.JET_TIME:
-          //          break;
-          //      case ObjectType.SHIP_AMOUNT:
-          //          return "Ship";
-          //      case ObjectType.SHIP_TIME:
-          //          break;
-          //      case ObjectType.TANK_AMOUNT:
-          //          return "Tank";
-          //      case ObjectType.TANK_TIME:
-          //          break;
-          //      default:
-          //          throw new ArgumentOutOfRangeException(nameof(type), type, null);
-          //  }
+            //  switch (type)
+            //  {
+            //      case ObjectType.CHAIR:
+            //          return "Chair";
+            //      case ObjectType.BED:
+            //          break;
+            //      case ObjectType.TOILET:
+            //          break;
+            //      case ObjectType.JET_AMOUNT:
+            //          return "Jet";
+            //      case ObjectType.JET_TIME:
+            //          break;
+            //      case ObjectType.SHIP_AMOUNT:
+            //          return "Ship";
+            //      case ObjectType.SHIP_TIME:
+            //          break;
+            //      case ObjectType.TANK_AMOUNT:
+            //          return "Tank";
+            //      case ObjectType.TANK_TIME:
+            //          break;
+            //      default:
+            //          throw new ArgumentOutOfRangeException(nameof(type), type, null);
+            //  }
 
             return "No Name available";
         }
-        
+
         public static UpgradeType ToUpgradeType(this Item item)
         {
-            logger.log("Item was: "+item.ObjectType.objectType);
             switch (item.ObjectType.objectType)
             {
-                case GenericObjectType.BATH : return UpgradeType.BATH;
-                case GenericObjectType.KITCHEN : return UpgradeType.KITCHEN;
-                case GenericObjectType.SLEEPING : return UpgradeType.SLEEPING;
+                case GenericObjectType.BATH: return UpgradeType.BATH;
+                case GenericObjectType.KITCHEN: return UpgradeType.KITCHEN;
+                case GenericObjectType.SLEEPING: return UpgradeType.SLEEPING;
                 case GenericObjectType.SOLDIER_SPEED: return UpgradeType.SOLDIER_SPEED;
                 case GenericObjectType.SOLDIER_CRIT: return UpgradeType.SOLDIER_CRIT;
                 case GenericObjectType.SOLDIER_REWARD: return UpgradeType.SOLDIER_REWARD;
