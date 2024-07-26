@@ -21,6 +21,9 @@ public class CameraController : MonoBehaviour
     private bool isZooming = false;
     private bool isMoving = false;
 
+    public float smoothTime = 0.5f;
+    private Vector3 velocity = Vector3.zero;
+    private Vector3 _targetPosition;
 
     private void Update()
     {
@@ -28,6 +31,7 @@ public class CameraController : MonoBehaviour
         {
             return;
         }
+
         if (Input.touchCount == 2)
         {
             StopAllCoroutines();
@@ -46,6 +50,11 @@ public class CameraController : MonoBehaviour
             {
                 HandleMovement();
             }
+        }
+        else if (isMoving && !Similar(transform.localPosition, _targetPosition))
+        {
+            transform.localPosition = Vector3.SmoothDamp(transform.localPosition, _targetPosition, ref velocity,
+                smoothTime * Time.deltaTime);
         }
         else
         {
@@ -97,18 +106,52 @@ public class CameraController : MonoBehaviour
         targetZ += transform.localPosition.z;
 
         // Form für xMin
-        var erlaubtXMin = 0.446f * transform.localPosition.z - 21.08f + (zoomFactor * 3.2f);
-        var erlaubtXMax = 0.413f * transform.localPosition.z + 36.47f - (zoomFactor * 3.2f);
-        var erlaubtZMin = -0.4388f * transform.localPosition.x - 33.6748f + (zoomFactor * 11.4f);
-        var erlaubtZMax = -0.3f * transform.localPosition.x + 10.7f - (zoomFactor * 11.4f);
+        var erlaubtXMin = GetXMinFunction(zoomFactor);
+        var erlaubtXMax = GetXMaxFunction(zoomFactor);
+        var erlaubtZMin = GetZMinFunction(zoomFactor);
+        var erlaubtZMax = GetZMaxFunction(zoomFactor);
 
 
         var current = transform.localPosition;
         current.x = Mathf.Clamp(targetX, erlaubtXMin, erlaubtXMax);
         current.z = Mathf.Clamp(targetZ, erlaubtZMin, erlaubtZMax);
-        transform.localPosition = current;
 
-        // Beispiel-Bewegungslogik (je nach gewünschtem Verhalten anpassen)
-        // mainCamera.transform.Translate(, -inputPosition.y * speedPan * Time.deltaTime, 0);
+        var targetPosition = new Vector3(
+            Mathf.Clamp(targetX, erlaubtXMin, erlaubtXMax),
+            transform.localPosition.y,
+            Mathf.Clamp(targetZ, erlaubtZMin, erlaubtZMax)
+        );
+
+        _targetPosition = targetPosition;
+        
+        transform.localPosition = Vector3.SmoothDamp(transform.localPosition, _targetPosition, ref velocity,
+            smoothTime * Time.deltaTime);
+    }
+
+    private float GetZMaxFunction(float zoomFactor)
+    {
+        return -0.3f * transform.localPosition.x + 10.7f - (zoomFactor * 11.4f);
+    }
+
+    private float GetZMinFunction(float zoomFactor)
+    {
+        return -0.4388f * transform.localPosition.x - 33.6748f + (zoomFactor * 11.4f);
+    }
+
+    private float GetXMaxFunction(float zoomFactor)
+    {
+        return 0.413f * transform.localPosition.z + 36.47f - (zoomFactor * 3.2f);
+    }
+
+    private float GetXMinFunction(float zoomFactor)
+    {
+        return 0.446f * transform.localPosition.z - 21.08f + (zoomFactor * 3.2f);
+    }
+
+    private bool Similar(Vector3 first, Vector3 second)
+    {
+        float epsilon = 0.1f;
+        var diff = second - first;
+        return diff.x <= epsilon && diff.y <= epsilon && diff.z <= epsilon;
     }
 }
