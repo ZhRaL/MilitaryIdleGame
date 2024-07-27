@@ -98,7 +98,8 @@ public class CameraController : MonoBehaviour
         Vector2 inputPosition = Input.touchCount == 1
             ? Input.GetTouch(0).deltaPosition
             : new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y")) * mouseScaleFactor;
-        inputPosition *= (float)((float)mainCamera.orthographicSize / maxDistanceZoomOut);
+       
+        inputPosition *= (mainCamera.orthographicSize / maxDistanceZoomOut);
 
         var targetX = -inputPosition.x * speedPan * Time.deltaTime;
         targetX += transform.localPosition.x;
@@ -106,15 +107,15 @@ public class CameraController : MonoBehaviour
         targetZ += transform.localPosition.z;
 
         // Form für xMin
-        var erlaubtXMin = GetXMinFunction(zoomFactor);
-        var erlaubtXMax = GetXMaxFunction(zoomFactor);
-        var erlaubtZMin = GetZMinFunction(zoomFactor);
-        var erlaubtZMax = GetZMaxFunction(zoomFactor);
+        var erlaubtXMin = GetXMinFunction(targetZ, zoomFactor);
+        var erlaubtXMax = GetXMaxFunction(targetZ, zoomFactor);
+        var erlaubtZMin = GetZMinFunction(targetX, zoomFactor);
+        var erlaubtZMax = GetZMaxFunction(targetX, zoomFactor);
 
 
-        var current = transform.localPosition;
-        current.x = Mathf.Clamp(targetX, erlaubtXMin, erlaubtXMax);
-        current.z = Mathf.Clamp(targetZ, erlaubtZMin, erlaubtZMax);
+        // var current = transform.localPosition;
+        // current.x = Mathf.Clamp(targetX, erlaubtXMin, erlaubtXMax);
+        // current.z = Mathf.Clamp(targetZ, erlaubtZMin, erlaubtZMax);
 
         var targetPosition = new Vector3(
             Mathf.Clamp(targetX, erlaubtXMin, erlaubtXMax),
@@ -123,29 +124,29 @@ public class CameraController : MonoBehaviour
         );
 
         _targetPosition = targetPosition;
-        
+
         transform.localPosition = Vector3.SmoothDamp(transform.localPosition, _targetPosition, ref velocity,
             smoothTime * Time.deltaTime);
     }
 
-    private float GetZMaxFunction(float zoomFactor)
+    private float GetZMaxFunction(float valueX, float zoomFactor)
     {
-        return -0.3f * transform.localPosition.x + 10.7f - (zoomFactor * 11.4f);
+        return -0.3f * valueX + 10.7f - (zoomFactor * 11.4f);
     }
 
-    private float GetZMinFunction(float zoomFactor)
+    private float GetZMinFunction(float valueX, float zoomFactor)
     {
-        return -0.4388f * transform.localPosition.x - 33.6748f + (zoomFactor * 11.4f);
+        return -0.4388f * valueX - 33.6748f + (zoomFactor * 11.4f);
     }
 
-    private float GetXMaxFunction(float zoomFactor)
+    private float GetXMaxFunction(float valueZ, float zoomFactor)
     {
-        return 0.413f * transform.localPosition.z + 36.47f - (zoomFactor * 3.2f);
+        return 0.413f * valueZ + 36.47f - (zoomFactor * 3.2f);
     }
 
-    private float GetXMinFunction(float zoomFactor)
+    private float GetXMinFunction(float valueZ, float zoomFactor)
     {
-        return 0.446f * transform.localPosition.z - 21.08f + (zoomFactor * 3.2f);
+        return 0.446f * valueZ - 21.08f + (zoomFactor * 3.2f);
     }
 
     private bool Similar(Vector3 first, Vector3 second)
