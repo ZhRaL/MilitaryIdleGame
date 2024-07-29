@@ -1,16 +1,15 @@
+using System.Threading.Tasks;
 using UnityEngine;
 
-public class InAppBuyManager : MonoBehaviour 
+public class InAppBuyManager
 {
-    public static InAppBuyManager INSTANCE;
+  public static InAppBuyManager INSTANCE;
 
-    private void Awake() {
-      INSTANCE = this;
-    }
-
-    public bool Collect(int amount) {
-        // TODO
-        return true;
-    }
-    
+  public async Task<bool> Collect(int amount)
+  {
+    Debug.Log("Trying to start InAPP Buy for " + amount + " $");
+    await Task.Delay(1000);
+    return true;
   }
+
+}

@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using DefaultNameSpace;
 using TMPro;
 using UnityEngine;
@@ -22,23 +23,23 @@ public class ShopItem : MonoBehaviour
         }
     }
 
-    public void Buy()
+    public async void Buy()
     {
         if (!RichEnough())
             return;
-        if (Validate())
+        if (await Validate())
             Reward.Checkout();
     }
 
-    private bool Validate()
+    private async Task<bool> Validate()
     {
         switch (cost.type)
         {
             case Enums.Costs.MONEY:
-                return InAppBuyManager.INSTANCE.Collect(cost.amount);
+                return await InAppBuyManager.INSTANCE.Collect(cost.amount);
 
             case Enums.Costs.ADVERTISMENT:
-                return AdManager.INSTANCE.Show();
+                return await AdManager.INSTANCE.ShowAsync();
 
             case Enums.Costs.GOLD:
                 GameManager.INSTANCE.Gold -= cost.amount;

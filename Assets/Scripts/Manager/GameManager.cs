@@ -99,6 +99,7 @@ public class GameManager : MonoBehaviour
         QualitySettings.vSyncCount = 2;
         Application.targetFrameRate = 30;
         OfflineCalculator = new OfflineCalculator();
+        InAppBuyManager.INSTANCE = new InAppBuyManager();
         LoadGame();
     }
 
