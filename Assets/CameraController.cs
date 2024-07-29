@@ -25,6 +25,16 @@ public class CameraController : MonoBehaviour
     private Vector3 velocity = Vector3.zero;
     private Vector3 _targetPosition;
 
+
+    // Neue Variablen für die Trägheit (Inertia)
+    private Vector2 lastTouchDeltaPosition;
+    private Vector2 currentTouchDeltaPosition;
+    private Vector2 inertiaVelocity;
+    public float inertiaDamping = 0.9f;
+    public float maxInertiaDistance = 5f;
+    private Vector3 inertiaTargetPosition;
+
+
     private void Update()
     {
         if (CanvasOpener.MouseOverElement())
@@ -49,20 +59,39 @@ public class CameraController : MonoBehaviour
             if (isMoving)
             {
                 HandleMovement();
+                // Berechne die aktuelle DeltaPosition
+                currentTouchDeltaPosition = Input.GetTouch(0).deltaPosition;
             }
-        }
-        else if (isMoving && !Similar(transform.localPosition, _targetPosition))
-        {
-            transform.localPosition = Vector3.SmoothDamp(transform.localPosition, _targetPosition, ref velocity,
-                smoothTime * Time.deltaTime);
         }
         else
         {
-            StopAllCoroutines();
-            isZooming = false;
-            isMoving = false;
+            if (isMoving)
+            {
+                // Wenn der Finger losgelassen wurde, speichere die letzte DeltaPosition als Inertia-Geschwindigkeit
+                inertiaVelocity = currentTouchDeltaPosition * speedPan * Time.deltaTime;
+                inertiaVelocity *= mainCamera.orthographicSize / maxDistanceZoomOut;
+                inertiaVelocity = Vector2.ClampMagnitude(inertiaVelocity, maxInertiaDistance);
+                inertiaVelocity *= -1;
+                isMoving = false;
+                inertiaTargetPosition = transform.localPosition;
+            }
+
+            // Wende Trägheit an
+            if (inertiaVelocity.magnitude > 0.1f)
+            {
+                HandleInertia();
+                inertiaVelocity *= inertiaDamping; // Dämpfe die Geschwindigkeit ab
+            }
+            else
+            {
+                StopAllCoroutines();
+                isZooming = false;
+                isMoving = false;
+                _targetPosition = transform.localPosition;
+            }
         }
     }
+
 
     private IEnumerator StartMovingAfterDelay()
     {
@@ -91,6 +120,32 @@ public class CameraController : MonoBehaviour
         mainCamera.orthographicSize = Mathf.Min(mainCamera.orthographicSize, maxDistanceZoomOut);
     }
 
+    private void HandleInertia()
+    {
+        var targetX = transform.localPosition.x + inertiaVelocity.x;
+        var targetZ = transform.localPosition.z + inertiaVelocity.y;
+
+        float zoomFactor = (mainCamera.orthographicSize - minDistanceZoomIn) / zoomDelta;
+
+        var erlaubtXMin = GetXMinFunction(targetZ, zoomFactor);
+        var erlaubtXMax = GetXMaxFunction(targetZ, zoomFactor);
+        var erlaubtZMin = GetZMinFunction(targetX, zoomFactor);
+        var erlaubtZMax = GetZMaxFunction(targetX, zoomFactor);
+
+        inertiaTargetPosition = new Vector3(
+            Mathf.Clamp(targetX, erlaubtXMin, erlaubtXMax),
+            transform.localPosition.y,
+            Mathf.Clamp(targetZ, erlaubtZMin, erlaubtZMax)
+        );
+
+
+        transform.localPosition = Vector3.SmoothDamp(transform.localPosition, inertiaTargetPosition, ref velocity,
+            smoothTime * Time.deltaTime);
+    }
+
+
+
+
     private void HandleMovement()
     {
         float zoomFactor = (mainCamera.orthographicSize - minDistanceZoomIn) / zoomDelta;
@@ -98,24 +153,18 @@ public class CameraController : MonoBehaviour
         Vector2 inputPosition = Input.touchCount == 1
             ? Input.GetTouch(0).deltaPosition
             : new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y")) * mouseScaleFactor;
-       
-        inputPosition *= (mainCamera.orthographicSize / maxDistanceZoomOut);
+
+        inputPosition *= mainCamera.orthographicSize / maxDistanceZoomOut;
 
         var targetX = -inputPosition.x * speedPan * Time.deltaTime;
         targetX += transform.localPosition.x;
         var targetZ = -inputPosition.y * speedPan * Time.deltaTime;
         targetZ += transform.localPosition.z;
 
-        // Form für xMin
         var erlaubtXMin = GetXMinFunction(targetZ, zoomFactor);
         var erlaubtXMax = GetXMaxFunction(targetZ, zoomFactor);
         var erlaubtZMin = GetZMinFunction(targetX, zoomFactor);
         var erlaubtZMax = GetZMaxFunction(targetX, zoomFactor);
-
-
-        // var current = transform.localPosition;
-        // current.x = Mathf.Clamp(targetX, erlaubtXMin, erlaubtXMax);
-        // current.z = Mathf.Clamp(targetZ, erlaubtZMin, erlaubtZMax);
 
         var targetPosition = new Vector3(
             Mathf.Clamp(targetX, erlaubtXMin, erlaubtXMax),
@@ -123,11 +172,11 @@ public class CameraController : MonoBehaviour
             Mathf.Clamp(targetZ, erlaubtZMin, erlaubtZMax)
         );
 
-        _targetPosition = targetPosition;
 
-        transform.localPosition = Vector3.SmoothDamp(transform.localPosition, _targetPosition, ref velocity,
+        transform.localPosition = Vector3.SmoothDamp(transform.localPosition, targetPosition, ref velocity,
             smoothTime * Time.deltaTime);
     }
+
 
     private float GetZMaxFunction(float valueX, float zoomFactor)
     {
