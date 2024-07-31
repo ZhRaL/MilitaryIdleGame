@@ -4,6 +4,7 @@ using UnityEngine;
 public class AdManager : MonoBehaviour
 {
   public static AdManager INSTANCE;
+  public bool isAdFree;
 
   private void Awake()
   {
@@ -22,6 +23,8 @@ public class AdManager : MonoBehaviour
 
   public async Task<bool> ShowAsync()
   {
+    if (isAdFree)
+      return true;
     Debug.Log("Showing Ad");
     bool adShown = await ShowAd();
     return adShown;

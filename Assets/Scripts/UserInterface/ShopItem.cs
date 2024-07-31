@@ -9,17 +9,20 @@ using Util;
 
 public class ShopItem : MonoBehaviour
 {
+    public Image moneyLogo, badgeLogo;
     public Reward Reward;
     [FormerlySerializedAs("Cost")] public Cost cost;
 
     public Image costImage;
     public TMP_Text costText;
+    public Image CostBuyableImg;
     private void Start()
     {
         if (costImage)
         {
             costImage.sprite = FindObjectOfType<ShopManager>().GetSprite(cost.type.ToString());
             costText.text = cost.amount.ToString();
+            checkIsBuyable();
         }
     }
 
@@ -28,7 +31,26 @@ public class ShopItem : MonoBehaviour
         if (!RichEnough())
             return;
         if (await Validate())
+        {
             Reward.Checkout();
+        }
+
+    }
+
+    public void checkIsBuyable()
+    {
+        if (!RichEnough())
+        {
+            var x = CostBuyableImg.color;
+            x.a = .5f;
+            CostBuyableImg.color = x;
+        }
+        else
+        {
+            var x = CostBuyableImg.color;
+            x.a = 1f;
+            CostBuyableImg.color = x;
+        }
     }
 
     private async Task<bool> Validate()
