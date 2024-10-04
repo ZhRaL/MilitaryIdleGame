@@ -1,17 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
+using Util;
 
 public class SliderToggle : MonoBehaviour
 {
 public Slider slider;
 
-public void toggle() {
-    slider.value = (slider.value == 1)?0:1;
-}
+public UnityEvent<bool> action;
 
-private void OnClick() {
-    toggle();
+// the other way round, because the Action in AudioSource is mute, true=silence, false=partyHard
+public void toggle() {
+    bool b = slider.value == 0;
+    action?.Invoke(b);
 }
 }
