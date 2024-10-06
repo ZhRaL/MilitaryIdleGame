@@ -8,6 +8,7 @@ namespace DefaultNamespace
     {
         [SerializeField] private RoutingPoint _routingPoint;
         [SerializeField] private ObjectType _objectType;
+        public AudioSource audioSource=null;
 
         public delegate void LevelUpEventHandler(int newLevel);
     
@@ -62,11 +63,15 @@ namespace DefaultNamespace
 
         public virtual void SoldierSitDown(Soldier soldier)
         {
+            if(audioSource!=null)
+                audioSource.Play();
             SoldierItemBehaviour.SoldierSitDown(soldier);
         }
 
         public void SoldierGetUp()
         {
+            if(audioSource!=null)
+                audioSource.Stop();
             SoldierItemBehaviour.SoldierGetUp();
         }
 

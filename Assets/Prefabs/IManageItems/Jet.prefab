@@ -946,6 +946,7 @@ MonoBehaviour:
   _objectType:
     defenseType: 0
     objectType: 0
+  audioSource: {fileID: 5981861015719492627}
   anim1: {fileID: 0}
   anim2: {fileID: 0}
   _waypoints: {fileID: 3985405291690186553}
