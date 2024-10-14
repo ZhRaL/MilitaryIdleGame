@@ -1,8 +1,7 @@
-﻿using Interfaces;
-using UnityEditor;
+﻿using DefaultNamespace;
 using UnityEngine;
 
-namespace DefaultNamespace
+namespace Controller.ManageItems.Items
 {
     public class Vehicle : MissionItem
     {
