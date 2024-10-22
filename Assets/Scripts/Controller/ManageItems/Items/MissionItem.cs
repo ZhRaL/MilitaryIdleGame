@@ -2,12 +2,14 @@
 using System.Linq;
 using Interfaces;
 using UnityEngine;
+using UnityEngine.VFX;
 using Util;
 
 namespace DefaultNamespace
 {
     public abstract class MissionItem : Item
     {
+        public GameObject startEffect;
         public int MoneyLevel
         {
             get => _moneyLevel;
@@ -51,6 +53,10 @@ namespace DefaultNamespace
         public void MissionStart()
         {
             GetComponent<Animator>().SetTrigger("Mission_Start");
+            if(startEffect!=null)
+                startEffect.SetActive(true);
+            // var x = startEffect.GetComponent<VisualEffect>();
+            //x.Play();
         }
 
         IEnumerator ExecuteAfterTime(float time)
@@ -80,6 +86,8 @@ namespace DefaultNamespace
             if(audioSource!=null)
                 audioSource.Stop();
             Reward();
+            if(startEffect!=null)
+                startEffect.SetActive(false);
             LetSoldierMove();
         }
 
