@@ -46,7 +46,8 @@ public class GameManager : MonoBehaviour
     public const string RECRUITMENTSAFESTRING = "Recruitment_Levels";
 
     public Player Player;
-
+    [SerializeField]
+    private AudioManager _audioManager; 
     public DataProvider DataProvider = new();
 
     #region currencies
@@ -129,6 +130,8 @@ public class GameManager : MonoBehaviour
 
         string s = JsonUtility.ToJson(SoldierController.Save());
         PlayerPrefs.SetString(RECRUITMENTSAFESTRING, s);
+        Player.SoundEnabled = _audioManager.SoundEnabled;
+        Player.MusicEnabled = _audioManager.MusicEnabled;
         PlayerPrefsHelper.SetString("PLAYER", JsonUtility.ToJson(Player));
 
         PlayerPrefs.Save();
@@ -152,6 +155,8 @@ public class GameManager : MonoBehaviour
 
         SoldierController.Load(JsonUtility.FromJson<JsonController<SoldierItemJO>>(PlayerPrefs.GetString(RECRUITMENTSAFESTRING, "")) ?? JsonController<SoldierItemJO>.Default(new SoldierItemJO()));
         Player = JsonUtility.FromJson<Player>(PlayerPrefsHelper.GetString("PLAYER", "")) ?? new Player();
+        _audioManager.SoundEnabled = Player.SoundEnabled;
+        _audioManager.MusicEnabled = Player.MusicEnabled;
         isInitialized = true;
         SaveGame();
     }

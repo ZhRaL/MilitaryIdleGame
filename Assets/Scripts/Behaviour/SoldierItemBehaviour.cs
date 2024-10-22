@@ -28,50 +28,51 @@ namespace DefaultNamespace
             }
 
             GameObject rb = Object.Instantiate(Soldier.RadialBarPrefab, Soldier.transform);
-
-            if (Item is Chair)
+            RadialBar radialBar = rb.GetComponent<RadialBar>();
+            
+            switch (Item)
             {
-                Soldier.anim.SetTrigger("SittingDownTrigger");
-                Soldier.anim.ResetTrigger("SittingUpTrigger");
-                rb.GetComponent<RadialBar>().Initialize(Item.TimeNeeded(), SoldierGetUp, new ActionBefore(2.217f, StartGettingUp));
-                soldier.transform.rotation = Item.transform.rotation;
-                soldier.transform.position += Item.transform.forward * .3f;
-                return;
+                case Chair:
+                    Soldier.anim.SetTrigger("SittingDownTrigger");
+                    Soldier.anim.ResetTrigger("SittingUpTrigger");
+                    radialBar.Initialize(Item.TimeNeeded(), SoldierGetUp, new ActionBefore(2.217f, StartGettingUp));
+                    soldier.transform.rotation = Item.transform.rotation;
+                    soldier.transform.position += Item.transform.forward * .3f;
+                    return;
+                case Toilet:
+                {
+                    Soldier.anim.SetTrigger("SittingDownTrigger");
+                    Soldier.anim.ResetTrigger("SittingUpTrigger");
+                    radialBar.Initialize(Item.TimeNeeded(), SoldierGetUp, new ActionBefore(2.217f, StartGettingUp));
+
+                    Soldier.transform.rotation = Quaternion.LookRotation(Item.transform.up);
+                    Soldier.transform.Rotate(Vector3.up, 210);
+
+                    Vector3 offset = Soldier.transform.position;
+                    offset += Item.transform.up * -.3f;
+                    Soldier.transform.position = offset;
+                    Soldier.transform.position += new Vector3(0f, -0.22f, 0);
+                    return;
+                }
+                case Bed:
+                {
+                    Soldier.transform.rotation = Quaternion.LookRotation(Item.transform.right);
+                    Soldier.transform.Rotate(new Vector3(5, 196, 0));
+
+                    Vector3 offset = Soldier.transform.position;
+                    offset += Item.transform.up * .23f;
+                    offset += Item.transform.right * -1 * .55f;
+                    offset += Item.transform.forward * -.0f;
+
+                    Soldier.transform.position = offset;
+
+                    Soldier.anim.SetTrigger("LayingDownTrigger");
+                    Soldier.anim.ResetTrigger("LayingUpTrigger");
+                    radialBar.Initialize(Item.TimeNeeded(), SoldierGetUp, new ActionBefore(2.8f, StartGettingUp));
+
+                    return;
+                }
             }
-            if (Item is Toilet)
-            {
-                Soldier.anim.SetTrigger("SittingDownTrigger");
-                Soldier.anim.ResetTrigger("SittingUpTrigger");
-                rb.GetComponent<RadialBar>().Initialize(Item.TimeNeeded(), SoldierGetUp, new ActionBefore(2.217f, StartGettingUp));
-
-                Soldier.transform.rotation = Quaternion.LookRotation(Item.transform.up);
-                Soldier.transform.Rotate(Vector3.up, 210);
-
-                Vector3 offset = Soldier.transform.position;
-                offset += Item.transform.up * -.3f;
-                Soldier.transform.position = offset;
-                Soldier.transform.position += new Vector3(0f, -0.22f, 0);
-                return;
-            }
-            if (Item is Bed)
-            {
-                Soldier.transform.rotation = Quaternion.LookRotation(Item.transform.right);
-                Soldier.transform.Rotate(new Vector3(5, 196, 0));
-
-                Vector3 offset = Soldier.transform.position;
-                offset += Item.transform.up * .23f;
-                offset += Item.transform.right * -1 * .55f;
-                offset += Item.transform.forward * -.0f;
-
-                Soldier.transform.position = offset;
-
-                Soldier.anim.SetTrigger("LayingDownTrigger");
-                Soldier.anim.ResetTrigger("LayingUpTrigger");
-                rb.GetComponent<RadialBar>().Initialize(Item.TimeNeeded(), SoldierGetUp, new ActionBefore(2.8f, StartGettingUp));
-
-                return;
-            }
-
         }
 
         public void StartGettingUp()

@@ -63,7 +63,7 @@ namespace DefaultNamespace
 
         public virtual void SoldierSitDown(Soldier soldier)
         {
-            if(audioSource!=null)
+            if(audioSource!=null && AudioManager.Instance.SoundEnabled)
                 audioSource.Play();
             SoldierItemBehaviour.SoldierSitDown(soldier);
         }

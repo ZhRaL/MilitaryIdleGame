@@ -43,7 +43,7 @@ namespace DefaultNamespace
             _soldier = soldier;
             _soldier.transform.Rotate(Vector3.up, 180);
             soldier.gameObject.SetActive(false);
-            if(audioSource!=null)
+            if(audioSource!=null && AudioManager.Instance.SoundEnabled)
                 audioSource.Play();
             MissionStart();
         }
