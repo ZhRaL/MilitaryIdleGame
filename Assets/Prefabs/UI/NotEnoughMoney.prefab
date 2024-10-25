@@ -77,6 +77,7 @@ GameObject:
   - component: {fileID: 8698344270989469033}
   - component: {fileID: 8584537948695507554}
   - component: {fileID: 7068755810412148214}
+  - component: {fileID: 5837015075372551261}
   m_Layer: 5
   m_Name: AdButton
   m_TagString: Untagged
@@ -207,6 +208,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5837015075372551261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 977758351054604061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: -4, y: -4}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1936904530339340014
 GameObject:
   m_ObjectHideFlags: 0
@@ -219,6 +235,7 @@ GameObject:
   - component: {fileID: 305712566989732466}
   - component: {fileID: 6607256826332823838}
   - component: {fileID: 6720081421374439298}
+  - component: {fileID: 659852099134996810}
   m_Layer: 5
   m_Name: Exit
   m_TagString: Untagged
@@ -339,6 +356,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &659852099134996810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1936904530339340014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: -4, y: -4}
+  m_UseGraphicAlpha: 1
 --- !u!1 &3098925119477788311
 GameObject:
   m_ObjectHideFlags: 0
@@ -487,6 +519,7 @@ GameObject:
   - component: {fileID: 4341667102617754907}
   - component: {fileID: 6835131569544900293}
   - component: {fileID: 8225980737375041982}
+  - component: {fileID: 6582747932619861319}
   m_Layer: 5
   m_Name: BadgeButton (1)
   m_TagString: Untagged
@@ -644,6 +677,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6582747932619861319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3292151218414599764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: -4, y: -4}
+  m_UseGraphicAlpha: 1
 --- !u!1 &4661777643430303428
 GameObject:
   m_ObjectHideFlags: 0
@@ -655,6 +703,7 @@ GameObject:
   - component: {fileID: 8968001479311038445}
   - component: {fileID: 8704752685428909273}
   - component: {fileID: 4710114314089851834}
+  - component: {fileID: 901781715690338250}
   m_Layer: 5
   m_Name: Badge
   m_TagString: Untagged
@@ -719,6 +768,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &901781715690338250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4661777643430303428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: -4, y: -4}
+  m_UseGraphicAlpha: 1
 --- !u!1 &6233464820886962986
 GameObject:
   m_ObjectHideFlags: 0
@@ -962,6 +1026,7 @@ GameObject:
   - component: {fileID: 6165657585783240745}
   - component: {fileID: 7572039948135944575}
   - component: {fileID: 3959027675299438710}
+  - component: {fileID: 2686222619716923795}
   m_Layer: 5
   m_Name: Badge
   m_TagString: Untagged
@@ -1026,6 +1091,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2686222619716923795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8076312363705180737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: -4, y: -4}
+  m_UseGraphicAlpha: 1
 --- !u!1 &9035125748774632806
 GameObject:
   m_ObjectHideFlags: 0
