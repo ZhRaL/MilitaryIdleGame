@@ -1,40 +1,108 @@
+using System;
 using System.Threading.Tasks;
 using UnityEngine;
+using GoogleMobileAds;
+using GoogleMobileAds.Api;
+using GoogleMobileAds.Api.AdManager;
 
 public class AdManager : MonoBehaviour
 {
-  public static AdManager INSTANCE;
-  public bool isAdFree;
+    public static AdManager INSTANCE;
 
-  private void Awake()
-  {
-    INSTANCE = this;
-  }
+    public bool isAdFree;
 
-  public void SpecialFunc()
-  {
-    Debug.Log("I am Special");
-  }
+    // This ad unit is configured to always serve test ads.
+    private string _adUnitId = "/21775744923/example/rewarded";
+    private RewardedAd _rewardedAd;
 
-  public void BuyAdFree()
-  {
-    Debug.Log("Buying AdFree Mode...");
-  }
+    private void Awake()
+    {
+        INSTANCE = this;
+        MobileAds.Initialize(initStatus =>
+        {
+            LoadRewardedAd();
+        });
+    }
 
-  public async Task<bool> ShowAsync()
-  {
-    if (isAdFree)
-      return true;
-    Debug.Log("Showing Ad");
-    bool adShown = await ShowAd();
-    return adShown;
-  }
+    private void LoadRewardedAd()
+    {
+        // Clean up the old ad before loading a new one.
+        if (_rewardedAd != null)
+        {
+            _rewardedAd.Destroy();
+            _rewardedAd = null;
+        }
+        
+        Debug.Log("Loading the rewarded ad.");
 
-  private async Task<bool> ShowAd()
-  {
-    // Simuliere asynchrone Werbeanzeige
-    await Task.Delay(1000); // Warte 1 Sekunde als Beispiel
-    return true; // Angenommen, die Werbung wurde erfolgreich angezeigt
-  }
+        // create our request used to load the ad.
+        AdManagerAdRequest adRequest = new AdManagerAdRequest();
 
+        // send the request to load the ad.
+        RewardedAd.Load(_adUnitId, adRequest,
+            (RewardedAd ad, LoadAdError error) =>
+            {
+                // if error is not null, the load request failed.
+                if (error != null || ad == null)
+                {
+                    Debug.LogError("Rewarded ad failed to load an ad " +
+                                   "with error : " + error);
+                    return;
+                }
+
+                Debug.Log("Rewarded ad loaded with response : "
+                          + ad.GetResponseInfo());
+
+                _rewardedAd = ad;
+            });
+    }
+
+    public void SpecialFunc()
+    {
+        Debug.Log("I am Special");
+    }
+
+    public void BuyAdFree()
+    {
+        Debug.Log("Buying AdFree Mode...");
+    }
+
+    public bool ShowAsync()
+    {
+        if (isAdFree)
+            return true;
+        Debug.Log("Showing Ad");
+        bool adShown = ShowAd();
+        return adShown;
+    }
+
+    private bool ShowAd()
+    {
+        const string rewardMsg =
+            "Rewarded ad rewarded the user. Type: {0}, amount: {1}.";
+
+        if (_rewardedAd != null && _rewardedAd.CanShowAd())
+        {
+            _rewardedAd.Show((Reward reward) =>
+            {
+                // TODO: Reward the user.
+                Debug.Log(String.Format(rewardMsg, reward.Type, reward.Amount));
+            });
+            _rewardedAd.OnAdFullScreenContentClosed += () =>
+            {
+                LoadRewardedAd();
+            };
+            _rewardedAd.OnAdFullScreenContentFailed += (AdError error) =>
+            {
+                Debug.LogError("Rewarded ad failed to open full screen content " +
+                               "with error : " + error);
+                
+                LoadRewardedAd();
+            };
+            
+            return true;
+        }
+
+        return false;
+    }
 }

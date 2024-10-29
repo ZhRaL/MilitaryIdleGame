@@ -61,7 +61,7 @@ public class ShopItem : MonoBehaviour
                 return await InAppBuyManager.INSTANCE.Collect(cost.amount);
 
             case Enums.Costs.ADVERTISMENT:
-                return await AdManager.INSTANCE.ShowAsync();
+                return AdManager.INSTANCE.ShowAsync();
 
             case Enums.Costs.GOLD:
                 GameManager.INSTANCE.Gold -= cost.amount;
