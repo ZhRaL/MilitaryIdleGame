@@ -24,9 +24,9 @@ public class UpgradeScript : MonoBehaviour
 
     private void checkBalance()
     {
-        if (GameManager.INSTANCE.Gold > 10)
-            upgradeBtn.interactable = true;
-        else upgradeBtn.interactable = false;
+      //  if (GameManager.INSTANCE.Gold > 10)
+      //      upgradeBtn.interactable = true;
+      //  else upgradeBtn.interactable = false;
     }
 
     public void selectionChanged(UpgradeDto upgrade)
@@ -48,17 +48,36 @@ public class UpgradeScript : MonoBehaviour
 
         if (GameManager.INSTANCE.Gold < upgrade.upgradeCost)
         {
-            upgradeBtn.interactable = false;
+            // upgradeBtn.interactable = false;
             upgradeBtn.onClick.RemoveAllListeners();
+            upgradeBtn.image.color = upgradeBtn.colors.disabledColor;
+            float moneyDifference = upgrade.upgradeCost - GameManager.INSTANCE.Gold;
+            upgradeBtn.onClick.AddListener(() =>SpawnBuyMoneyOverlay((int) moneyDifference));
+            
         }
         else
         {
-            upgradeBtn.interactable = true;
-            upgradeBtn.onClick.RemoveAllListeners();
-            upgradeBtn.onClick.AddListener(() => GameManager.INSTANCE.Gold -= upgrade.upgradeCost);
-            upgradeBtn.onClick.AddListener(Refresh);
-            upgradeBtn.onClick.AddListener(upgrade.upgradeAction);
+            // upgradeBtn.interactable = true;
+            AddBuyListener(upgrade);
         }
+    }
+
+    private void SpawnBuyMoneyOverlay(int diff)
+    {
+        GameObject prefab = PrefabManager.Instance.GetPrefabByString("NotEnoughMoney");
+        NotEnoughMoney script = prefab.GetComponent < NotEnoughMoney>();
+
+        script.InitMissingMoney(diff);
+        prefab.SetActive(true);
+    }
+
+    private void AddBuyListener(UpgradeDto upgrade)
+    {
+        upgradeBtn.onClick.RemoveAllListeners();
+        upgradeBtn.image.color = upgradeBtn.colors.normalColor;
+        upgradeBtn.onClick.AddListener(() => GameManager.INSTANCE.Gold -= upgrade.upgradeCost);
+        upgradeBtn.onClick.AddListener(Refresh);
+        upgradeBtn.onClick.AddListener(upgrade.upgradeAction);
     }
 
     private void Refresh()
