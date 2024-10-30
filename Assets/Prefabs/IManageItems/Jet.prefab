@@ -872,7 +872,7 @@ GameObject:
   - component: {fileID: 4507260339488744043}
   - component: {fileID: 1102055980120405864}
   - component: {fileID: 7492685833863202111}
-  - component: {fileID: 5981861015719492627}
+  - component: {fileID: 2292943916481092504}
   m_Layer: 0
   m_Name: Jet
   m_TagString: Untagged
@@ -947,12 +947,12 @@ MonoBehaviour:
   _objectType:
     defenseType: 0
     objectType: 0
-  audioSource: {fileID: 5981861015719492627}
+  audioSource: {fileID: 0}
   startEffect: {fileID: 5028718321843186741}
   anim1: {fileID: 0}
   anim2: {fileID: 0}
   _waypoints: {fileID: 3985405291690186553}
---- !u!82 &5981861015719492627
+--- !u!82 &2292943916481092504
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -964,7 +964,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: ef2224569cd0c2e4b9ba5734d215f74a, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.424
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -973,9 +973,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 45
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -1008,7 +1008,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
