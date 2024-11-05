@@ -37,7 +37,7 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        if (CanvasOpener.MouseOverElement())
+        if (CanvasOpener.IsMouseOverUIElement())
         {
             return;
         }

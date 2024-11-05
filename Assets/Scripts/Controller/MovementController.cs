@@ -50,7 +50,7 @@ public class MovementController : MonoBehaviour
     void Update()
 
     {
-        if (CanvasOpener.MouseOverElement())
+        if (CanvasOpener.IsMouseOverUIElement())
         {
             return;
         }
