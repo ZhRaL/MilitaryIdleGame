@@ -10,7 +10,7 @@ public class CanvasOpener : MonoBehaviour
     public GameObject overlay;
     private bool wasActive;
     private Collider _collider;
-
+    public Transform UI_Parent1, UI_Parent2;
 
     private void Start()
     {
@@ -19,7 +19,7 @@ public class CanvasOpener : MonoBehaviour
 
     void Update()
     {
-        if (overlay.activeSelf)
+        if (isAnyUiVisible())
         {
             wasActive = true;
             return;
@@ -70,5 +70,19 @@ public class CanvasOpener : MonoBehaviour
         }
 
         return results.Count > 0;
+    }
+
+    private bool isAnyUiVisible()
+    {
+        foreach (Transform child in UI_Parent1)
+        {
+            if (child.gameObject.activeSelf) return true;
+        }
+        foreach (Transform child in UI_Parent2)
+        {
+            if (child.gameObject.activeSelf) return true;
+        }
+
+        return false;
     }
 }
