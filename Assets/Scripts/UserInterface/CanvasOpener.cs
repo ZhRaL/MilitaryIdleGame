@@ -11,6 +11,8 @@ public class CanvasOpener : MonoBehaviour
     private bool wasActive;
     private Collider _collider;
     public Transform UI_Parent1, UI_Parent2;
+    private Vector3 _mouseDownPosition;
+    private float _movementThreshold = 100f;
 
     private void Start()
     {
@@ -31,9 +33,18 @@ public class CanvasOpener : MonoBehaviour
             wasActive = false;
             return;
         }
-        
+
+        if (Input.GetMouseButtonDown(0))
+            _mouseDownPosition = Input.mousePosition;
+
         if (Input.GetMouseButtonUp(0)) // Prüfen, ob die linke Maustaste losgelassen wurde
         {
+            Vector3 current = Input.mousePosition;
+            Vector3 difference = current - _mouseDownPosition;
+            _mouseDownPosition = Vector3.zero;
+            if (difference.magnitude > _movementThreshold)
+                return;
+
             // Erzeuge einen Ray von der Main Camera basierend auf der Mausposition
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit[] hits = Physics.RaycastAll(ray);
@@ -50,6 +61,7 @@ public class CanvasOpener : MonoBehaviour
             }
         }
     }
+
 
     public static bool IsMouseOverUIElement()
     {
@@ -78,6 +90,7 @@ public class CanvasOpener : MonoBehaviour
         {
             if (child.gameObject.activeSelf) return true;
         }
+
         foreach (Transform child in UI_Parent2)
         {
             if (child.gameObject.activeSelf) return true;
