@@ -108,10 +108,10 @@ namespace DefaultNamespace
             amount *= (_soldier.LVL_Reward * 2) / 100;
             if (IsCrit())
             {
-                //TODO Anim?
                 amount *= 2;
             }
 
+            EffectManager.Instance.ShowReward(_soldier.transform, amount);
             GameManager.INSTANCE.Gold += amount;
         }
 

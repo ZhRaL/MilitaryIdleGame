@@ -67,4 +67,9 @@ public class DisplayName : MonoBehaviour
     {
         _namePlate?.SetActive(true);
     }
+
+    public Transform GetPosition()
+    {
+        return _namePlate.transform;
+    }
 }
