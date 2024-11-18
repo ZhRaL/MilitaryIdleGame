@@ -22,7 +22,7 @@ public class StatHighlighter : MonoBehaviour
         
         StatGather x = gatherers
             .Where(g => g.level > 0)
-            .OrderBy(gather => gather.reward).First();
+            .OrderBy(gather => gather.value).First();
         
         if (x != null)
         {
@@ -32,7 +32,7 @@ public class StatHighlighter : MonoBehaviour
 
         StatGather y = gatherers
             .Where(g => g.level > 0)
-            .OrderBy(gather => gather.reward).Last();
+            .OrderBy(gather => gather.value).Last();
         
         if (y != null)
         {

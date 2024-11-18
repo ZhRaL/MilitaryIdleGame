@@ -13,7 +13,7 @@ public class StatSum : MonoBehaviour
     {
         float value = gatherers
             .Where(g => g.level > 0)
-            .Sum(gather => gather.reward);
+            .Sum(gather => gather.value);
         
         tmp.text = ""+value;
     }

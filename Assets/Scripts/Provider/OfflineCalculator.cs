@@ -30,6 +30,8 @@ namespace Provider
 
         private float hourlyReward;
 
+        public StatisticsDto statistic_ARMY = new(), statistic_AIRFORCE = new(), statistic_MARINE=new();
+
         public OfflineCalculator()
         {
             string savedStartTime = PlayerPrefs.GetString(saveString, string.Empty);
@@ -94,25 +96,29 @@ namespace Provider
 
         private float calculateHourlyReward()
         {
-            float amount = 0;
-            var soldiers = GameManager.INSTANCE.SoldierController.GetAllSoldiers();
+            CalculateForBranc(DefenseType.ARMY, statistic_ARMY);
+            CalculateForBranc(DefenseType.AIRFORCE, statistic_AIRFORCE);
+            CalculateForBranc(DefenseType.MARINE, statistic_MARINE);
+            
+            return statistic_ARMY.GetHourlyReward() + statistic_AIRFORCE.GetHourlyReward() + statistic_MARINE.GetHourlyReward();
+        }
 
-            foreach (Soldier soldier in soldiers)
+        private void CalculateForBranc(DefenseType currentType, StatisticsDto current)
+        {
+            var soldiers = GameManager.INSTANCE.SoldierController.GetAllSoldiersFrom(currentType);
+            Soldier solwSoldier = soldiers.OrderBy(e => e.Speed).First();
+            current.NettoRunTime = getNettoRunningTime(solwSoldier);
+            current.EatingTime = getTimeEating(solwSoldier, soldiers.Length);
+            current.PooTime = getTimePooing(solwSoldier, soldiers.Length);
+            current.SleepingTime = getTimeSleeping(solwSoldier, soldiers.Length);
+            current.MissionTime = getTimeForMission(solwSoldier, soldiers.Length);
+            current.Soldier_Amount = soldiers.Length;
+            current.Soldier_AvgCrit = (float) soldiers.Average(e => e.LVL_Crit);
+            current.Soldier_AvgMissionMultiplier = (float)soldiers.Average(e => e.LVL_Reward);
+            current.AvgMissionMoney = GameManager.INSTANCE.GetTopLevel(new ObjectType
             {
-                int soldierAmount = soldiers.Count(x => x.SoldierType == soldier.SoldierType);
-
-                float singleRoundTrip = getNettoRunningTime(soldier)
-                                        + getTimeEating(soldier, soldierAmount)
-                                        + getTimePooing(soldier, soldierAmount)
-                                        + getTimeSleeping(soldier, soldierAmount)
-                                        + getTimeForMission(soldier, soldierAmount);
-                float amountOfAllRoundTrips = (60 * 60) / singleRoundTrip;
-                float moneyEarned = amountOfAllRoundTrips * getMissionMoney(soldier);
-                amount += moneyEarned;
-            }
-
-
-            return amount;
+                defenseType = DefenseType.ARMY
+            }).GetItemManager(currentType).GetAverageMissionMoney();
         }
 
         private float getTimeEating(Soldier soldier, int soldierAmount)
@@ -160,8 +166,8 @@ namespace Provider
             time = manager.GetAverageTime();
             amount = manager.GetAmountOfUnlockedItems();
 
-            time += (1 - (soldierAmount / amount)) * time;
-            return time;
+            var wholDuration = (soldierAmount / amount) * time;
+            return wholDuration;
         }
 
 
@@ -186,6 +192,32 @@ namespace Provider
             // /= UnlockedItems -> *= UnlockedItems 
 
             return avg;
+        }
+    }
+
+    public class StatisticsDto
+    {
+        public float NettoRunTime;
+        public float EatingTime;
+        public float PooTime;
+        public float SleepingTime;
+        public float MissionTime;
+        public float Soldier_AvgCrit;
+        public float Soldier_AvgMissionMultiplier;
+        public float Soldier_Amount;
+        public float AvgMissionMoney;
+
+        public float GetRoundTurnTime()
+        {
+            return NettoRunTime + EatingTime + PooTime + SleepingTime + MissionTime;
+        }
+
+        public float GetHourlyReward()
+        {
+            var runCount = 3600 / GetRoundTurnTime();
+            float CritChance = .2f;
+            var expectedValue = AvgMissionMoney * (1 - CritChance) + (AvgMissionMoney * CritChance * 2);
+            return runCount * expectedValue;
         }
     }
 }

@@ -123,5 +123,10 @@ namespace DefaultNamespace
         {
             return Items.Max(x => x.Level);
         }
+
+        public virtual float GetAverageMissionMoney()
+        {
+            return 0;
+        }
     }
 }

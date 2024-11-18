@@ -16,7 +16,7 @@ namespace DefaultNamespace
         public override List<Item> Items => new(vehicles);
 
         public GameObject constructionParent;
-        
+
         public override void PlaceSoldier(Soldier soldier)
         {
             // TODO - hie rweiter machen
@@ -48,7 +48,7 @@ namespace DefaultNamespace
 
                 if (levels.GetIndex(i) == null)
                 {
-                    GameObject constructionObject = constructionParent.transform.GetChild(i-1).gameObject;
+                    GameObject constructionObject = constructionParent.transform.GetChild(i - 1).gameObject;
                     constructionObject.SetActive(true);
                     item.gameObject.SetActive(false);
                     item.OnLevelUp += _ => constructionObject.SetActive(false);
@@ -62,10 +62,13 @@ namespace DefaultNamespace
                     item.Parent = this;
                     item.Level = jo.Json_Level;
                     item.MoneyLevel = jo.MoneyLevel;
-
                 }
             }
         }
-        
+
+        public override float GetAverageMissionMoney()
+        {
+            return (float)Items.OfType<MissionItem>().Average(e => e.MoneyLevel);
+        }
     }
 }
