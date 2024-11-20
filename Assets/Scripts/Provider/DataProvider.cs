@@ -9,9 +9,10 @@ using Util;
 [Serializable]
 public class DataProvider
 {
-    private Table armyTable, airforceTable, marineTable;
-    private Rest armyRest, airforceRest, marineRest;
-    private Room armyRoom, airforceRoom, marineRoom;
+    public Table armyTable, airforceTable, marineTable;
+    public Rest armyRest, airforceRest, marineRest;
+    public Room armyRoom, airforceRoom, marineRoom;
+    public Company armyComp, airforceComp, marineComp;
 
 
     public IconProvider IconProvider;
@@ -50,6 +51,10 @@ public class DataProvider
                 _ => throw new NotImplementedException()
 
             },
+            GenericObjectType.TANK_TIME => armyComp.GetLevelForItem(index),
+            GenericObjectType.JET_TIME => airforceComp.GetLevelForItem(index),
+            GenericObjectType.SHIP_TIME => marineComp.GetLevelForItem(index),
+            
             _ => throw new NotImplementedException(),
 
             // TODO           
@@ -59,6 +64,33 @@ public class DataProvider
 
     }
 
+    public int GetAverageLevel(ObjectType objType)
+    {
+        int itemCount = GetItemCount(objType);
+        int level = 0;
+        
+        for (int i = 0; i < itemCount; i++)
+        {
+            level += GetLevel(objType.defenseType, objType, i);
+        }
+
+        return level / itemCount;
+    }
+
+    private int GetItemCount(ObjectType type)
+    {
+        switch (type.defenseType)
+        {
+            case DefenseType.ARMY:
+                return GameManager.INSTANCE.GetTopLevel(type).ArmyManager.GetAmountOfUnlockedItems();
+            case DefenseType.AIRFORCE:
+                return GameManager.INSTANCE.GetTopLevel(type).AirforceManager.GetAmountOfUnlockedItems();
+            case DefenseType.MARINE:
+                return GameManager.INSTANCE.GetTopLevel(type).MarineManager.GetAmountOfUnlockedItems();
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+    }
 
 
     // correct Methods!

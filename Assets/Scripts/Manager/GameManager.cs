@@ -94,14 +94,17 @@ public class GameManager : MonoBehaviour
     public SoldierController SoldierController;
 
     public OfflineCalculator OfflineCalculator;
+    public StatisticsManager StatisticsManager;
+    public InAppBuyManager InAppBuyManager;
 
     private void Start()
     {
         QualitySettings.vSyncCount = 2;
         Application.targetFrameRate = 30;
         OfflineCalculator = new OfflineCalculator();
-        InAppBuyManager.INSTANCE = new InAppBuyManager();
+        InAppBuyManager = new InAppBuyManager();
         LoadGame();
+        StatisticsManager = new StatisticsManager(OfflineCalculator);
     }
 
     public IController GetTopLevel(ObjectType type)
@@ -119,17 +122,17 @@ public class GameManager : MonoBehaviour
     public void SaveGame()
     {
         PlayerPrefsHelper.SetFloat("Gold", Gold);
-        PlayerPrefs.SetFloat("Badges", Badges);
+        PlayerPrefsHelper.SetFloat("Badges", Badges);
 
         string b = JsonUtility.ToJson(KitchenController.Save<JsonItem>());
-        PlayerPrefs.SetString(KITCHENSAFESTRING, b);
-        PlayerPrefs.SetString(BATHSAFESTRING, JsonUtility.ToJson(BathController.Save<JsonItem>()));
-        PlayerPrefs.SetString(SLEEPINGSAFESTRING, JsonUtility.ToJson(SleepingController.Save<JsonItem>()));
+        PlayerPrefsHelper.SetString(KITCHENSAFESTRING, b);
+        PlayerPrefsHelper.SetString(BATHSAFESTRING, JsonUtility.ToJson(BathController.Save<JsonItem>()));
+        PlayerPrefsHelper.SetString(SLEEPINGSAFESTRING, JsonUtility.ToJson(SleepingController.Save<JsonItem>()));
 
-        PlayerPrefs.SetString(MISSIONSAFESTRING, JsonUtility.ToJson(MissionController.Save<MissionItemJO>()));
+        PlayerPrefsHelper.SetString(MISSIONSAFESTRING, JsonUtility.ToJson(MissionController.Save<MissionItemJO>()));
 
         string s = JsonUtility.ToJson(SoldierController.Save());
-        PlayerPrefs.SetString(RECRUITMENTSAFESTRING, s);
+        PlayerPrefsHelper.SetString(RECRUITMENTSAFESTRING, s);
         Player.SoundEnabled = _audioManager.SoundEnabled;
         Player.MusicEnabled = _audioManager.MusicEnabled;
         PlayerPrefsHelper.SetString("PLAYER", JsonUtility.ToJson(Player));
@@ -139,21 +142,21 @@ public class GameManager : MonoBehaviour
 
     private void LoadGame()
     {
-        resetPlayerPrefsOnRestart = PlayerPrefs.GetInt("reset", 0) == 1;
+        resetPlayerPrefsOnRestart = PlayerPrefsHelper.GetInt("reset", 0) == 1;
         if (resetPlayerPrefsOnRestart)
             ResetAllOwnPlayerPrefs();
 
 
         Gold = PlayerPrefsHelper.GetFloat("Gold", 5550);
-        Badges = PlayerPrefs.GetFloat("Badges", 100);
-        string s = PlayerPrefs.GetString(KITCHENSAFESTRING, "");
+        Badges = PlayerPrefsHelper.GetFloat("Badges", 100);
+        string s = PlayerPrefsHelper.GetString(KITCHENSAFESTRING, "");
         KitchenController.Load(JsonUtility.FromJson<JsonController<JsonItem>>(s) ?? JsonController<JsonItem>.Default(new JsonItem()));
-        BathController.Load(JsonUtility.FromJson<JsonController<JsonItem>>(PlayerPrefs.GetString(BATHSAFESTRING, "")) ?? JsonController<JsonItem>.Default(new JsonItem()));
-        SleepingController.Load(JsonUtility.FromJson<JsonController<JsonItem>>(PlayerPrefs.GetString(SLEEPINGSAFESTRING, "")) ?? JsonController<JsonItem>.Default(new JsonItem()));
+        BathController.Load(JsonUtility.FromJson<JsonController<JsonItem>>(PlayerPrefsHelper.GetString(BATHSAFESTRING, "")) ?? JsonController<JsonItem>.Default(new JsonItem()));
+        SleepingController.Load(JsonUtility.FromJson<JsonController<JsonItem>>(PlayerPrefsHelper.GetString(SLEEPINGSAFESTRING, "")) ?? JsonController<JsonItem>.Default(new JsonItem()));
 
-        MissionController.Load(JsonUtility.FromJson<JsonController<MissionItemJO>>(PlayerPrefs.GetString(MISSIONSAFESTRING, "")) ?? JsonController<MissionItemJO>.Default(new MissionItemJO()));
+        MissionController.Load(JsonUtility.FromJson<JsonController<MissionItemJO>>(PlayerPrefsHelper.GetString(MISSIONSAFESTRING, "")) ?? JsonController<MissionItemJO>.Default(new MissionItemJO()));
 
-        SoldierController.Load(JsonUtility.FromJson<JsonController<SoldierItemJO>>(PlayerPrefs.GetString(RECRUITMENTSAFESTRING, "")) ?? JsonController<SoldierItemJO>.Default(new SoldierItemJO()));
+        SoldierController.Load(JsonUtility.FromJson<JsonController<SoldierItemJO>>(PlayerPrefsHelper.GetString(RECRUITMENTSAFESTRING, "")) ?? JsonController<SoldierItemJO>.Default(new SoldierItemJO()));
         Player = JsonUtility.FromJson<Player>(PlayerPrefsHelper.GetString("PLAYER", "")) ?? new Player();
         _audioManager.SoundEnabled = Player.SoundEnabled;
         _audioManager.MusicEnabled = Player.MusicEnabled;

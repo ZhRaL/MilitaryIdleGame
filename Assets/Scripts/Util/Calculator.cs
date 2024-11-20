@@ -174,7 +174,7 @@ namespace Util
                 return Mathf.RoundToInt(startValue * exponent);   
             }
             // Time Reward
-            // Longest AnimatinoDuration is Tank with 12seconds only for way to move
+
             var baseValue = entity.startingReward;
             // Item
             if (baseValue == itemBaseLevel)

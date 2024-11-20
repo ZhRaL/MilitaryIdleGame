@@ -11,7 +11,7 @@ public class LanguageManager : MonoBehaviour
 
     private void Start()
     {
-        int ID = PlayerPrefs.GetInt(LOCALE_SAFE_STRING, 0);
+        int ID = PlayerPrefsHelper.GetInt(LOCALE_SAFE_STRING, 0);
         ChangeLocale(ID);
     }
 
@@ -26,7 +26,7 @@ public class LanguageManager : MonoBehaviour
         active = true;
         yield return LocalizationSettings.InitializationOperation;
         LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[localeID];
-        PlayerPrefs.SetInt(LOCALE_SAFE_STRING,localeID);
+        PlayerPrefsHelper.SetInt(LOCALE_SAFE_STRING,localeID);
         active = false;
     }
 }

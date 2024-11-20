@@ -21,8 +21,8 @@ public class StatHighlighter : MonoBehaviour
         var gatherers = GetComponentsInChildren<StatGather>();
         
         StatGather x = gatherers
-            .Where(g => g.level > 0)
-            .OrderBy(gather => gather.value).First();
+            .Where(g => g.averageLevel > 0)
+            .OrderBy(gather => gather.maxValue).First();
         
         if (x != null)
         {
@@ -31,8 +31,8 @@ public class StatHighlighter : MonoBehaviour
         }
 
         StatGather y = gatherers
-            .Where(g => g.level > 0)
-            .OrderBy(gather => gather.value).Last();
+            .Where(g => g.averageLevel > 0)
+            .OrderBy(gather => gather.maxValue).Last();
         
         if (y != null)
         {

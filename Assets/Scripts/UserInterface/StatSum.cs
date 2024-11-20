@@ -12,8 +12,8 @@ public class StatSum : MonoBehaviour
     private void OnEnable()
     {
         float value = gatherers
-            .Where(g => g.level > 0)
-            .Sum(gather => gather.value);
+            .Where(g => g.averageLevel > 0)
+            .Sum(gather => gather.maxValue);
         
         tmp.text = ""+value;
     }

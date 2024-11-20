@@ -34,7 +34,7 @@ namespace Provider
 
         public OfflineCalculator()
         {
-            string savedStartTime = PlayerPrefs.GetString(saveString, string.Empty);
+            string savedStartTime = PlayerPrefsHelper.GetString(saveString, string.Empty);
             if (!string.IsNullOrEmpty(savedStartTime))
             {
                 savedTime = DateTime.Parse(savedStartTime);
@@ -42,11 +42,12 @@ namespace Provider
             validOfflineTime = PlayerPrefsHelper.GetInt("OfflineTime", 3600);
 
             routeManager = Object.FindObjectOfType<RouteManager>();
+
         }
 
         public void SafeTime()
         {
-            PlayerPrefs.SetString(saveString, DateTime.Now.ToString());
+            PlayerPrefsHelper.SetString(saveString, DateTime.Now.ToString());
             PlayerPrefsHelper.SetInt("OfflineTime", validOfflineTime);
             PlayerPrefs.Save();
         }
@@ -106,8 +107,8 @@ namespace Provider
         private void CalculateForBranc(DefenseType currentType, StatisticsDto current)
         {
             var soldiers = GameManager.INSTANCE.SoldierController.GetAllSoldiersFrom(currentType);
-            Soldier solwSoldier = soldiers.OrderBy(e => e.Speed).First();
-            current.NettoRunTime = getNettoRunningTime(solwSoldier);
+            Soldier solwSoldier = soldiers.First();
+            current.NettoRunTime = getNettoRunningTime(solwSoldier,soldiers.Average(e => e.Speed));
             current.EatingTime = getTimeEating(solwSoldier, soldiers.Length);
             current.PooTime = getTimePooing(solwSoldier, soldiers.Length);
             current.SleepingTime = getTimeSleeping(solwSoldier, soldiers.Length);
@@ -148,10 +149,10 @@ namespace Provider
             return eZ;
         }
 
-        private float getNettoRunningTime(Soldier soldier)
+        private float getNettoRunningTime(Soldier soldier, float avgSpeed)
         {
             var length = routeManager.getRouteLength(soldier.SoldierType);
-            return length / soldier.Speed;
+            return length / avgSpeed;
         }
 
         private float getTimeForMission(Soldier soldier, int soldierAmount)
@@ -192,6 +193,11 @@ namespace Provider
             // /= UnlockedItems -> *= UnlockedItems 
 
             return avg;
+        }
+
+        public void Init()
+        {
+            calculateHourlyReward();
         }
     }
 

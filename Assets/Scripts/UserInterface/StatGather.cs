@@ -10,17 +10,20 @@ public class StatGather : MonoBehaviour
 {
     public TMP_Text title, tx_reward;
     public ObjectType type;
-    public DefenseType defType;
-    [FormerlySerializedAs("reward")] public float value;
-    public int level;
+    [FormerlySerializedAs("level")] public int averageLevel;
+    public float currentValue, maxValue;
+    public Image fillImage;
 
 
     void OnEnable()
     {
-        level = DataProvider.INSTANCE.GetLevel(defType, type, 0);
+        averageLevel = DataProvider.INSTANCE.GetAverageLevel(type);
+        currentValue = GameManager.INSTANCE.StatisticsManager.GetCurrentValues(type);
+        maxValue = GameManager.INSTANCE.StatisticsManager.GetMaxValues(type,averageLevel);
         
-        value = Calculator.INSTANCE.GetReward(type, level);
-        tx_reward.text = "" + value;
+        tx_reward.text = "" + maxValue;
+        var capacity = currentValue / maxValue;
+        fillImage.fillAmount = 1 - capacity;
     }
     
 }

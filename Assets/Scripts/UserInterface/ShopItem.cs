@@ -58,7 +58,7 @@ public class ShopItem : MonoBehaviour
         switch (cost.type)
         {
             case Enums.Costs.MONEY:
-                return await InAppBuyManager.INSTANCE.Collect(cost.amount);
+                return await GameManager.INSTANCE.InAppBuyManager.Collect(cost.amount);
 
             case Enums.Costs.ADVERTISMENT:
                 return await AdManager.INSTANCE.ShowAsync();
