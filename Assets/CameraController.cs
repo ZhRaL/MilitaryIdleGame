@@ -33,10 +33,13 @@ public class CameraController : MonoBehaviour
     public float inertiaDamping = 0.9f;
     public float maxInertiaDistance = 5f;
     private Vector3 inertiaTargetPosition;
+    public float ScrollWheelSpeed;
 
 
     private void Update()
     {
+        Zoom(Input.GetAxis("Mouse ScrollWheel") * ScrollWheelSpeed * -1);
+
         if (CanvasOpener.IsMouseOverUIElement())
         {
             return;
@@ -115,7 +118,11 @@ public class CameraController : MonoBehaviour
 
         float deltaMagDiff = prevTouchDeltaMag - TouchDeltaMag;
 
-        mainCamera.orthographicSize += deltaMagDiff * orthoZoomSpeed;
+        Zoom(deltaMagDiff * orthoZoomSpeed);
+    }
+
+    public void Zoom(float delta) {
+        mainCamera.orthographicSize += delta;
         mainCamera.orthographicSize = Mathf.Max(mainCamera.orthographicSize, minDistanceZoomIn);
         mainCamera.orthographicSize = Mathf.Min(mainCamera.orthographicSize, maxDistanceZoomOut);
     }
