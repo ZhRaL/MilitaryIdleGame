@@ -104,8 +104,10 @@ namespace DefaultNamespace
 
         public void Reward()
         {
-            var amount = GameManager.INSTANCE.DataProvider.GetReward(this, true);
-            amount *= (_soldier.LVL_Reward * 2) / 100;
+            int amount = GameManager.INSTANCE.DataProvider.GetReward(this, true);
+            float tempAmount = amount * (1+(float)(_soldier.LVL_Reward * 2) / 100);
+            amount = (int) tempAmount;
+
             if (IsCrit())
             {
                 amount *= 2;
