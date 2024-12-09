@@ -15,5 +15,13 @@ public class customInspector : Editor
         {
             gm.ResetAllOwnPlayerPrefs();
         }
+        if (GUILayout.Button("Add 10.000 Money"))
+        {
+            gm.Gold += 10000;
+        }
+        if (GUILayout.Button("Add 100 Badges"))
+        {
+            gm.Badges += 100;
+        }
     }
 }

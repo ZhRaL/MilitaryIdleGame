@@ -127,8 +127,8 @@ namespace Provider
             IManageItem manager = GameManager.INSTANCE.GetTopLevel(ObjectType.Kit).GetItemManager(soldier.SoldierType);
 
             var eZ = manager.GetAverageTime();
-            eZ += (1 - (soldierAmount / manager.GetAmountOfUnlockedItems())) * eZ;
-            return eZ;
+            var wholDuration = (soldierAmount / manager.GetAmountOfUnlockedItems()) * eZ;
+            return wholDuration;
         }
 
         private float getTimePooing(Soldier soldier, int soldierAmount)
@@ -136,8 +136,8 @@ namespace Provider
             IManageItem manager = GameManager.INSTANCE.GetTopLevel(ObjectType.Bat).GetItemManager(soldier.SoldierType);
 
             var eZ = manager.GetAverageTime();
-            eZ += (1 - (soldierAmount / manager.GetAmountOfUnlockedItems())) * eZ;
-            return eZ;
+            var wholDuration = (soldierAmount / manager.GetAmountOfUnlockedItems()) * eZ;
+            return wholDuration;
         }
 
         private float getTimeSleeping(Soldier soldier, int soldierAmount)
@@ -145,8 +145,8 @@ namespace Provider
             IManageItem manager = GameManager.INSTANCE.GetTopLevel(ObjectType.Sle).GetItemManager(soldier.SoldierType);
 
             var eZ = manager.GetAverageTime();
-            eZ += (1 - (soldierAmount / manager.GetAmountOfUnlockedItems())) * eZ;
-            return eZ;
+            var wholDuration = (soldierAmount / manager.GetAmountOfUnlockedItems()) * eZ;
+            return wholDuration;
         }
 
         private float getNettoRunningTime(Soldier soldier, float avgSpeed)

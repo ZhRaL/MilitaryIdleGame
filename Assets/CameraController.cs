@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -38,6 +39,21 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
+        float scrollValue = Input.GetAxisRaw("Mouse ScrollWheel");
+        Debug.Log($"Mouse ScrollWheel Value: {scrollValue}");
+        
+        Debug.Log($"Mouse ScrollWheel: {scrollValue}");
+
+        if (scrollValue == 0)
+        {
+            Debug.Log("ScrollWheel-Wert ist genau 0.");
+            // Dein True Case
+        }
+        else
+        {
+            Debug.Log($"ScrollWheel-Wert ist nicht 0: {scrollValue}");
+        }
+        
         Zoom(Input.GetAxis("Mouse ScrollWheel") * ScrollWheelSpeed * -1);
 
         if (CanvasOpener.IsMouseOverUIElement())
@@ -121,7 +137,14 @@ public class CameraController : MonoBehaviour
         Zoom(deltaMagDiff * orthoZoomSpeed);
     }
 
-    public void Zoom(float delta) {
+    public void Zoom(float delta)
+    {
+        if (Math.Abs(delta) <= 0.001)
+        {
+            return;    
+        }
+
+        
         mainCamera.orthographicSize += delta;
         mainCamera.orthographicSize = Mathf.Max(mainCamera.orthographicSize, minDistanceZoomIn);
         mainCamera.orthographicSize = Mathf.Min(mainCamera.orthographicSize, maxDistanceZoomOut);
