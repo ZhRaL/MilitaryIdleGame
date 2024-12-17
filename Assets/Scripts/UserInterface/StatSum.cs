@@ -15,6 +15,6 @@ public class StatSum : MonoBehaviour
             .Where(g => g.averageLevel > 0)
             .Sum(gather => gather.maxValue);
         
-        tmp.text = ""+value;
+        tmp.text = Mathf.Round(value * 10f) / 10f + "";
     }
 }

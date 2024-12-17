@@ -21,7 +21,7 @@ public class StatGather : MonoBehaviour
         currentValue = GameManager.INSTANCE.StatisticsManager.GetCurrentValues(type);
         maxValue = GameManager.INSTANCE.StatisticsManager.GetMaxValues(type,averageLevel);
         
-        tx_reward.text = "" + maxValue;
+        tx_reward.text = Mathf.Round(maxValue * 10f) / 10f + "";
         var capacity = currentValue / maxValue;
         fillImage.fillAmount = Mathf.Min(.9f,1 - capacity);
     }
