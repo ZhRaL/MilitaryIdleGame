@@ -5,6 +5,7 @@ using DefaultNamespace;
 using Manager;
 using Provider;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Util;
@@ -73,6 +74,7 @@ public class GameManager : MonoBehaviour
     }
 
     public event Action OnMoneyChanged;
+    public UnityAction OnSceneLoaded;
 
     public float Badges
     {
@@ -96,9 +98,11 @@ public class GameManager : MonoBehaviour
     public OfflineCalculator OfflineCalculator;
     public StatisticsManager StatisticsManager;
     public InAppBuyManager InAppBuyManager;
+    public TutorialManager TutorialManager;
 
     private void Start()
     {
+        OnSceneLoaded += TutorialManager.ShowTutorial;
         QualitySettings.vSyncCount = 2;
         Application.targetFrameRate = 30;
         OfflineCalculator = new OfflineCalculator();
@@ -123,7 +127,8 @@ public class GameManager : MonoBehaviour
     {
         PlayerPrefsHelper.SetFloat("Gold", Gold);
         PlayerPrefsHelper.SetFloat("Badges", Badges);
-
+        PlayerPrefsHelper.SetInt("TutorialIndex", TutorialManager.index);
+        
         string b = JsonUtility.ToJson(KitchenController.Save<JsonItem>());
         PlayerPrefsHelper.SetString(KITCHENSAFESTRING, b);
         PlayerPrefsHelper.SetString(BATHSAFESTRING, JsonUtility.ToJson(BathController.Save<JsonItem>()));
@@ -149,6 +154,7 @@ public class GameManager : MonoBehaviour
 
         Gold = PlayerPrefsHelper.GetFloat("Gold", 5550);
         Badges = PlayerPrefsHelper.GetFloat("Badges", 100);
+        TutorialManager.index = PlayerPrefsHelper.GetInt("TutorialIndex", 0);
         string s = PlayerPrefsHelper.GetString(KITCHENSAFESTRING, "");
         KitchenController.Load(JsonUtility.FromJson<JsonController<JsonItem>>(s) ?? JsonController<JsonItem>.Default(new JsonItem()));
         BathController.Load(JsonUtility.FromJson<JsonController<JsonItem>>(PlayerPrefsHelper.GetString(BATHSAFESTRING, "")) ?? JsonController<JsonItem>.Default(new JsonItem()));
@@ -162,6 +168,7 @@ public class GameManager : MonoBehaviour
         _audioManager.MusicEnabled = Player.MusicEnabled;
         isInitialized = true;
         SaveGame();
+        OnSceneLoaded?.Invoke();
     }
 
     public void ResetAllOwnPlayerPrefs()
