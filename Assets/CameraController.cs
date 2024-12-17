@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Util;
 
 public class CameraController : MonoBehaviour
@@ -39,24 +40,7 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        float scrollValue = Input.GetAxisRaw("Mouse ScrollWheel");
-        Debug.Log($"Mouse ScrollWheel Value: {scrollValue}");
-        
-        Debug.Log($"Mouse ScrollWheel: {scrollValue}");
-
-        if (scrollValue == 0)
-        {
-            Debug.Log("ScrollWheel-Wert ist genau 0.");
-            // Dein True Case
-        }
-        else
-        {
-            Debug.Log($"ScrollWheel-Wert ist nicht 0: {scrollValue}");
-        }
-        
-        Zoom(Input.GetAxis("Mouse ScrollWheel") * ScrollWheelSpeed * -1);
-
-        if (CanvasOpener.IsMouseOverUIElement())
+       if (CanvasOpener.IsMouseOverUIElement())
         {
             return;
         }

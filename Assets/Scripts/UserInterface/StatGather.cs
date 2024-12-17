@@ -23,7 +23,7 @@ public class StatGather : MonoBehaviour
         
         tx_reward.text = "" + maxValue;
         var capacity = currentValue / maxValue;
-        fillImage.fillAmount = 1 - capacity;
+        fillImage.fillAmount = Mathf.Min(.9f,1 - capacity);
     }
     
 }
