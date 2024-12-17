@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
         set
         {
             _gold = value;
-            tx_Gold.text = "" + _gold;
+            tx_Gold.text = _gold.ConvertBigNumber();
             if (isInitialized)
                 SaveGame();
             OnMoneyChanged?.Invoke();
@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour
         set
         {
             _badges = value;
-            tx_Badges.text = "" + _badges;
+            tx_Badges.text = _badges.ConvertBigNumber();
             if (isInitialized) SaveGame();
         }
     }

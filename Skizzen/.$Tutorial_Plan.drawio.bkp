@@ -1,0 +1,85 @@
+<mxfile host="Electron" modified="2024-12-17T12:58:43.023Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.0.4 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="IA9dq3uaWN9xkQFgeRPk" version="24.0.4" type="device">
+  <diagram name="Seite-1" id="9-ymV582pqDxq1HW8YvX">
+    <mxGraphModel dx="1434" dy="836" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="9J-22XAXR4bjDbhk-DiG-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="9J-22XAXR4bjDbhk-DiG-1" target="9J-22XAXR4bjDbhk-DiG-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="9J-22XAXR4bjDbhk-DiG-1" value="Introtext" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="80" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="9J-22XAXR4bjDbhk-DiG-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="9J-22XAXR4bjDbhk-DiG-2" target="9J-22XAXR4bjDbhk-DiG-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="9J-22XAXR4bjDbhk-DiG-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="9J-22XAXR4bjDbhk-DiG-2" target="9J-22XAXR4bjDbhk-DiG-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="9J-22XAXR4bjDbhk-DiG-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="9J-22XAXR4bjDbhk-DiG-2" target="9J-22XAXR4bjDbhk-DiG-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="9J-22XAXR4bjDbhk-DiG-2" value="Basics" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="190" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="9J-22XAXR4bjDbhk-DiG-3" value="Gold/Badges" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="110" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="9J-22XAXR4bjDbhk-DiG-4" value="Erklärung eines Zyklusses eines Soldaten" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="200" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="9J-22XAXR4bjDbhk-DiG-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="9J-22XAXR4bjDbhk-DiG-5" target="9J-22XAXR4bjDbhk-DiG-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="9J-22XAXR4bjDbhk-DiG-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="9J-22XAXR4bjDbhk-DiG-5" target="9J-22XAXR4bjDbhk-DiG-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="9J-22XAXR4bjDbhk-DiG-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="9J-22XAXR4bjDbhk-DiG-5" target="9J-22XAXR4bjDbhk-DiG-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="9J-22XAXR4bjDbhk-DiG-5" value="Upgrademglkeit" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="350" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="9J-22XAXR4bjDbhk-DiG-6" value="K&lt;div&gt;B&lt;/div&gt;&lt;div&gt;S&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="395" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="9J-22XAXR4bjDbhk-DiG-7" value="Ship&lt;div&gt;Jet&lt;/div&gt;&lt;div&gt;Tank&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="305" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="9J-22XAXR4bjDbhk-DiG-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="9J-22XAXR4bjDbhk-DiG-9" target="9J-22XAXR4bjDbhk-DiG-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="9J-22XAXR4bjDbhk-DiG-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="9J-22XAXR4bjDbhk-DiG-9" target="9J-22XAXR4bjDbhk-DiG-21">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="9J-22XAXR4bjDbhk-DiG-9" value="Soldiers" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="510" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="9J-22XAXR4bjDbhk-DiG-10" value="Upgrade&lt;div&gt;Buy&lt;/div&gt;&lt;div&gt;Renaming&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="510" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="9J-22XAXR4bjDbhk-DiG-11" value="Tutorialcharakter" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry y="20" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="9J-22XAXR4bjDbhk-DiG-12" value="Speicher des Schrittes, wenn während Tutorial abgebrochen wird!!" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="570" y="160" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="9J-22XAXR4bjDbhk-DiG-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="9J-22XAXR4bjDbhk-DiG-21" target="9J-22XAXR4bjDbhk-DiG-23">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="9J-22XAXR4bjDbhk-DiG-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="9J-22XAXR4bjDbhk-DiG-21" target="9J-22XAXR4bjDbhk-DiG-26">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="9J-22XAXR4bjDbhk-DiG-21" value="Events" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="650" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="9J-22XAXR4bjDbhk-DiG-23" value="Planning" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="660" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="9J-22XAXR4bjDbhk-DiG-26" value="OuttroText mit&amp;nbsp;&lt;div&gt;&quot;Have fun&quot;&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="790" width="120" height="80" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

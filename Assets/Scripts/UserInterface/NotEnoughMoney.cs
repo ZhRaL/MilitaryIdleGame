@@ -18,9 +18,9 @@ public class NotEnoughMoney : MonoBehaviour
     public void InitMissingMoney(int amount)
     {
         moneyAmount = amount;
-        textAmount.text = string.Format(standardText, amount);
+        textAmount.text = string.Format(standardText, amount.ConvertBigNumber());
         badgeAmount = 20; // TODO Caluclate
-        tx_badge.text = "" + badgeAmount;
+        tx_badge.text = "" + badgeAmount.ConvertBigNumber();
 
         InitBadgeButton();
         InitAdButton();

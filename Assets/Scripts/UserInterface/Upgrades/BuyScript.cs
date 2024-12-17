@@ -40,13 +40,16 @@ public class BuyScript : MonoBehaviour
         
         if (GameManager.INSTANCE.Gold < dto.upgradeCost)
         {
-            button.interactable = false;
             button.onClick.RemoveAllListeners();
+            button.image.color = button.colors.disabledColor;
+            float moneyDifference = dto.upgradeCost - GameManager.INSTANCE.Gold;
+            button.onClick.AddListener(() =>SpawnBuyMoneyOverlay((int) moneyDifference));
+
         }
         else
         {
-            button.interactable = true;
             button.onClick.RemoveAllListeners();
+            button.image.color = button.colors.normalColor;
             button.onClick.AddListener(() => GameManager.INSTANCE.Gold -= dto.upgradeCost);
             button.onClick.AddListener(() => SoldierController.INSTANCE.GetPlatoon(type).createSoldier(1,1,1, inputField.text));
             button.onClick.AddListener(dto.upgradeAction);
@@ -59,5 +62,13 @@ public class BuyScript : MonoBehaviour
         }
     }
     
+    private void SpawnBuyMoneyOverlay(int diff)
+    {
+        GameObject prefab = PrefabManager.Instance.GetPrefabByString("NotEnoughMoney");
+        NotEnoughMoney script = prefab.GetComponent < NotEnoughMoney>();
+
+        script.InitMissingMoney(diff);
+        prefab.SetActive(true);
+    }
     
 }

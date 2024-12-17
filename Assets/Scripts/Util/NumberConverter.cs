@@ -17,7 +17,7 @@ public static class NumberConverter
         "bu","bv","bw","bx","by","bz"
     };
 
-    public static string ConvIntToString(this double bigInt)
+    public static string ConvertBigNumber(this double bigInt)
     {
         if (bigInt < 1000) return bigInt.ToString();
         string toret = "";
@@ -51,7 +51,12 @@ public static class NumberConverter
 
         return sb.ToString();
     }
-    public static string ConvIntToString(this float bigInt)
+
+    public static string ConvertBigNumber(this int value)
+    {
+        return ConvertBigNumber((float )value);
+    }
+    public static string ConvertBigNumber(this float bigInt)
     {
         if (bigInt < 1000) return bigInt.ToString();
         string toret = "";
