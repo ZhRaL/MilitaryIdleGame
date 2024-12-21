@@ -20,6 +20,7 @@ public class TutorialManager : MonoBehaviour
 
     public void ShowTutorial()
     {
+        if(index < TutorialComponents.Length)
         TutorialComponents[index].StartDialogue(this);
     }
 }
