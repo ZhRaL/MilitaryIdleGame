@@ -13,12 +13,14 @@ public class SkillSelector : MonoBehaviour
     
     public Image Icon;
     public Image buttonImg;
-    public TMP_Text Title, Cost, Description;
+    public TMP_Text Title, Cost, Description, ButtonText;
     public Button button;
     private Skill CurrentSkill;
 
     public void Select(Skill skill)
     {
+        CurrentSkill?.Deactivate();
+        skill.Activate();
         CurrentSkill = skill;
         Icon.sprite = skill.Icon.sprite;
         Title.text = skill.Type.Title;
@@ -53,7 +55,7 @@ public class SkillSelector : MonoBehaviour
     private void InitUnlocked()
     {
         button.interactable = false;
-        buttonImg.sprite = UnlockedButton.sprite;
+        ButtonText.text = "UNLOCKED";
     }
     
     private void InitLocked()

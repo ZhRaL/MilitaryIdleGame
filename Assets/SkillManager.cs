@@ -113,8 +113,17 @@ public class SkillManager : MonoBehaviour
             if (req != null)
             {
                 var line = Connect(child.transform,req.transform);
-                if (skill.Unlocked) 
-                    line.GetComponent<Image>().color = connectionEstablishedColor;
+                if (skill.Unlocked)
+                {
+                    Image img = line.GetComponent<Image>();
+                    img.color = connectionEstablishedColor;
+                    Rect r = new Rect(img.rectTransform.rect);
+                    r.height *= 2;
+                    img.rectTransform.sizeDelta = new Vector2(r.width, r.height);
+                    // line.GetComponent<Outline>().effectColor = Color.white;
+                    line.GetComponent<Outline>().enabled = true;
+                }
+                    
             }
 
         }

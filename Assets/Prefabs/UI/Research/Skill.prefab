@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6226415, g: 0.6079566, b: 0.6079566, a: 1}
+  m_Color: {r: 0.7735849, g: 0.7735849, b: 0.7735849, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -346,7 +346,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.094339624, g: 0.2619312, b: 0.3773585, a: 1}
+  m_Color: {r: 0.3207547, g: 0.3207547, b: 0.3207547, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -379,9 +379,18 @@ MonoBehaviour:
   BaseImg: {fileID: 5322778966823368654}
   ConnectionImage: {fileID: 0}
   Corner: {fileID: 6064549506651894724}
+  unlocked: {r: 0.44790155, g: 1, b: 0.2216981, a: 1}
+  pulseStart: {r: 0.3301887, g: 0.3286312, b: 0.3286312, a: 1}
+  pulseEnd: {r: 0.754717, g: 0.751157, b: 0.751157, a: 1}
   Cost: 0
+  Unlocked: 0
   RequirementSkill: {fileID: 0}
   Type:
     Title: 
     Description: 
     Level: 0
+  SkillId: 0
+  duration: 0.7
+  colorTime: 0
+  scaleDuration: 2
+  scaleTime: 0
