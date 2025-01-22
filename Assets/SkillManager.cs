@@ -1,12 +1,19 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Newtonsoft.Json.Serialization;
 using Tech_Tree;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class SkillManager : MonoBehaviour
 {
+    private string SKILL_SAVE_STRING = "UNLOCKED_SKILLS_LIST";
+    private int _researchPoints;
+    public TMP_Text CurrencyTx;
+    
     public Transform ConnectionParent;
 
     public GameObject ConnectionPrefab;
@@ -19,16 +26,59 @@ public class SkillManager : MonoBehaviour
 
     public Action OnSkillUnlocked;
 
+    public Color connectionEstablishedColor;
+    
+    public int ResearchPoints
+    {
+        get => _researchPoints;
+        set
+        {
+            _researchPoints = value;
+            CurrencyTx.text = string.Format(CurrencyTx.text, _researchPoints);
+        }
+    }
+
     void Start()
     {
         UnlockedSkills = new();
-        // Load from Playerprefs;
+        ResearchPoints = 0;
+        
+        OnSkillUnlocked += SaveUnlockedSkills;
+        LoadUnlockedSkills();
+
+        // Load from Playerprefs;   -> ID der Unlockten speichern
         // change Color from Corner and Base Img or so for all Unlocked Skills!
         
         ConnectAll();
     }
 
-    public void TryUnlock(Skill skill)
+    private void LoadUnlockedSkills()
+    {
+        string s = PlayerPrefsHelper.GetString(SKILL_SAVE_STRING, "{\"list\":[0,1,2]}");
+        IntListWrapper wrapper = JsonUtility.FromJson<IntListWrapper>(s);
+        foreach (int id in wrapper.list)
+        {
+            Transform child = SkillsParent.GetChild(id);
+            Skill skill = child.GetComponent<Skill>();
+            UnlockedSkills.Add(skill);
+            skill.Unlocked = true;
+        }
+    }
+
+    private void SaveUnlockedSkills()
+    {
+        var list = UnlockedSkills.Select(skill => skill.SkillId).ToList();
+        PlayerPrefsHelper.SetString(SKILL_SAVE_STRING,JsonUtility.ToJson(new IntListWrapper(list)));
+    }
+
+    public SkillState GetState(Skill skill)
+    {
+        if (UnlockedSkills.Contains(skill)) return SkillState.UNLOCKED;
+        if (UnlockedSkills.Contains(skill.RequirementSkill)) return SkillState.UNLOCKABLE;
+        return SkillState.LOCKED;
+    }
+
+    public bool TryUnlock(Skill skill)
     {
         Skill req = skill.RequirementSkill;
         if (req != null)
@@ -38,9 +88,13 @@ public class SkillManager : MonoBehaviour
                 UnlockedSkills.Add(skill);
                 skill.Unlocked = true;
                 OnSkillUnlocked?.Invoke();
+                return true;
             }
         }
+
+        return false;
     }
+    
 
     public void Select(Skill skill)
     {
@@ -58,13 +112,15 @@ public class SkillManager : MonoBehaviour
             Skill req = child.GetComponent<Skill>().RequirementSkill;
             if (req != null)
             {
-                Connect(child.transform,req.transform);
+                var line = Connect(child.transform,req.transform);
+                if (skill.Unlocked) 
+                    line.GetComponent<Image>().color = connectionEstablishedColor;
             }
 
         }
     }
 
-    public void Connect(Transform pointA, Transform pointB)
+    public GameObject Connect(Transform pointA, Transform pointB)
     {
         // Instanziere die Linie
         GameObject line = Instantiate(ConnectionPrefab, ConnectionParent);
@@ -88,14 +144,30 @@ public class SkillManager : MonoBehaviour
 
         // Setze die Rotation der Linie
         rectTransform.rotation = Quaternion.Euler(0, 0, angle);
+        
+        return line;
     }
 
-[Serializable]
+    [Serializable]
     public class SkillType
     {
         public string Title;
         public string Description;
         public int Level;
         private float amount;
+    }
+
+    public enum SkillState
+    {
+        UNLOCKED, LOCKED, UNLOCKABLE
+    }
+    private class IntListWrapper
+    {
+        public List<int> list;
+
+        public IntListWrapper(List<int> list)
+        {
+            this.list = list;
+        }
     }
 }
