@@ -49,6 +49,7 @@ public class SkillSelector : MonoBehaviour
     private void InitUnlockable()
     {
         buttonImg.sprite = UnlockableButton.sprite;
+        ButtonText.text = "UNLOCK";
         button.onClick.AddListener(() => SkillManager.TryUnlock(CurrentSkill));
     }
     
@@ -60,6 +61,8 @@ public class SkillSelector : MonoBehaviour
     
     private void InitLocked()
     {
+        button.interactable = false;
         buttonImg.sprite = LockedButton.sprite;
+        ButtonText.text = "LOCKED";
     }
 }

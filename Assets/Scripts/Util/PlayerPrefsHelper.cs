@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public static class PlayerPrefsHelper
@@ -44,8 +45,8 @@ public static class PlayerPrefsHelper
         return value;
     }
 
-    public static Dictionary<string, object> GetAllKeys()
+    public static List<string> GetAllKeys()
     {
-        return new Dictionary<string, object>(keyValuePairs);
+        return keyValuePairs.Keys.ToList();
     }
 }

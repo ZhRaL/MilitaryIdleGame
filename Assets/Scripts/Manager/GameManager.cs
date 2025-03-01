@@ -87,6 +87,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public int ResearchPoints { get; set; }
+
     #endregion
 
     public MissionController MissionController;
@@ -127,6 +129,7 @@ public class GameManager : MonoBehaviour
     {
         PlayerPrefsHelper.SetFloat("Gold", Gold);
         PlayerPrefsHelper.SetFloat("Badges", Badges);
+        PlayerPrefsHelper.SetInt("ResearchPoints", ResearchPoints);
         PlayerPrefsHelper.SetInt("TutorialIndex", TutorialManager.index);
         
         string b = JsonUtility.ToJson(KitchenController.Save<JsonItem>());
@@ -150,18 +153,16 @@ public class GameManager : MonoBehaviour
         resetPlayerPrefsOnRestart = PlayerPrefsHelper.GetInt("reset", 0) == 1;
         if (resetPlayerPrefsOnRestart)
             ResetAllOwnPlayerPrefs();
-
-
+        
         Gold = PlayerPrefsHelper.GetFloat("Gold", 5550);
         Badges = PlayerPrefsHelper.GetFloat("Badges", 100);
+        ResearchPoints = PlayerPrefsHelper.GetInt("ResearchPoints", 1);
         TutorialManager.index = PlayerPrefsHelper.GetInt("TutorialIndex", 0);
         string s = PlayerPrefsHelper.GetString(KITCHENSAFESTRING, "");
         KitchenController.Load(JsonUtility.FromJson<JsonController<JsonItem>>(s) ?? JsonController<JsonItem>.Default(new JsonItem()));
         BathController.Load(JsonUtility.FromJson<JsonController<JsonItem>>(PlayerPrefsHelper.GetString(BATHSAFESTRING, "")) ?? JsonController<JsonItem>.Default(new JsonItem()));
         SleepingController.Load(JsonUtility.FromJson<JsonController<JsonItem>>(PlayerPrefsHelper.GetString(SLEEPINGSAFESTRING, "")) ?? JsonController<JsonItem>.Default(new JsonItem()));
-
         MissionController.Load(JsonUtility.FromJson<JsonController<MissionItemJO>>(PlayerPrefsHelper.GetString(MISSIONSAFESTRING, "")) ?? JsonController<MissionItemJO>.Default(new MissionItemJO()));
-
         SoldierController.Load(JsonUtility.FromJson<JsonController<SoldierItemJO>>(PlayerPrefsHelper.GetString(RECRUITMENTSAFESTRING, "")) ?? JsonController<SoldierItemJO>.Default(new SoldierItemJO()));
         Player = JsonUtility.FromJson<Player>(PlayerPrefsHelper.GetString("PLAYER", "")) ?? new Player();
         _audioManager.SoundEnabled = Player.SoundEnabled;
@@ -173,7 +174,7 @@ public class GameManager : MonoBehaviour
 
     public void ResetAllOwnPlayerPrefs()
     {
-        string[] sl = { BATHSAFESTRING, SLEEPINGSAFESTRING, KITCHENSAFESTRING, MISSIONSAFESTRING, RECRUITMENTSAFESTRING, "Gold", "Badges", "reset", "saveString" };
+        string[] sl = PlayerPrefsHelper.GetAllKeys().ToArray();
         foreach (var s in sl)
         {
             PlayerPrefs.DeleteKey(s);
