@@ -45,24 +45,43 @@ public class SkillManager : MonoBehaviour
         
         OnSkillUnlocked += SaveUnlockedSkills;
         LoadUnlockedSkills();
-
+        LoadUnlockableSkills();
         // Load from Playerprefs;   -> ID der Unlockten speichern
         // change Color from Corner and Base Img or so for all Unlocked Skills!
         
         ConnectAll();
     }
 
+    private void LoadUnlockableSkills()
+    {
+        foreach (Skill skill in SkillsParent.GetComponentsInChildren<Skill>())
+        {
+            if(skill.Unlocked) 
+                continue;
+            
+            if(skill.RequirementSkill.Unlocked=true)
+                skill.Icon.sprite = skill.IconImage;
+        }
+    }
+
     private void LoadUnlockedSkills()
     {
-        string s = PlayerPrefsHelper.GetString(SKILL_SAVE_STRING, "{\"list\":[0,1,2]}");
+        string s = PlayerPrefsHelper.GetString(SKILL_SAVE_STRING, "{\"list\":[0,2,13,19]}");
         IntListWrapper wrapper = JsonUtility.FromJson<IntListWrapper>(s);
         foreach (int id in wrapper.list)
         {
             Transform child = SkillsParent.GetChild(id);
             Skill skill = child.GetComponent<Skill>();
-            UnlockedSkills.Add(skill);
-            skill.Unlocked = true;
+            if(skill!=null)
+                UnlockSkill(skill);
         }
+    }
+
+    public void UnlockSkill(Skill skill)
+    {
+        UnlockedSkills.Add(skill);
+        skill.Unlocked = true;
+        skill.Icon.sprite = skill.IconImage;
     }
 
     private void SaveUnlockedSkills()
@@ -105,11 +124,14 @@ public class SkillManager : MonoBehaviour
     {
         foreach (Transform child in SkillsParent)
         {
-            Button button = child.gameObject.AddComponent<Button>();
             Skill skill = child.GetComponent<Skill>();
+            if(skill==null) 
+                continue;
+            
+            Button button = child.gameObject.AddComponent<Button>();
             button.onClick.AddListener(() => Select(skill));
             
-            Skill req = child.GetComponent<Skill>().RequirementSkill;
+            Skill req = skill.RequirementSkill;
             if (req != null)
             {
                 var line = Connect(child.transform,req.transform);

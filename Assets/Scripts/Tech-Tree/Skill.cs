@@ -11,6 +11,8 @@ namespace Tech_Tree
         public Image BaseImg;
         public Image ConnectionImage;
         public Image Corner;
+
+        public Sprite IconImage;
         
         public Color unlocked, pulseStart, pulseEnd;
         
