@@ -1,0 +1,3 @@
+[submodule "Packages/FoxBirdLib"]
+	path = Packages/FoxBirdLib
+	url = https://github.com/ZhRaL/FoxBird.git
