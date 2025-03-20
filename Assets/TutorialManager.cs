@@ -11,9 +11,10 @@ public class TutorialManager : MonoBehaviour
 
     public void ShowNextDialogue()
     {
-        if (index < TutorialComponents.Length - 1)
+        index++;
+        if (index < TutorialComponents.Length)
         {
-            TutorialComponents[++index].StartDialogue(this);
+            TutorialComponents[index].StartDialogue(this);
         }
         // EndDialogue
     }

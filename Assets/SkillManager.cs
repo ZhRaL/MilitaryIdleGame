@@ -27,6 +27,8 @@ public class SkillManager : MonoBehaviour
     public Action OnSkillUnlocked;
 
     public Color connectionEstablishedColor;
+
+    public GameObject NotEnoughResearchPointsPopup;
     
     public int ResearchPoints
     {
@@ -59,7 +61,7 @@ public class SkillManager : MonoBehaviour
             if(skill.Unlocked) 
                 continue;
             
-            if(skill.RequirementSkill.Unlocked=true)
+            if(skill.RequirementSkill.Unlocked)
                 skill.Icon.sprite = skill.IconImage;
         }
     }
@@ -92,13 +94,21 @@ public class SkillManager : MonoBehaviour
 
     public SkillState GetState(Skill skill)
     {
-        if (UnlockedSkills.Contains(skill)) return SkillState.UNLOCKED;
-        if (UnlockedSkills.Contains(skill.RequirementSkill)) return SkillState.UNLOCKABLE;
+        if (UnlockedSkills.Contains(skill)) 
+            return SkillState.UNLOCKED;
+        if (UnlockedSkills.Contains(skill.RequirementSkill)) 
+            return SkillState.UNLOCKABLE;
         return SkillState.LOCKED;
     }
 
     public bool TryUnlock(Skill skill)
     {
+        if (_researchPoints < skill.Cost)
+        {
+            NotEnoughResearchPointsPopup.SetActive(true);
+            return false;
+        }
+
         Skill req = skill.RequirementSkill;
         if (req != null)
         {

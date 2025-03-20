@@ -12,7 +12,7 @@ using Util;
 public class Soldier : MonoBehaviour
 {
     [SerializeField] private string _soldierName;
-
+    
     public string SoldierName
     {
         get { return _soldierName; }
