@@ -86,8 +86,7 @@ public class GameManager : MonoBehaviour
             if (isInitialized) SaveGame();
         }
     }
-
-    public int ResearchPoints { get; set; }
+    
 
     #endregion
 
@@ -101,6 +100,7 @@ public class GameManager : MonoBehaviour
     public StatisticsManager StatisticsManager;
     public InAppBuyManager InAppBuyManager;
     public TutorialManager TutorialManager;
+    public SkillManager SkillManager;
 
     private void Start()
     {
@@ -129,7 +129,7 @@ public class GameManager : MonoBehaviour
     {
         PlayerPrefsHelper.SetFloat("Gold", Gold);
         PlayerPrefsHelper.SetFloat("Badges", Badges);
-        PlayerPrefsHelper.SetInt("ResearchPoints", ResearchPoints);
+        PlayerPrefsHelper.SetInt("ResearchPoints", SkillManager.ResearchPoints);
         PlayerPrefsHelper.SetInt("TutorialIndex", TutorialManager.index);
         
         string b = JsonUtility.ToJson(KitchenController.Save<JsonItem>());
@@ -156,7 +156,7 @@ public class GameManager : MonoBehaviour
         
         Gold = PlayerPrefsHelper.GetFloat("Gold", 5550);
         Badges = PlayerPrefsHelper.GetFloat("Badges", 100);
-        ResearchPoints = PlayerPrefsHelper.GetInt("ResearchPoints", 1);
+        SkillManager.ResearchPoints = PlayerPrefsHelper.GetInt("ResearchPoints");
         TutorialManager.index = PlayerPrefsHelper.GetInt("TutorialIndex", 0);
         string s = PlayerPrefsHelper.GetString(KITCHENSAFESTRING, "");
         KitchenController.Load(JsonUtility.FromJson<JsonController<JsonItem>>(s) ?? JsonController<JsonItem>.Default(new JsonItem()));

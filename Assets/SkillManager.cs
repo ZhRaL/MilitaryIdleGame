@@ -12,7 +12,7 @@ public class SkillManager : MonoBehaviour
 {
     private string SKILL_SAVE_STRING = "UNLOCKED_SKILLS_LIST";
     private int _researchPoints;
-    public TMP_Text CurrencyTx;
+    public TMP_Text CurrencyTx,ButtonResetProgressTx;
     
     public Transform ConnectionParent;
 
@@ -29,21 +29,28 @@ public class SkillManager : MonoBehaviour
     public Color connectionEstablishedColor;
 
     public GameObject NotEnoughResearchPointsPopup;
-    
+
+    private int GetOptainableResearchPoints()
+    {
+        // TODO - Calculate how "far" the player is
+        return 1;
+    }
+
     public int ResearchPoints
     {
         get => _researchPoints;
         set
         {
             _researchPoints = value;
-            CurrencyTx.text = string.Format(CurrencyTx.text, _researchPoints);
+            CurrencyTx.text = string.Format(CurrencyTx.text, GetOptainableResearchPoints());
+            ButtonResetProgressTx.text = string.Format(ButtonResetProgressTx.text, _researchPoints);
         }
     }
 
     void Start()
     {
         UnlockedSkills = new();
-        ResearchPoints = 0;
+        ResearchPoints = PlayerPrefsHelper.GetInt("ResearchPoints");
         
         OnSkillUnlocked += SaveUnlockedSkills;
         LoadUnlockedSkills();
