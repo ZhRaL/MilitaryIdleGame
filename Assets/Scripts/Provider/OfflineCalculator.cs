@@ -19,8 +19,7 @@ namespace Provider
         public int validOfflineTime = 0;
 
         private const string saveString = "OFFLINE_CALC";
-
-        private KitchenController kitchenController;
+        
         public RouteManager routeManager;
 
         private int amount;
@@ -28,21 +27,34 @@ namespace Provider
         private bool initialized;
         private int offTime;
 
-        private float hourlyReward;
+        public float hourlyReward;
 
         public StatisticsDto statistic_ARMY = new(), statistic_AIRFORCE = new(), statistic_MARINE=new();
 
-        public OfflineCalculator()
+        private GameManager _gameManager;
+
+        public OfflineCalculator(GameManager manager)
         {
+            _gameManager = manager;
             string savedStartTime = PlayerPrefsHelper.GetString(saveString, string.Empty);
             if (!string.IsNullOrEmpty(savedStartTime))
             {
                 savedTime = DateTime.Parse(savedStartTime);
             }
             validOfflineTime = PlayerPrefsHelper.GetInt("OfflineTime", 3600);
-
             routeManager = Object.FindObjectOfType<RouteManager>();
+            _gameManager.OnSceneLoaded += () => CalculateReward(0); // For Initialization
 
+        }
+
+        public float HourlyReward
+        {
+            get => hourlyReward;
+            set
+            {
+                hourlyReward = value;
+                _gameManager.HourlyReward = hourlyReward;
+            }
         }
 
         public void SafeTime()
@@ -60,16 +72,12 @@ namespace Provider
             PlayerPrefs.Save();
         }
 
-        public int CalculateOnlineAmountFor(int seconds)
-        {
-            return CalculateReward(seconds);
-        }
-
         private int CalculateReward(int seconds)
         {
-            hourlyReward = calculateHourlyReward();
+            HourlyReward = calculateHourlyReward();
+            logger.log("Calculated " + HourlyReward);
 
-            return (int)((float)seconds / 3600 * hourlyReward);
+            return (int)((float)seconds / 3600 * HourlyReward);
         }
 
         private void CalculateOfflineAmount()
@@ -95,6 +103,11 @@ namespace Provider
             return (int)(amount * percentage);
         }
 
+        public float GetHourlyOnlineReward()
+        {
+            return statistic_ARMY.GetHourlyReward() + statistic_AIRFORCE.GetHourlyReward() + statistic_MARINE.GetHourlyReward();
+        }
+
         private float calculateHourlyReward()
         {
             CalculateForBranc(DefenseType.ARMY, statistic_ARMY);
@@ -118,7 +131,9 @@ namespace Provider
             current.Soldier_AvgMissionMultiplier = (float)soldiers.Average(e => e.LVL_Reward);
             current.AvgMissionMoney = GameManager.INSTANCE.GetTopLevel(new ObjectType
             {
-                defenseType = DefenseType.ARMY
+                defenseType = DefenseType.ARMY,
+                objectType = GenericObjectType.JET_MONEY,
+
             }).GetItemManager(currentType).GetAverageMissionMoney();
         }
 

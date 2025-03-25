@@ -68,7 +68,9 @@ namespace DefaultNamespace
 
         public override float GetAverageMissionMoney()
         {
-            return (float)Items.OfType<MissionItem>().Average(e => e.MoneyLevel);
+            var x = Items.OfType<MissionItem>().Where(e => e.Unlocked);
+            return (float) x.Average(e => e.MoneyLevel);
+            // return (float)Items.OfType<MissionItem>().Average(e => e.MoneyLevel);
         }
     }
 }

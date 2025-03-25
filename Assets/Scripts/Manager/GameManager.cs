@@ -101,13 +101,14 @@ public class GameManager : MonoBehaviour
     public InAppBuyManager InAppBuyManager;
     public TutorialManager TutorialManager;
     public SkillManager SkillManager;
+    public float HourlyReward;
 
     private void Start()
     {
         OnSceneLoaded += TutorialManager.ShowTutorial;
         QualitySettings.vSyncCount = 2;
         Application.targetFrameRate = 30;
-        OfflineCalculator = new OfflineCalculator();
+        OfflineCalculator = new OfflineCalculator(this);
         InAppBuyManager = new InAppBuyManager();
         LoadGame();
         StatisticsManager = new StatisticsManager(OfflineCalculator);
