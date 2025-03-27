@@ -7,5 +7,6 @@ namespace Manager
         public int amoutOfResets;
         public float ReductionRate;
         public int NecessaryAmountTillFirstPoint;
+        public int CurrentNecessaryAmound;
     }
 }
