@@ -8,7 +8,7 @@ namespace DefaultNamespace
         private Slider _slider;
 
         // Ascending order!
-        private int[] magicValues = { 10, 25, 50, 100 };
+        private int[] magicValues = { 10, 25, 100, 250 };
 
         public SliderValues(Slider slider)
         {
