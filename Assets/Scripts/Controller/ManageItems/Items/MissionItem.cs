@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Linq;
+using Controller.ManageItems.Items;
 using Interfaces;
 using UnityEngine;
 using UnityEngine.VFX;
@@ -9,7 +10,7 @@ namespace DefaultNamespace
 {
     public abstract class MissionItem : Item
     {
-        public GameObject startEffect;
+        private GameObject startEffect;
         public int MoneyLevel
         {
             get => _moneyLevel;
@@ -22,11 +23,10 @@ namespace DefaultNamespace
 
         private int _moneyLevel = 1;
 
-        public Animation anim1, anim2;
-
         public abstract Transform Waypoints { get; set; }
         private Soldier _soldier;
         private SoldierWalkUtil wayBack;
+        public GameObject Model;
 
         public delegate void MoneyLevelUpEventHandler(int newLevel);
 
@@ -52,7 +52,7 @@ namespace DefaultNamespace
 
         public void MissionStart()
         {
-            GetComponent<Animator>().SetTrigger("Mission_Start");
+            Model.GetComponent<Animator>().SetTrigger("Mission_Start");
             if(startEffect!=null)
                 startEffect.SetActive(true);
             // var x = startEffect.GetComponent<VisualEffect>();
@@ -63,7 +63,7 @@ namespace DefaultNamespace
         {
             yield return new WaitForSeconds(time);
 
-            GetComponent<Animator>().SetTrigger("Mission_End");
+            Model.GetComponent<Animator>().SetTrigger("Mission_End");
         }
 
         public void getBackDelayed()
@@ -73,7 +73,7 @@ namespace DefaultNamespace
 
         private float calculateWaitingDuration()
         {
-            var anim = GetComponent<Animator>();
+            var anim = Model.GetComponent<Animator>();
             AnimationClip[] clips = anim.runtimeAnimatorController.animationClips;
             float animationDuration = clips.Sum(cl => cl.averageDuration);
 
@@ -131,6 +131,16 @@ namespace DefaultNamespace
         private void Update()
         {
             wayBack?.Update();
+        }
+
+        private void Start()
+        {
+            var hook = GetComponentInChildren<VehicleAnimatorHook>();
+            Model = hook.gameObject;
+            hook.Init(this);
+            startEffect = hook.SmokeEffect;
+            // TODO - Problem ist, dass Prefabbs nicht bei (0,0,0) starten -> Springen bei Start der Animation!
+                // -> Müssen wieder zu 0,0,0 zurück. Rest klappt soweit gut
         }
 
         public override JsonItem ToJson()
