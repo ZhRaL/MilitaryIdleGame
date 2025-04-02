@@ -27,12 +27,11 @@ Transform:
   m_GameObject: {fileID: 3280384310271628014}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -1.2, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.24013498, y: 0.29995877, z: 0.29995877}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7188194303769071584}
-  - {fileID: 2636791833888089440}
+  - {fileID: 1630974119489762705}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &1513778486771711868
@@ -69,13 +68,46 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &8585766426678222906
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1630974119489762705}
+  m_Layer: 0
+  m_Name: TransformShifter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1630974119489762705
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8585766426678222906}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -4.4, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7188194303769071584}
+  - {fileID: 2636791833888089440}
+  m_Father: {fileID: 5602240689154266622}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &7210368511777992267
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 5602240689154266622}
+    m_TransformParent: {fileID: 1630974119489762705}
     m_Modifications:
     - target: {fileID: 408428069019169560, guid: 692279d2813495e4782181612a8074c0, type: 3}
       propertyPath: m_Name
@@ -111,7 +143,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4649856416226249515, guid: 692279d2813495e4782181612a8074c0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -12.19
+      value: -12.190002
       objectReference: {fileID: 0}
     - target: {fileID: 4649856416226249515, guid: 692279d2813495e4782181612a8074c0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -162,11 +194,19 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 5602240689154266622}
+    m_TransformParent: {fileID: 1630974119489762705}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 0ae88091b1392444787c37b003768812, type: 3}
       propertyPath: m_RootOrder
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0ae88091b1392444787c37b003768812, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 99.99998
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0ae88091b1392444787c37b003768812, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 99.999985
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0ae88091b1392444787c37b003768812, type: 3}
       propertyPath: m_LocalPosition.x
@@ -182,11 +222,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0ae88091b1392444787c37b003768812, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071067
+      value: 0.70710677
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0ae88091b1392444787c37b003768812, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.7071068
+      value: -0.7071069
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0ae88091b1392444787c37b003768812, type: 3}
       propertyPath: m_LocalRotation.y

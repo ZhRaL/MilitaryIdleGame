@@ -2,6 +2,7 @@
 using System.Linq;
 using Controller.ManageItems.Items;
 using Interfaces;
+using Manager;
 using UnityEngine;
 using UnityEngine.VFX;
 using Util;
@@ -132,15 +133,27 @@ namespace DefaultNamespace
         {
             wayBack?.Update();
         }
-
-        private void Start()
+        
+        public void LoadModel()
         {
-            var hook = GetComponentInChildren<VehicleAnimatorHook>();
-            Model = hook.gameObject;
+            // Ensure it is only registered once
+            OnMoneyLevelUp -= CheckModel;
+            OnMoneyLevelUp += CheckModel; 
+            Model = Instantiate(ModelManager.INSTANCE.GetModelPrefab(ObjectType.defenseType, _moneyLevel),transform);
+            
+            VehicleAnimatorHook hook = Model.GetComponent<VehicleAnimatorHook>();
+            if(hook==null) 
+                return;
             hook.Init(this);
             startEffect = hook.SmokeEffect;
-            // TODO - Problem ist, dass Prefabbs nicht bei (0,0,0) starten -> Springen bei Start der Animation!
-                // -> Müssen wieder zu 0,0,0 zurück. Rest klappt soweit gut
+        }
+
+        public void CheckModel(int discard)
+        {
+            if(!SliderValues.IsLevelUpNumber(_moneyLevel)) 
+                return;
+            Destroy(Model);
+            LoadModel();
         }
 
         public override JsonItem ToJson()

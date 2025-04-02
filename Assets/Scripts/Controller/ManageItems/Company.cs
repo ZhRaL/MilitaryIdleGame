@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Controller.ManageItems.Items;
 using Interfaces;
+using Manager;
 using UnityEngine;
-using UnityEngine.Events;
-using Util;
 
 namespace DefaultNamespace
 {
@@ -62,6 +60,7 @@ namespace DefaultNamespace
                     item.Parent = this;
                     item.Level = jo.Json_Level;
                     item.MoneyLevel = jo.MoneyLevel;
+                    item.LoadModel();
                 }
             }
         }

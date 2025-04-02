@@ -1,4 +1,6 @@
-﻿using UnityEngine.UI;
+﻿using System;
+using System.Linq;
+using UnityEngine.UI;
 using Util;
 
 namespace DefaultNamespace
@@ -8,13 +10,32 @@ namespace DefaultNamespace
         private Slider _slider;
 
         // Ascending order!
-        private int[] magicValues = { 10, 25, 100, 250 };
+        private static int[] magicValues = { 10, 25, 100, 250 };
 
         public SliderValues(Slider slider)
         {
             _slider = slider;
         }
 
+        public static int getRankForLevel(int level)
+        {
+            for (int i = 0; i < magicValues.Length; i++)
+            {
+                if (level < magicValues[i]) 
+                    return i;
+            }
+
+            if (level <= 500) 
+                return magicValues.Length - 1;
+
+            throw new ArgumentException("Invalid Level!");
+
+        }
+
+        public static bool IsLevelUpNumber(int number)
+        {
+            return magicValues.Contains(number);
+        }
 
         private void CheckMagix(float value)
         {
